@@ -41,6 +41,7 @@ This plan replaces two earlier decisions: the MVP definition in B42 ("MVP at Mat
 
 **Monday 2.11, one hour, all three:**
 - Adopt the engineering defaults E1–E10 (§2.1) as written.
+- Decide D13: does Sjur's Python prototype (B47) replace the Rust M0 build, or run beside it? The week plan below was written before B47.
 - Name the tech lead.
 - Sjur approves downloading Skatteetaten's withholding table file.
 - Coding starts the same day, on work that needs no other decision.
@@ -287,6 +288,8 @@ Adopt each default unless someone objects in the Monday meeting. The full questi
 | E9 | Audit and personal data | Append-only audit log from the first migration; hash chain later, before ISAE. Field encryption with one key, and a blind index for national ID and bank account numbers. No personal data in application logs |
 | E10 | Naming | English names in code, API and docs. Norwegian only for legal code values as Skatteetaten publishes them (`a_melding`, `a07`, `aga`) |
 
+**Prototype (B47):** Sjur builds a Python prototype first. E5–E10 apply to it wherever they don't depend on the language. The mapping for each default is in [`prototype-stack.md`](docs/plan/prototype-stack.md).
+
 ### 2.2 Sjur's decisions
 
 | # | Decision | Recommendation | Needed before |
@@ -303,6 +306,7 @@ Adopt each default unless someone objects in the Monday meeting. The full questi
 | D10 | OTP (if our company has it) | The premium is entered by hand for the month it is paid. Brutto computes AGA on it and reports the pension provider in the a-melding. The premium itself is booked from the invoice | 13.11 |
 | D11 | Separation of duties in a team of three | Everyone is in the same pay run, so someone approves their own pay. Allow a logged exception, reported to the board chair | 13.11 |
 | D12 | Recruit two developers now? | Pilots in 2028-01 need two developers starting by 1.4.2027. With three months' notice they must sign by **18.12.2026**. Without them, the plan date for pilots is 1.8.2028. This needs a runway figure | 6.11 |
+| D13 | Python prototype and the Rust build (B47) | Two readings:<br>**(a)** The prototype is M0. Sjur builds the shadow core in Python. Rust starts once both shadows are clean, porting against the same golden cases, migrations and API contract. The prototype must then meet E5–E9 and the §1.7 exit criteria, and it moves off localhost before it becomes system of record (B48).<br>**(b)** The prototype runs beside a Rust M0. Peter and Sander build in Rust from 2.11 as in §1.2, and the prototype is the demo and the executable spec.<br>Decide with Peter and Sander | 2.11 |
 
 ### 2.3 Long lead time: start now, needed for M1
 
@@ -663,6 +667,8 @@ You decided B19, B37, B41 and B42 today (29.10.2026). We propose to change them 
 | **New B44** Sender of record for 2026 | The current system submits all of income year 2026 (D1). |
 | **New B45** Accounting firms are M2 | A firm's own payroll can be an M1 pilot; firm clients wait for M2.<br>**Consequence:** no firm-client revenue before 2029 in the base case.<br>**Option to cost:** a firm runs a client as a direct-customer tenant in M1. The client approves a standard system user, and the firm's staff are users in that tenant. |
 | **New B46** A07-vs-ledger is a separate product line | LATER, and only with written API clearance from the accounting vendors. |
+| **New B47** Prototype first, Rust after proof of concept | Stated by Sjur on 29.10.2026: Sjur builds the MVP and demo himself, with coding agents. The team rewrites it in Rust once the proof of concept holds, so B8 stays.<br>**Proposed stack:** Python (FastAPI, raw SQL, `Decimal`) with Postgres, and a React frontend for demos ([`prototype-stack.md`](docs/plan/prototype-stack.md)).<br>How it fits §1.2 is D13. |
+| **New B48** The prototype runs on localhost | No hosting for the prototype:<br>- Postgres bound to 127.0.0.1, and disk encryption on.<br>- Encrypted backups kept in Norway.<br>- Real payroll data in a separate database that coding agents cannot reach.<br>It moves to Azure Norway East (E4) before it becomes system of record, gets an external user, or serves MCP to a customer's agent. |
 
 ---
 
@@ -702,7 +708,7 @@ You decided B19, B37, B41 and B42 today (29.10.2026). We propose to change them 
 ## 10. Open questions
 
 **Blocking M0, Sjur:**
-- D1–D12 (§2.2);
+- D1–D13 (§2.2);
 - the vendor company;
 - the Altinn packages, and the current system's submission channel after 17.11.2026;
 - the letter to Skatteetaten, which carries the M0 questions: rounding, the upload format, half withholding, KID and the union-dues cap.
@@ -796,6 +802,7 @@ The 30 blocking questions with recommended answers are in [`questions.md`](docs/
 | [`docs/plan/data-model.md`](docs/plan/data-model.md) | The core model, history policy, merges, deferred entities, ER diagram |
 | [`docs/plan/testing.md`](docs/plan/testing.md) | Correctness strategy and golden-case lists |
 | [`docs/plan/api-mcp.md`](docs/plan/api-mcp.md) | Minimal API and MCP scope, first operations and tools |
+| [`docs/plan/prototype-stack.md`](docs/plan/prototype-stack.md) | The Python prototype stack, rules that keep the Rust rewrite cheap, and the localhost setup (B47, B48, D13) |
 | [`docs/plan/questions.md`](docs/plan/questions.md) | Blocking questions, new questions for Peter and Sander, triage of all open items, B1–B46 |
 | [`docs/plan/competitors.md`](docs/plan/competitors.md) | Table stakes against SD Worx breadth, cheap differentiators, pricing |
 | [`docs/plan/areas/`](docs/plan/areas/) | One scope review per area group |

@@ -10,6 +10,7 @@ These papers back [PLAN.md](../../PLAN.md). They come from the scope review of 2
 | [questions.md](questions.md) | Which open questions block M0 or M1, the new question set for Peter and Sander (replaces `fase1.json`), triage of all ~300 open items, and a recommendation for each of B1–B43 |
 | [data-model.md](data-model.md) | The minimal core data model (25 tables for M0, 12 more for M1, 1 for M2), history policy, merges, sensitive fields and an ER diagram |
 | [api-mcp.md](api-mcp.md) | What "API first" means for a three-person team, what must be right from day one, and the first operations and MCP tools |
+| [prototype-stack.md](prototype-stack.md) | Which stack Sjur's prototype uses, how it keeps the Rust rewrite cheap, and how it runs on localhost (B47, B48, D13) |
 | [testing.md](testing.md) | How we prove payroll is correct: golden cases, withholding conformance, a-melding validation, parallel-run protocol, release diff |
 | [competitors.md](competitors.md) | Table stakes against SD Worx breadth, cheap differentiators, and what the cheapest competitors charge |
 | [areas/](areas/) | One scope review per area group: org-per, lon-kjo, trk-pen, fra-tid-utl, myn-bet, reg-rap, byr-por-orl, pla-sik-mig |
