@@ -106,7 +106,7 @@
     "hvem": "Alle tre",
     "q": "Hvor kommer ansattoversikten fra i fase 1?",
     "why": "Svaret avgjør om Brutto allerede nå er stedet der ansatte registreres, og hvor mye skjema vi må bygge.",
-    "forslag": "Hentes fra a-ordningen og berikes fra regnskapssystemets API. Brutto blir først master når lønnskjøring kommer.",
+    "forslag": "Kombinasjon. A07 per måned er ryggraden. Navn, ansattnummer og avdeling hentes fra regnskapssystemet (Tripletex, PowerOffice Go, ReAi) eller fra CSV/Excel-import. Virksomhetsdata hentes fra Brreg. Navnelista kommer helst via regnskapssystemets API, ellers via en innhentingslenke der kunden logger inn med BankID. Fila leses i nettleseren, og serveren lagrer den ikke. Navnelista sendes aldri på e-post. Brutto blir først master når lønnskjøring kommer.",
     "valg": [
      "Fra a-ordningen",
      "Fra regnskaps- eller lønnssystemets API",
@@ -161,7 +161,7 @@
     "hvem": "Alle tre",
     "q": "Skal godkjenningsflyt og utbetaling være med i fase 1?",
     "why": "Begge er store. Fase 1 som beskrevet leser bare data.",
-    "forslag": "Fase 2, men godkjenningsmotoren og datamodellen designes i fase 1.",
+    "forslag": "Fase 2, men godkjenningsmotoren og datamodellen designes i fase 1. Modellen for utbetaling låses nå. Fase 1 trenger ikke kontoinformasjon fra banken (AIS), fordi bankpostene kommer via hovedboken.",
     "valg": [
      "Fase 1",
      "Fase 2",
@@ -356,7 +356,7 @@
     "hvem": "Peter og Sander",
     "q": "Hvilke id-er bruker vi?",
     "why": "",
-    "forslag": "UUIDv7 internt. Organisasjonsnummer, fødselsnummer og arbeidsforhold-ID lagres som egne felt.",
+    "forslag": "UUIDv7 internt. Organisasjonsnummer, fødselsnummer og arbeidsforhold-ID lagres som egne felt. Arbeidsforhold-ID og permisjons-ID lagres som tekst og aldri som tall. Skatteetaten tillater høyst 150 tegn av typen `a-z A-Z 0-9 - _ .`, og ID-en er unik bare per person og virksomhet. Fødselsnummer brukes aldri i id-er eller URL-er.",
     "valg": []
    },
    {
@@ -410,7 +410,7 @@
     "hvem": "Peter og Sander",
     "q": "Hvem eier oppkoblingen mot Digdir og Skatteetaten?",
     "why": "Samarbeidsportalen, bruksvilkår, Maskinporten-klient og registrering i Altinns systemregister tar anslagsvis 3–5 måneder. Dette er kritisk sti.",
-    "forslag": "Én navngitt eier som starter denne uka.",
+    "forslag": "Én navngitt eier som starter denne uka. Krav og betalinger søkes via Skatteetatens brukerstøttetjeneste. `altinn:events.subscribe` er offentlig og trenger ikke bestilles.",
     "valg": []
    },
    {
@@ -471,7 +471,7 @@
     "hvem": "Peter og Sander",
     "q": "Hvilket testmiljø og hvilke testdata?",
     "why": "",
-    "forslag": "Skatteetatens testmiljø med syntetiske personer fra Tenor. Ekte data finnes bare i produksjon.",
+    "forslag": "TT02 og Skatteetatens testmiljø med syntetiske personer og virksomheter fra Tenor. Det finnes ingen ferdige testvirksomheter med a-meldinger for avstemmingsrapporten, så Brutto må trolig sende egne syntetiske a-meldinger. Det bekreftes med første kall i TT02. Ekte data finnes bare i produksjon.",
     "valg": []
    },
    {
@@ -595,7 +595,7 @@
     "hvem": "Alle tre",
     "q": "Hvilke regnskapssystemer først?",
     "why": "",
-    "forslag": "Tripletex og PowerOffice Go, med SAF-T-fil som reserve.",
+    "forslag": "Tripletex og PowerOffice Go, med SAF-T-fil som reserve. PowerOffice Go gir eksakt kobling mot arbeidsforholdene i A07 fra første dag, fordi `ReportingId` er ID-en som rapporteres. I Tripletex og ReAi mangler den rapporterte ID-en som regel. Der kobles arbeidsforholdene på person, virksomhet og startdato første gang og med lært ID etterpå. For posteringene er Tripletex en god første adapter: reverseringslenker, reskontrotype og kontonavn finnes, og debet og kredit er rene.",
     "valg": [
      "Tripletex",
      "PowerOffice Go",
@@ -847,7 +847,7 @@
     "hvem": "Alle tre",
     "q": "Hvilke roller trengs i fase 1?",
     "why": "",
-    "forslag": "Byråadministrator, byråmedarbeider, kundebruker, lesetilgang (revisor) og plattformadministrator.",
+    "forslag": "Byråadministrator, byråmedarbeider, kundebruker, lesetilgang (revisor) og plattformadministrator. Rollene får egne rettigheter: `lonn.les`, `identitet.les`, `fravaer.les` og `konfidensiell_gruppe`. Fase 1 har ingen `fagforening.les` eller `trekk.les` per person. Trekk per person ligger bak `lonn.les`.",
     "valg": []
    },
    {
@@ -953,7 +953,7 @@
     "hvem": "Alle tre",
     "q": "Pentest og databehandleravtale før første kunde?",
     "why": "",
-    "forslag": "Ja til begge, og en enkel trusselmodell allerede nå.",
+    "forslag": "Ja til begge, og en enkel trusselmodell allerede nå. Databehandleravtalen er signert før første produksjonskall med kundedata. Røyktest mot Bruttos eget orgnr med `utenInntektsmottakere = true` kan kjøres før det.",
     "valg": []
    },
    {
@@ -962,7 +962,7 @@
     "hvem": "Peter og Sander",
     "q": "Skal assistenten bruke det samme API-et som frontend?",
     "why": "",
-    "forslag": "Ja. Verktøyene er de samme endepunktene, med samme tilgangskontroll.",
+    "forslag": "Ja. Verktøyene er de samme endepunktene, med samme tilgangskontroll. Svarene skiller id-er og koder fra visningstekst. Fødselsnummer brukes aldri i id-er eller URL-er.",
     "valg": []
    },
    {

@@ -1673,7 +1673,7 @@
       {
        "id": "F-BYR-08",
        "navn": "Tilknytning og tilgangsdiagnose per klient",
-       "beskrivelse_md": "«Legg til klient» knytter også klienten til byråets systembruker. Status per klient: tilknyttet, riktig pakke, venter på kunden eller tilgang mistet.\n- Mangler byrået rollen REGN i Enhetsregisteret, lager systemet en ferdig instruks som byrået sender kunden.\n- Daglig helsesjekk av tilgangen. Varsel senest tre virkedager før lønnsdag.\n- Feilkoder forklares i klartekst.",
+       "beskrivelse_md": "«Legg til klient» knytter også klienten til byråets systembruker. Status per klient: tilknyttet, riktig pakke, venter på kunden eller tilgang mistet.\n- Mangler byrået rollen REGN i Enhetsregisteret, lager systemet en ferdig instruks som byrået sender kunden.\n- Daglig helsesjekk av tilgangen. Varsel senest tre virkedager før lønnsdag.\n- Feilkoder forklares i klartekst.\n- Tilgangsdiagnosen viser også om regnskapstilkoblingen virker, om orgnr stemmer med opplysningspliktig i A07, hvilken ansattkilde klienten har (API, fil eller ingen) og andelen personer som er koblet.",
        "niva": "Integrasjon",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -1698,7 +1698,9 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §2.5 og §5.2",
         "R2-byra §2.1",
-        "https://docs.altinn.studio/nb/api/authentication/systemuserapi/clientdelegation/"
+        "https://docs.altinn.studio/nb/api/authentication/systemuserapi/clientdelegation/",
+        "natt/N04",
+        "natt/N37"
        ],
        "merknad_md": "Wow #14 i G. Innen 2028 er systembruker hygiene. Forskjellen ligger i hvor raskt tilknytning og feilsøking går. Se også F-MYN-05, F-BYR-07 og F-BYR-09."
       },
@@ -1708,12 +1710,11 @@
        "beskrivelse_md": "Kjeder med flere juridiske byråenheter får én systembruker per enhet i samme grensesnitt. Ved fusjon eller omorganisering kan klientene knyttes til ny systembruker i én operasjon, med kø og status per klient.",
        "niva": "Integrasjon",
        "behovsvekt": "Bør",
-       "fase1": "Fase 1",
        "roller": [
         "Byrå",
         "Administrator"
        ],
-       "regler_md": "- API-et for klientdelegering har ikke paginering ennå. Byrået må derfor ha klientregisteret i Brutto.\n- Skatteetaten tillater 5 samtidige kall per API per virksomhet. Om grensen gjelder byrået eller hver klient ved agent-token, er uavklart (R3 D-21).\n- Jobbkø med kvoter per byrå.",
+       "regler_md": "- API-et for klientdelegering har ikke paginering ennå. Byrået må derfor ha klientregisteret i Brutto.\n- Skatteetaten tillater 5 samtidige kall per API per virksomhet. Om grensen gjelder byrået eller hver klient ved agent-token, er uavklart (R3 D-21).\n- Jobbkø med kvoter per byrå.\n- Forslag til MVP: Klientdelegering i skala bruker systembruker med `klientadministrator`, som må testes i TT02. Scopene søkes sammen med MVP-scopene. To personer i Brutto godkjenner før en klient legges til eller fjernes [natt/N40].",
        "data": [
         "D-Byra",
         "D-Klient",
@@ -1727,7 +1728,8 @@
        ],
        "kilder": [
         "R2-byra §1.6 BY-51",
-        "R3-kritikk-domene b.2 D-21"
+        "R3-kritikk-domene b.2 D-21",
+        "natt/N40"
        ],
        "merknad_md": "Se også F-MYN-04, F-MYN-05, F-BYR-07 og F-BYR-08."
       },
@@ -1769,7 +1771,7 @@
         "Byrå",
         "Kvalitetsansvarlig"
        ],
-       "regler_md": "- GRFS 3.4: Skriftlig fullmakt og oversikt over hvem som kan bruke den. Rettigheter tilbakekalles ved opphør. Delegering i bank eller Altinn er ikke nok alene.\n- Å legge til en person på en betalingsfullmakt krever godkjenning fra en annen person i byrået, og kunden får varsel. Ellers kan en medarbeider gi seg selv betalingsrett.",
+       "regler_md": "- GRFS 3.4: Skriftlig fullmakt og oversikt over hvem som kan bruke den. Rettigheter tilbakekalles ved opphør. Delegering i bank eller Altinn er ikke nok alene.\n- Å legge til en person på en betalingsfullmakt krever godkjenning fra en annen person i byrået, og kunden får varsel. Ellers kan en medarbeider gi seg selv betalingsrett.\n- En bankfullmakt angir kontonummer, hvilke typer utbetalinger den gjelder og om den kan delegeres videre (Finanstilsynet, tematilsyn 2018) [natt/N10].",
        "data": [
         "D-Fullmakt",
         "D-Klient",
@@ -1784,7 +1786,8 @@
        "kilder": [
         "E-byra §2.2 (GRFS 3.4)",
         "E-byra §2.3",
-        "https://www.regnskapnorge.no/globalassets/dokumenter/vedtekter/grfs---fom.-2023---masterfil.pdf"
+        "https://www.regnskapnorge.no/globalassets/dokumenter/vedtekter/grfs---fom.-2023---masterfil.pdf",
+        "natt/N10"
        ],
        "merknad_md": "Den automatiske Altinn-statusen er Må (F-BYR-08). Det manuelle registeret er Bør fordi det overlapper med praksissystemet."
       }
@@ -1876,7 +1879,7 @@
       {
        "id": "F-BYR-15",
        "navn": "Samlehenting av tilbakemeldinger, avstemming og trekkpålegg",
-       "beskrivelse_md": "Tilbakemeldinger på a-meldingen, avstemmingsrapporter og nye trekkpålegg hentes for alle klienter. Resultatet blir én avviksliste på tvers av klienter med klartekst og forslag til retting. Avstemming lønn mot a-melding vises per klient og periode, og avvik må kvitteres.",
+       "beskrivelse_md": "Tilbakemeldinger på a-meldingen, avstemmingsrapporter og signaler om nye trekkpålegg hentes for alle klienter. Resultatet blir én avviksliste på tvers av klienter med klartekst og forslag til retting. Avstemming lønn mot a-melding vises per klient og periode, og avvik må kvitteres.",
        "niva": "Integrasjon",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -1884,7 +1887,7 @@
         "Byrå",
         "Kvalitetsansvarlig"
        ],
-       "regler_md": "- Avvik i tilbakemeldingen følges opp uten ugrunnet opphold (GRFS 7.8).\n- Avstemming lønn mot regnskap og bank er Bør og eies av REG (K4).",
+       "regler_md": "- Avvik i tilbakemeldingen følges opp uten ugrunnet opphold (GRFS 7.8).\n- Avstemming lønn mot regnskap og bank er Bør og eies av REG (K4).\n- Regnskapsdata hentes med én tilkobling for alle klientene i Tripletex, PowerOffice Go (partnernøkkel) og ReAi [natt/N04].\n- I fase 1 dekker funksjonen tilbakemelding (A03, når den finnes), avstemmingsrapporten (F-MYN-21) og brevsensor i Dialogporten. Tilbakemeldinger hentes for alle klienter, også når et annet system har sendt a-meldingen [verifiseres i TT02]. Trekkpålegg er bare et brevsignal [natt/N27].\n- Trekkpålegg-API og D-Trekkpalegg som API-data kommer i MVP. Tjenestebeskrivelsen krever at kunden har sendt a-melding gjennom Brutto, så fasegrensen følger av vilkårene [natt/N26].",
        "data": [
         "D-Tilbakemelding",
         "D-Trekkpalegg",
@@ -1893,7 +1896,8 @@
        ],
        "integrasjoner": [
         "Skatteetaten a-melding og avstemming",
-        "Trekkpålegg-API"
+        "Trekkpålegg-API",
+        "Altinn Dialogporten"
        ],
        "behov": [
         "BY-08",
@@ -1901,7 +1905,10 @@
        ],
        "kilder": [
         "R2-byra §2.1",
-        "E-byra §2.2 (GRFS 7.8 og 9.3)"
+        "E-byra §2.2 (GRFS 7.8 og 9.3)",
+        "natt/N04",
+        "natt/N26",
+        "natt/N27"
        ],
        "merknad_md": "Se også F-MYN-21, F-MYN-42, F-REG-25, F-REG-30 og F-MIG-17."
       },
@@ -2120,7 +2127,7 @@
        "roller": [
         "Byrå"
        ],
-       "regler_md": "Lønnsdata går ikke til språkmodell i første versjon (S §3 pkt. 11). KI forbereder og godkjenner aldri.",
+       "regler_md": "Lønnsdata går ikke til språkmodell i første versjon (S §3 pkt. 11). KI forbereder og godkjenner aldri. Ingen KI på regnskapsdata i fase 1 uten samtykke fra Tripletex. Det gjelder også interne verktøy og MCP mot kundedata i produksjon [natt/N40].",
        "data": [
         "D-Lonnsgrunnlag",
         "D-Grunnlagsinnsending"
@@ -2131,7 +2138,8 @@
        ],
        "kilder": [
         "R2-byra §1.1 BY-03",
-        "S-avklaringer-fra-sally §3"
+        "S-avklaringer-fra-sally §3",
+        "natt/N40"
        ],
        "merknad_md": "Runde B: R2-byra satte dette som Bør. Det strider mot S §3 pkt. 11 og er satt ned til Kan til gründeren har avklart. Lagret mapping per klient for Excel og CSV dekker mye av behovet uten KI. Se også F-POR-13 og F-PLA-36."
       },
@@ -2320,7 +2328,7 @@
         "Byrå",
         "Administrator"
        ],
-       "regler_md": "- GRFS 2.3 (beredskap) og 4.1–4.2 (utlevering ved opphør).\n- Det finnes ikke noe obligatorisk SAF-T-format for lønn (E-byra §2.2).\n- Eksport per klient krever step-up og logges. Porteføljeeksport krever i tillegg fire øyne. Pakken krypteres og lenken utløper.",
+       "regler_md": "- GRFS 2.3 (beredskap) og 4.1–4.2 (utlevering ved opphør).\n- Det finnes ikke noe obligatorisk SAF-T-format for lønn (E-byra §2.2).\n- Eksport per klient krever step-up og logges. Porteføljeeksport krever i tillegg fire øyne. Pakken krypteres og lenken utløper.\n- Forslag til MVP: Pakken har også lønnsjournal og bokføringsgrunnlag med regnskapets bilagsnumre uendret, betalingsdokumentasjon, systembeskrivelse og kontrollsporbeskrivelse. Data slettes først etter kvittering for mottak [natt/N30].",
        "data": [
         "D-Eksportpakke",
         "D-Klient",
@@ -2332,7 +2340,8 @@
        ],
        "kilder": [
         "R2-byra §1.3 BY-29",
-        "E-byra §2.2"
+        "E-byra §2.2",
+        "natt/N30"
        ],
        "merknad_md": "«Hva skjer med klientene mine hvis dere går konkurs?» Dette er partnerens nest største frykt. Se også F-SIK-26."
       },
@@ -2903,7 +2912,7 @@
         "Lønnsansvarlig",
         "Revisor"
        ],
-       "regler_md": "Noteplikten følger regnskapsloven § 7-31 om ytelser til ledende personer. Unntak for små foretak og foreninger [verifiseres].",
+       "regler_md": "Noteplikten følger regnskapsloven § 7-31 om ytelser til ledende personer. Små foretak etter § 1-5 har ikke plikten. For andre foretak lager Brutto et grunnlag med lønn, naturalytelser og styrehonorar per rolle fra A07 og rollene i Enhetsregisteret [natt/N24].",
        "data": [
         "D-Engasjement",
         "D-Rolletildeling",
@@ -2915,7 +2924,8 @@
         "OK-48"
        ],
        "kilder": [
-        "R2-ansatt-org §7 GS-07"
+        "R2-ansatt-org §7 GS-07",
+        "natt/N24"
        ],
        "merknad_md": ""
       }
@@ -5833,7 +5843,7 @@
      "tripletex": "–",
      "reai": "ClientProfileDto.communicationInstructions",
      "huma": "–",
-     "merknad": "Ikke fødselsnummer eller helse. Systemet varsler ved mønster som ligner fødselsnummer."
+     "merknad": "Ikke fødselsnummer eller helse. Systemet varsler ved mønster som ligner fødselsnummer. Versjoneres med hvem som endret og når."
     },
     {
      "navn": "kontaktperson_kunde",
@@ -6358,7 +6368,33 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Kundens driftskonto fullmakten gjelder."
+     "merknad": "Kundens driftskonto fullmakten gjelder. Påkrevd for BANKFULLMAKT (Finanstilsynet 2018)."
+    },
+    {
+     "navn": "betalingstyper",
+     "type": "liste<enum(LONN, FORSKUDDSTREKK, ARBEIDSGIVERAVGIFT, TREKK)>",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hvilke typer utbetalinger en bankfullmakt gjelder (Finanstilsynet 2018)."
+    },
+    {
+     "navn": "kan_delegeres",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Usann hvis fullmakten ikke sier noe annet. En fullmakt kan ikke delegeres videre uten at det står i den (Finanstilsynet 2018)."
     },
     {
      "navn": "personer",
@@ -7145,7 +7181,7 @@
    "navn": "Kundens godkjenning av lønn",
    "omrade": "BYR",
    "fase1": "Fase 1 design",
-   "beskrivelse_md": "Kundens godkjenning eller avvisning av en lønnskjøring og betalingssettet i et byråoppdrag, eller byråets registrering av godkjenning gitt utenfor portalen. Godkjenningen gjelder et bestemt sammendrag med hash. Beregnes kjøringen på nytt, kreves ny godkjenning. Dette er dokumentasjonen for GRFS 8.6. Relasjoner: n:1 D-Lonnskjoring, n:1 D-Klient, 0..1 D-Fullmakt. Ny entitet fra K5. Kan slås sammen med godkjenningen av lønnskjøringen i KJO (K2) hvis K2 modellerer den med de samme feltene. Se også D-Kjoringsgodkjenning og D-Godkjenning.",
+   "beskrivelse_md": "Kundens godkjenning eller avvisning av en lønnskjøring og betalingssettet i et byråoppdrag, eller byråets registrering av godkjenning gitt utenfor portalen. Godkjenningen gjelder et bestemt sammendrag med hash. Beregnes kjøringen på nytt, kreves ny godkjenning. Dette er dokumentasjonen for GRFS 8.6. Relasjoner: n:1 D-Lonnskjoring, n:1 D-Klient, 0..1 D-Fullmakt. Ny entitet fra K5. Forslag til MVP: slås sammen med D-Kjoringsgodkjenning (K2) til én tabell med `ledd = kunde`. Se også D-Kjoringsgodkjenning og D-Godkjenning.",
    "felt": [
     {
      "navn": "kundegodkjenning_id",
@@ -7439,7 +7475,7 @@
    "id": "D-Oppdragsdokumentasjon",
    "navn": "Oppdragsdokumentasjon (GRFS-pakke)",
    "omrade": "BYR",
-   "beskrivelse_md": "Pakken som dokumenterer utførelsen av et lønnsoppdrag for én klient og én periode. Lages fra revisjonsloggen og lagres i byråets eget område, uavhengig av kundens data, og beholdes i fem år etter regnskapsårets slutt, også etter at klienten har gått. Relasjoner: n:1 D-Byra (eier), n:1 D-Klient, refererer til D-Kundegodkjenning, D-Innsending, D-Tilbakemelding, D-Avvik og D-Revisjonslogg. Invariant: pakken er uforanderlig etter låsing. Retting gir ny versjon.",
+   "beskrivelse_md": "Pakken som dokumenterer utførelsen av et lønnsoppdrag for én klient og én periode. Lages fra revisjonsloggen og lagres i byråets eget område, uavhengig av kundens data, og beholdes i fem år etter regnskapsårets slutt, også etter at klienten har gått. Relasjoner: n:1 D-Byra (eier), n:1 D-Klient, refererer til D-Kundegodkjenning, D-Innsending, D-Tilbakemelding, D-Avvik og D-Revisjonslogg. Invariant: pakken er uforanderlig etter låsing. Retting gir ny versjon. Fra fase 1 lenker pakken til A07-avstemmingen (D-Avstemming) per klient og periode og lagres i 5 år, så byrået kan dokumentere avstemmingen i kvalitetskontrollen (GRFS 12).",
    "felt": [
     {
      "navn": "dokumentasjon_id",
@@ -7674,6 +7710,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": "Lønn mot a-melding, regnskap og bank, hver med status og kvittering (GRFS 9.3)."
+    },
+    {
+     "navn": "avstemming_ider",
+     "type": "liste<ref D-Avstemming>",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "A07-avstemming per klient og periode (GRFS 12). Fra fase 1."
     },
     {
      "navn": "fullmakter_snapshot",
@@ -8256,7 +8305,7 @@
    "id": "D-Eksportpakke",
    "navn": "Eksportpakke (exit og klientbytte)",
    "omrade": "BYR",
-   "beskrivelse_md": "En full eksport per klient, portefølje eller virksomhet, med dokumentert format og manifest. Brukes ved exit, klientbytte, beredskap og revisjon. Inneholder lønnsdata og særlige kategorier og behandles deretter. Relasjoner: n:1 D-Byra eller D-Virksomhet, n:n D-Klient. Ny entitet fra K5.",
+   "beskrivelse_md": "En full eksport per klient, portefølje eller virksomhet, med dokumentert format og manifest. Brukes ved exit, klientbytte, beredskap og revisjon. Inneholder lønnsdata og særlige kategorier og behandles deretter. Relasjoner: n:1 D-Byra eller D-Virksomhet, n:n D-Klient. Ny entitet fra K5. Invariant: data slettes etter exit først når mottakeren har kvittert for mottak med manifest-hash.",
    "felt": [
     {
      "navn": "eksport_id",
@@ -8312,7 +8361,7 @@
     },
     {
      "navn": "innhold",
-     "type": "liste<enum(ANSATTE, ARBEIDSFORHOLD_ID, LONNSARTER, FASTE_LINJER, SALDOER_HITTIL_I_AR, FERIEPENGEGRUNNLAG, A_MELDINGER, LONNSSLIPPER_PDF_A, REVISJONSLOGG, OPPDRAGSDOKUMENTASJON)>",
+     "type": "liste<enum(ANSATTE, ARBEIDSFORHOLD_ID, LONNSARTER, FASTE_LINJER, SALDOER_HITTIL_I_AR, FERIEPENGEGRUNNLAG, A_MELDINGER, LONNSSLIPPER_PDF_A, REVISJONSLOGG, OPPDRAGSDOKUMENTASJON, LONNSJOURNAL, BOKFORINGSGRUNNLAG, BETALINGSDOKUMENTASJON, SYSTEMBESKRIVELSE, KONTROLLSPORBESKRIVELSE, PROSJEKTDOKUMENTASJON)>",
      "pakrevd": "Ja",
      "kilde": "Bruker",
      "historikk": "Nei",
@@ -8321,7 +8370,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Bilagsnumrene fra regnskapet beholdes uendret."
     },
     {
      "navn": "formatversjon",

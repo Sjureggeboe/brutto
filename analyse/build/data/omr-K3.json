@@ -819,7 +819,7 @@
         "Lønnsansvarlig",
         "Økonomi"
        ],
-       "regler_md": "R3 D-08 og GC-18. Metodebytte bare fra et årsskifte eller med lønnsfaglig godkjenning [verifiseres]. AGA-beregningen eies av KJO (K2). FRA leverer refusjonsbeløp per måned og metode.",
+       "regler_md": "R3 D-08 og GC-18. Metodebytte bare fra et årsskifte eller med lønnsfaglig godkjenning [verifiseres]. AGA-beregningen eies av KJO (K2). FRA leverer refusjonsbeløp per måned og metode. Fase 1: AGA-metoden registreres per virksomhet og år, fordi kontrollen mot dobbelt fradrag trenger den. Brutto kan foreslå metoden ut fra valuteringen i K27 (Skatteetatens prinsipputtalelse 3.11.2023, N15).",
        "data": [
         "D-Refusjonskrav",
         "D-Refusjonsavstemming",
@@ -831,7 +831,8 @@
         "GC-18"
        ],
        "kilder": [
-        "R3-kritikk-domene D-08 og GC-18"
+        "R3-kritikk-domene D-08 og GC-18",
+        "natt/N15"
        ],
        "merknad_md": "Runde B: Dobbelt fradrag av refusjon mot AGA er en av de mest sannsynlige pengefeilene første år (R3 b.0 nr. 6)."
       },
@@ -2164,7 +2165,7 @@
       {
        "id": "F-TID-27",
        "navn": "Prosjektlønnsgrunnlag per finansiør",
-       "beskrivelse_md": "Grunnlag per person, prosjekt og måned: timer, timesats etter finansiørens modell og sosiale kostnader. Forskningsrådet: 0,8–1,1 promille av årslønnen, tak 1 100 kr per time og 1 850 timer per år. EU: dagsats med 215 dagsverk. RAP (K6) lager rapportene.",
+       "beskrivelse_md": "Grunnlag per person, prosjekt og måned: timer, timesats etter finansiørens modell og sosiale kostnader. Forskningsrådet: faktisk kostnad (nominell årslønn, sosiale kostnader og indirekte kostnader) delt på 1 695 timer, tak 1 100 kr per time og 1 850 timer per år. 0,8–1,1 promille gjelder bare budsjettet, og institutter bruker godkjente satser per stillingskategori. SkatteFUNN og Innovasjon Norge: 1,2 promille av årslønnen med tak 700 kr per time. EU: dagsats med 215 dagsverk. RAP (K6) lager rapportene.",
        "niva": "Kjerne",
        "behovsvekt": "Bør",
        "roller": [
@@ -2185,7 +2186,8 @@
        ],
        "kilder": [
         "R2-moduler-integrasjoner §3.1",
-        "https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/"
+        "https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/",
+        "natt/N34"
        ],
        "merknad_md": "Se også F-ORG-21 og F-RAP-29."
       }
@@ -2757,7 +2759,7 @@
         "Lønnsansvarlig",
         "Økonomi"
        ],
-       "regler_md": "Standardkontering: forskudd på 2910, omklassifisert til 1570 ved årsslutt (S-avklaringer §6 pkt. 27). Forskudd fra kilden (for eksempel Tripletex `travelAdvance`) merkes så det ikke utbetales to ganger. Tilbakekreving ved trekk i lønn krever skriftlig avtale (aml. § 14-15). Forskudd som ikke er avregnet ved årsslutt, vises i avstemmingen.",
+       "regler_md": "Standardkontering: forskudd på 2910, omklassifisert til 1570 ved årsslutt (S-avklaringer §6 pkt. 27). Forskudd fra kilden (for eksempel Tripletex `travelAdvance`) merkes så det ikke utbetales to ganger. Tilbakekreving ved trekk i lønn krever skriftlig avtale (aml. § 14-15). Forskudd som ikke er avregnet ved årsslutt, vises i avstemmingen. Saldo per ansatt for forskudd holdes i Brutto og posteres mot 2910 med ansatt når kontoen er reskontro (i Tripletex er 2910 `ledgerType` EMPLOYEE). Saldolisten per ansatt er balansedokumentasjon (bokføringsloven § 11, N02).",
        "data": [
         "D-Reise",
         "D-Trekk",
@@ -2770,7 +2772,8 @@
        ],
        "kilder": [
         "S-avklaringer §6 pkt. 27",
-        "R2-moduler-integrasjoner UT-09"
+        "R2-moduler-integrasjoner UT-09",
+        "natt/N02"
        ],
        "merknad_md": ""
       },
@@ -5759,7 +5762,7 @@
    "id": "D-Permisjon",
    "navn": "Permisjon og permittering (a-meldingsforløp)",
    "omrade": "FRA",
-   "beskrivelse_md": "Forløpet som rapporteres i a-meldingen for et arbeidsforhold, laget fra ett eller flere fravær. Én post per permisjons-ID eller permitterings-ID. Ny ID når prosenten endres. n:1 til D-Arbeidsforhold, 1:n til D-Fravaer. Bitemporal. Invariant: permittering har alltid egen ID og rapporteres hver måned til den slutter; permisjon over 14 dager rapporteres. Feltene følger innrapporterings-API-et (OpenAPI 0.1.2), der `permittering` er et eget objekt.",
+   "beskrivelse_md": "Forløpet som rapporteres i a-meldingen for et arbeidsforhold, laget fra ett eller flere fravær. Én post per permisjons-ID eller permitterings-ID. Ny ID når prosenten endres. n:1 til D-Arbeidsforhold, 1:n til D-Fravaer. Bitemporal. Invariant: permittering har alltid egen ID og rapporteres hver måned til den slutter; permisjon over 14 dager rapporteres. Feltene følger innrapporterings-API-et (OpenAPI 0.1.2), der `permittering` er et eget objekt. Strukturen `permittering` avvises fram til 2030-01 (F520I, forretningsregler R1 2026). Til da rapporteres og leses permittering som `permisjon` med beskrivelsen `permittering`, og A07 har tom `permittering[]`. Feltene `varslingsdato`, `sluttdatoLoennsplikt`, `permitteringsaarsak` og `loennet` registreres internt, men er tomme i rapportering og A07 til 2030-01 (N14, N36).",
    "felt": [
     {
      "navn": "permisjonRecordId",
@@ -5837,7 +5840,7 @@
      "tripletex": "type",
      "reai": "type",
      "huma": "–",
-     "merknad": "Kodeliste PermisjonsOgPermitteringsBeskrivelse. Permittering bruker «permittering» [verifiseres]."
+     "merknad": "Kodeliste PermisjonsOgPermitteringsBeskrivelse. Permittering bruker `permittering` (gyldig til 2030-01). Lesing fra A07 verifiseres i TT02."
     },
     {
      "navn": "startdato",
@@ -5880,7 +5883,7 @@
     },
     {
      "navn": "loennet",
-     "type": "boolsk",
+     "type": "kode",
      "pakrevd": "Nei",
      "kilde": "Beregnet",
      "historikk": "Bitemporal",
@@ -5889,7 +5892,7 @@
      "tripletex": "isWageDeduction (motsatt)",
      "reai": "paid",
      "huma": "–",
-     "merknad": "Ikke påkrevd i skjemaet. Hvilken versjon som krever det [verifiseres]."
+     "merknad": "ja | nei | ukjent. A07 1.0.2 har ikke feltet, så verdien fra A07 er alltid ukjent (N14). Rapporteres ikke før 2030-01."
     },
     {
      "navn": "varslingsdato",
@@ -5902,7 +5905,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Påkrevd for permittering i OpenAPI 0.1.2. Dato varselet ble gitt (normalt 14 dager før)."
+     "merknad": "Registreres internt. Rapporteres og leses ikke før 2030-01 (F520I). Dato varselet ble gitt (normalt 14 dager før)."
     },
     {
      "navn": "sluttdatoLoennsplikt",
@@ -5915,7 +5918,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Påkrevd for permittering i OpenAPI 0.1.2. Siste dag i lønnspliktperioden (15 arbeidsdager)."
+     "merknad": "Registreres internt. Rapporteres og leses ikke før 2030-01 (F520I). Siste dag i lønnspliktperioden (15 arbeidsdager)."
     },
     {
      "navn": "permitteringsaarsak",
@@ -5928,7 +5931,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Påkrevd for permittering i OpenAPI 0.1.2. Kodeliste Permitteringsaarsak [verifiseres verdier]."
+     "merknad": "Registreres internt. Rapporteres og leses ikke før 2030-01 (F520I). Kodeliste Permitteringsaarsak [verifiseres verdier]."
     },
     {
      "navn": "lonnspliktDagerBrukt",

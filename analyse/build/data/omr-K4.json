@@ -19,7 +19,7 @@
        "roller": [
         "Brutto drift"
        ],
-       "regler_md": "- Maskinporten: `private_key_jwt`, RS256, `exp − iat` høyst 120 s og `jti` bare én gang (R2 §2.2).\n- En nøkkel gjelder høyst 1 år. Testmiljøet godtar ikke produksjonsnøkler.\n- Systemregisteret: `id` = `<orgnr>_brutto`, `vendor.ID` = `0192:<orgnr>` og `clientId[]` er påkrevd.\n- Tokens lagres aldri persistent, logges aldri og vises aldri for frontend, agenter eller kunder (R2 §6.1).\n- Skatteetaten-token settes uten `resource`. NAV-token veksles ikke og har bare ett scope.\n- Egne klienter og nøkler per miljø. Digdir fraråder å dele klientregistrering på tvers av installasjoner.",
+       "regler_md": "- Maskinporten: `private_key_jwt`, RS256, `exp − iat` høyst 120 s og `jti` bare én gang (R2 §2.2).\n- En nøkkel gjelder høyst 1 år. Testmiljøet godtar ikke produksjonsnøkler.\n- Systemregisteret: `id` = `<orgnr>_brutto`, `vendor.ID` = `0192:<orgnr>` og `clientId[]` er påkrevd.\n- Tokens lagres aldri persistent, logges aldri og vises aldri for frontend, agenter eller kunder (R2 §6.1).\n- Skatteetaten-token settes uten `resource`. NAV-token veksles ikke og har bare ett scope.\n- Egne klienter og nøkler per miljø. Digdir fraråder å dele klientregistrering på tvers av installasjoner.\n- Systemregistreringen må ha tilgangspakkene `a-ordning`, `lonn` og `regnskapsforer-lonn`, eventuelt enkeltrettighetene.",
        "data": [
         "D-Systembruker",
         "D-Myndighetskall"
@@ -33,7 +33,8 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §2.2, §3.1, §3.2, §4, §6.1",
         "https://docs.digdir.no/docs/Maskinporten/maskinporten_protocol_jwtgrant",
-        "https://www.skatteetaten.no/samarbeidspartnere/reetablering-altinn/systemleverandor/oppkobling/"
+        "https://www.skatteetaten.no/samarbeidspartnere/reetablering-altinn/systemleverandor/oppkobling/",
+        "natt/N27"
        ],
        "merknad_md": "Krav før produksjon: Digdirs bruksvilkår, SBS-vilkår i Altinn, Altinn-scopes via servicedesk og Skatteetaten-scopes via brukerstøtten. Samlet kalendertid er anslått til 3–5 måneder [verifiseres] (R2 §4). Automatisk nøkkelrotasjon via selvbetjenings-API krever en administrasjonsklient med virksomhetssertifikat."
       },
@@ -112,7 +113,7 @@
         "Oppdragsansvarlig (byrå)",
         "Brutto drift"
        ],
-       "regler_md": "- Systembruker for klientsystem støtter bare tilgangspakker, og `rights` må være tom (R2 §2.5).\n- `regnskapsforer-lonn` dekker a-melding, avstemming, skattekort, trekkpålegg, K27 og NAVs inntektsmeldinger. Den dekker ikke Krav og betalinger (R2 §2.3).\n- Støtter produktet både egen virksomhet og klienter, trengs to separate systembrukere (B §1.2).\n- NAVs oppgjørsrapport-API må få `orgnr` i body ved agent-token, fordi NAV ikke kan skille agent fra standard systembruker.\n- Skatteetaten tillater 5 samtidige kall per API per virksomhet. Om kvoten gjelder byrået eller klienten, er uavklart [verifiseres] (R3 D-21).",
+       "regler_md": "- Systembruker for klientsystem støtter bare tilgangspakker, og `rights` må være tom (R2 §2.5).\n- `regnskapsforer-lonn` dekker a-melding, avstemming, skattekort, trekkpålegg, K27 og NAVs inntektsmeldinger. Den dekker ikke Krav og betalinger (R2 §2.3).\n- Støtter produktet både egen virksomhet og klienter, trengs to separate systembrukere (B §1.2).\n- NAVs oppgjørsrapport-API må få `orgnr` i body ved agent-token, fordi NAV ikke kan skille agent fra standard systembruker.\n- Skatteetaten tillater 5 samtidige kall per API per virksomhet. Om kvoten gjelder byrået eller klienten, er uavklart [verifiseres] (R3 D-21).\n- Et byrå trenger én agent-systembruker per pakkesett: `regnskapsforer-lonn` for REGN-klienter og `a-ordning` for direkte delegerte klienter.\n- Krav og betalinger krever en egen agent-systembruker med `regnskapsforer-uten-signeringsrettighet`, fordi en eksisterende agent-systembruker ikke kan endres. Fase 1-systembrukeren til byrået har ikke denne pakken.",
        "data": [
         "D-Systembruker",
         "D-Klienttilknytning",
@@ -130,7 +131,9 @@
         "R2-myndighetsintegrasjoner §2.3, §2.5",
         "B-myndigheter §1.2",
         "E-byra §3.4",
-        "R3-kritikk-domene D-21"
+        "R3-kritikk-domene D-21",
+        "natt/N25",
+        "natt/N40"
        ],
        "merknad_md": "Byrået må fortsatt ha skriftlig fullmakt fra klienten. Delegering i Altinn er ikke nok alene (GRFS 3.4). Fullmaktsregisteret ligger i BYR. Se også F-MYN-05, F-BYR-07, F-BYR-08 og F-BYR-09."
       },
@@ -179,11 +182,12 @@
         "Klientadministrator (byrå)",
         "Brutto drift"
        ],
-       "regler_md": "- Altinn har ingen dokumentert hendelse når en systembruker slettes. Bruk daglig `GET systemuser/vendor/bysystem/{systemId}` og MP-303 som signal (R2 §3.2).\n- Forespørsel med status `TimedOut` eller `Rejected` gir MYN-02 med tilbud om ny forespørsel.\n- Slettet systembruker gir MYN-03. Saken lukkes automatisk når systembrukeren finnes igjen.\n- Altinn II-roller gir ikke a-melding eller skattekort etter 17.11.2026. NAV-tjenester mister rollene 1.12.2026, og alle roller opphører 31.12.2026 (B §1.4).",
+       "regler_md": "- Altinn har ingen dokumentert hendelse når en systembruker slettes. Bruk daglig `GET systemuser/vendor/bysystem/{systemId}` og MP-303 som signal (R2 §3.2).\n- Forespørsel med status `TimedOut` eller `Rejected` gir MYN-02 med tilbud om ny forespørsel.\n- Slettet systembruker gir MYN-03. Saken lukkes automatisk når systembrukeren finnes igjen.\n- Altinn II-roller gir ikke a-melding eller skattekort etter 17.11.2026. NAV-tjenester mister rollene 1.12.2026, og alle roller opphører 31.12.2026 (B §1.4).\n- Helsesjekken sletter abonnementet i Altinn Events når klienttilknytningen opphører.",
        "data": [
         "D-Systembruker",
         "D-Kontrollsak",
-        "D-Myndighetskall"
+        "D-Myndighetskall",
+        "D-Myndighetsabonnement"
        ],
        "integrasjoner": [
         "Altinn Authentication (systembruker)",
@@ -194,7 +198,8 @@
        ],
        "kilder": [
         "R2-myndighetsintegrasjoner §3.2, §5.2",
-        "B-myndigheter §1.4"
+        "B-myndigheter §1.4",
+        "natt/N25"
        ],
        "merknad_md": ""
       }
@@ -215,7 +220,7 @@
         "Lønnsmedarbeider",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Opplysningspliktig er hovedenheten. Underenheter rapporteres som `virksomhet` (`AMLD_1062`).\n- Lønn rapporteres i måneden den utbetales. Opptjeningsperiode kan oppgis (C §5.3).\n- `oppgave.betalingsinformasjon` har `sumForskuddstrekk`, `sumForskuddstrekkPerLoennsutbetalingsdato[]`, `sumUtleggstrekk`, `sumArbeidsgiveravgift` og `sumFinansskattLoenn`.\n- AGA rapporteres som `loennOgGodtgjoerelse` og `tilskuddOgPremieTilPensjon` med `beregningskodeForArbeidsgiveravgift`, `sone`, `avgiftsgrunnlagBeloep` og `prosentsatsForAvgiftsberegning`. NAV-refusjon kan rapporteres som `fradragIGrunnlagetForSone`.\n- `annenBagatellmessigStoette` fylles når foretaket bruker fribeløpet i sone Ia.\n- `pensjonsinnretning` fylles for OTP-pliktige (B §8.2). AGA av OTP-premien kommer fra D-Pensjonspremie (R3 D-01).\n- Utleggstrekk har beskrivelsene `utleggstrekkSamordnet` og `utleggstrekkSkatt`, som aldri blandes (B §7.1).\n- Siste dato for endring av stillingsprosent er obligatorisk (Skatteetaten 5.10.2026).",
+       "regler_md": "- Opplysningspliktig er hovedenheten. Underenheter rapporteres som `virksomhet` (`AMLD_1062`).\n- Lønn rapporteres i måneden den utbetales. Opptjeningsperiode kan oppgis (C §5.3).\n- `oppgave.betalingsinformasjon` har `sumForskuddstrekk`, `sumForskuddstrekkPerLoennsutbetalingsdato[]`, `sumUtleggstrekk`, `sumArbeidsgiveravgift` og `sumFinansskattLoenn`.\n- AGA rapporteres som `loennOgGodtgjoerelse` og `tilskuddOgPremieTilPensjon` med `beregningskodeForArbeidsgiveravgift`, `sone`, `avgiftsgrunnlagBeloep` og `prosentsatsForAvgiftsberegning`. NAV-refusjon kan rapporteres som `fradragIGrunnlagetForSone`.\n- `annenBagatellmessigStoette` fylles når foretaket bruker fribeløpet i sone Ia.\n- `pensjonsinnretning` fylles for OTP-pliktige (B §8.2). AGA av OTP-premien kommer fra D-Pensjonspremie (R3 D-01).\n- Utleggstrekk har beskrivelsene `utleggstrekkSamordnet` og `utleggstrekkSkatt`, som aldri blandes (B §7.1).\n- Siste dato for endring av stillingsprosent er obligatorisk (Skatteetaten 5.10.2026).\n- Utleggstrekk rapporteres med én `utleggstrekk`-forekomst per person, kode og utbetalingsdato, negativt beløp per person og positiv `sumUtleggstrekk`. F294, F295 og F528 valideres før innsending. A-meldingen har ikke KID.",
        "data": [
         "D-AMelding",
         "D-Lonnskjoring",
@@ -239,7 +244,8 @@
         "R2-myndighetsintegrasjoner §3.7",
         "B-myndigheter §2.1–2.5, §7.1, §8.2",
         "C-beregning §5.3",
-        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
+        "natt/N28"
        ],
        "merknad_md": "Kodene (lønnsbeskrivelse, fordel, beregningskode og sone) settes i LON og KJO. MYN setter sammen, validerer og serialiserer. Hvordan ordinære arbeidsforhold uten utbetaling og frilansforhold skal rapporteres per måned, følger a-meldingsveiledningen [verifiseres]. Forenklet ordning (`betalingsinformasjonForForenkletOrdning`) gjelder private husholdninger og er utenfor målgruppen. Feltet `samletGrunnlagUnderOpplysningsplikt` gjelder trolig AGA-fritak for organisasjoner [verifiseres] og må avklares med ORL."
       },
@@ -253,7 +259,7 @@
         "Lønnsansvarlig",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Private arbeidsgivere med OTP-plikt skal oppgi pensjonsinnretning i a-meldingen fra 2021. Mangler den, gir a-ordningen avviksmelding (B §8.2, D §2.7).\n- Pensjonsgrunnlaget per a-meldingsbeskrivelse følger Finans Norges oversikt (C §1.3). Overtid, bonus og utgiftsgodtgjørelser inngår normalt ikke (D §2.7).\n- OTP krever ingen egen integrasjon mot private leverandører. Riktige a-meldingsfelt er hele integrasjonen (OK-96, R2-moduler §6.10).\n- AGA av premien rapporteres som `tilskuddOgPremieTilPensjon` fra D-Pensjonspremie (F-REG-14).\n- KLP og SPK krever egne filer og hører til PEN.",
+       "regler_md": "- Private arbeidsgivere med OTP-plikt skal oppgi pensjonsinnretning i a-meldingen fra 2021 (B §8.2, D §2.7). A-ordningen gir bare avvik (MAGNET_EDAG-507, retningslinje) når premie er oppgitt uten innretning. OTP-plikt uten ordning gir ingen melding, så Brutto må kontrollere selv.\n- Feltet er `JuridiskEntitet.pensjonsinnretning` (0..n) med `identifikator` i XSD v2.3.\n- Pensjonsgrunnlaget per a-meldingsbeskrivelse følger Finans Norges oversikt (C §1.3). Overtid, bonus og utgiftsgodtgjørelser inngår normalt ikke (D §2.7).\n- OTP krever ingen egen integrasjon mot private leverandører. Riktige a-meldingsfelt er hele integrasjonen (OK-96, R2-moduler §6.10).\n- AGA av premien rapporteres som `tilskuddOgPremieTilPensjon` fra D-Pensjonspremie (F-REG-14).\n- KLP og SPK krever egne filer og hører til PEN.",
        "data": [
         "D-AMelding",
         "D-Pensjonsordning",
@@ -271,7 +277,8 @@
         "B-myndigheter §8.2",
         "D-praksis §2.7",
         "C-beregning §1.3",
-        "R2-moduler-integrasjoner §6.10"
+        "R2-moduler-integrasjoner §6.10",
+        "natt/N16"
        ],
        "merknad_md": "Feil stillingsprosent gir feil pensjon hos leverandører som henter fra a-ordningen (D §2.7). Se også F-PEN-10."
       },
@@ -320,7 +327,8 @@
        "data": [
         "D-AMelding",
         "D-Tilbakemeldingsavvik",
-        "D-Avvik"
+        "D-Avvik",
+        "D-Regelpakke"
        ],
        "integrasjoner": [],
        "behov": [
@@ -331,9 +339,10 @@
        "kilder": [
         "B-myndigheter §12, §14",
         "R2-myndighetsintegrasjoner §3.7, §3.8",
-        "https://app.swaggerhub.com/apis/skatteetaten/amelding-tilbakemelding-api/0.1.0"
+        "https://app.swaggerhub.com/apis/skatteetaten/amelding-tilbakemelding-api/0.1.0",
+        "natt/N36"
        ],
-       "merknad_md": "Forretningsreglene publiseres som dokument. Et maskinlesbart API er ikke funnet [verifiseres]. Reglene må vedlikeholdes som data med lønnsfaglig godkjenning (R3 E0.11)."
+       "merknad_md": "Forretningsreglene og kodelisten publiseres som regneark, ikke som API. Brutto importerer dem som versjonerte data (D-Regelpakke), valgt etter kalendermåned. Reglene må vedlikeholdes som data med lønnsfaglig godkjenning (R3 E0.11)."
       },
       {
        "id": "F-MYN-11",
@@ -453,9 +462,10 @@
        "kilder": [
         "B-myndigheter §2.2",
         "R2-myndighetsintegrasjoner §3.18",
-        "R3-kritikk-domene D-28"
+        "R3-kritikk-domene D-28",
+        "natt/N14"
        ],
-       "merknad_md": "Manuell innsending krever at noen hos kunden eller byrået har personlig tilgang i Altinn med riktig pakke."
+       "merknad_md": "Manuell innsending krever at noen hos kunden eller byrået har personlig tilgang i Altinn med riktig pakke. Skatteetaten skrev 18.06.2026 at manuell opplasting er planlagt som JSON fra 2027 [verifiseres]. Da blir reserven en JSON-eksport."
       }
      ]
     },
@@ -474,7 +484,7 @@
         "Lønnskonsulent (byrå)",
         "Brutto drift"
        ],
-       "regler_md": "- Abonnement med `resourceFilter` og `subjectFilter` per orgnr. Hendelser er CloudEvents og dedupliseres på `id`.\n- Riktig `resourceFilter` er antatt `urn:altinn:resource:ske-innrapportering-amelding` [verifiseres i TT02].\n- Reserve: les dialogen direkte med `dialogId` fra `Leveransebekreftelse`.\n- Den siste tilbakemeldingen i måneden oppsummerer alle meldinger for måneden, inkludert beløp til betaling (B §2.3).\n- Terskelen på 2 timer er en vurdering [verifiseres] (MYN-11).",
+       "regler_md": "- Abonnement med `resourceFilter` og `subjectFilter` per orgnr. Hendelser er CloudEvents og dedupliseres på `id`.\n- Riktig `resourceFilter` er antatt `urn:altinn:resource:ske-innrapportering-amelding` [verifiseres i TT02].\n- Reserve: les dialogen direkte med `dialogId` fra `Leveransebekreftelse`.\n- Den siste tilbakemeldingen i måneden oppsummerer alle meldinger for måneden, inkludert beløp til betaling (B §2.3).\n- Terskelen på 2 timer er en vurdering [verifiseres] (MYN-11).\n- Leseren av tilbakemeldingen (A03) tåler en ny tilbakemeldingsversjon og tomme felt for forfall og KID for utleggstrekk. Versjonen lagres per tilbakemelding (`api_versjon`).",
        "data": [
         "D-Tilbakemelding",
         "D-Innsending",
@@ -494,7 +504,8 @@
         "R2-myndighetsintegrasjoner §3.3, §3.8",
         "B-myndigheter §2.3",
         "https://app.swaggerhub.com/apis/skatteetaten/amelding-tilbakemelding-api/0.1.0",
-        "https://samarbeid.digdir.no/altinn/hvordan-hente-meldinger-gjennom-dialogporten/2869"
+        "https://samarbeid.digdir.no/altinn/hvordan-hente-meldinger-gjennom-dialogporten/2869",
+        "natt/N14"
        ],
        "merknad_md": "Skatteetaten endret URL-modellen for forsendelser i mai 2026 og meldte en JSON-feil i juni 2026. Grensesnittet modnes fortsatt."
       },
@@ -525,21 +536,22 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.8, §5.2",
         "E-byra §2.2",
-        "https://app.swaggerhub.com/apis/skatteetaten/amelding-tilbakemelding-api/0.1.0"
+        "https://app.swaggerhub.com/apis/skatteetaten/amelding-tilbakemelding-api/0.1.0",
+        "natt/N36"
        ],
-       "merknad_md": "API-et har ingen forklaringstekst per avvik-`id`. Brutto bygger en egen tekstkatalog med lønnsfaglig godkjenning [verifiseres]."
+       "merknad_md": "API-et har ingen forklaringstekst per avvik-`id`. Skatteetatens regneark med forretningsregler R1 2026 (179 regler) har meldingstekst på bokmål, nynorsk og engelsk, og er grunnlaget for tekstkatalogen. Brutto legger til egen forklaring med lønnsfaglig godkjenning."
       },
       {
        "id": "F-MYN-17",
        "navn": "Innbetalingsinformasjon fra tilbakemeldingen",
-       "beskrivelse_md": "Brutto leser `innbetalingsinformasjon` med kontonummer, KID for forskuddstrekk, AGA, finansskatt og utleggstrekk, og forfallsdato. KID for AGA og finansskatt går rett inn i betalingsforslaget for terminen. KID for forskuddstrekk sammenlignes med KID-en Brutto beregnet selv. Avvik gir sak MYN-19.",
+       "beskrivelse_md": "Brutto leser `innbetalingsinformasjon` med kontonummer, KID for forskuddstrekk, AGA og finansskatt, og forfallsdato. Feltene for forfall og KID for utleggstrekk kan være tomme. KID for AGA og finansskatt går rett inn i betalingsforslaget for terminen. KID for forskuddstrekk sammenlignes med KID-en Brutto beregnet selv. Avvik gir sak MYN-19.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "Lønnsansvarlig",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Forskuddstrekk forfaller før tilbakemeldingen kommer, så Brutto lager KID selv (kravtype 05) og kontrollerer etterpå (R2 §3.10).\n- AGA og finansskatt bruker KID fra tilbakemeldingen, som kommer før forfall den 15.\n- Samordnet utleggstrekk bruker KID og konto fra pålegget.\n- Felles konto 7694 05 24802 for forskuddstrekk, AGA og utleggstrekk skatt. Kontonummer for finansskatt hentes fra tilbakemeldingen [verifiseres].",
+       "regler_md": "- Forskuddstrekk forfaller før tilbakemeldingen kommer, så Brutto lager KID selv (kravtype 05) og kontrollerer etterpå (R2 §3.10).\n- AGA og finansskatt bruker KID fra tilbakemeldingen, som kommer før forfall den 15.\n- Samordnet utleggstrekk betales til 7694 05 69814 med KID fra pålegget.\n- KID for utleggstrekk skatt etter gamle regler kommer ikke lenger i tilbakemeldingen. Brutto lager den selv med kravtype 03 og termin-KID [verifiseres].\n- Felles konto 7694 05 24802 for forskuddstrekk, AGA og utleggstrekk skatt. Kontonummer for finansskatt hentes fra tilbakemeldingen [verifiseres].",
        "data": [
         "D-Tilbakemelding",
         "D-KID",
@@ -554,7 +566,10 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.8, §3.10",
         "B-myndigheter §4",
-        "https://www.skatteetaten.no/kontonummer/"
+        "https://www.skatteetaten.no/kontonummer/",
+        "natt/N01",
+        "natt/N14",
+        "natt/N17"
        ],
        "merknad_md": "Avstemmingsrapporten har også `innbetalingsinformasjon`, men uten `kidForUtleggstrekk` (OpenAPI 1.0.2)."
       },
@@ -601,7 +616,7 @@
         "Oppdragsansvarlig (byrå)",
         "Daglig leder"
        ],
-       "regler_md": "- A-melding: den 5. i måneden etter, eller neste virkedag. 5.12.2026 er lørdag, så fristen er 7.12.2026. Fristen for 2028-01 er mandag 7.2.2028 (B §2.5, R3 D-29).\n- Forskuddstrekk og utleggstrekk skatt: senest første virkedag etter lønnsutbetaling. Samordnet trekk: dagen etter lønnsutbetaling, til konto og KID i pålegget (B §4).\n- AGA og finansskatt: 15.1, 15.3, 15.5, 15.7, 15.9 og 15.11, flyttet til neste virkedag. 15.11.2026 er søndag, så fristen er 16.11.\n- Tvangsmulkt ved for sen a-melding: daglig, samlet høyst 1 000 rettsgebyr (a-opplysningsloven § 10). Satsen 1/10 rettsgebyr per inntektsmottaker per dag er fra sekundærkilde [verifiseres].\n- Refusjon fra NAV kan kreves for fravær inntil 3 måneder før søknadsmåneden (C §7).\n- Internt mål: a-melding sendt senest 2 virkedager etter lønnsutbetaling (R3 port 3b).",
+       "regler_md": "- A-melding: den 5. i måneden etter, eller neste virkedag. 5.12.2026 er lørdag, så fristen er 7.12.2026. Fristen for 2028-01 er mandag 7.2.2028 (B §2.5, R3 D-29).\n- Forskuddstrekk og utleggstrekk skatt: senest første virkedag etter lønnsutbetaling. Samordnet trekk: første virkedag etter lønnsutbetaling, til 7694 05 69814 med KID fra pålegget (B §4).\n- AGA og finansskatt: 15.1, 15.3, 15.5, 15.7, 15.9 og 15.11, flyttet til neste virkedag. 15.11.2026 er søndag, så fristen er 16.11.\n- Tvangsmulkt ved for sen a-melding: daglig, samlet høyst 1 000 rettsgebyr (a-opplysningsloven § 10). Satsen 1/10 rettsgebyr per inntektsmottaker per dag er fra sekundærkilde [verifiseres].\n- Refusjon fra NAV kan kreves for fravær inntil 3 måneder før søknadsmåneden (C §7).\n- Internt mål: a-melding sendt senest 2 virkedager etter lønnsutbetaling (R3 port 3b).",
        "data": [
         "D-Frist",
         "D-Lonnskalender",
@@ -618,7 +633,8 @@
         "S-avklaringer #21",
         "B-myndigheter §2.5, §4",
         "R3-kritikk-domene D-29",
-        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/arbeidsgiveravgift/betaling-av-forskuddstrekk-og-arbeidsgiveravgift/"
+        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/arbeidsgiveravgift/betaling-av-forskuddstrekk-og-arbeidsgiveravgift/",
+        "natt/N28"
        ],
        "merknad_md": "Om 24.12 og 31.12 regnes som virkedager ved forfall, er uavklart [verifiseres] (R3 spørsmål 5). Skatteetatens Frister-API dekker ikke a-melding (R2 §3.11)."
       },
@@ -645,6 +661,36 @@
         "R3-kritikk-domene D-19, D-53"
        ],
        "merknad_md": "R3 anbefaler syntetiske tvillinger av hver kunde i Tenor for å teste 2.4 før produksjon (D-19)."
+      },
+      {
+       "id": "F-MYN-43",
+       "navn": "Dialogporten-sensor for tvangsmulkt og arbeidsgiverkontroll",
+       "beskrivelse_md": "Brutto leser dialoger fra Skatteetaten i Dialogporten for kundene og klassifiserer dem. Tvangsmulktsensoren følger ressursen `ske-vedtak-tvangsmulkt-overtredelsesgebyr`, som er i produksjon og har `subscribe`. Påminnelser og vedtak om tvangsmulkt blir saker i kontrollkøen (F-MYN-22). Handleren for `ske-arbeidsgiverkontroll` ligger klar, men er slått av.",
+       "niva": "Integrasjon",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Lønnsansvarlig",
+        "Lønnskonsulent (byrå)",
+        "Oppdragsansvarlig (byrå)",
+        "Brutto drift"
+       ],
+       "regler_md": "- `ske-arbeidsgiverkontroll` har bare dialoger i TT02 og ingen dokumentasjon. Handleren slås på når den daglige jobben mot metadata-API-et ser dialoger i produksjon (F-MYN-24).\n- A50 og A51 finnes bare som migrert historikk og leses ved migrering.\n- Kravtyper for tvangsmulkt fra Krav og betalinger kobles til saken når tilgang finnes (F-MYN-40).",
+       "data": [
+        "D-Myndighetsabonnement",
+        "D-Kontrollsak",
+        "D-Skattekrav"
+       ],
+       "integrasjoner": [
+        "Dialogporten",
+        "Altinn Events"
+       ],
+       "behov": [],
+       "kilder": [
+        "natt/N14",
+        "natt/N27",
+        "natt/N25"
+       ],
+       "merknad_md": "Om Dialogporten-sensoren hører til fase 1, er ikke avklart. Samme sensor kan lese utleggstrekkbrev (T6 i F-MYN-42) og tilbakemeldinger fra andre systemer (D-Tilbakemelding). Se også F-MYN-19 og F-MYN-22."
       }
      ]
     },
@@ -664,7 +710,7 @@
         "Lønnskonsulent (byrå)",
         "Revisor"
        ],
-       "regler_md": "- `POST /bestillinger` med `opplysningspliktig`, `oensketInntektsaar`, `oensketPeriodeFra`, `oensketPeriodeTil` og `utenInntektsmottakere`. Status `OPPRETTES`, `KLAR`, `INGEN_DATA` eller `FEILET` (OpenAPI 1.0.2).\n- 429 ved for mange samtidige bestillinger for samme opplysningspliktig (MYN-23). Bestilling er ikke idempotent. Bestill på nytt bare ved 429 eller etter `FEILET`.\n- Fra 12.10.2026 utelates felt med null-verdi, og tidspunkter har tidssone.\n- Rapporten er fasit for hva a-ordningen har registrert, også ved migrering (R3 D-17).\n- Ressursen er `ske-avstemmingsinformasjon-amelding`, mens scopet er det samme som for innsending.",
+       "regler_md": "- `POST /bestillinger` med `opplysningspliktig`, `oensketInntektsaar`, `oensketPeriodeFra`, `oensketPeriodeTil` og `utenInntektsmottakere`. Status `OPPRETTES`, `KLAR`, `INGEN_DATA` eller `FEILET` (OpenAPI 1.0.2).\n- 429 ved for mange samtidige bestillinger for samme opplysningspliktig (MYN-23). Bestilling er ikke idempotent. Bestill på nytt bare ved 429 eller etter `FEILET`.\n- Fra 12.10.2026 utelates felt med null-verdi, og tidspunkter har tidssone.\n- Rapporten er fasit for hva a-ordningen har registrert, også ved migrering (R3 D-17).\n- Ressursen er `ske-avstemmingsinformasjon-amelding`, mens scopet er det samme som for innsending.\n- Utleggstrekk og andre trekk (`fradrag`) finnes bare på personnivå. Trekkontrollene, L-04 og L-18 krever derfor bestilling med inntektsmottakere.",
        "data": [
         "D-Avstemmingsrapport",
         "D-Avstemming",
@@ -682,7 +728,9 @@
         "R2-myndighetsintegrasjoner §3.9",
         "B-myndigheter §2.6",
         "D-praksis §2.6",
-        "https://app.swaggerhub.com/apis/skatteetaten/avstemmingsrapport-amelding-api/1.0.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/avstemmingsrapport-amelding-api/1.0.2",
+        "natt/N23",
+        "natt/N07"
        ],
        "merknad_md": "Rapporten har `sumInntekterMedFeil` per virksomhet. Brutto viser beløpet som egen kontrollpost. Se også F-MYN-42, F-REG-25, F-REG-30, F-BYR-15 og F-MIG-17."
       },
@@ -699,7 +747,7 @@
         "Oppdragsansvarlig (byrå)",
         "Brutto drift"
        ],
-       "regler_md": "- Tekniske feil (5xx og tidsavbrudd) prøves automatisk bare for idempotente operasjoner. Fagfeil prøves aldri automatisk (R2 §5.1).\n- Blokkerende saker (MYN-01–05, 08, 15 og 18) varsles kunden straks.\n- Varsler inneholder aldri beløp, fødselsnummer eller kontonummer (AN-10).\n- Den ansatte varsles om manglende skattekort, nytt trekk og innsendt inntektsmelding. Diagnose vises aldri (R2 §5.4).",
+       "regler_md": "- Tekniske feil (5xx og tidsavbrudd) prøves automatisk bare for idempotente operasjoner. Fagfeil prøves aldri automatisk (R2 §5.1).\n- Blokkerende saker (MYN-01–05, 08, 15 og 18) varsles kunden straks.\n- Varsler inneholder aldri beløp, fødselsnummer eller kontonummer (AN-10).\n- Den ansatte varsles om manglende skattekort, nytt trekk og innsendt inntektsmelding. Diagnose vises aldri (R2 §5.4).\n- Saksregler som virker uten Dialogporten: nytt `kildesystem` i måneden (signal om systembytte), flere innsendere for samme måned (dobbel innsending ved systembytte) og tvangsmulktrisiko ved måned uten a-melding i A07.\n- Saksregler som forutsetter Dialogporten-sensoren (F-MYN-43): nytt trekkbrev (T6), ny kontroll av forskuddstrekk, påminnelse eller vedtak om tvangsmulkt, a-melding avvist i annet system, F108 eller F231 i A03 med anslått mulkt per dag (sats i F-MYN-19), og ny sak i arbeidsgiverkontrollen når den er i produksjon. Et nytt trekkbrev lukkes når trekket er registrert eller forklart.",
        "data": [
         "D-Kontrollsak",
         "D-Myndighetskall",
@@ -714,7 +762,11 @@
        ],
        "kilder": [
         "S-avklaringer #17",
-        "R2-myndighetsintegrasjoner §5.1–5.4"
+        "R2-myndighetsintegrasjoner §5.1–5.4",
+        "natt/N27",
+        "natt/N14",
+        "natt/N26",
+        "natt/N25"
        ],
        "merknad_md": "K2 eier D-Avvik for avvik i beregningen. D-Kontrollsak dekker feil mot myndigheter, bank og regnskap. De to bør vurderes slått sammen til én sakskø."
       },
@@ -759,7 +811,7 @@
        "roller": [
         "Brutto drift"
        ],
-       "regler_md": "- Leverandøren plikter å abonnere på nyheter og statusside og holde varslingsadressen oppdatert (B §2.9).\n- Brytende endringer varsles normalt minst 4 måneder før.\n- Nye versjoner oppdages ved daglig henting av `api.swaggerhub.com/apis/skatteetaten/<api>` (R2 §5.4).\n- Logg av nedetid kan brukes mot tvangsmulkt (R3 D-54).",
+       "regler_md": "- Leverandøren plikter å abonnere på nyheter og statusside og holde varslingsadressen oppdatert (B §2.9).\n- Brytende endringer varsles normalt minst 4 måneder før.\n- Nye versjoner oppdages ved daglig henting av `api.swaggerhub.com/apis/skatteetaten/<api>` (R2 §5.4).\n- Logg av nedetid kan brukes mot tvangsmulkt (R3 D-54).\n- En nattlig kontrakttest mot TT02 fanger endringer uten nytt versjonsnummer, som endringen i avstemmingsrapporten 12.10.2026. Brutto abonnerer også på Tenors ATOM-feed og statussiden for testmiljøet.\n- En daglig jobb mot metadata-API-et i Dialogporten varsler drift når en ny ressurs, for eksempel `ske-arbeidsgiverkontroll`, får dialoger i produksjon.",
        "data": [
         "D-Myndighetskall",
         "D-Kontrollsak"
@@ -768,19 +820,24 @@
         "Skatteetaten SBS-RSS",
         "SwaggerHub",
         "status.skatteetaten.no",
-        "NAV Slack #api-sykepenger-arbeidsgiver"
+        "NAV Slack #api-sykepenger-arbeidsgiver",
+        "Tenor ATOM-feed",
+        "Dialogporten"
        ],
        "behov": [],
        "kilder": [
         "R2-myndighetsintegrasjoner §4 steg 13, §5.4",
-        "B-myndigheter §2.9, §14"
+        "B-myndigheter §2.9, §14",
+        "natt/N39",
+        "natt/N03",
+        "natt/N27"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-MYN-42",
        "navn": "Kontroller på avstemmingsrapporten (A07)",
-       "beskrivelse_md": "Brutto kjører faste kontroller hver gang en ny avstemmingsrapport er hentet. Kontrollene krever ikke at lønnen er kjørt i Brutto.\n\n- Lønn eller ytelser uten aktivt arbeidsforhold.\n- Aktivt arbeidsforhold uten lønn i måneden.\n- Manglende eller usannsynlig stillingsprosent, timer per uke i full stilling eller yrkeskode (F-MYN-38).\n- Store endringer per person og i sum mot forrige måned.\n- Beløp Skatteetaten har registrert med feil (`sumInntekterMedFeil`).\n\nHvert funn blir et avvik med forventet og faktisk verdi, forklaring og status: åpen, forklart eller løst.",
+       "beskrivelse_md": "Brutto kjører faste kontroller hver gang en ny avstemmingsrapport er hentet. Kontrollene krever ikke at lønnen er kjørt i Brutto.\n\n- Ansattkontrollene ANS-01–ANS-19 (natt/N36), blant annet lønn uten arbeidsforhold, aktivt arbeidsforhold uten lønn, mangelfulle arbeidsforholdsdata (F-MYN-38), flere kildesystemer (`kildesystem`) og Skatteetatens egne avvik per inntekt (`inntekt.avvik[]`).\n- Trekkontrollene T1–T6 (natt/N01) på utleggstrekk.\n- A07-K5 (uvanlig flaggkombinasjon) og A07-K6 (NAV-kode i arbeidsgiverens A07).\n- Store endringer per person og i sum mot forrige måned.\n- Beløp Skatteetaten har registrert med feil (`sumInntekterMedFeil`).\n\nHvert funn blir et avvik med forventet og faktisk verdi, forklaring og status: åpen, forklart eller løst.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -790,13 +847,16 @@
         "Lønnsansvarlig",
         "Revisor"
        ],
-       "regler_md": "- Kontrollreglene ligger i kode med id, versjon og forklaring. Terskler og toleranser er data per kunde.\n- Den som markerer et avvik som forklart, må skrive en kommentar. Endringen logges.\n- Kontrollene kjøres på nytt ved hver henting, og resultatet lagres per henting.",
+       "regler_md": "- Hver kontroll har id, versjon, `speiler_regel` (Skatteetatens forretningsregel den speiler, for eksempel F108), alvor og standardtekst i kode (K01). Terskler og toleranser er data per kunde (D-Kontrolloppsett).\n- Den som markerer et avvik som forklart, må skrive en kommentar. Endringen logges.\n- Kontrollene kjøres på nytt ved hver henting, og resultatet lagres per henting.\n- Katalogen ANS-01–ANS-19: 01 lønn uten arbeidsforhold, 02 lønn etter sluttdato (unntatt feriepenger og etterbetaling), 03 aktivt arbeidsforhold uten lønn, 04 brudd i kontinuitet mellom måneder, 05 stillingsprosent 0, 06 over 100 %, 07 mangelfulle eller ulogiske arbeidsforholdsdata, 08 ny stillingsprosent uten ny endringsdato, 09 dobbelt arbeidsforhold, 10 datoer utenfor rimelig periode, 11 avslutninger som ikke henger sammen, 12 Skatteetatens egne avvik, 13 ugyldig underenhet, 14 antall mot Brreg, 15 kildekonflikt mot ansattregisteret, 16 identitetsendring, 17 flere kildesystemer, 18 ny arbeidsforhold-ID uten avslutning og 19 ugyldig arbeidsforhold-ID.\n- Første utgave av fase 1 har 13 kontroller, bygd i rekkefølgen ANS-12, 04 og 18, 07, 11, 19, 01 og 02, 03 og 05, 09 og 17, 13 og 15.\n- Funn som tilsvarer F108 og F231 (ANS-04) merkes «kan gi tvangsmulkt».\n- Trekkontrollene i fase 1: T1 `utleggstrekkSkatt` etter første `utleggstrekkSamordnet` for samme person. T1 sammenligner `datoForUtleggstrekk`, ikke bare måned, fordi `utleggstrekkSkatt` før første samordnede dato i samme måned er lovlig. T2 `datoForUtleggstrekk` er ikke en lønnsutbetalingsdato i måneden. T3 utleggstrekk forrige måned og kontantlønn nå, men ikke noe trekk.\n- T4 sum utleggstrekk i A07 mot kreditering på trekkontoene i hovedboken. Saldo på 2610 uten tilsvarende `utleggstrekk` i A07 er avvik, og treffer ReAi-kunder hvis ReAi ikke rapporterer trekket [verifiseres]. T5 ubetalt trekk regnes per lønnsutbetalingsdato fra A07 (`sumForskuddstrekkPerLoennsutbetalingsdato`, `datoForUtleggstrekk`) med virkedagskalender, ikke som saldo per månedsslutt, og omfatter 2600, 2610–2613 og 2620. T4 og T5 krever mapping av trekkontoer per kunde (R02).\n- T6 nytt trekkbrev i Dialogporten siden forrige henting forutsetter Dialogporten-sensoren (F-MYN-43). T7–T10 (pålegg mot rapportert trekk og lønnslinjer) krever trekkpålegg-API eller lønnskjøring i Brutto og hører til MVP-forslaget.\n- Kontrolltekstene må ikke anta at alle trekk er samordnet. Utenfor Nord-Norge er samordnet trekk sjeldent i dag: fra 1.11.2026 gjelder nytt regelverk bare skyldnere i Nord-Norge uten bidragsgjeld og uten løpende gamle trekk, unntatt Alta og Målselv.\n- Trekkpålegg registreres manuelt på ansattkortet fra start (MVP). Kontrollene sammenligner `utleggstrekk[]` i A07 med registrerte pålegg og med trekkflagget fra SAF-T-importen (F-REG-29). Trekkpålegg-API-et brukes først etter at kunden har sendt minst én a-melding gjennom Brutto (F-MYN-28).\n- Kodelisten og inntektskombinasjonene er versjonerte data (D-Regelpakke).",
        "data": [
         "D-Avstemmingsrapport",
         "D-Avvik",
         "D-Kontrollsak",
         "D-Arbeidsforhold",
-        "D-Stillingsperiode"
+        "D-Stillingsperiode",
+        "D-Kontrolloppsett",
+        "D-Regelpakke",
+        "D-Trekkpalegg"
        ],
        "integrasjoner": [
         "Skatteetaten Avstemmingsrapport A-melding API"
@@ -808,9 +868,21 @@
        ],
        "kilder": [
         "Gründerens føringer 28.10.2026 (fase 1)",
-        "fase1.json P05 og K01–K05"
+        "fase1.json P05 og K01–K05",
+        "natt/N01",
+        "natt/N03",
+        "natt/N05",
+        "natt/N14",
+        "natt/N21",
+        "natt/N23",
+        "natt/N26",
+        "natt/N28",
+        "natt/N29",
+        "natt/N35",
+        "natt/N36",
+        "Gründerens beslutning 29.10.2026 (utleggstrekk)"
        ],
-       "merknad_md": "Ny i runde 5 for fase 1. Listen følger forslaget i fase 1-spørsmål P05 og er ikke endelig. Kontrollene mot regnskapet ligger i F-REG-30. Se også F-KJO-20, F-MYN-21, F-REG-25, F-BYR-15, F-RAP-14, F-RAP-21 og F-MIG-17."
+       "merknad_md": "Ny i runde 5 for fase 1. Katalogen erstatter den foreløpige listen i fase 1-spørsmål P05. P05 punkt 5, 6, 7 og 9 tilsvarer ANS-01, 03, 07 og 12. MVP-forslag: samme kontroller kjøres på egen a-melding før innsending, sammen med alle F-regler fra regnearket. ANS-04a og ANS-18 variant B og C blir harde stopp (F108 er øyeblikkelig), og ANS-07b er obligatorisk. F530 og F532 lastes når R2 2026 publiseres. Kontrollene mot regnskapet ligger i F-REG-30. Se også F-KJO-20, F-MYN-21, F-REG-25, F-BYR-15, F-RAP-14, F-RAP-21 og F-MIG-17."
       }
      ]
     },
@@ -925,7 +997,7 @@
         "Lønnskonsulent (byrå)",
         "Ansatt"
        ],
-       "regler_md": "- `GET /api/trekkpaalegg/v1/{trekkpliktig}` med `fraSekvensnummer` og `maksAntall`, og headerne `Klientid`, `Korrelasjonsid` og `Meldingsid`. Vannmerket er høyeste `sekvensnummer` per trekkpliktig (R2 §3.5).\n- Nøkkel er (`trekkid`, `trekkversjon`). KID er uendret mellom versjoner. Kontonummeret er felles for alle samordnede trekk.\n- Når en ansatt får samordnet trekk, skal alle andre trekk avsluttes (MYN-16, GC-07).\n- Beløpstrekk tas i løpet av måneden. Prosenttrekk tas av brutto ved hver utbetaling. Perioden velges etter lønnsutbetalingsdato (GC-08).\n- Krav før produksjon: Brutto må være i produksjon med a-meldings-API-et, og kunden må ha sendt minst én a-melding fra Brutto. Testoppsummering og signert avtale kreves.\n- Det finnes ikke noe API for kvittering til Skatteetaten. A-meldingen med `utleggstrekkSamordnet` er arbeidsgiverens rapportering av trekket [verifiseres].\n- Et nytt eller endret pålegg blokkerer godkjenning av neste kjøring til lønnsansvarlig har kvittert. Trekket gjelder fra perioden pålegget angir, også før kvittering.",
+       "regler_md": "- `GET /api/trekkpaalegg/v1/{trekkpliktig}` med `fraSekvensnummer` og `maksAntall`, og headerne `Klientid`, `Korrelasjonsid` og `Meldingsid`. Vannmerket er høyeste `sekvensnummer` per trekkpliktig (R2 §3.5).\n- Nøkkel er (`trekkid`, `trekkversjon`). KID er uendret mellom versjoner. Kontonummeret er felles for alle samordnede trekk (7694 05 69814).\n- Når en ansatt får samordnet trekk, skal alle andre trekk avsluttes (MYN-16, GC-07).\n- Beløpstrekk tas i løpet av måneden. Prosenttrekk tas av brutto ved hver utbetaling. Perioden velges etter lønnsutbetalingsdato (GC-08).\n- Krav før produksjon: Brutto må være i produksjon med a-meldings-API-et, og API-et aktiveres per kunde først etter kundens første a-melding fra Brutto. Tjenestebeskrivelsen godtar bare «Innrapportering A-melding API». Det kreves testoppsummering, signert bruksvilkår og tjenestebeskrivelse, og en databehandleravtale som dekker innhenting, visning og bruk. Planlegg 1–3 uker for testoppsummering og avtale.\n- To moduser per klient: API for kunder som kjører lønn i Brutto, og manuell registrering på ansattkortet (plan B) for kontrollkunder. Trekkpålegg registreres manuelt på ansattkortet fra start (MVP).\n- Fase 1 bruker ikke API-et, og planen avhenger ikke av svar fra Skatteetaten.\n- Det finnes ikke noe API for kvittering til Skatteetaten. A-meldingen med `utleggstrekkSamordnet` er arbeidsgiverens rapportering av trekket [verifiseres].\n- Et nytt eller endret pålegg blokkerer godkjenning av neste kjøring til lønnsansvarlig har kvittert. Trekket gjelder fra perioden pålegget angir, også før kvittering.",
        "data": [
         "D-Trekkpalegg",
         "D-Myndighetsabonnement",
@@ -942,7 +1014,11 @@
         "R2-myndighetsintegrasjoner §3.5, §3.6",
         "B-myndigheter §7.1",
         "R3-kritikk-domene D-23, GC-07, GC-08",
-        "https://app.swaggerhub.com/apis/skatteetaten/trekkpaalegg-app/1.5.1"
+        "https://app.swaggerhub.com/apis/skatteetaten/trekkpaalegg-app/1.5.1",
+        "natt/N01",
+        "natt/N06",
+        "natt/N26",
+        "Gründerens beslutning 29.10.2026 (utleggstrekk)"
        ],
        "merknad_md": "Trekk etter gamle regler og bidrag kommer som brev og registreres manuelt i TRK med fire øyne (R3 D-37). Om bidrag kommer via API, er uavklart [verifiseres]. Dokumentasjonen viser feilkodene KB-001 til KB-009, som trolig er kopiert fra Krav og betalinger [verifiseres]. Se også F-TRK-17."
       },
@@ -956,7 +1032,7 @@
         "Lønnsansvarlig",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Det finnes ingen elektronisk kanal. Arbeidsgiveren må kontakte Innkrevingsmyndigheten og oppgi beløp og årsak, med mindre årsaken fremgår av a-meldingen (R2 §3.6).\n- Ved utleggstrekk gjør arbeidsgiveren ingen vurdering etter dekningsloven § 2-7. Arbeidsgiveren trekker det som er mulig (R3 D-06).\n- En arbeidsgiver som ikke trekker etter pålegg, kan bli ansvarlig for beløpet [verifiseres hjemmel] (R3 D-37).",
+       "regler_md": "- Det finnes ingen elektronisk kanal. Arbeidsgiveren må kontakte Innkrevingsmyndigheten og oppgi beløp og årsak, med mindre årsaken fremgår av a-meldingen (R2 §3.6).\n- Ved utleggstrekk gjør arbeidsgiveren ingen vurdering etter dekningsloven § 2-7. Arbeidsgiveren trekker det som er mulig (R3 D-06).\n- En arbeidsgiver som ikke trekker etter pålegg, kan bli ansvarlig for beløpet [verifiseres hjemmel] (R3 D-37).\n- For samordnet utleggstrekk sendes ingen melding. Riktig sluttdato og at trekket mangler i a-meldingen er nok (innkrevingsloven § 30 fjerde ledd). Meldingen gjelder bare trekk etter gamle regler.",
        "data": [
         "D-Kontrollsak",
         "D-Trekkpalegg",
@@ -966,7 +1042,9 @@
        "behov": [],
        "kilder": [
         "R2-myndighetsintegrasjoner §3.6, §5.2 (MYN-17)",
-        "R3-kritikk-domene D-06, D-37"
+        "R3-kritikk-domene D-06, D-37",
+        "natt/N28",
+        "natt/N01"
        ],
        "merknad_md": "Se også F-TRK-21."
       }
@@ -1238,7 +1316,7 @@
       {
        "id": "F-MYN-38",
        "navn": "Datakvalitet for SSB og NAV via a-meldingen",
-       "beskrivelse_md": "SSB og NAV bygger statistikk og ytelser på a-meldingen. Brutto kontrollerer derfor felt som gir feil statistikk eller feil pensjon uten å gi avvisning: yrkeskode (STYRK-08), stillingsprosent, arbeidstidsordning, timer per uke i full stilling og siste dato for endring av stillingsprosent.",
+       "beskrivelse_md": "SSB og NAV bygger statistikk og ytelser på a-meldingen. Brutto kontrollerer derfor felt som gir feil statistikk eller feil pensjon uten å gi avvisning: yrkeskode, stillingsprosent, arbeidstidsordning, timer per uke i full stilling og siste dato for endring av stillingsprosent.",
        "niva": "Kjerne",
        "behovsvekt": "Bør",
        "fase1": "Fase 1",
@@ -1246,7 +1324,7 @@
         "Lønnsansvarlig",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Det finnes ingen egen SSB-rapportering fra lønnssystemet (B §2.10, §9.1).\n- Yrkeskoder valideres mot SSB Klass.\n- Feil stillingsprosent gir feil OTP hos leverandører som henter fra a-ordningen (D §2.7).",
+       "regler_md": "- Det finnes ingen egen SSB-rapportering fra lønnssystemet (B §2.10, §9.1).\n- Yrkeskoden (7 sifre) valideres mot SSBs yrkeskatalog (Klass 145), som bygger på STYRK-98, ikke STYRK-08. STYRK-08 (Klass 7) brukes til visning og statistikk via korrespondansetabell 426. Lederkodesjekken gjøres på STYRK-08-koden.\n- Brutto synker Klass 145, 7 og 426 ukentlig. Koder i 145 som mangler i 426, gir en sak.\n- `sisteDatoForStillingsprosentendring` skal finnes (ANS-07b). ANS-07 og ANS-08 er de konkrete datakvalitetskontrollene (F-MYN-42).\n- Feil stillingsprosent gir feil OTP hos leverandører som henter fra a-ordningen (D §2.7).",
        "data": [
         "D-Stillingsperiode",
         "D-Arbeidsforhold",
@@ -1259,14 +1337,17 @@
        "kilder": [
         "B-myndigheter §2.10, §9.1",
         "D-praksis §2.7",
-        "R2-moduler-integrasjoner §6.2"
+        "R2-moduler-integrasjoner §6.2",
+        "natt/N36",
+        "natt/N05",
+        "natt/N08"
        ],
        "merknad_md": "Se også F-KJO-20, F-MYN-42, F-RAP-14 og F-RAP-21."
       },
       {
        "id": "F-MYN-39",
        "navn": "Brreg-oppslag og nattlig synk",
-       "beskrivelse_md": "Brutto slår opp enheten, underenhetene og rollene i Enhetsregisteret ved oppstart, og synker endringer hver natt. Kommunenummer per underenhet gir AGA-sone. Rollen DAGL viser hvem som kan godkjenne systembruker, og REGN viser om byrået er regnskapsfører. En slettet enhet stopper nye innsendinger med en sak.",
+       "beskrivelse_md": "Brutto slår opp enheten, underenhetene og rollene i Enhetsregisteret ved oppstart, og synker endringer hver natt. Kommunenummer per underenhet gir AGA-sone, unntatt i 12 delte kommuner der sonen følger grunnkretser (L-16 i F-REG-30). Rollen DAGL viser hvem som kan godkjenne systembruker, og REGN viser om byrået er regnskapsfører. En slettet enhet stopper nye innsendinger med en sak.",
        "niva": "Integrasjon",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -1275,7 +1356,7 @@
         "Klientadministrator (byrå)",
         "Brutto drift"
        ],
-       "regler_md": "- `GET /enheter/{orgnr}`, `GET /underenheter?overordnetEnhet=`, `GET /enheter/{orgnr}/roller` og `GET /oppdateringer/enheter?dato=` med `oppdateringsid` som vannmerke (R2 §3.15).\n- AGA-satsen følger sonen der underenheten er registrert. Postkasseadresse godtas ikke (B §5.3).\n- Endret kommune eller sone gir ny versjon av underenheten med virkningsdato. Versjonen eies av ORG.",
+       "regler_md": "- `GET /enheter/{orgnr}`, `GET /underenheter?overordnetEnhet=`, `GET /enheter/{orgnr}/roller` og `GET /oppdateringer/enheter?dato=` med `oppdateringsid` som vannmerke (R2 §3.15).\n- AGA-satsen følger sonen der underenheten er registrert. Postkasseadresse godtas ikke (B §5.3).\n- Endret kommune eller sone gir ny versjon av underenheten med virkningsdato. Versjonen eies av ORG.\n- Brreg-dataene brukes i ANS-13 (ugyldig underenhet) og ANS-14 (antall mot Brreg) i F-MYN-42.",
        "data": [
         "D-Virksomhet",
         "D-Underenhet",
@@ -1291,9 +1372,11 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.15",
         "B-myndigheter §5.3",
-        "https://data.brreg.no/enhetsregisteret/api/docs/index.html"
+        "https://data.brreg.no/enhetsregisteret/api/docs/index.html",
+        "natt/N05",
+        "natt/N20"
        ],
-       "merknad_md": "Folkeregisteret og Aa-registeret tas ikke med. Arbeidsgivere har ikke hjemmel eller API-tilgang (R2 §3.16–3.17, R3 D-26). Se også F-ORG-01 og F-ORG-07."
+       "merknad_md": "Folkeregisteret og Aa-registeret tas ikke med. Arbeidsgivere har ikke hjemmel eller API-tilgang (R2 §3.16–3.17, R3 D-26). Skatteetatens `api/arbeidsforhold` og API-ene for Opplysningspliktig, Underenhet og Opptjeningsgrunnlag er bare for NAV og SSB. Se også F-ORG-01 og F-ORG-07."
       },
       {
        "id": "F-MYN-40",
@@ -1305,11 +1388,14 @@
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- `GET /{rettighetspakke}/{norskidentifikator}/aapnekrav`, `.../krav`, `.../innbetalinger` og `.../utbetalinger`, høyst ett år per kall (R2 §3.11).\n- Byrå med bare `regnskapsforer-lonn` får ikke tilgang. Det krever regnskapsfører med eller uten signeringsrettighet.\n- Brutto må være integrert med minst ett innrapporterings-API, og kunden må ha rapportert minst én gang.\n- Uten tilgang brukes camt.054 eller manuell bekreftelse (BET).",
+       "regler_md": "- `GET /{rettighetspakke}/{norskidentifikator}/aapnekrav`, `.../krav`, `.../innbetalinger` og `.../utbetalinger`, høyst ett år per kall (R2 §3.11).\n- Byrå med bare `regnskapsforer-lonn` får ikke tilgang. Det krever regnskapsfører med eller uten signeringsrettighet.\n- Brutto må være integrert med minst ett innrapporterings-API, og kunden må ha rapportert minst én gang.\n- Uten tilgang brukes camt.054 eller manuell bekreftelse (BET).\n- Tilgangen bestilles via brukerstøtten i Skatteetaten. `altinn:events.subscribe` er offentlig og trenger ikke bestilles.\n- MVP-forslag: gjelder bare kunder som sender a-melding via Brutto.\n- Krav og innbetalinger lagres som D-Skattekrav og D-Skatteinnbetaling og brukes i L-02 og L-14 når tilgang finnes. Uplasserte innbetalinger blir egne saker.",
        "data": [
         "D-KID",
         "D-Betalingslinje",
-        "D-Avstemming"
+        "D-Avstemming",
+        "D-Skattekrav",
+        "D-Skatteinnbetaling",
+        "D-Kontrollsak"
        ],
        "integrasjoner": [
         "Skatteetaten Krav og betalinger-API"
@@ -1321,7 +1407,8 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.11",
         "R3-kritikk-domene D-21",
-        "https://skatteetaten.github.io/api-dokumentasjon/api/kravogbetalinger"
+        "https://skatteetaten.github.io/api-dokumentasjon/api/kravogbetalinger",
+        "natt/N25"
        ],
        "merknad_md": ""
       },
@@ -1377,7 +1464,7 @@
         "Lønnskonsulent (byrå)",
         "Daglig leder"
        ],
-       "regler_md": "- Skattetrekkskontoen er avviklet fra 1.1.2026. Forskuddstrekk betales senest første virkedag etter hver lønnsutbetaling, med KID kravtype 05 og måned som termin (B §4).\n- Forskuddstrekk er eget betalingsoppdrag og merkes ikke «Lønn» eller SALA, ellers kan KID falle bort.\n- Utleggstrekk skatt etter gamle regler: KID kravtype 03 til 7694 05 24802. Samordnet utleggstrekk: konto og KID fra pålegget, dagen etter lønnsutbetaling.\n- Hver lønnsutbetalingsdato gir egen trekkbetaling (R3 D-24).\n- Minstebeløp 100 kr per oppgjørsperiode (skattebetalingsforskriften § 10-4-1). Hvordan det virker per lønnsutbetaling, må avklares [verifiseres].\n- Én kjøring per juridisk enhet og debetkonto. Konsern får separate forslag (VK-14).",
+       "regler_md": "- Skattetrekkskontoen er avviklet fra 1.1.2026. Forskuddstrekk betales senest første virkedag etter hver lønnsutbetaling, med KID kravtype 05 og måned som termin (B §4).\n- Forskuddstrekk er eget betalingsoppdrag og merkes ikke «Lønn» eller SALA, ellers kan KID falle bort.\n- Utleggstrekk skatt etter gamle regler: én samlet betaling med termin-KID kravtype 03 til 7694 05 24802. Samordnet utleggstrekk: én betaling per person per utbetaling til 7694 05 69814 med KID fra pålegget, senest første virkedag etter lønnsutbetaling (innkrevingsloven § 30 andre ledd, overgangsforskriften § 3).\n- Hver lønnsutbetalingsdato gir egen trekkbetaling (R3 D-24).\n- Minstebeløp 100 kr per oppgjørsperiode (skattebetalingsforskriften § 10-4-1). Hvordan det virker per lønnsutbetaling, må avklares [verifiseres].\n- Én kjøring per juridisk enhet og debetkonto. Konsern får separate forslag (VK-14).",
        "data": [
         "D-Betalingsforslag",
         "D-Betalingsoppdrag",
@@ -1401,7 +1488,9 @@
         "R2-byra §2.6",
         "S-avklaringer #22, #23",
         "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/arbeidsgiveravgift/betaling-av-forskuddstrekk-og-arbeidsgiveravgift/",
-        "https://www.skatteetaten.no/samarbeidspartnere/sluttbrukersystemer/sbs-nyheter/forskuddstrekk-betalingsoppdrag-og-kid/"
+        "https://www.skatteetaten.no/samarbeidspartnere/sluttbrukersystemer/sbs-nyheter/forskuddstrekk-betalingsoppdrag-og-kid/",
+        "natt/N01",
+        "natt/N28"
        ],
        "merknad_md": "Brutto flytter aldri penger (S #23). Om én pain.001-fil med flere betalingsblokker og ulike utførelsesdatoer støttes av alle banker, må verifiseres (R2-byra §2.6)."
       },
@@ -1508,7 +1597,7 @@
         "Lønnsansvarlig",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Bidragstrekk føres på 2620, utleggstrekk på 2610, fagforening på 2650 og pensjonstrekk på 2690 (S #27).\n- OTP-premien føres fra fakturaen fra leverandøren. Ansattes andel på 2690 gjøres opp mot leverandørgjeld 2400 i regnskapet. Brutto betaler ikke OTP (S #29).\n- Fagforeningsbetalinger avslører medlemskap. Detaljer vises bare for roller med tilgang til særlig kategori (S #7).",
+       "regler_md": "- Bidragstrekk føres på 2620, utleggstrekk på 2610, fagforening på 2650 og pensjonstrekk på 2690 (S #27).\n- OTP-premien føres fra fakturaen fra leverandøren. Ansattes andel på 2690 gjøres opp mot leverandørgjeld 2400 i regnskapet. Brutto betaler ikke OTP (S #29).\n- Fagforeningsbetalinger avslører medlemskap. Detaljer vises bare for roller med tilgang til særlig kategori (S #7).\n- Hvert samordnet utleggstrekk er en egen betaling med egen KID. Utleggstrekk skatt etter gamle regler betales samlet med én KID (F-BET-01). Bidrag betales til kontoen i brevet.",
        "data": [
         "D-Betalingslinje",
         "D-Betalingsmottaker",
@@ -1522,7 +1611,9 @@
        ],
        "kilder": [
         "S-avklaringer #7, #27, #29",
-        "R2-myndighetsintegrasjoner §3.6"
+        "R2-myndighetsintegrasjoner §3.6",
+        "natt/N01",
+        "natt/N28"
        ],
        "merknad_md": "Bidrag som kommer som brev, betales etter instruksen i brevet. Om bidrag får KID per pålegg, er uavklart [verifiseres]."
       },
@@ -1770,14 +1861,16 @@
         "Lønnskonsulent (byrå)",
         "Betalingsfullmektig"
        ],
-       "regler_md": "- Brutto holder aldri penger. Leverandørens konsesjon brukes.\n- Betalingen kan ikke startes før godkjenningskjeden er fullført (F-BET-06).\n- Krav til leverandøren: bedriftskonto, mange mottakere i én operasjon, KID per betalingslinje, egen betaling for trekk og merking som lønn [verifiseres per leverandør og bank].",
+       "regler_md": "- Brutto holder aldri penger. Leverandørens konsesjon brukes.\n- Betalingen kan ikke startes før godkjenningskjeden er fullført (F-BET-06).\n- Krav til leverandøren: bedriftskonto, mange mottakere i én operasjon, KID per betalingslinje, egen betaling for trekk og merking som lønn [verifiseres per leverandør og bank].\n- Ett betalingsforslag går ut gjennom én av adapterne fil, betalingspartner, multibank eller regnskapets bankmodul. Modellen er kanalnøytral.\n- Signering og samtykke hos partneren følges i D-Banksignering og D-Banksamtykke. Et samtykke gjelder i 180 dager og må fornyes.\n- Returfiler (camt.054 og pain.002) lagres som betalingsdokumentasjon i 5 år og tas med i eksporten.",
        "data": [
         "D-Betalingsforslag",
         "D-Betalingsoppdrag",
         "D-Betalingslinje",
         "D-Bankmelding",
         "D-KID",
-        "D-Fullmakt"
+        "D-Fullmakt",
+        "D-Banksignering",
+        "D-Banksamtykke"
        ],
        "integrasjoner": [
         "Open banking-leverandør (ikke valgt)"
@@ -1788,7 +1881,10 @@
        ],
        "kilder": [
         "Gründerens føringer 28.10.2026 (fase 1)",
-        "fase1.json B01–B09"
+        "fase1.json B01–B09",
+        "natt/N09",
+        "natt/N17",
+        "natt/N30"
        ],
        "merknad_md": "Ny i runde 5. Om utbetaling hører til fase 1 eller fase 2, er ikke avklart. Designet gjøres i fase 1. Se også F-BET-10, F-BET-11 og F-PLA-27."
       }
@@ -1810,7 +1906,7 @@
         "Lønnskonsulent (byrå)",
         "Ansatt"
        ],
-       "regler_md": "- Status skilles i sendt, bekreftet og returnert, og er synlig for kildene (OK-101).\n- Hendelser: `payment.batch.submitted/accepted/rejected.v1` og `payment.item.returned.v1` (G B5).\n- Kildene skal aldri betale selv. Returnert betaling betales på nytt fra Brutto (R2-okosystem §4.0.7).",
+       "regler_md": "- Status skilles i sendt, bekreftet og returnert, og er synlig for kildene (OK-101).\n- Hendelser: `payment.batch.submitted/accepted/rejected.v1` og `payment.item.returned.v1` (G B5).\n- Kildene skal aldri betale selv. Returnert betaling betales på nytt fra Brutto (R2-okosystem §4.0.7).\n- Status «under behandling» hos leverandøren (`InProgress`) er aldri «betalt». En statustabell kobler partnerstatus, ISO-status (RCVD, PATC, ACSP, ACSC og RJCT) og Bruttos status.",
        "data": [
         "D-Betalingslinje",
         "D-Betalingsoppdrag",
@@ -1824,7 +1920,9 @@
        ],
        "kilder": [
         "G-moduler-2026 B5",
-        "R2-okosystem §4.0.7"
+        "R2-okosystem §4.0.7",
+        "natt/N17",
+        "natt/N09"
        ],
        "merknad_md": ""
       },
@@ -1928,7 +2026,7 @@
         "Lønnskonsulent (byrå)",
         "Økonomisjef"
        ],
-       "regler_md": "- Lønnsutbetalingsdatoen i a-meldingen må stemme med faktisk utbetaling. Den styrer forfallet for forskuddstrekk (B §2.5, §4).\n- Påminnelse dagen etter forfall (T+1). Ubetalt trekk gir MYN-18.\n- For sen betaling av trekk er straffbart for kunden (B §14 pkt. 6).",
+       "regler_md": "- Lønnsutbetalingsdatoen i a-meldingen må stemme med faktisk utbetaling. Den styrer forfallet for forskuddstrekk (B §2.5, §4).\n- Påminnelse dagen etter forfall (T+1). Ubetalt trekk gir MYN-18.\n- For sen betaling av trekk er straffbart for kunden (B §14 pkt. 6).\n- Står mottakere fortsatt som under behandling hos leverandøren etter lønnsdatoen, gir det en alarm.",
        "data": [
         "D-Betalingsoppdrag",
         "D-AMelding",
@@ -1942,7 +2040,8 @@
        ],
        "kilder": [
         "R3-kritikk-domene D-24, E4.9",
-        "B-myndigheter §2.5, §4, §14"
+        "B-myndigheter §2.5, §4, §14",
+        "natt/N17"
        ],
        "merknad_md": ""
       }
@@ -2029,7 +2128,7 @@
         "Godkjenner",
         "Revisor"
        ],
-       "regler_md": "- Sum netto i forslaget er lik sum netto i godkjent kjøring. Sum forskuddstrekk per dato er lik `sumForskuddstrekkPerLoennsutbetalingsdato` i a-meldingen.\n- Ingen null eller negativ netto. Negativ netto går til fordring eller fremføring (C §2.4).\n- Samme kontonummer på flere ansatte gir stopp.\n- Betaling til konto i karantene eller ubekreftet konto gir stopp.\n- Lønn etter sluttdato og betaling til person registrert som død gir stopp (C §10.2, MYN-13).\n- Dobbel `EndToEndId` er umulig.\n- Beløp over terskel per mottaker krever kvittering. Utenlandsk konto og første betaling til ny konto merkes.\n- Debetkontoen tilhører den juridiske enheten som er arbeidsgiver i kjøringen.\n- Samordnet utleggstrekk betales til kontoen i pålegget. Utleggstrekk skatt etter gamle regler betales til 7694 05 24802.\n- KID valideres med MOD10 eller MOD11 når mottakerens algoritme er kjent. Skatteetatens KID for forskuddstrekk kontrolleres mot KID-generatoren og tilbakemeldingen [verifiseres].",
+       "regler_md": "- Sum netto i forslaget er lik sum netto i godkjent kjøring. Sum forskuddstrekk per dato er lik `sumForskuddstrekkPerLoennsutbetalingsdato` i a-meldingen.\n- Ingen null eller negativ netto. Negativ netto går til fordring eller fremføring (C §2.4).\n- Samme kontonummer på flere ansatte gir stopp.\n- Betaling til konto i karantene eller ubekreftet konto gir stopp.\n- Lønn etter sluttdato og betaling til person registrert som død gir stopp (C §10.2, MYN-13).\n- Dobbel `EndToEndId` er umulig.\n- Beløp over terskel per mottaker krever kvittering. Utenlandsk konto og første betaling til ny konto merkes.\n- Debetkontoen tilhører den juridiske enheten som er arbeidsgiver i kjøringen.\n- Samordnet utleggstrekk betales til kontoen i pålegget. Utleggstrekk skatt etter gamle regler betales til 7694 05 24802.\n- KID valideres med MOD10 eller MOD11 når mottakerens algoritme er kjent. Skatteetatens KID for forskuddstrekk kontrolleres mot KID-generatoren og tilbakemeldingen [verifiseres].\n- Samme dato, beløp, debetkonto og kreditkonto i samme forslag gir varsel. SpareBank 1 avviser like betalinger uten å se på KID, så to samordnede trekk med samme beløp til 7694 05 69814 kan stoppes. Varselet kan kvitteres per linje (`tillat_logisk_duplikat`).\n- En person med adressebeskyttelse får aldri gateadresse i betalingen. Utenlandsbetaling til en slik person går til manuell sak.",
        "data": [
         "D-Betalingsforslag",
         "D-Betalingslinje",
@@ -2045,7 +2144,8 @@
        "kilder": [
         "D-praksis §1.3, §3.2, §4.1",
         "R3-kritikk-domene D-46",
-        "C-beregning §2.4, §10.2"
+        "C-beregning §2.4, §10.2",
+        "natt/N17"
        ],
        "merknad_md": ""
       },
@@ -2104,7 +2204,7 @@
         "Regnskapsfører",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Regnskapet eier kontoplan, dimensjonskoder, bilagsserie og periodelås. Lønn eier bilagsinnholdet (G B4).\n- Tripletex `Account` har `requiresDepartment`, `requiresProject`, `requiresFreeDimension1–3`, `isInactive`, `saftCode` og `groupingCode`.\n- Dimensjonsverdier eies av ORG (D-Dimensjonsverdi). Synk lager eller oppdaterer verdier med ekstern nøkkel og endrer aldri historiske linjer.",
+       "regler_md": "- Regnskapet eier kontoplan, dimensjonskoder, bilagsserie og periodelås. Lønn eier bilagsinnholdet (G B4).\n- Tripletex `Account` har `requiresDepartment`, `requiresProject`, `requiresFreeDimension1–3`, `isInactive`, `saftCode` og `groupingCode`.\n- Dimensjonsverdier eies av ORG (D-Dimensjonsverdi). Synk lager eller oppdaterer verdier med ekstern nøkkel og endrer aldri historiske linjer.\n- Grupperingskoden leses fra regnskapet der den finnes (Tripletex, PowerOffice), ellers brukes Sjurs tabell (F-REG-03).",
        "data": [
         "D-Regnskapskonto",
         "D-Dimensjonstype",
@@ -2125,7 +2225,8 @@
        "kilder": [
         "G-moduler-2026 B4",
         "R2-ansattdata-tripletex-reai B1",
-        "https://tripletex.no/v2-docs/"
+        "https://tripletex.no/v2-docs/",
+        "natt/N04"
        ],
        "merknad_md": "Se også F-ORG-15 og F-REG-29."
       },
@@ -2141,11 +2242,13 @@
         "Regnskapsfører",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "| Post | Debet | Kredit |\n|---|---|---|\n| 2000 Fastlønn | 5000 | 2930 |\n| 2020 Styrehonorar | 5011 | 2930 |\n| Feriepenger 2015–2017 (utbetaling) | 2940 | 2930 |\n| 3012 Gruppelivsforsikring | 5250 | 5290 |\n| Kost 5500/5501 | 7150 | 2930 |\n| 5514 Kilometergodtgjørelse | 7100 | 2930 |\n| Skattetrekk 6000 | 2930 | 2600 |\n| Utleggstrekk 6001/6002/6011 | 2930 | 2610 |\n| Bidragstrekk 6003 | 2930 | 2620 |\n| Pensjonstrekk 6008 | 2930 | 2690 |\n| Fagforening | 2930 | 2650 |\n| AGA | 5400 | 2770 |\n| Avsetning feriepenger | 5020 | 2940 |\n| AGA av feriepenger | 5405 | 2785 |\n| Netto lønn, samlet per kjøring | 2930 | bankkonto |\n\n- Ulykkesforsikring 5252 og helseforsikring 5280. Forskudd på lønn og reiseforskudd 2910, omklassifisert ved årsslutt til 1572 og 1570 (S #27).\n- En lønnsart har én debet- og én kreditkonto. Lønnsarten har ingen grupperingskode. Den ligger på kontoen (S #26).\n- Standardutvalget er 1000–1002, 2000, 2001, 2002, 2015–2017, 2018, 2019, 2020, 2028, 3008, 3009, 3012, 3016, 5500, 5501, 5514, 6000, 6001, 6002, 6003, 6008 og 6011 (S #25).",
+       "regler_md": "| Post | Debet | Kredit |\n|---|---|---|\n| 2000 Fastlønn | 5000 | 2930 |\n| 2020 Styrehonorar | 5011 | 2930 |\n| Feriepenger 2015–2017 (utbetaling) | 2940 | 2930 |\n| 3012 Gruppelivsforsikring | 5250 | 5290 |\n| Kost 5500/5501 | 7150 | 2930 |\n| 5514 Kilometergodtgjørelse | 7100 | 2930 |\n| Skattetrekk 6000 | 2930 | 2600 |\n| Utleggstrekk 6001/6002/6011 | 2930 | 2610 |\n| Bidragstrekk 6003 | 2930 | 2620 |\n| Pensjonstrekk 6008 | 2930 | 2690 |\n| Fagforening | 2930 | 2650 |\n| AGA | 5400 | 2770 |\n| Avsetning feriepenger | 5020 | 2940 |\n| AGA av feriepenger | 5405 | 2785 |\n| Netto lønn, samlet per kjøring | 2930 | bankkonto |\n\n- Ulykkesforsikring 5252 og helseforsikring 5280. Forskudd på lønn og reiseforskudd 2910, omklassifisert ved årsslutt til 1572 og 1570 (S #27).\n- En lønnsart har én debet- og én kreditkonto. Lønnsarten har ingen grupperingskode. Den ligger på kontoen (S #26).\n- Standardutvalget er 1000–1002, 2000, 2001, 2002, 2015–2017, 2018, 2019, 2020, 2028, 3008, 3009, 3012, 3016, 5500, 5501, 5514, 6000, 6001, 6002, 6003, 6008 og 6011 (S #25).\n- Mappingen går i to retninger: lønnsart → konto (D-Kontomapping) og konto → A07-gruppe (D-A07Kontoregel). Begge veier må gi samme A07-gruppe.\n- Gründerens A07-mapping ligger som datafil (`natt/funn/N23-mapping.csv`, 280 rader: 41 A07-grupper, 131 beskrivelsesregler, 94 kontoregler med saldoregel og fortegn, og 14 reserveregler på grupperingskode). Den blir Brutto-malen (nivå `brutto_mal`) for D-A07Gruppe og D-A07Kontoregel.\n- Kontonavn fra SAF-T-standardkontoene er © Regnskap Norge og brukes ikke i malen. Malen bruker kundens egne kontonavn eller egne beskrivelser.",
        "data": [
         "D-Kontomapping",
         "D-Lonnsart",
-        "D-Regnskapskonto"
+        "D-Regnskapskonto",
+        "D-A07Gruppe",
+        "D-A07Kontoregel"
        ],
        "integrasjoner": [],
        "behov": [
@@ -2154,14 +2257,17 @@
        ],
        "kilder": [
         "S-avklaringer #25–#27",
-        "C-beregning §11.3"
+        "C-beregning §11.3",
+        "natt/N03",
+        "natt/N23",
+        "natt/N40"
        ],
        "merknad_md": "S #27 er fasit der C §11.3 avviker, for eksempel styrehonorar 5011 mot 5330 (R3 D-14). Kreditsiden 2930 for brutto og debetsiden 2930 for trekk er hentet fra C §11.3 [verifiseres mot Sjurs A07-mapping]."
       },
       {
        "id": "F-REG-03",
        "navn": "Grupperingskoder på konto",
-       "beskrivelse_md": "Hver konto har en grupperingskode som samler kontoer for avstemming og rapportering. Brutto bruker gründerens koder som standard og leser kode fra regnskapssystemet når den finnes. Avstemmingen mot a-meldingen og A07 summerer per grupperingskode.",
+       "beskrivelse_md": "Hver konto har en grupperingskode som samler kontoer for avstemming og rapportering. Brutto leser grupperingskoden fra regnskapssystemet der den finnes (Tripletex `groupingCode`, PowerOffice `GroupingCategoryCode`), og bruker gründerens koder ellers. `grupperingskode_kilde` viser hvor koden kom fra, og grupperingskategorien avledes fra Skatteetatens CSV. Avstemmingen mot a-meldingen og A07 summerer per grupperingskode.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -2170,10 +2276,11 @@
         "Regnskapsfører",
         "Revisor"
        ],
-       "regler_md": "- Sjurs grupperingskoder (S #28): 5011 → 5000. 5800 → 5000 (antatt). 7100 og 7150 (opplysningspliktig) → 7155. 7140 (ikke opplysningspliktig) → 7165. 2940 → 2949. Alle trekkontoer 2600–2690 → 2600. Forsikringskontoene 5250, 5252, 5280 og 5390 → 5000 (antatt). 1570 og 1572 → 1570.\n- SAF-T Regnskap 1.30 har `StandardAccountID`, `GroupingCategory` og `GroupingCode` på hovedbokskontoen [verifiseres feltnavn]. Tripletex har `saftCode` og `groupingCode` på `Account`.",
+       "regler_md": "- Sjurs grupperingskoder (S #28): 5011 → 5000. 5800 → 5000. 7100 og 7150 (opplysningspliktig) → 7155. 7140 (ikke opplysningspliktig) → 7165. 2940 → 2949. Alle trekkontoer 2600–2690 → 2600. Forsikringskontoene 5250, 5252 og 5280 → 5000. 5390 → 5300, ikke 5000. 1570 og 1572 → 1570.\n- SAF-T Regnskap 1.30 og 1.40 har `StandardAccountID`, `GroupingCategory` og `GroupingCode` på hovedbokskontoen. Tripletex har `saftCode` og `groupingCode` på `Account`, og PowerOffice har `GroupingCategoryCode`.\n- Rettinger i Brutto-malen etter lesing av 16 kontoplaner (natt/N32):\n  - 2945 er «Periodisering av lønn» i Tripletex, ikke utbetalte feriepenger, og tas ut av FP. I månedsavstemmingen regnes 2945, 5095, 5096, 5495 og 5496 som IKKE. I årsoppstillingen er IB 2945 tillegg og UB 2945 fradrag (fordelingen [verifiseres]).\n  - 5401 «AGA av opptjente feriepenger» (Tripletex) legges i AGA-gruppen. 5405 er «AGA av andre påløpte lønnskostnader» i Tripletex, og kildemerket på K036 rettes.\n  - K080 (UB 2930 = 0) treffer ikke Tripletex Lønn. For Tripletex blir kontrollen «2930 har ingen bevegelse» (info). Kontroll på 2910 per ansatt venter til MVP.\n  - AGA per måned er kredit 2770 minus debet 2770 fra bilag som ikke er betaling, fordi Tripletex debiterer 2770 ved sykepengerefusjon. Betaling kjennes på bilagstype eller motkonto 19xx.\n  - Finansskatt: Tripletex bruker 2771 (kostnad 5430/5431). 2771 legges til.\n  - ReAi fører feriepenger på 5092/2940 og AGA av dem på 5405/2785. Kontoene legges inn i D-A07Kontoregel og D-Kontomapping. For ReAi-kunder kan 2940 avstemmes per ansatt.",
        "data": [
         "D-Regnskapskonto",
-        "D-Kontomapping"
+        "D-Kontomapping",
+        "D-A07Kontoregel"
        ],
        "integrasjoner": [],
        "behov": [
@@ -2183,9 +2290,13 @@
         "S-avklaringer #28",
         "B-myndigheter §10.4",
         "https://www.skatteetaten.no/en/business-and-organisation/start-and-run/best-practices-accounting-and-cash-register-systems/saf-t-financial/",
-        "https://tripletex.no/v2-docs/"
+        "https://tripletex.no/v2-docs/",
+        "natt/N04",
+        "natt/N23",
+        "natt/N32",
+        "natt/N21"
        ],
-       "merknad_md": "To koder er antatt (5800 og forsikring). Om Sjurs koder er de samme som Skatteetatens grupperingskoder for SAF-T og næringsspesifikasjonen, må verifiseres [verifiseres]."
+       "merknad_md": "Sjurs koder er Skatteetatens grupperingskoder. 5800, 5252 og 5280 → 5000 er bekreftet i Tripletex, og 5390 er rettet til 5300 (natt/N04, natt/N23)."
       },
       {
        "id": "F-REG-04",
@@ -2221,7 +2332,7 @@
       {
        "id": "F-REG-05",
        "navn": "Lønnsbilag per kjøring",
-       "beskrivelse_md": "Hver godkjent kjøring gir ett balansert lønnsbilag per juridisk enhet. Bilaget har brutto per lønnsart og dimensjon, trekk på trekkontoene, AGA, avsetning for feriepenger og AGA av den, naturalytelser og netto lønn samlet på 2930. Lønnsjournalen legges ved som PDF. Bilaget får ekstern referanse `payrun:<id>:rev<n>`.",
+       "beskrivelse_md": "Hver godkjent kjøring gir ett balansert lønnsbilag per juridisk enhet. Bilaget har brutto per konto og dimensjon, trekk på trekkontoene, AGA, avsetning for feriepenger og AGA av den, naturalytelser og netto lønn samlet på 2930. Lønnsjournalen legges ved som PDF. Bilaget får en kort, stabil ekstern referanse på høyst 20 tegn, for eksempel `BR-2026-0042-r1`.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -2230,7 +2341,7 @@
         "Lønnskonsulent (byrå)",
         "Revisor"
        ],
-       "regler_md": "- Debet er lik kredit på øret per bilag.\n- Bilagsdato er lønnsutbetalingsdatoen. Periode er utbetalingsmåneden, med mindre kunden har valgt periodisering (REG.3).\n- Bokføringsforskriften § 5-6: dokumentasjon av lønn per motpart og periode, utstedt senest når ytelsen kan utbetales (B §10.2).\n- Bokføringsforskriften § 3-1 første ledd nr. 9: lønnsopplysningspliktige ytelser spesifiseres per periode etter kontoene, og AGA-pliktige ytelser skal kunne vises samlet per sats og sone.\n- Flere juridiske enheter gir separate bilag (VK-14).",
+       "regler_md": "- Debet er lik kredit på øret per bilag.\n- Bilagsdato er lønnsutbetalingsdatoen. Periode er utbetalingsmåneden, med mindre kunden har valgt periodisering (REG.3).\n- Bokføringsforskriften § 5-6: dokumentasjon av lønn per motpart og periode, utstedt senest når ytelsen kan utbetales (B §10.2).\n- Bokføringsforskriften § 3-1 første ledd nr. 9: lønnsopplysningspliktige ytelser spesifiseres per periode etter kontoene, og AGA-pliktige ytelser skal kunne vises samlet per sats og sone.\n- Flere juridiske enheter gir separate bilag (VK-14).\n- Ett bilag per kjøring. AGA føres som egne linjer per sone og sats, med grunnlaget i teksten (`AGA <sone> <sats>% gr <beløp>`), fordi ingen regnskapssystem har eget felt for AGA-grunnlag uten kundeoppsett. I Fiken blir det et eget `journalEntry`.\n- Standard aggregering er per konto og dimensjon (D-Regnskapsoppsett).\n- Den eksterne referansen er kort fordi `SaftBatchId` tar 35 tegn. `payrun:<uuid>:rev<n>` (48 tegn) brukes ikke.\n- Utlegg fra integrasjon gir tre slags linjer i samlebilaget, etter flyt (natt/N31). Flyt B: kostnad, MVA og godtgjørelse per konto, dimensjon og MVA-kode. Flyt A: debet 2910 per utleggslinje med ansatt. Flyt C: debet mellomkonto med spesifikasjon per krav-ID i vedlegget.",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2250,7 +2361,11 @@
         "G-moduler-2026 B4",
         "C-beregning §2.1 steg 17, §11.3",
         "B-myndigheter §10.2",
-        "https://lovdata.no/forskrift/2004-12-01-1558"
+        "https://lovdata.no/forskrift/2004-12-01-1558",
+        "natt/N02",
+        "natt/N30",
+        "natt/N33",
+        "natt/N31"
        ],
        "merknad_md": "Det finnes ikke egen SAF-T for lønn. Bilaget må ha konto, dimensjoner og referanser som gjør regnskapssystemets SAF-T-eksport riktig (B §10.4)."
       },
@@ -2265,7 +2380,7 @@
         "Regnskapsfører",
         "Revisor"
        ],
-       "regler_md": "- Bokføringsforskriften § 5-6, per motpart: lønn og oppgavepliktige ytelser, forskuddstrekk og utleggstrekk, fødselsnummer, navn og tabellnummer eller trekkprosent. For utleggstrekk: når pålegget er mottatt, og trekkprosent eller beløp (B §10.2).\n- Per periode: utbetalingsdato, brutto, naturalytelser, fradrag, trekkgrunnlag og trekk. For timelønnede: timer per dag og samlet for perioden.\n- Dokumentasjonen utstedes senest når ytelsen kan utbetales.\n- Oppbevares i 5 år etter regnskapsårets slutt (S #1, bokføringsloven § 13).",
+       "regler_md": "- Bokføringsforskriften § 5-6, per motpart: lønn og oppgavepliktige ytelser, forskuddstrekk og utleggstrekk, fødselsnummer, navn og tabellnummer eller trekkprosent. For utleggstrekk: når pålegget er mottatt, og trekkprosent eller beløp (B §10.2).\n- Per periode: utbetalingsdato, brutto, naturalytelser, fradrag, trekkgrunnlag og trekk. For timelønnede: timer per dag og samlet for perioden.\n- Dokumentasjonen utstedes senest når ytelsen kan utbetales.\n- Oppbevares i 5 år etter regnskapsårets slutt (S #1, bokføringsloven § 13).\n- Lønnsjournalen er dokumentasjonen etter § 5-6 og ligger i Brutto. Den låses med hash, og bokføringsgrunnlaget viser til journalens id og hash (NBS 2 pkt. 4.7). Standard vedlegg til bilaget er aggregert journal.",
        "data": [
         "D-Bilag",
         "D-Lonnsslipp",
@@ -2284,9 +2399,11 @@
         "B-myndigheter §10.2, §10.3",
         "S-avklaringer #1",
         "R3-kritikk-domene D-11, D-30",
-        "https://lovdata.no/forskrift/2004-12-01-1558"
+        "https://lovdata.no/forskrift/2004-12-01-1558",
+        "natt/N02",
+        "natt/N30"
        ],
-       "merknad_md": "Bokføringsforskriften § 5-6 krever også en lettfattelig beskrivelse av lønnssystemets oppbygging og funksjoner. Den hører til RAP eller PLA (R3 D-30). Se også F-KJO-45 og F-RAP-09."
+       "merknad_md": "Bokføringsforskriften § 5-6 krever også en lettfattelig beskrivelse av lønnssystemets oppbygging og funksjoner. Den hører til RAP eller PLA (R3 D-30). Se også F-KJO-45, F-RAP-09 og F-REG-31."
       },
       {
        "id": "F-REG-07",
@@ -2301,7 +2418,9 @@
        "regler_md": "- S #9: nettolønn per ansatt skal ikke synes i hovedbok eller bank uten lønnstilgang.\n- Lønnsdata i regnskapet er selve lønnsbilaget og posteringene mot ansattes reskontro (S #8).\n- Forskudd på 2910 omklassifiseres ved årsslutt til 1572 og 1570 (S #27). Negativ netto føres som fordring på 1570 (C §11.3).",
        "data": [
         "D-Postering",
-        "D-Bilag"
+        "D-Bilag",
+        "D-Regnskapskonto",
+        "D-Regnskapsoppsett"
        ],
        "integrasjoner": [],
        "behov": [
@@ -2309,9 +2428,11 @@
        ],
        "kilder": [
         "S-avklaringer #8, #9, #27",
-        "C-beregning §11.3"
+        "C-beregning §11.3",
+        "natt/N02",
+        "natt/N32"
        ],
-       "merknad_md": "Tripletex og ReAi har ansatt på posteringen (`employee`, `employeeId`). Det gir reskontro per ansatt, men viser også navnet i hovedboken. Brutto setter ansatt bare på reskontroposter [verifiseres per regnskapssystem]."
+       "merknad_md": "Tripletex og ReAi har ansatt på posteringen (`employee`, `employeeId`). Det gir reskontro per ansatt, men viser også navnet i hovedboken. Brutto setter ansatt bare når kontoen har `reskontro = ansatt` (D-Regnskapskonto). Oppsettet `ansattreskontro` velger ingen, reskontrokontoer (standard) eller netto per ansatt. Kunder fra Tripletex Lønn har netto og åpne poster per ansatt på 2910. Migreringen må lukke dem eller føre dem videre, og kunden må få beskjed om at Bruttos standard med samlet 2930 avviker (MVP-forslag)."
       },
       {
        "id": "F-REG-08",
@@ -2383,7 +2504,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- Etter godkjenning rettes feil med korreksjonskjøring. Bilaget endres aldri (F §1.5).\n- Tilbakeføring av en hel kjøring brukes nesten bare før utbetaling er sendt til bank.",
+       "regler_md": "- Idempotens med ekstern referanse, en kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4, F-REG-17).\n- Etter godkjenning rettes feil med korreksjonskjøring. Bilaget endres aldri (F §1.5).\n- Tilbakeføring av en hel kjøring brukes nesten bare før utbetaling er sendt til bank.\n- Reversering og ny revisjon skjer etter bokføringsloven § 9 og bokføringsforskriften § 5-12, med gjensidig referanse mellom bilagene.\n- Modellen følger Tripletex: reversering på samme dato, gjensidig referanse og per ansatt. Brutto bruker ikke korreksjon i inneværende periode slik Visma gjør. Da gir reverseringen ingen tidsavvik mot A07.\n- Reversering via API i Tripletex, PowerOffice, ReAi og Uni Micro. Motbilag med gjensidig referanse i Business NXT, eAccounting, Fiken og 24SevenOffice.",
        "data": [
         "D-Bilag",
         "D-Postering"
@@ -2394,9 +2515,37 @@
        ],
        "kilder": [
         "G-moduler-2026 B4",
-        "F-arkitektur §1.5"
+        "F-arkitektur §1.5",
+        "natt/N02",
+        "natt/N32",
+        "natt/N33"
        ],
        "merknad_md": ""
+      },
+      {
+       "id": "F-REG-31",
+       "navn": "Kontrollsporbeskrivelse per kunde og år",
+       "beskrivelse_md": "Brutto lager en beskrivelse av kontrollsporet for lønn for hver kunde og hvert regnskapsår. Den viser hvordan en lønnspost kan følges fra lønnsgrunnlaget via lønnsjournalen og bilaget til regnskapet, og tilbake. Beskrivelsen genereres fra regnskapsoppsettet, kontomappingen og programversjonen, merkes med år og får en ny full versjon ved vesentlig endring.",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "roller": [
+        "Lønnsansvarlig",
+        "Regnskapsfører",
+        "Revisor"
+       ],
+       "regler_md": "- Bokføringsloven § 6 og NBS 2 kap. 5 krever dokumentasjon av kontrollsporet.\n- Genereres fra D-Regnskapsoppsett, D-Kontomapping og D-Programversjon.\n- Ny full versjon ved vesentlig endring i oppsett, mapping eller programversjon. Tidligere versjoner beholdes.",
+       "data": [
+        "D-Regnskapsoppsett",
+        "D-Kontomapping",
+        "D-Programversjon"
+       ],
+       "integrasjoner": [],
+       "behov": [],
+       "kilder": [
+        "natt/N30",
+        "https://lovdata.no/lov/2004-11-19-73"
+       ],
+       "merknad_md": "MVP-forslag. Beskrivelsen av lønnssystemets oppbygging etter bokføringsforskriften § 5-6 er felles for alle kunder og hører til RAP eller PLA (F-REG-06). Se også F-REG-06 og F-RAP-09."
       }
      ]
     },
@@ -2415,7 +2564,7 @@
         "Regnskapsfører",
         "Revisor"
        ],
-       "regler_md": "- Avsetning 5020/2940 og AGA av feriepenger 5405/2785 (S #27).\n- Sats 10,2 % eller 12 % etter avtale, pluss 2,3 prosentpoeng for 60+ opp til 6G (B §8.1).\n- Kunden kan velge avsetning per kjøring, månedlig eller ved årsslutt (D-Regnskapsoppsett).\n- Feriepengeavsetningen avstemmes mot 2940 årlig (D §2.6).",
+       "regler_md": "- Avsetning 5020/2940 og AGA av feriepenger 5405/2785 (S #27).\n- Sats 10,2 % eller 12 % etter avtale, pluss 2,3 prosentpoeng for 60+ opp til 6G (B §8.1).\n- Kunden kan velge avsetning per kjøring, månedlig eller ved årsslutt (D-Regnskapsoppsett).\n- Feriepengeavsetningen avstemmes mot 2940 årlig (D §2.6).\n- Korreksjon av feriepengeavsetningen føres som eget bilag mot 2940 og 2785 uten ny lønnskjøring, slik ReAi gjør (5092/2940 og 5405/2785).",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2430,7 +2579,8 @@
         "S-avklaringer #27",
         "B-myndigheter §8.1",
         "C-beregning §2.1 steg 14",
-        "D-praksis §2.6"
+        "D-praksis §2.6",
+        "natt/N21"
        ],
        "merknad_md": "Om AGA-satsen for avsetningen skal følge sonen ved opptjening eller ved utbetaling, er en vurdering. Brutto bruker sonen ved opptjening og viser differansen ved utbetaling [verifiseres]."
       },
@@ -2497,7 +2647,7 @@
       {
        "id": "F-REG-14",
        "navn": "OTP fra faktura og AGA av premie",
-       "beskrivelse_md": "OTP-premien føres i regnskapet fra fakturaen fra pensjonsleverandøren. Lønnskjøringen fører den ikke. Brutto tar likevel imot premien per termin og underenhet, manuelt eller fra regnskapsadapteren. Premien fordeles per sone etter pensjonsgrunnlaget og gir AGA-grunnlag i a-meldingen. En kontroll varsler når en OTP-kunde mangler premie i terminen.",
+       "beskrivelse_md": "OTP-premien føres i regnskapet fra fakturaen fra pensjonsleverandøren. Lønnskjøringen fører den ikke. Brutto tar likevel imot premien per termin og underenhet, manuelt eller fra regnskapsadapteren. AGA-grunnlaget følger betalingsmåneden og fordeles på soner etter øvrige avgiftspliktige ytelser i samme måned. En kontroll varsler når en OTP-kunde mangler premie i terminen.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -2505,7 +2655,7 @@
         "Regnskapsfører",
         "Økonomisjef"
        ],
-       "regler_md": "- Postering i regnskapet: 5420 Pensjonskostnad og 2690 for ansattes andel mot 2400 Leverandørgjeld. Lønnskjøringen lager ingen pensjonsavsetning (S #29).\n- AGA-grunnlaget rapporteres som `tilskuddOgPremieTilPensjon` per sone (R3 D-01).\n- GC-17: premie 30 000 betalt 15.2.2028, med 70 % i sone I og 30 % i sone III, gir 21 000 × 14,1 % = 2 961 og 9 000 × 6,4 % = 576, til sammen 3 537.",
+       "regler_md": "- Postering i regnskapet: 5420 Pensjonskostnad og 2690 for ansattes andel mot 2400 Leverandørgjeld. Lønnskjøringen lager ingen pensjonsavsetning (S #29).\n- AGA-grunnlaget rapporteres som `tilskuddOgPremieTilPensjon` per sone (R3 D-01).\n- GC-17 (premie 30 000 betalt 15.2.2028, fordelt 70/30 på sone I og III etter pensjonsgrunnlaget) må regnes om med fordeling etter øvrige avgiftspliktige ytelser i februar 2028.\n- Administrasjonskostnader inngår i grunnlaget, men ikke meglerhonorar og flyttekostnad. Innbetaling til premiefond gir AGA, bruk av premiefondet gir ikke (Skatte-ABC A-15-2.4).\n- Premien hentes fra regnskapet (postering på OTP-kontoen med leverandør og betalingsdato) eller registreres manuelt. Finans Norges returfil kan komme senere.",
        "data": [
         "D-Pensjonspremie",
         "D-Pensjonsordning",
@@ -2519,9 +2669,10 @@
        ],
        "kilder": [
         "S-avklaringer #29",
-        "R3-kritikk-domene D-01, GC-17"
+        "R3-kritikk-domene D-01, GC-17",
+        "natt/N16"
        ],
-       "merknad_md": "Uavklart: om AGA følger betalingstidspunktet, og om administrasjonskostnader inngår [verifiseres] (R3 spørsmål 8). S #29 merker AGA av premien som antatt. Se også F-PEN-05, F-PEN-06 og F-PEN-08."
+       "merknad_md": "Betalingsmåneden og administrasjonskostnadene er bekreftet i Skatte-ABC A-15-2.4 (natt/N16), som svarer på R3 spørsmål 8. Se også F-PEN-05, F-PEN-06 og F-PEN-08."
       },
       {
        "id": "F-REG-15",
@@ -2533,7 +2684,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- Refusjon fra NAV: 1580 Krav på refusjon mot 5800 Refusjon sykepenger (C §11.3).\n- 5800 er helseopplysning og skjermes (S #8).\n- Grupperingskoden 5800 → 5000 er antatt (S #28).\n- Kundens AGA-metode for refusjon (F-MYN-35) styrer når AGA-fradraget bokføres.",
+       "regler_md": "- Refusjon fra NAV: 1579 Krav på refusjon (eller en underkonto mappet til SAF-T 1579 og grupperingskode 1570) mot 5800 Refusjon sykepenger. Ikke 1580, som er tapsavsetning i SAF-T, og ikke 1570, som er reiseforskudd.\n- 5800 er helseopplysning og skjermes (S #8).\n- Grupperingskoden 5800 → 5000 (S #28, bekreftet i Tripletex).\n- Kundens AGA-metode for refusjon (F-MYN-35) styrer når AGA-fradraget bokføres.\n- AGA-metoden for refusjon lagres per virksomhet og år allerede i fase 1, fordi kontrollen mot dobbelt fradrag trenger den. Metoden avgjør regelsettet for refusjon i avstemmingen (F-REG-30). Brutto kan foreslå metoden ut fra valuteringen i K27 (Skatteetatens prinsipputtalelse 3.11.2023).",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2547,9 +2698,11 @@
        "kilder": [
         "C-beregning §11.3",
         "S-avklaringer #8, #28",
-        "R3-kritikk-domene D-08"
+        "R3-kritikk-domene D-08",
+        "natt/N15",
+        "natt/N23"
        ],
-       "merknad_md": "S #27 nevner ikke kontoen for krav på refusjon. 1580 er fra C §11.3 [verifiseres mot Sjur]. Se også F-FRA-25."
+       "merknad_md": "S #27 nevner ikke kontoen for krav på refusjon. C §11.3 brukte 1580. Den er rettet til 1579 etter Skatteetatens SAF-T-standardkontoer (natt/N15). Se også F-FRA-25."
       },
       {
        "id": "F-REG-16",
@@ -2562,7 +2715,7 @@
         "Regnskapsfører",
         "Revisor"
        ],
-       "regler_md": "- Omklassifisering 2910 → 1572 og 1570 (S #27).\n- Avstemming av lønn og AGA mot A07: sum innrapportert lønn, AGA-grunnlag og AGA mot resultatregnskapet (D §2.6).\n- Revisor ser etter sene korrigeringer i erstatningsmeldinger (D §2.6).\n- Desemberlønn betalt i januar hører til a-meldingen for januar, men kan periodiseres til desember.",
+       "regler_md": "- Omklassifisering 2910 → 1572 og 1570 (S #27).\n- Avstemming av lønn og AGA mot A07: sum innrapportert lønn, AGA-grunnlag og AGA mot resultatregnskapet (D §2.6).\n- Revisor ser etter sene korrigeringer i erstatningsmeldinger (D §2.6).\n- Desemberlønn betalt i januar hører til a-meldingen for januar, men kan periodiseres til desember.\n- Saldoliste per ansatt for 2910, 1570 og 1572 ved årsslutt som balansedokumentasjon (bokføringsloven § 11).",
        "data": [
         "D-Bilag",
         "D-Avstemming",
@@ -2575,7 +2728,8 @@
        ],
        "kilder": [
         "S-avklaringer #27",
-        "D-praksis §2.6"
+        "D-praksis §2.6",
+        "natt/N02"
        ],
        "merknad_md": "Se også F-REG-24, F-REG-27, F-REG-30 og F-RAP-15."
       }
@@ -2588,7 +2742,7 @@
       {
        "id": "F-REG-17",
        "navn": "Felles bilagskontrakt og generisk fil",
-       "beskrivelse_md": "Alle regnskapsadaptere bruker samme interne bilagskontrakt. Kunder uten egen adapter får bilaget som fil (CSV eller JSON) eller via Bruttos API. Kontrakten har konto, dimensjoner, beløp, tekst, dato, periode og referanser tilbake til kjøringen.",
+       "beskrivelse_md": "Alle regnskapsadaptere bruker samme interne bilagskontrakt. Kunder uten egen adapter får bilaget som fil (CSV eller JSON) eller via Bruttos API. Kontrakten har konto, dimensjoner, beløp, tekst, dato, periode og referanser tilbake til kjøringen. Den eksterne referansen er en kort kjøringsreferanse, for eksempel `BR-2026-0042-r1`.",
        "niva": "Integrasjon",
        "behovsvekt": "Må",
        "roller": [
@@ -2596,7 +2750,7 @@
         "Regnskapsfører",
         "Brutto drift"
        ],
-       "regler_md": "- Generisk API for bilag som balanserer, med dimensjoner og reversering ved ny revisjon (OK-91).\n- Hendelsen `payroll.posting.ready.v1` når bilaget er klart. `accounting.voucher.booked.v1` eller `.failed.v1` tilbake (G B4).\n- Feltene følger SAF-T Regnskap 1.30 der det går: `TransactionID`, `Period`, `PeriodYear`, `TransactionDate`, `GLPostingDate`, `Description`, og per linje `RecordID`, `AccountID`, `Analysis`, `DebitAmount`/`CreditAmount` og `SourceDocumentID` [verifiseres].",
+       "regler_md": "- Generisk API for bilag som balanserer, med dimensjoner og reversering ved ny revisjon (OK-91).\n- Hendelsen `payroll.posting.ready.v1` når bilaget er klart. `accounting.voucher.booked.v1` eller `.failed.v1` tilbake (G B4).\n- Feltene følger SAF-T Regnskap 1.30 der det går: `TransactionID`, `Period`, `PeriodYear`, `TransactionDate`, `GLPostingDate`, `Description`, og per linje `RecordID`, `AccountID`, `Analysis`, `DebitAmount`/`CreditAmount` og `SourceDocumentID` [verifiseres].\n- Feltgrenser: Tripletex `externalVoucherNumber` 70 tegn, PowerOffice-referanse 50 tegn og `SaftBatchId` 35 tegn. `SaftSourceId` er Bruttos system-id.\n- Adapterne skriver regnskapets bilagsnummer tilbake. Bilaget får status bokført først da, og L-10 avstemmer journalen mot hovedboken (F-REG-24).\n- Brutto netter aldri debet og kredit på samme konto og dimensjon i et bilag. Avsetning og utbetaling på 2940 står alltid på egne linjer, så saldomotoren kan avstemme Bruttos egne bilag (MVP-forslag).\n- I utleggsflyt A lukkes ansattpostene etter bokføring: Tripletex `PUT /ledger/posting/:closePostings` og ReAi `POST /api/postings/employee/close`. For PowerOffice er det ikke funnet.",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2614,7 +2768,12 @@
         "G-moduler-2026 B4",
         "B-myndigheter §10.4",
         "R2-moduler-integrasjoner §6.4",
-        "https://www.skatteetaten.no/en/business-and-organisation/start-and-run/best-practices-accounting-and-cash-register-systems/saf-t-financial/"
+        "https://www.skatteetaten.no/en/business-and-organisation/start-and-run/best-practices-accounting-and-cash-register-systems/saf-t-financial/",
+        "natt/N02",
+        "natt/N30",
+        "natt/N32",
+        "natt/N33",
+        "natt/N31"
        ],
        "merknad_md": ""
       },
@@ -2629,7 +2788,7 @@
         "Regnskapsfører",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- `Voucher` med `date`, `description`, `voucherType`, `postings[]` og `externalVoucherNumber` [verifiseres for ekstern referanse].\n- `Posting` med `account`, `amount`, `department`, `project`, `employee`, `freeAccountingDimension1–3`, `row` og `description`.\n- Reversering ligger i `reverseVoucher`.\n- Byråer bruker regnskapsførertoken med tilgang til flere klienter.",
+       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4).\n- `Voucher` med `date`, `description`, `voucherType`, `postings[]` og `externalVoucherNumber` (høyst 70 tegn) som ekstern referanse.\n- `Posting` med `account`, `amount`, `department`, `project`, `employee`, `freeAccountingDimension1–3`, `row` og `description`.\n- Reversering ligger i `reverseVoucher`.\n- Byråer bruker regnskapsførertoken med tilgang til flere klienter.\n- Bilaget sendes med `voucherType=null` eller en egen bilagstype, ikke «Lønnsbilag». `:reverse` støtter ikke lønnstransaksjoner, og API-et for lønnstransaksjoner er DEPRECATED.\n- Kunden får beskjed om at Tripletex' avstemmingsmodul for lønn ikke kan brukes for bilagene fra Brutto. Årsoppgjør fungerer.",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2647,7 +2806,10 @@
         "R2-moduler-integrasjoner §6.4",
         "G-moduler-2026 B4",
         "R2-ansattdata-tripletex-reai B1",
-        "https://tripletex.no/v2-docs/"
+        "https://tripletex.no/v2-docs/",
+        "natt/N33",
+        "natt/N31",
+        "natt/N32"
        ],
        "merknad_md": "Tripletex har egen lønn. Kunder som bytter til Brutto, må slå av Tripletex sin lønnsbokføring for å unngå dobbel føring [verifiseres]. Se også F-REG-19, F-REG-29 og F-PLA-26."
       },
@@ -2662,11 +2824,12 @@
         "Regnskapsfører",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- PowerOffice Go API v2 har endepunkter for bilag (bilagsutkast og bokføring) og dimensjoner som avdeling og prosjekt [verifiseres].\n- Sterk kobling mellom byrå og klient (R2-moduler §6.4).",
+       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med `ExternalImportReference` og en kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4).\n- Standard er `Vouchers/ManualJournals` med `ExternalImportReference`, `SaftSourceId` og `SaftBatchId`. Utkast (`JournalEntryVouchers`) kan velges i oppsettet (`bilagsmodus`). `PostingDate` settes per linje.\n- PowerOffice tar imot `PayrollJournal` med `EmployeeNo` bare på reskontrolinjer.\n- Utleggsflyt A virker ikke uten felles `CustomMatchingReference`. PowerOffice-kunder bruker flyt B eller C.\n- Sterk kobling mellom byrå og klient (R2-moduler §6.4).",
        "data": [
         "D-Bilag",
         "D-Postering",
-        "D-Regnskapskonto"
+        "D-Regnskapskonto",
+        "D-Regnskapsoppsett"
        ],
        "integrasjoner": [
         "PowerOffice Go API"
@@ -2678,7 +2841,10 @@
        ],
        "kilder": [
         "R2-moduler-integrasjoner §6.4",
-        "https://developer.poweroffice.net/"
+        "https://developer.poweroffice.net/",
+        "natt/N33",
+        "natt/N04",
+        "natt/N32"
        ],
        "merknad_md": "Se også F-REG-18, F-REG-29 og F-PLA-26."
       },
@@ -2692,7 +2858,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- Xledger har GraphQL-API (xledger.net/graphql) [verifiseres].\n- Anbud fra stiftelser og mellomstore krever direkte kommunikasjon med Xledger (D §5.2).",
+       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4).\n- Xledger har GraphQL-API (xledger.net/graphql) [verifiseres].\n- Anbud fra stiftelser og mellomstore krever direkte kommunikasjon med Xledger (D §5.2).",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2707,9 +2873,11 @@
        ],
        "kilder": [
         "R2-moduler-integrasjoner §6.4",
-        "D-praksis §5.2"
+        "D-praksis §5.2",
+        "natt/N33",
+        "natt/N37"
        ],
-       "merknad_md": ""
+       "merknad_md": "Xledger kommer etter Visma og kan bruke samme GraphQL-klient for ansatte (natt/N37)."
       },
       {
        "id": "F-REG-21",
@@ -2722,7 +2890,7 @@
         "Regnskapsfører",
         "Lønnskonsulent (byrå)"
        ],
-       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- Business NXT har API på docs.business.visma.net, og Visma.net ERP på integration.visma.net [verifiseres for bilagsendepunkt].\n- Byråer ønsker minst én Visma-variant (BY-09).",
+       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4).\n- Business NXT har API på docs.business.visma.net, og Visma.net ERP på integration.visma.net [verifiseres for bilagsendepunkt].\n- Byråer ønsker minst én Visma-variant (BY-09).\n- Business NXT: `batch_create`, validering og `updateBatch`. Det finnes ingen reversering via API, så Brutto bruker motbilag. eAccounting-API-et (`voucherdrafts` og `convert`) kan ikke slette bilag.",
        "data": [
         "D-Bilag",
         "D-Postering",
@@ -2737,9 +2905,12 @@
         "VK-32"
        ],
        "kilder": [
-        "R2-moduler-integrasjoner §6.4"
+        "R2-moduler-integrasjoner §6.4",
+        "natt/N33",
+        "natt/N37",
+        "natt/N04"
        ],
-       "merknad_md": ""
+       "merknad_md": "Business NXT kommer før eAccounting. Visma.net ERP er aktuell som første variant fordi `generalLedgerBalance` gir debet og kredit per periode. Rekkefølgen mellom NXT og Visma.net velges etter pilotkundene, og eAccounting dekkes av generisk fil (natt/N37)."
       },
       {
        "id": "F-REG-22",
@@ -2751,7 +2922,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med ekstern referanse `payrun:<id>:rev<n>` (G B4).\n- Fiken API v2 (api.fiken.no) [verifiseres for posteringsendepunkt].\n- Fiken har få dimensjoner. Brutto slår sammen dimensjoner som Fiken ikke støtter, og varsler om det.",
+       "regler_md": "- Alle adaptere bruker samme interne bilagskontrakt (F-REG-17). Idempotens med kort kjøringsreferanse, for eksempel `BR-2026-0042-r1` (G B4).\n- Fiken API v2 (api.fiken.no) [verifiseres for posteringsendepunkt].\n- Fiken har få dimensjoner. Brutto slår sammen dimensjoner som Fiken ikke støtter, og varsler om det.",
        "data": [
         "D-Bilag",
         "D-Postering"
@@ -2763,7 +2934,8 @@
         "VK-65"
        ],
        "kilder": [
-        "R2-moduler-integrasjoner §6.4"
+        "R2-moduler-integrasjoner §6.4",
+        "natt/N33"
        ],
        "merknad_md": "Fiken passer kunder under målgruppen på 10 ansatte, men er vanlig i små foreninger (R2-moduler §6.4)."
       },
@@ -2778,7 +2950,7 @@
         "Regnskapsfører",
         "Brutto drift"
        ],
-       "regler_md": "- Låst periode gir forslag om neste åpne periode med merknad. Feil konto gir mappingdialog (G B4).\n- Port 4 krever 0 bilag avvist av regnskapssystemet i pilot (R3 c).\n- Nye forsøk bruker samme eksterne referanse, så bilaget aldri bokføres to ganger.",
+       "regler_md": "- Låst periode gir forslag om neste åpne periode med merknad. Feil konto gir mappingdialog (G B4).\n- Port 4 krever 0 bilag avvist av regnskapssystemet i pilot (R3 c).\n- Nye forsøk bruker samme eksterne referanse, så bilaget aldri bokføres to ganger. Bare Tripletex (`externalVoucherNumber`), PowerOffice (`ExternalImportReference`) og Xledger (`X-XL-Idempotency-Key`) har innebygd nøkkel. For Fiken, eAccounting, 24SevenOffice, Business NXT, Uni Micro og ReAi slår Brutto opp før det skriver.",
        "data": [
         "D-Bilag",
         "D-Kontrollsak",
@@ -2791,14 +2963,15 @@
        ],
        "kilder": [
         "G-moduler-2026 B4",
-        "R3-kritikk-domene (c) port 4"
+        "R3-kritikk-domene (c) port 4",
+        "natt/N33"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-REG-29",
        "navn": "Lesing fra regnskapssystemet: saldo, posteringer og ansatte",
-       "beskrivelse_md": "Brutto leser fra kundens regnskapssystem uten å skrive noe tilbake.\n\n- Saldobalanse og posteringer per måned for lønnskontoene, for eksempel 5000-serien, 2600, 2770, 2940 og 5400.\n- Kontoplan med grupperingskoder (F-REG-01).\n- Ansatte med navn, ansattnummer, avdeling og kontonummer når systemet har dem (F-PER-35).\n\nTripletex og PowerOffice Go kommer først. SAF-T-fil kan lastes opp som reserve.",
+       "beskrivelse_md": "Brutto leser fra kundens regnskapssystem uten å skrive noe tilbake.\n\n- Saldo per konto og måned som standard (Tripletex `/balanceSheet`, PowerOffice `/TrialBalance`). Debet og kredit bare for utvalgte kontoer.\n- Kontoplan med grupperingskoder (F-REG-01).\n- Ansatte med navn, ansattnummer, avdeling og kontonummer når systemet har dem (F-PER-35).\n\nTripletex og PowerOffice Go kommer først. SAF-T-fil kan lastes opp som reserve for andre systemer. SAF-T gir ikke ansattregister.",
        "niva": "Integrasjon",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -2807,24 +2980,38 @@
         "Regnskapsfører",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Kundens nøkler og token til regnskapssystemet lagres kryptert per kunde, aldri i klartekst.\n- Hver henting lagres som rådata med tidspunkt, slik at en avstemming kan gjenskapes.",
+       "regler_md": "- Kundens nøkler og token til regnskapssystemet lagres kryptert per kunde, aldri i klartekst.\n- Hver henting lagres som rådata med tidspunkt, slik at en avstemming kan gjenskapes. Hentingen er en importjobb (D-Importjobb) med tidspunkt, metode, rådata-hash og antall linjer.\n- Debet og kredit for 2600–2690, 2770, 2940, 2945 og 5290 leses fra `/ledger/posting` med `fields=account(number),date,amountGross,voucher(id,voucherType(name),reverseVoucher(id))`, uten `employee` og `department`. Linjene summeres i minnet, og bare summene lagres i D-Regnskapssaldo. I Tripletex er hver linje lønn per person, også uten ansatt-id.\n- IB og UB leses for 2600–2690, 2770, 2780, 2781, 2785, 2931, 2932, 2940, 2945, 2967 og 2980.\n- Kontrolloppstillingen trenger også bevegelse på 5250–5280, 5900–5905, 5920–5930, 6440, 6900–6909 og 7000–7090, kredit på 5290 og saldo på 1230–1239.\n- OTP-kontrollen trenger leverandørens orgnr på posteringer mot OTP-kontoene (L-21f), bevegelse på 5255 og 5941–5950, og IB og UB på 1394, 1700–1749, 2690 og 2960.\n- Kontoplanen leses med reskontrotype og dimensjonskrav allerede i fase 1 (Tripletex `ledgerType`, `requiresDepartment`, `requiresProject` og `requiresFreeDimension1–3`, ReAi `subsidiaryLedger.type`).\n- Posteringer på lønnskontoer er lønnsdata og leses bare med lønnstilgang (S #6, #9). Hos ReAi-kunder ligger nettolønn og feriepenger per person i hovedboken, så posteringer på 2930 og 2940 krever lønnstilgang. Saldo per konto er standard.\n- ReAi: ansatte via `/api/employees`, `/employees/{id}` og `/employment-reporting`, kontoplan via `GET /api/chart-of-accounts/accounts`, posteringer via `/api/postings` (filter `accountNumber` og `employeeId`) og lønnsbilag via `/api/vouchers?voucherType=SALARY`. Ansattes bankkontonummer leses ikke fra ReAi.\n- SAF-T 1.30 og 1.40 (1.40 er obligatorisk fra 1.1.2027) har hele hovedboken. Brutto strømmer filen, beholder bare lønnskontoene og lagrer ikke hele filen. Kunde- og leverandør-id og beskrivelsestekst tas ikke med. Lesingen kontrolleres mot `NumberOfEntries`, `TotalDebit` og `TotalCredit`.\n- Ved import av SAF-T for historisk lønnsgrunnlag flagger Brutto om det er bevegelser på kontoene for utleggstrekk og andre trekk (via kontomappingen). Flagget vises som «kunden har trolig aktive trekk – registrer pålegg på ansattkortet» og kan sammenlignes med `utleggstrekk[]` i A07 og med manuelt registrerte pålegg (F-MYN-42).",
        "data": [
         "D-Regnskapskonto",
         "D-Integrasjon",
         "D-Person",
-        "D-Personbankkonto"
+        "D-Personbankkonto",
+        "D-Regnskapssaldo",
+        "D-Hovedbokslinje",
+        "D-Importjobb"
        ],
        "integrasjoner": [
         "Tripletex API v2",
         "PowerOffice Go",
-        "SAF-T"
+        "SAF-T",
+        "ReAi"
        ],
        "behov": [],
        "kilder": [
         "Gründerens føringer 28.10.2026 (fase 1)",
-        "fase1.json R01–R03"
+        "fase1.json R01–R03",
+        "natt/N02",
+        "natt/N03",
+        "natt/N04",
+        "natt/N08",
+        "natt/N16",
+        "natt/N21",
+        "natt/N23",
+        "natt/N24",
+        "natt/N32",
+        "Gründerens beslutning 29.10.2026 (utleggstrekk)"
        ],
-       "merknad_md": "Ny i runde 5 for fase 1. Hvilke endepunkter som gir saldo og posteringer per konto og periode i Tripletex og PowerOffice Go, må verifiseres [verifiseres]. Se også F-ORG-15, F-REG-18, F-REG-19 og F-PLA-26."
+       "merknad_md": "Ny i runde 5 for fase 1. Tripletex (`/ledger/account` med `groupingCode` og `saftCode`, `/balanceSheet` med `includeActiveAccountsWithoutMovements=true`, `/ledger/posting` og klientlisten `/company/>withLoginAccess`) og PowerOffice Go (`/GeneralLedgerAccounts`, `/TrialBalance` på to datoer, `/AccountTransactions` og `/ClientAdmin/Clients`) dekker alt. ReAi er billigste tredje adapter, fordi ett kall gir IB, posteringer og UB. Prioriteringen avgjøres i R01. Se også F-ORG-15, F-REG-18, F-REG-19 og F-PLA-26."
       }
      ]
     },
@@ -2843,12 +3030,13 @@
         "Regnskapsfører",
         "Revisor"
        ],
-       "regler_md": "- 2930 skal gå i null når netto er betalt. 2600 og 2610 skal gå i null etter hver trekkbetaling. 2770 skal gå i null etter AGA-terminen.\n- Lønnsjournal mot hovedbok hver måned er en kontroll revisor forventer (D §4.1).\n- GRFS 9.3: avstemminger med dokumentasjon.",
+       "regler_md": "- 2930 skal gå i null når netto er betalt. 2600 og 2610 skal gå i null etter hver trekkbetaling. 2770 skal gå i null etter AGA-terminen.\n- Lønnsjournal mot hovedbok hver måned er en kontroll revisor forventer (D §4.1).\n- GRFS 9.3: avstemminger med dokumentasjon.\n- Samme saldomotor som i F-REG-30 brukes for Bruttos egen lønn mot hovedbok (L-10). Bilagene matches på `externalVoucherNumber` (Tripletex) og `ExternalImportReference` (PowerOffice). Endrede bilag gir ny avstemming, varslet med webhooks i Tripletex og `lastChanged…` i PowerOffice (MVP-forslag).",
        "data": [
         "D-Avstemming",
         "D-Avstemmingslinje",
         "D-Bilag",
-        "D-Regnskapskonto"
+        "D-Regnskapskonto",
+        "D-Regnskapssaldo"
        ],
        "integrasjoner": [],
        "behov": [
@@ -2858,7 +3046,9 @@
        "kilder": [
         "D-praksis §4.1",
         "E-byra §2.2",
-        "S-avklaringer #22"
+        "S-avklaringer #22",
+        "natt/N04",
+        "natt/N30"
        ],
        "merknad_md": "Tripletex har en ferdig modell: `SalaryReconciliationOverviewGroupLine` med `ledgerData`, `reportedData`, `taxAuthorityData` og `differences`. Se også F-REG-16, F-REG-27, F-REG-30 og F-RAP-15."
       },
@@ -2904,7 +3094,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- camt.054 brukes når kunden har bankintegrasjon. Ellers bekrefter kunden betalingen manuelt (BET).\n- Kontrollen er nå at trekk er betalt innen fristen, siden skattetrekkskontoen er borte (D §2.6).\n- 2600 skal være null etter hver trekkbetaling (R3 port 4).",
+       "regler_md": "- camt.054 brukes når kunden har bankintegrasjon. Ellers bekrefter kunden betalingen manuelt (BET).\n- Kontrollen er nå at trekk er betalt innen fristen, siden skattetrekkskontoen er borte (D §2.6).\n- 2600 skal være null etter hver trekkbetaling (R3 port 4).\n- Returfiler (camt.054 og pain.002) er betalingsdokumentasjon (NBS 7). De lagres i 5 år og tas med i eksporten.",
        "data": [
         "D-Avstemming",
         "D-Avstemmingslinje",
@@ -2918,7 +3108,8 @@
        ],
        "kilder": [
         "D-praksis §2.6, §4.1",
-        "R3-kritikk-domene (c)"
+        "R3-kritikk-domene (c)",
+        "natt/N30"
        ],
        "merknad_md": ""
       },
@@ -2935,12 +3126,13 @@
         "Oppdragsansvarlig (byrå)",
         "Revisor"
        ],
-       "regler_md": "- AGA legges til betaling først når a-melding, pensjon, feriepenger og trekk er avstemt mot hovedboken og 2600 går i null (S #22).\n- Status per kontroll: avstemt, kontroll bedt om og kontrollert (som Tripletex `ReconciliationControl`).\n- GRFS 9.3 og 12.2: dokumentasjon i 5 år, også etter at kunden har sluttet (BY-35).\n- Tidligere GRFS krevde avstemming av skyldig skattetrekk og AGA ved hver periodiske avslutning. Finanstilsynet skrev i 2024 at kravene i hovedsak er videreført (E-byra §2.2).",
+       "regler_md": "- AGA legges til betaling først når a-melding, pensjon, feriepenger og trekk er avstemt mot hovedboken og 2600 går i null (S #22).\n- Status per kontroll: avstemt, kontroll bedt om og kontrollert (som Tripletex `ReconciliationControl`).\n- GRFS 9.3 og 12.2: dokumentasjon i 5 år, også etter at kunden har sluttet (BY-35).\n- Tidligere GRFS krevde avstemming av skyldig skattetrekk og AGA ved hver periodiske avslutning. Finanstilsynet skrev i 2024 at kravene i hovedsak er videreført (E-byra §2.2).\n- Kontoutvalget i kontrolloppstillingen er minst Tripletex' intervaller (5000–5289, 5300–5399, 5500–5599, 5800–5809, 5940–5949 og 7100–7159), pluss 5290 (kredit) og 2930–2949 (IB og UB), via reglene i D-A07Kontoregel. 5950 ligger utenfor 5940–5949 og må tas med for OTP. Oppstillingen viser uttrekkstidspunkt og hash av saldobalansen.\n- Avstemmingspakker og kontrolloppstilling er dokumentasjon av balansen og kontrollsporet. De oppbevares i 60 måneder (D-Oppbevaringsregel) og er med i eksporten ved opphør allerede i fase 1.",
        "data": [
         "D-Avstemming",
         "D-Avstemmingslinje",
         "D-Oppdragsdokumentasjon",
-        "D-Betalingsforslag"
+        "D-Betalingsforslag",
+        "D-Oppbevaringsregel"
        ],
        "integrasjoner": [],
        "behov": [
@@ -2953,14 +3145,16 @@
        "kilder": [
         "S-avklaringer #22",
         "E-byra §2.2",
-        "D-praksis §4.1, §4.2"
+        "D-praksis §4.1, §4.2",
+        "natt/N24",
+        "natt/N30"
        ],
        "merknad_md": "En streng AGA-sperre kan gi for sen AGA-betaling hvis avstemmingen henger. Brutto bør varsle i god tid før den 15. og tillate overstyring med begrunnelse [verifiseres med gründer]. Se også F-REG-16, F-REG-24, F-REG-30 og F-RAP-15."
       },
       {
        "id": "F-REG-30",
        "navn": "Avstemming av A07 mot hovedbok",
-       "beskrivelse_md": "Brutto sammenligner det a-ordningen har registrert med det som er bokført, også når lønnen er kjørt i et annet system. Avstemmingen gjøres per måned og for hele året.\n\n- Forskuddstrekk i a-meldingen mot konto 2600.\n- Arbeidsgiveravgift mot 2770 og 5400.\n- Opplysningspliktig lønn og ytelser per lønnsbeskrivelse mot lønnskostnad, gruppert etter kontomappingen (F-REG-02 og F-REG-03).\n- Feriepengegrunnlag og avsetning mot 2940.\n\nDifferanser vises per konto og per person der det er mulig, og må forklares. Resultatet går inn i den månedlige avstemmingspakken (F-REG-27).",
+       "beskrivelse_md": "Brutto sammenligner det a-ordningen har registrert med det som er bokført, også når lønnen er kjørt i et annet system. Avstemmingen gjøres per måned og for hele året.\n\n- Forskuddstrekk i a-meldingen mot konto 2600.\n- Arbeidsgiveravgift mot 2770 og 5400.\n- Opplysningspliktig lønn og ytelser per A07-gruppe mot lønnskostnad, etter saldoreglene per konto og grupperingskode (F-REG-02 og F-REG-03).\n- Utbetalte feriepenger mot debet på 2940 (L-06), og en rimelighetskontroll av avsetningen på 2940 (L-18). A07 har ikke feriepengegrunnlag.\n\nDifferanser vises per konto og grupperingskode og må forklares. Avvik per person kan bare finnes mot A07 og lønnssystemets data, ikke mot hovedboken. Resultatet går inn i den månedlige avstemmingspakken (F-REG-27).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -2970,14 +3164,18 @@
         "Oppdragsansvarlig (byrå)",
         "Revisor"
        ],
-       "regler_md": "- A-meldingen følger kontantprinsippet, og regnskapet periodiserer. Tidsforskjeller som går i null senere, merkes som forklart.\n- Standard toleranse er 0 kroner. Kunden kan sette en toleranse per kontroll (fase 1-spørsmål K03).\n- Kontomappingen bygger på gründerens A07-mapping og kan overstyres per kunde (fase 1-spørsmål R02).",
+       "regler_md": "- A-meldingen følger kontantprinsippet, og regnskapet periodiserer. Tidsforskjeller som går i null senere, merkes som forklart.\n- Standard toleranse er 0 kroner. Kunden kan sette en toleranse per kontroll (fase 1-spørsmål K03).\n- Kontomappingen bygger på gründerens A07-mapping og kan overstyres per kunde (fase 1-spørsmål R02).\n- Avstemmingen bygger på A07-grupper (D-A07Gruppe) og saldoregler per konto, kontointervall eller grupperingskode (D-A07Kontoregel), ikke på 1:1-mapping mellom konto og lønnsbeskrivelse. Saldotypen er bevegelse, debet, kredit, IB eller UB.\n- Avstemmingen følger formlene i natt/N23 §5 og gjøres på hovedgruppe. Regelsett velges per kunde og gruppe, for eksempel 5090 med eller uten 2931, og NAV-refusjon kontant (bank → 5800) eller periodisert (1579x ↔ 5800). Brutto velger regelsett automatisk.\n- Saldomotoren kontrollerer IB + debet − kredit = UB mot regnskapssystemets egen saldo. Reverseringspar trekkes ut før debet og kredit summeres (Tripletex `reverseVoucher`, PowerOffice `IsReversed`/`ReversedVoucherId`, ReAi `reversesPostingId`). 17 % av lønnsbilagene i Tripletex er original eller reversering. Uten fjerning gir «FP = debet 2940» feil i 37 av 101 klientmåneder.\n- Posteringsdato teller, ikke bilagsdato. Mappingen bruker grupperingskode og kundens kontoplan, ikke bare kontonummer. Er debet og kredit faktisk nettet, for eksempel i bunter fra Visma.net Payroll [verifiseres], faller kontrollen tilbake på bevegelse og merkes «delvis».\n- Brutto krever ikke at betalingen er ført i lønnsmodulen. Betalinger på 2600, 2610 og 2770 finnes ut fra dato, beløp og bilagstype. Manuelt førte betalinger blir forklart tidsforskjell eller kobling, ikke avvik.\n- Fagforeningstrekk i A07 avstemmes mot 2650 bare på sumnivå (L-04). Fagforening er særlig kategori.\n- L-16 (sone mot adresse) går i to trinn. Kommunenummer fra Brreg-adressen gir sonen for året, og det er sikkert for 345 av 357 kommuner. I de 12 delte kommunene følger sonen grunnkretser. Da geokodes adressen med Kartverkets adresse-API, og sonen slås opp i Geonorge-WMS (`GetFeatureInfo`) eller lokalt i polygonene (CC BY 4.0). Utfallet er OK, AVVIK, UAVKLART eller IKKE_RELEVANT.\n- L-16 følger også fribeløpet som spart avgift per juridisk enhet hittil i år, regnet fra A07-grunnlag og sats. Brutto varsler nær 850 000 kr (2026, forslaget for 2027 er uendret). Beløpet avkortes med annen bagatellmessig støtte. Uten registrert konsern (D-Konsern) blir kontrollen UAVKLART for mulige konsern.\n- L-30a–i (naturalytelser som kan mangle i A07, natt/N24 §6) bygges med L-30a, b, f og g først. Terskler ligger i D-Kontrolloppsett. Satser (4 392 kr for elektronisk kommunikasjon og 370 300 kr i listepris for bil) ligger i D-Regelpakke med gyldighetsår.",
        "data": [
         "D-Avstemming",
         "D-Avstemmingslinje",
         "D-Avstemmingsrapport",
         "D-Regnskapskonto",
         "D-Kontomapping",
-        "D-Avvik"
+        "D-Avvik",
+        "D-A07Gruppe",
+        "D-A07Kontoregel",
+        "D-Regnskapssaldo",
+        "D-Kontrolloppsett"
        ],
        "integrasjoner": [
         "Skatteetaten Avstemmingsrapport A-melding API",
@@ -2991,9 +3189,21 @@
        ],
        "kilder": [
         "Gründerens føringer 28.10.2026 (fase 1)",
-        "fase1.json P01, P05, K03 og R02"
+        "fase1.json P01, P05, K03 og R02",
+        "natt/N03",
+        "natt/N07",
+        "natt/N02",
+        "natt/N04",
+        "natt/N23",
+        "natt/N32",
+        "natt/N11",
+        "natt/N38",
+        "natt/N20",
+        "natt/N24",
+        "natt/N15",
+        "natt/N16"
        ],
-       "merknad_md": "Ny i runde 5 for fase 1. Skiller seg fra F-REG-24 og F-REG-25 ved at lønnen er kjørt i et annet system. Se også F-MYN-21, F-MYN-42, F-REG-16, F-BYR-15, F-RAP-15 og F-MIG-17."
+       "merknad_md": "Ny i runde 5 for fase 1. Skiller seg fra F-REG-24 og F-REG-25 ved at lønnen er kjørt i et annet system. Kontrollene har id fra kontrollkatalogen L-01–L-31 (natt/N07). MVP-forslag: L-10 lønnsjournal mot hovedbok og L-11 mot bank, L-02 eksakt mot camt.054, L-18 og L-19 eksakt mot feriepengelisten, L-21 mot pensjonsgrunnlaget, L-22 mot K27 via refusjonsreskontroen (D-Refusjonskrav), og L-31 før utbetaling med fire øyne på endret bankkonto. L-01, L-12, L-15 og L-21 kjøres også på egen a-melding før innsending. Se også F-MYN-21, F-MYN-42, F-REG-16, F-BYR-15, F-RAP-15 og F-MIG-17."
       }
      ]
     },
@@ -3012,7 +3222,7 @@
         "Regnskapsfører",
         "Økonomisjef"
        ],
-       "regler_md": "- 5800-serien er helseopplysning og skjermes. 5000-serien, AGA og forskuddstrekk er ikke sensitive i seg selv (S #8).\n- Helse- og fagforeningsopplysninger som kan leses ut av lønnsdata, regnes som lønnsdata (S #7).\n- Lønn bokføres ofte samlet per avdeling og lønnsart, så detaljer ikke vises i hovedboken (D §3.3).",
+       "regler_md": "- 5800-serien er helseopplysning og skjermes. 5000-serien, AGA og forskuddstrekk er ikke sensitive i seg selv (S #8).\n- Helse- og fagforeningsopplysninger som kan leses ut av lønnsdata, regnes som lønnsdata (S #7).\n- Lønn bokføres ofte samlet per avdeling og lønnsart, så detaljer ikke vises i hovedboken (D §3.3).\n- Hos Tripletex-kunder har 5800 (sykepengerefusjon, helse) og 2650 (fagforening) ansatt på posteringen. Brutto leser dem bare som saldo og ber aldri om `employee` på disse kontoene. Lesingen bruker feltvalg (`fields`/`Fields`), så ansattnavn ikke hentes. ReAi-adapteren fjerner `employeeName` før lagring.\n- 5800 og K27 brukes bare som sum i fase 1. Rå CSV og PDF fra K27 er særlig kategori.\n- Ingen regnskapssystem har minste gruppestørrelse per dimensjon, bare Tripletex' skjuling av hele bilaget. Brutto aggregerer selv grupper med én eller to ansatte, også i visningen i fase 1, og varsler når en dimensjon har én eller to ansatte.",
        "data": [
         "D-Regnskapskonto",
         "D-Postering",
@@ -3026,7 +3236,12 @@
        ],
        "kilder": [
         "S-avklaringer #7, #8",
-        "D-praksis §3.3"
+        "D-praksis §3.3",
+        "natt/N32",
+        "natt/N04",
+        "natt/N15",
+        "natt/N33",
+        "natt/N02"
        ],
        "merknad_md": "Fagforening (2650) er ikke nevnt som sensitiv i S #8. Kontoen avslører medlemskap per ansatt hvis den føres med ansatt, og bør vurderes av personvernrådgiver [verifiseres]."
       }
@@ -3378,7 +3593,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "OTP-leverandørens identifikator, påkrevd for OTP-pliktige [verifiseres format]."
+     "merknad": "OTP-leverandørens identifikator, påkrevd for OTP-pliktige. `JuridiskEntitet.pensjonsinnretning[].identifikator` (0..n) i XSD v2.3."
     },
     {
      "navn": "innholdssnapshot_ref",
@@ -4008,6 +4223,32 @@
      "merknad": "Fra Dialogporten."
     },
     {
+     "navn": "dialog_party",
+     "type": "urn",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Altinn",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Parten i dialogen."
+    },
+    {
+     "navn": "transmission_id",
+     "type": "uuid",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Altinn",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Forsendelsen i dialogen."
+    },
+    {
      "navn": "hendelse_id",
      "type": "tekst",
      "pakrevd": "Betinget",
@@ -4032,6 +4273,45 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    },
+    {
+     "navn": "api_versjon",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Versjonen av tilbakemeldings-API-et. Leseren tåler ny versjon."
+    },
+    {
+     "navn": "kilde",
+     "type": "enum(brutto|annet_system)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "`annet_system` forutsetter Dialogporten-sensoren (F-MYN-43)."
+    },
+    {
+     "navn": "kildesystem",
+     "type": "liste<tekst>",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Systemene som sendte meldingene i måneden."
     },
     {
      "navn": "kalendermaaned",
@@ -4088,7 +4368,7 @@
     {
      "navn": "innsending_ref",
      "type": "ref:D-Innsending",
-     "pakrevd": "Ja",
+     "pakrevd": "Betinget",
      "kilde": "Beregnet",
      "historikk": "Nei",
      "sensitivitet": "Intern",
@@ -4096,7 +4376,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Innsendingen tilbakemeldingen svarer på."
+     "merknad": "Innsendingen tilbakemeldingen svarer på. Tom når meldingen er sendt fra et annet system."
     },
     {
      "navn": "mottakstatus",
@@ -4278,7 +4558,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Gjelder utleggstrekk skatt. Samordnet trekk har KID i pålegget."
+     "merknad": "Kommer ikke lenger for utleggstrekk skatt, så Brutto lager KID selv (kravtype 03). Kan være tom, som `forfallsdato`. Samordnet trekk har KID i pålegget."
     },
     {
      "navn": "forfallsdato",
@@ -4902,7 +5182,7 @@
    "navn": "Systembruker i Altinn",
    "omrade": "MYN",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Systembrukeren som gir Brutto rett til å kalle Skatteetaten og NAV for en opplysningspliktig (standard) eller for et byrås klienter (agent). Én standard systembruker per opplysningspliktig (S #16). Én agent-systembruker per byrå. 1:n til D-Klienttilknytning for agent. Status endres ved hendelser og helsesjekk, og hver endring logges. Modellen må tåle Altinns varslede utvidede modell (`clientAccessPackages`).",
+   "beskrivelse_md": "Systembrukeren som gir Brutto rett til å kalle Skatteetaten og NAV for en opplysningspliktig (standard) eller for et byrås klienter (agent). Én standard systembruker per opplysningspliktig (S #16). Én agent-systembruker per byrå og pakkesett, fordi en agent-systembruker ikke kan endres og pakkene gjelder enten REGN-klienter eller direkte delegerte klienter. 1:n til D-Klienttilknytning for agent. Status endres ved hendelser og helsesjekk, og hver endring logges. Modellen må tåle Altinns varslede utvidede modell (`clientAccessPackages`).",
    "felt": [
     {
      "navn": "systembruker_id",
@@ -4994,6 +5274,32 @@
      "reai": "–",
      "huma": "–",
      "merknad": "Direktekunde: a-ordning, lonn, lonn-personopplysninger-saerlig-kategori (krav-og-utlegg valgfritt). Byrå: regnskapsforer-lonn."
+    },
+    {
+     "navn": "pakkesett",
+     "type": "enum(regnskapsforer_lonn|a_ordning|krav_og_betalinger)",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "For agent. `krav_og_betalinger` bruker `regnskapsforer-uten-signeringsrettighet` (F-MYN-04)."
+    },
+    {
+     "navn": "tilgangsgrunnlag",
+     "type": "enum(er_regn|direkte_delegering|egen_virksomhet)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
     },
     {
      "navn": "rights",
@@ -5328,6 +5634,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": "Byrået står som regnskapsfører (REGN) hos klienten."
+    },
+    {
+     "navn": "tilgangsgrunnlag",
+     "type": "enum(er_regn|direkte_delegering|egen_virksomhet)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lar tilgangsdiagnosen forklare hvorfor tilgang mangler."
     },
     {
      "navn": "regn_sjekket_tid",
@@ -5760,7 +6079,7 @@
    "navn": "Abonnement og polling mot myndighet",
    "omrade": "MYN",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Tilstanden for henting fra én myndighetstjeneste for én opplysningspliktig: webhook-abonnement eller polling med vannmerke. Brukes for skattekortendringer, trekkpålegg, K27, forespørsler fra NAV, sykmeldinger, a-meldingstilbakemelding og Brreg-oppdateringer. Vannmerket flyttes bare når data er lagret.",
+   "beskrivelse_md": "Tilstanden for henting fra én myndighetstjeneste for én opplysningspliktig: webhook-abonnement eller polling med vannmerke. Brukes for skattekortendringer, trekkpålegg, K27, forespørsler fra NAV, sykmeldinger, a-meldingstilbakemelding og Brreg-oppdateringer. Vannmerket flyttes bare når data er lagret. Abonnementet kan gjelde én orgnr eller hele systembrukeren (`omfang`). Hvert nytt utleggstrekkbrev blir en sak som lukkes når trekket er registrert eller forklart.",
    "felt": [
     {
      "navn": "abonnement_id",
@@ -5777,7 +6096,33 @@
     },
     {
      "navn": "tjeneste",
-     "type": "enum(amelding_tilbakemelding|skattekort_endring|trekkpaalegg|oppgjorsrapport|sykepenger_forespoersel|sykmelding|sykepengesoeknad|brreg_oppdateringer|krav_og_betalinger)",
+     "type": "enum(amelding_tilbakemelding|skattekort_endring|trekkpaalegg|oppgjorsrapport|sykepenger_forespoersel|sykmelding|sykepengesoeknad|brreg_oppdateringer|krav_og_betalinger|dialogporten_utleggstrekkbrev|dialogporten_trekkontroll|dialogporten_tvangsmulkt|dialogporten_trekkpaalegg_varsel|dialogporten_arbeidsgiverkontroll)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Dialogporten-tjenestene forutsetter sensoren i F-MYN-43 og bruker bare søke-API og metadata."
+    },
+    {
+     "navn": "orgnr",
+     "type": "tekst(9)",
+     "pakrevd": "Betinget",
+     "kilde": "Brreg",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Opplysningspliktig eller trekkpliktig. Tom når `omfang = per_systembruker`."
+    },
+    {
+     "navn": "omfang",
+     "type": "enum(per_orgnr|per_systembruker)",
      "pakrevd": "Ja",
      "kilde": "Beregnet",
      "historikk": "Nei",
@@ -5787,19 +6132,6 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
-    },
-    {
-     "navn": "orgnr",
-     "type": "tekst(9)",
-     "pakrevd": "Ja",
-     "kilde": "Brreg",
-     "historikk": "Nei",
-     "sensitivitet": "Åpen",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "Opplysningspliktig eller trekkpliktig."
     },
     {
      "navn": "systembruker_ref",
@@ -5867,6 +6199,19 @@
      "merknad": "`urn:altinn:organization:identifier-no:<orgnr>`."
     },
     {
+     "navn": "ressurs_urn",
+     "type": "urn",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "For eksempel `urn:altinn:resource:ske-vedtak-tvangsmulkt-overtredelsesgebyr`."
+    },
+    {
      "navn": "vannmerke",
      "type": "tekst",
      "pakrevd": "Betinget",
@@ -5881,7 +6226,7 @@
     },
     {
      "navn": "vannmerke_type",
-     "type": "enum(sekvensnummer|etterId|fraLoepenr|oppdateringsid|dato)",
+     "type": "enum(sekvensnummer|etterId|fraLoepenr|oppdateringsid|dato|content_updated_at)",
      "pakrevd": "Betinget",
      "kilde": "Beregnet",
      "historikk": "Nei",
@@ -5969,6 +6314,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    },
+    {
+     "navn": "aktiv",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Usann for sovende handlere, for eksempel arbeidsgiverkontrollen før den er i produksjon."
     }
    ]
   },
@@ -6494,6 +6852,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    },
+    {
+     "navn": "kilde_dialog_id",
+     "type": "uuid",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Altinn",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Dialogen i Dialogporten saken bygger på. Dialogen har ingen strukturerte trekkfelt (KID, prosent, startdato), så trekkregisteret fylles for hånd."
     },
     {
      "navn": "forklaring",
@@ -8067,7 +8438,7 @@
     },
     {
      "navn": "kanal",
-     "type": "enum(fil|multibank|regnskap_bankmodul|bank_api)",
+     "type": "enum(fil|betalingspartner|multibank|regnskap_bankmodul|bank_api)",
      "pakrevd": "Ja",
      "kilde": "Bruker",
      "historikk": "Nei",
@@ -8076,7 +8447,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Forslaget går ut gjennom én adapter. Modellen er kanalnøytral (F-BET-22)."
     },
     {
      "navn": "status",
@@ -8595,6 +8966,19 @@
      "merknad": "Etter bankens guide [verifiseres]."
     },
     {
+     "navn": "adressepolicy",
+     "type": "enum(ingen|kun_land|full)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Standard `ingen` innenlands og `kun_land` for bulk via open banking. Adressebeskyttet person får aldri gateadresse. Kravet om strukturert adresse gjelder ikke innenlands og er utsatt på ubestemt tid."
+    },
+    {
      "navn": "PmtInfSts",
      "type": "tekst(4)",
      "pakrevd": "Nei",
@@ -8931,6 +9315,258 @@
    ]
   },
   {
+   "id": "D-Banksignering",
+   "navn": "Signering av betalingsforslag i banken",
+   "omrade": "BET",
+   "fase1": "Fase 1 design",
+   "beskrivelse_md": "Status for signeringen av et betalingsforslag hos open banking-leverandøren eller banken. Bevis for godkjenning ligger i Bruttos egen godkjenning, fordi banken nesten aldri oppgir hvem som signerte. Felt og statusverdier bekreftes av Peter (B40).",
+   "felt": [
+    {
+     "navn": "signering_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "forslag_ref",
+     "type": "ref:D-Betalingsforslag",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kanal",
+     "type": "enum(fil|betalingspartner|multibank|regnskap_bankmodul|bank_api)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "ekstern_approval_id",
+     "type": "tekst",
+     "pakrevd": "Betinget",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "signaturer_kreves",
+     "type": "heltall",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "signaturer_mottatt",
+     "type": "heltall",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "status",
+     "type": "enum(Unsigned|PartlySigned|Accepted|Rejected)",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "signert_av_ref",
+     "type": "ref:D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Nesten alltid tom, fordi ingen bank oppgir signatar via partneren."
+    },
+    {
+     "navn": "signatar_pseudonym",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Når partneren gir et pseudonym i stedet for navn."
+    }
+   ]
+  },
+  {
+   "id": "D-Banksamtykke",
+   "navn": "Samtykke til open banking for en bankkonto",
+   "omrade": "BET",
+   "fase1": "Fase 1 design",
+   "beskrivelse_md": "Samtykket kunden, eller regnskapsfører med bankfullmakt (D-Fullmakt, fase 1-spørsmål B04, F-BYR-27), gir open banking-leverandøren for en debetkonto. Gjelder i 180 dager og må fornyes. Felt og statusverdier bekreftes av Peter (B40).",
+   "felt": [
+    {
+     "navn": "samtykke_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "bankkonto_ref",
+     "type": "ref:D-Bankkonto",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "partner",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "consent_id",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "psu_corporate_id",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gitt_av",
+     "type": "ref:D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Partneren kan kreve fødselsnummer eller bank-ID for den som gir samtykke. Krypteres og lagres bare så lenge samtykket varer."
+    },
+    {
+     "navn": "gyldig_til",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Bank",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "180 dager etter samtykket."
+    },
+    {
+     "navn": "status",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Verdiene avklares (B40)."
+    },
+    {
+     "navn": "fornyet_tid",
+     "type": "datotid",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
    "id": "D-Betalingslinje",
    "navn": "Betaling (`CdtTrfTxInf`)",
    "omrade": "BET",
@@ -9144,6 +9780,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    },
+    {
+     "navn": "tillat_logisk_duplikat",
+     "type": "bool",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sann når varselet om lik dato, beløp og konto er kvittert (F-BET-20)."
     },
     {
      "navn": "Ustrd",
@@ -9412,7 +10061,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "7694 05 24802 for forskuddstrekk, AGA og utleggstrekk skatt. Samordnet trekk: konto fra pålegget."
+     "merknad": "7694 05 24802 for forskuddstrekk, AGA og utleggstrekk skatt etter gamle regler (termin-KID kravtype 03). Samordnet trekk: 7694 05 69814 med KID fra pålegget. Bidrag: konto fra brevet."
     },
     {
      "navn": "gyldig_format",
@@ -9439,6 +10088,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": "Ulik gir MYN-19."
+    },
+    {
+     "navn": "kontroll_mot_krav",
+     "type": "enum(ikke_kontrollert|lik|ulik)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Mot D-Skattekrav og D-Skatteinnbetaling når kunden har Krav og betalinger (F-MYN-40)."
     },
     {
      "navn": "tilbakemelding_ref",
@@ -9473,6 +10135,230 @@
      "kilde": "Beregnet",
      "historikk": "Nei",
      "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Skattekrav",
+   "navn": "Krav fra Skatteetaten (Krav og betalinger)",
+   "omrade": "MYN",
+   "beskrivelse_md": "Et krav hentet fra Krav og betalinger-API-et, for eksempel forskuddstrekk, AGA, utleggstrekk eller tvangsmulkt. Kobles til D-KID, D-Betalingslinje og D-Avstemmingslinje (L-02 og L-14). Rå JSON lagres. Feltlisten avklares med utviklerne.",
+   "felt": [
+    {
+     "navn": "kravidentifikator",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kravtype",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kravgruppe",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kravperiode",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "forfallsdato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "opprinneligBeloep",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gjenstaaendeBeloep",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kid",
+     "type": "tekst(≤25)",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "hentet_tid",
+     "type": "datotid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "raa_json_ref",
+     "type": "tekst (lager-id)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Skatteinnbetaling",
+   "navn": "Innbetaling registrert hos Skatteetaten",
+   "omrade": "MYN",
+   "beskrivelse_md": "En innbetaling hentet fra Krav og betalinger-API-et, med plasseringen på krav. Uplassert beløp gir en sak (F-MYN-40). Feltlisten avklares med utviklerne.",
+   "felt": [
+    {
+     "navn": "innbetalingsidentifikator",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "innbetalingsdato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "innbetaltBeloep",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "uplassertBeloep",
+     "type": "beløp",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "innbetalt_fra_kid",
+     "type": "tekst(≤25)",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "plasseringer",
+     "type": "liste<{kravidentifikator, beloep}>",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
      "amelding": "–",
      "tripletex": "–",
      "reai": "–",
@@ -10282,16 +11168,29 @@
     },
     {
      "navn": "ekstern_referanse",
-     "type": "tekst",
+     "type": "tekst(≤20)",
      "pakrevd": "Ja",
      "kilde": "Beregnet",
      "historikk": "Nei",
      "sensitivitet": "Intern",
      "amelding": "–",
-     "tripletex": "Voucher.externalVoucherNumber [verifiseres]",
+     "tripletex": "Voucher.externalVoucherNumber",
      "reai": "–",
      "huma": "–",
-     "merknad": "`payrun:<id>:rev<n>`. Idempotensnøkkel."
+     "merknad": "Kort, stabil kjøringsreferanse, for eksempel `BR-2026-0042-r1`. Idempotensnøkkel. Grensene er 70 tegn i Tripletex, 50 i PowerOffice og 35 for `SaftBatchId`."
+    },
+    {
+     "navn": "idempotens_metode",
+     "type": "enum(native_noekkel|oppslag)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "`native_noekkel` i Tripletex, PowerOffice og Xledger. Ellers slår Brutto opp før det skriver (F-REG-23)."
     },
     {
      "navn": "juridisk_enhet",
@@ -10486,7 +11385,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "`bokfoert` settes først når regnskapets bilagsnummer er skrevet tilbake."
     },
     {
      "navn": "regnskapssystem_ref",
@@ -10867,7 +11766,7 @@
    "navn": "Kontomapping for lønnsart og post",
    "omrade": "REG",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Regel som gir debet- og kreditkonto og dimensjonsregel for en lønnsart, et trekk eller en post (AGA, avsetning, netto). Arves fra Bruttos mal, kjedemal og byråmal til kunde. Versjoneres med gyldighet. En lønnsart har én debet- og én kreditkonto (S #26).",
+   "beskrivelse_md": "Regel som gir debet- og kreditkonto og dimensjonsregel for en lønnsart, et trekk eller en post (AGA, avsetning, netto). Arves fra Bruttos mal, kjedemal og byråmal til kunde. Versjoneres med gyldighet. En lønnsart har én debet- og én kreditkonto (S #26). Invariant: lønnsart → konto (D-Kontomapping) og konto → A07-gruppe (D-A07Kontoregel) må gi samme A07-gruppe. Begge veier testes.",
    "felt": [
     {
      "navn": "mapping_id",
@@ -11106,11 +12005,315 @@
    ]
   },
   {
+   "id": "D-A07Gruppe",
+   "navn": "A07-gruppe for avstemming",
+   "omrade": "REG",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Bruttos katalog over avstemmingsgrupper, for eksempel AGA-pliktig kontantlønn, feriepenger, naturalytelse, utgiftsgodtgjørelse med og uten AGA, styrehonorar, refusjon NAV, pensjonspremie, forskuddstrekk, fradrag, AGA og finansskatt. Lønnsbeskrivelser i A07 knyttes til en gruppe med regler på (inntektstype, beskrivelse, fordel, utløser AGA, inngår i trekk). Reglene versjoneres med kodelisten. Brutto-malen kommer fra gründerens A07-mapping (41 grupper i `natt/funn/N23-mapping.csv`). Avstemmingen gjøres på hovedgruppe.",
+   "felt": [
+    {
+     "navn": "gruppe_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kode",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "For eksempel `KL` eller `KL.FAST`."
+    },
+    {
+     "navn": "navn",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "hovedgruppe",
+     "type": "ref:D-A07Gruppe",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tom for hovedgrupper. Avstemmingen summerer på hovedgruppe."
+    },
+    {
+     "navn": "beskrivelsesregler",
+     "type": "liste<{inntektstype, beskrivelse, fordel, utloeser_aga, inngaar_i_trekk}>",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "inntekt.beskrivelse, fordel",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "131 regler i Brutto-malen. Ukjent trekkflagg gir infoavvik (A07-K5)."
+    },
+    {
+     "navn": "regelpakke",
+     "type": "ref:D-Regelpakke",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kodelisten gruppene gjelder for, for eksempel «R1 2026»."
+    }
+   ]
+  },
+  {
+   "id": "D-A07Kontoregel",
+   "navn": "Saldoregel fra konto til A07-gruppe",
+   "omrade": "REG",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Regel som sier hvordan en konto, et kontointervall eller en grupperingskode bidrar til en A07-gruppe: hvilken saldotype som brukes, med hvilken rolle og hvilket fortegn. Står ved siden av D-Kontomapping, som går fra lønnsart til konto. Arves fra Brutto-malen via kjede og byrå til kunde. Mest spesifikk regel vinner: konto, så intervall, så grupperingskode. Én konto skal treffe én regel per gruppe og regelsett. Regelsett per lønnsmodul (`tripletex_lonn`, `poweroffice_lonn`, `visma_payroll`, `ekstern`) velges automatisk fra bilagstyper og kontonavn, og kunden kan overstyre.",
+   "felt": [
+    {
+     "navn": "regel_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "nivaa",
+     "type": "enum(brutto_mal|kjede|byraa|kunde)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Arves som D-Kontomapping."
+    },
+    {
+     "navn": "konto_fra",
+     "type": "tekst",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Én konto eller start på intervall. De fire første sifrene (Tripletex)."
+    },
+    {
+     "navn": "konto_til",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "grupperingskode",
+     "type": "tekst",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Alternativ til konto (F-REG-03). Brukes som reserve når kontoen mangler regel."
+    },
+    {
+     "navn": "a07_gruppe",
+     "type": "ref:D-A07Gruppe",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "saldotype",
+     "type": "enum(bevegelse|debet|kredit|ib|ub)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Saldo er debet-positiv. `debet` og `kredit` er alltid positive summer."
+    },
+    {
+     "navn": "rolle",
+     "type": "enum(kostnad|avsetning|paaloept_tillegg|paaloept_fradrag|motkonto_natural|refusjon|trekk|skyldig|betaling|kontroll|ignorer|ingen|inntekt)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "fortegn",
+     "type": "enum(+1|-1)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Gjør bidraget til et positivt A07-beløp."
+    },
+    {
+     "navn": "periode",
+     "type": "enum(maaned|termin|aar|alle)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "regelsett",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "`standard`, `alternativ`, `kontroll` eller `reserve`, og regelsett per lønnsmodul. Eksempler: 5090 med eller uten 2931, `refusjon_kontant` eller `refusjon_periodisert`."
+    },
+    {
+     "navn": "gyldig_fra",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gyldig_til",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "enum(sjur_mal|referansekonto|regnskapssystem|bruker)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kontonavn fra SAF-T-standardkontoene brukes ikke (© Regnskap Norge)."
+    },
+    {
+     "navn": "begrunnelse",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "endret_av",
+     "type": "ref:D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
    "id": "D-Regnskapskonto",
    "navn": "Konto i kundens kontoplan",
    "omrade": "REG",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Speiling av en konto i kundens regnskapssystem, med krav til dimensjoner, grupperingskode og sensitivitet. Regnskapet eier kontoplanen (G B4). Synkes nattlig og før hver bilagsoverføring.",
+   "beskrivelse_md": "Speiling av en konto i kundens regnskapssystem, med krav til dimensjoner, grupperingskode og sensitivitet. Regnskapet eier kontoplanen (G B4). Synkes nattlig og før hver bilagsoverføring. Saldoer ligger ikke på kontoen, men i D-Regnskapssaldo.",
    "felt": [
     {
      "navn": "konto_id",
@@ -11188,7 +12391,7 @@
      "tripletex": "Account.saftCode",
      "reai": "–",
      "huma": "–",
-     "merknad": "SAF-T `StandardAccountID` [verifiseres]."
+     "merknad": "SAF-T `StandardAccountID`, i Tripletex `saftCode`."
     },
     {
      "navn": "grupperingskategori",
@@ -11201,20 +12404,20 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "SAF-T `GroupingCategory` [verifiseres]."
+     "merknad": "SAF-T `GroupingCategory`. Avledes fra Skatteetatens CSV."
     },
     {
      "navn": "grupperingskode",
      "type": "tekst",
      "pakrevd": "Betinget",
-     "kilde": "Bruker",
+     "kilde": "Integrasjon:Regnskap",
      "historikk": "Gyldighet",
      "sensitivitet": "Åpen",
      "amelding": "–",
      "tripletex": "Account.groupingCode",
      "reai": "–",
      "huma": "–",
-     "merknad": "Sjurs koder som standard (S #28)."
+     "merknad": "Leses fra regnskapet der den finnes (Tripletex `groupingCode`, PowerOffice `GroupingCategoryCode`). Ellers Sjurs koder (S #28)."
     },
     {
      "navn": "grupperingskode_kilde",
@@ -11227,7 +12430,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "`regnskap` når koden er lest, ellers `sjur_standard`. `bruker` ved overstyring."
     },
     {
      "navn": "krever_avdeling",
@@ -11240,7 +12443,7 @@
      "tripletex": "Account.requiresDepartment",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Fylles ved lesing allerede i fase 1."
     },
     {
      "navn": "krever_prosjekt",
@@ -11253,7 +12456,7 @@
      "tripletex": "Account.requiresProject",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Fylles ved lesing allerede i fase 1."
     },
     {
      "navn": "krever_fri_dimensjon",
@@ -11266,7 +12469,7 @@
      "tripletex": "Account.requiresFreeDimension1–3",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Fylles ved lesing allerede i fase 1."
     },
     {
      "navn": "reskontro",
@@ -11279,7 +12482,7 @@
      "tripletex": "Account.ledgerType",
      "reai": "ChartOfAccountsAccountRes.subsidiaryLedger",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Fylles ved lesing allerede i fase 1. ReAi `subsidiaryLedger.type = employee` gir `ansatt` (2910, 2930 og 2940). Avgjør om kunden kan bruke utleggsflyt A eller må bruke C (natt/N31), og om posteringen får ansatt (F-REG-07)."
     },
     {
      "navn": "aktiv",
@@ -11334,32 +12537,6 @@
      "merknad": ""
     },
     {
-     "navn": "saldo",
-     "type": "beløp",
-     "pakrevd": "Nei",
-     "kilde": "Integrasjon:Regnskap",
-     "historikk": "Nei",
-     "sensitivitet": "Lønnsdata",
-     "amelding": "–",
-     "tripletex": "LedgerAccount.closingBalance",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "For avstemming."
-    },
-    {
-     "navn": "saldo_dato",
-     "type": "dato",
-     "pakrevd": "Nei",
-     "kilde": "Integrasjon:Regnskap",
-     "historikk": "Nei",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": ""
-    },
-    {
      "navn": "sist_synket",
      "type": "datotid",
      "pakrevd": "Ja",
@@ -11371,6 +12548,284 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Regnskapssaldo",
+   "navn": "Lest saldo per konto og periode",
+   "omrade": "REG",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Saldo lest fra kundens regnskapssystem for én konto, periode og dimensjonsnøkkel. Grunnlaget for saldomotoren i F-REG-30 og F-REG-24. Bare summer lagres. Posteringslinjer summeres i minnet. Kontrollsummen IB + debet − kredit = UB sjekkes mot systemets egen saldo.",
+   "felt": [
+    {
+     "navn": "saldo_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "juridisk_enhet",
+     "type": "tekst(9)",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Klienten."
+    },
+    {
+     "navn": "konto_ref",
+     "type": "ref:D-Regnskapskonto",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "periode",
+     "type": "tekst(7) ÅÅÅÅ-MM",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "dimensjonsnokkel",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tom når saldoen gjelder hele kontoen."
+    },
+    {
+     "navn": "ib",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "debet",
+     "type": "beløp",
+     "pakrevd": "Betinget",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Bare for utvalgte kontoer (F-REG-29). Reverseringspar er trukket ut."
+    },
+    {
+     "navn": "kredit",
+     "type": "beløp",
+     "pakrevd": "Betinget",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Som `debet`."
+    },
+    {
+     "navn": "ub",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "enum(tripletex|poweroffice|reai|saft|annet)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kontrollstatus",
+     "type": "enum(ok|avvik|delvis)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "`delvis` når debet og kredit er nettet og kontrollen bare bruker bevegelse."
+    },
+    {
+     "navn": "henting_ref",
+     "type": "ref:D-Importjobb",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hentingen er en importjobb med tidspunkt, metode, rådata-hash og antall linjer."
+    }
+   ]
+  },
+  {
+   "id": "D-Hovedbokslinje",
+   "navn": "Lest postering fra kundens hovedbok",
+   "omrade": "REG",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Postering lest fra kundens regnskapssystem, holdt adskilt fra D-Postering, som er Bruttos egne. Leses med feltvalg og uten ansatt og avdeling. Lagres bare når en kontroll trenger linjenivå. Ellers summeres linjene til D-Regnskapssaldo (F-REG-29).",
+   "felt": [
+    {
+     "navn": "linje_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "henting_ref",
+     "type": "ref:D-Importjobb",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kontonummer",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "Posting.account.number",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "posteringsdato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "Posting.date",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Posteringsdato teller, ikke bilagsdato."
+    },
+    {
+     "navn": "beloep",
+     "type": "beløp",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "Posting.amountGross",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "I Tripletex er hver linje lønn per person, også uten ansatt-id."
+    },
+    {
+     "navn": "bilag_ekstern_id",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "Posting.voucher.id",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "bilagstype",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "Posting.voucher.voucherType.name",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Skiller lønn, betaling og manuelle bilag."
+    },
+    {
+     "navn": "reversert_av",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Regnskap",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "Posting.voucher.reverseVoucher.id",
+     "reai": "reversesPostingId",
+     "huma": "–",
+     "merknad": "Reverseringspar trekkes ut før summering."
     }
    ]
   },
@@ -12227,7 +13682,7 @@
     },
     {
      "navn": "kontrollpunkt",
-     "type": "enum(loennskostnad|forskuddstrekk|utleggstrekk|aga|aga_per_sone|feriepenger|pensjon|netto|refusjon_nav|naturalytelser|antall_personer)",
+     "type": "tekst (L-01–L-31)",
      "pakrevd": "Ja",
      "kilde": "Beregnet",
      "historikk": "Nei",
@@ -12236,7 +13691,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Kontroll-id fra kontrollkatalogen (natt/N07)."
     },
     {
      "navn": "dimensjon_type",
@@ -12260,6 +13715,58 @@
      "sensitivitet": "Intern",
      "amelding": "–",
      "tripletex": "SalaryReconciliationOverviewGroupLine.accountId / displayName",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "a07_gruppe",
+     "type": "ref:D-A07Gruppe",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kontoregel_refs",
+     "type": "liste<ref:D-A07Kontoregel>",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Reglene som ga hovedbokverdien."
+    },
+    {
+     "navn": "regelsett",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Regelsettet som ble brukt, for eksempel `tripletex_lonn`."
+    },
+    {
+     "navn": "regelsett_versjon",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
      "reai": "–",
      "huma": "–",
      "merknad": ""
@@ -12356,8 +13863,34 @@
      "merknad": ""
     },
     {
+     "navn": "utfall",
+     "type": "enum(ok|avvik|uavklart|ikke_relevant)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "`uavklart` når grunnlaget mangler, for eksempel sone i delt kommune eller fribeløp uten konsern (L-16)."
+    },
+    {
+     "navn": "toleranse_brukt",
+     "type": "json {type, verdi}",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra D-Kontrolloppsett."
+    },
+    {
      "navn": "differansetype",
-     "type": "enum(ingen|periodisering|tidsforskjell|korrigering_senere|feil|ukjent)",
+     "type": "tekst (A07-xx)",
      "pakrevd": "Ja",
      "kilde": "Bruker",
      "historikk": "Nei",
@@ -12366,7 +13899,20 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Differansekode fra katalogen (natt/N07), for eksempel periodisering, tidsforskjell eller feil kontering."
+    },
+    {
+     "navn": "forventet_reversert_i_periode",
+     "type": "tekst(7)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Perioden en tidsforskjell ventes å gå i null."
     },
     {
      "navn": "forklaring",
@@ -12419,6 +13965,106 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Kontrolloppsett",
+   "navn": "Oppsett per kontroll",
+   "omrade": "REG",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Om en kontroll er aktiv, og hvilken toleranse den har. Gjelder ANS-, T- og L-kontrollene (F-MYN-42 og F-REG-30). Arves fra Brutto-malen via byråmal til kunde (K01, K03, BY-04, D-Byramal og D-Malunntak). Satser med gyldighetsår ligger i D-Regelpakke. Toleransetypene bekreftes av utviklerne.",
+   "felt": [
+    {
+     "navn": "oppsett_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "nivaa",
+     "type": "enum(brutto_mal|byraa|kunde)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "eier_ref",
+     "type": "ref (byrå eller klient)",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kontroll_id",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "For eksempel ANS-03, T4 eller L-18."
+    },
+    {
+     "navn": "aktiv",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "toleransetype",
+     "type": "enum(kroner|prosent|per_inntektsmottaker|virkedager)",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "verdi",
+     "type": "desimal",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Standard er 0 kroner (K03)."
     }
    ]
   },
@@ -12481,6 +14127,19 @@
      "merknad": ""
     },
     {
+     "navn": "bilagsmodus",
+     "type": "enum(bokfoert|utkast)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Standard `bokfoert`. PowerOffice: `ManualJournals` eller `JournalEntryVouchers` (F-REG-19)."
+    },
+    {
      "navn": "bilagsdato_regel",
      "type": "enum(loennsutbetalingsdato|periodens_siste_dag)",
      "pakrevd": "Ja",
@@ -12504,7 +14163,20 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Standard `per_konto_og_dimensjon`. AGA føres alltid per sone og sats."
+    },
+    {
+     "navn": "ansattreskontro",
+     "type": "enum(ingen|reskontrokontoer|netto_per_ansatt)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Standard `reskontrokontoer`: ansatt settes bare når kontoen har `reskontro = ansatt` (F-REG-07)."
     },
     {
      "navn": "avsetning_feriepenger",
@@ -12595,7 +14267,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Standard `aggregert`."
     },
     {
      "navn": "standard_dimensjoner",

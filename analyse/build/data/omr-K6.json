@@ -128,7 +128,7 @@
         "Revisor",
         "Økonomisjef"
        ],
-       "regler_md": "Eksport av persondata krever step-up og logges i tilgangsloggen med filhash [F-arkitektur §4.8]. Fødselsnummer og kontonummer er maskert som standard. Full verdi krever egen rettighet. Eksportfiler sendes aldri som e-postvedlegg [AN-10].",
+       "regler_md": "Eksport av persondata krever step-up og logges i tilgangsloggen med filhash [F-arkitektur §4.8]. Fødselsnummer og kontonummer er maskert som standard. Full verdi krever egen rettighet. Eksportfiler sendes aldri som e-postvedlegg [AN-10]. Revisoreksporten er aggregert som standard. Fagforening og konto 5800 eksporteres bare som sum [natt/N07].",
        "data": [
         "D-Rapportkjoring",
         "D-Tilgangslogg"
@@ -143,7 +143,8 @@
        ],
        "kilder": [
         "R2-moduler-integrasjoner §6.15",
-        "D-praksis §5.2"
+        "D-praksis §5.2",
+        "natt/N07"
        ],
        "merknad_md": ""
       },
@@ -417,7 +418,7 @@
         "Revisor",
         "Byrå"
        ],
-       "regler_md": "AGA-pliktige ytelser skal kunne vises samlet per sats og sone (bokføringsforskriften § 3-1 første ledd nr. 9) [B-myndigheter §10.2]. AGA av OTP-premien må med selv om premien føres fra faktura [R3-kritikk-domene D-01]. Kunden velger metode for refusjonsfradrag, og rapporten viser metoden [R3-kritikk-domene D-08].",
+       "regler_md": "AGA-pliktige ytelser skal kunne vises samlet per sats og sone (bokføringsforskriften § 3-1 første ledd nr. 9) [B-myndigheter §10.2]. AGA av OTP-premien må med selv om premien føres fra faktura [R3-kritikk-domene D-01]. Kunden velger metode for refusjonsfradrag, og rapporten viser metoden [R3-kritikk-domene D-08]. Tripletex, PowerOffice Go og Visma.net Payroll gir verken virksomhet eller sone på posteringen. I fase 1 kommer AGA per virksomhet og sone derfor bare fra A07, og hovedboken avstemmes på totalt for enheten [natt/N32].",
        "data": [
         "D-AMelding",
         "D-Lonnslinje",
@@ -432,7 +433,8 @@
        ],
        "kilder": [
         "B-myndigheter §10.2",
-        "R3-kritikk-domene D-01"
+        "R3-kritikk-domene D-01",
+        "natt/N32"
        ],
        "merknad_md": ""
       },
@@ -483,7 +485,7 @@
         "Revisor",
         "Byrå"
        ],
-       "regler_md": "Matching og differanseforklaring eies av REG (K4). RAP lager den signerbare rapporten. AGA legges til betaling først når lønnen er avstemt og 2600 går i null [S §5 pkt. 22]. Differanser mellom kontantprinsippet i a-meldingen og periodisering i regnskapet forklares [D-praksis §2.6].",
+       "regler_md": "Matching og differanseforklaring eies av REG (K4). RAP lager den signerbare rapporten. AGA legges til betaling først når lønnen er avstemt og 2600 går i null [S §5 pkt. 22]. Differanser mellom kontantprinsippet i a-meldingen og periodisering i regnskapet forklares [D-praksis §2.6]. Kontoutvalget for lønn mot hovedbok dekker minst Tripletex' intervaller (5000–5289, 5300–5399, 5500–5599, 5800–5809, 5940–5949, 7100–7159), pluss 5290 (kredit) og 2930–2949 (inngående og utgående saldo), etter mappingreglene i natt/N23. Rapporten viser tidspunktet for uttrekket og en hash av saldobalansen [natt/N24].",
        "data": [
         "D-AMelding",
         "D-Tilbakemelding",
@@ -505,7 +507,8 @@
        "kilder": [
         "D-praksis §4.1",
         "R2-myndighetsintegrasjoner §3.9",
-        "S-avklaringer §5"
+        "S-avklaringer §5",
+        "natt/N24"
        ],
        "merknad_md": "Se også F-REG-16, F-REG-24, F-REG-27 og F-REG-30."
       },
@@ -550,7 +553,7 @@
         "Økonomisjef",
         "Revisor"
        ],
-       "regler_md": "Det lages ikke egne lønnsoppgaver. Alt går via a-meldingen [D-praksis §2.6]. Om sammenstillingsoppgaven er arbeidsgivers plikt, er uavklart. Behandles som lovkrav med frist 31.1 til jurist har svart [R3-kritikk-domene D-36].",
+       "regler_md": "Det lages ikke egne lønnsoppgaver. Alt går via a-meldingen [D-praksis §2.6]. Om sammenstillingsoppgaven er arbeidsgivers plikt, er uavklart. Behandles som lovkrav med frist 31.1 til jurist har svart [R3-kritikk-domene D-36]. Små foretak har ikke noteplikt etter regnskapsloven § 7-31. For andre lages grunnlaget med lønn, naturalytelser og styrehonorar per rolle fra A07 og Enhetsregisteret [natt/N24].",
        "data": [
         "D-Akkumulator",
         "D-AMelding",
@@ -565,7 +568,8 @@
        ],
        "kilder": [
         "D-praksis §2.6",
-        "R2-moduler-integrasjoner §6.10"
+        "R2-moduler-integrasjoner §6.10",
+        "natt/N24"
        ],
        "merknad_md": ""
       },
@@ -615,7 +619,7 @@
         "Økonomisjef",
         "Byrå"
        ],
-       "regler_md": "Pakken bygges fra signerte rapportkjøringer og revisjonsloggen, aldri fra ferske data som kan ha endret seg. Innhold er regnskapsmateriale med 5 års oppbevaring [S §1]. GRFS-pakken for byråklienter eies av BYR (K5) og bruker samme bevis [R3-kritikk-domene D-34].",
+       "regler_md": "Pakken bygges fra signerte rapportkjøringer og revisjonsloggen, aldri fra ferske data som kan ha endret seg. Innhold er regnskapsmateriale med 5 års oppbevaring [S §1]. GRFS-pakken for byråklienter eies av BYR (K5) og bruker samme bevis [R3-kritikk-domene D-34]. Revisorpakken og avstemmingspakken får sumutdrag og hash av A07, så rapporten kan etterkontrolleres uten råfila [natt/N19].",
        "data": [
         "D-Rapportkjoring",
         "D-Revisjonslogg",
@@ -634,7 +638,8 @@
        ],
        "kilder": [
         "D-praksis §4.2",
-        "R3-kritikk-domene D-30"
+        "R3-kritikk-domene D-30",
+        "natt/N19"
        ],
        "merknad_md": "Se også F-BYR-29 og F-SIK-09."
       },
@@ -917,7 +922,7 @@
       {
        "id": "F-RAP-29",
        "navn": "Prosjektlønn og timeark for tilskudd",
-       "beskrivelse_md": "Finansiørrapport per prosjekt og periode: timer per person, timesats eller dagssats, lønnskost med sosiale kostnader og signert timeark.\n\n- Forskningsrådet: timesats ca. 0,8–1,1 promille av avtalt årslønn, tak 1 100 kr per time og maks 1 850 timer per år.\n- Horizon Europe: årlige personalkostnader / 215 × dager.\n- Andre (Innovasjon Norge, Helsedirektoratet, Stiftelsen Dam, kommuner): lønnskost per prosjekt og timer.",
+       "beskrivelse_md": "Finansiørrapport per prosjekt og periode: timer per person, timesats eller dagssats, lønnskost med sosiale kostnader og signert timeark.\n\n- Forskningsrådet: faktisk kostnad (årslønn, sosiale og indirekte kostnader) delt på 1 695 timer (1 600 kan begrunnes), tak 1 100 kr per time og maks 1 850 timer per år. 0,8–1,1 promille gjelder bare budsjettet. Institutter bruker godkjente satser per stillingskategori.\n- SkatteFUNN og Innovasjon Norge: 1,2 promille av avtalt årslønn, tak 700 kr per time og maks 1 850 timer per år.\n- Horizon Europe: årlige personalkostnader / 215 × dager.\n- Andre (Helsedirektoratet, Stiftelsen Dam, kommuner): lønnskost per prosjekt og timer.",
        "niva": "Kjerne",
        "behovsvekt": "Bør",
        "roller": [
@@ -925,7 +930,7 @@
         "Lønnsansvarlig",
         "Leder"
        ],
-       "regler_md": "Satsene må verifiseres mot gjeldende utlysning [D-praksis §6.4]. Timer kommer fra TID (K3) eller import. Timearket signeres av ansatt og leder før det brukes i rapporten.",
+       "regler_md": "Satsene må verifiseres mot gjeldende utlysning [D-praksis §6.4]. De ligger som data i D-Regelpakke med gyldighetsår [natt/N34]. Timer kommer fra TID (K3) eller import. Timearket signeres av ansatt og leder før det brukes i rapporten.",
        "data": [
         "D-Tilskuddsprofil",
         "D-Timeregistrering",
@@ -943,7 +948,8 @@
        ],
        "kilder": [
         "D-praksis §6.4",
-        "https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/"
+        "https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/",
+        "natt/N34"
        ],
        "merknad_md": "Dagens systemer klarer sjelden en ferdig finansiørrapport. Det er en klar mulighet mot stiftelser og forskning [D-praksis §6.4]. Se også F-ORG-21 og F-TID-27."
       }
@@ -1573,7 +1579,7 @@
         "Lønnsmedarbeider",
         "Byrå"
        ],
-       "regler_md": "Personer slås aldri sammen automatisk. Brutto oppretter aldri en ny person når det finnes et mulig treff [R2-okosystem §2.3]. Fødselsnummer som hint krever `identitet.*`.",
+       "regler_md": "Personer slås aldri sammen automatisk. Brutto oppretter aldri en ny person når det finnes et mulig treff [R2-okosystem §2.3]. Fødselsnummer som hint krever `identitet.*`. Huma kobles i denne rekkefølgen: fødselsnummer mot A07, `connectedIntegrations`-ID mot ansatt-ID i regnskapssystemet, `employmentId` mot ansattnummer, ellers koblingskø. Aldri bare e-post. Kildenøkkelen er Humas `user.id` [natt/N18].",
        "data": [
         "D-Personkobling",
         "D-Person",
@@ -1586,7 +1592,8 @@
        ],
        "kilder": [
         "R2-okosystem §2.3",
-        "R2-okosystem §9.3"
+        "R2-okosystem §9.3",
+        "natt/N18"
        ],
        "merknad_md": "Se også F-PER-10 og F-PER-35."
       },
@@ -1732,7 +1739,7 @@
         "HR",
         "Lønnsansvarlig"
        ],
-       "regler_md": "En ny Huma-stilling er ikke automatisk et nytt arbeidsforhold. Stillingsbytte i samme juridiske enhet blir ny stillingsperiode [R2-okosystem §4.4.4]. Kontonummer fra Huma importeres én gang som signert batch. Senere endringer blir forslag som den ansatte bekrefter med BankID [R2-okosystem §4.4.6]. Fødselsnummer fra Huma lagres uverifisert til skattekortet er hentet. Når Huma er fraværskilde, lager Brutto ikke fravær fra NAV-data [R2-okosystem §4.4.7].",
+       "regler_md": "En ny Huma-stilling er ikke automatisk et nytt arbeidsforhold. Stillingsbytte i samme juridiske enhet blir ny stillingsperiode [R2-okosystem §4.4.4]. Kontonummer fra Huma importeres én gang som signert batch. Senere endringer blir forslag som den ansatte bekrefter med BankID [R2-okosystem §4.4.6]. Fødselsnummer fra Huma lagres uverifisert til skattekortet er hentet. Når Huma er fraværskilde, lager Brutto ikke fravær fra NAV-data [R2-okosystem §4.4.7]. Humas `employmentId` er ikke a-meldingens arbeidsforhold-ID. Huma kobles til Bruttos arbeidsforhold, aldri direkte til A07 [natt/N35].",
        "data": [
         "D-Integrasjon",
         "D-Kilderegister",
@@ -1759,7 +1766,8 @@
        "kilder": [
         "R2-okosystem §4.4",
         "https://openapi.humahr.com/v3/api-docs",
-        "https://humahr.com/knowledge/webhooks"
+        "https://humahr.com/knowledge/webhooks",
+        "natt/N35"
        ],
        "merknad_md": "Må hvis en pilotkunde bruker Huma, ellers Bør [OK-183]. Strategikritikken flytter koblingen til Q3 2028 [R3-kritikk-strategi B21]. Huma kan begrense API-tilgangen. Reserveløsning er PAXml eller CSV via importrammeverket. Se også F-PER-33, F-FRA-04, F-MIG-12, F-MIG-34 og F-HR-08."
       },
@@ -2343,7 +2351,7 @@
       {
        "id": "F-SIK-03",
        "navn": "Step-up for kritiske handlinger",
-       "beskrivelse_md": "Kritiske handlinger krever ny BankID eller passkey med brukerverifisering, uansett hvordan brukeren logget inn:\n\n- godkjenne lønnskjøring og betalingsforslag\n- endre eller godkjenne kontonummer\n- eksportere persondata og revisorpakke\n- endre roller, arbeidsdelingsunntak og agenttilgang\n- installere app med skrivepakke\n- signere importbatch med saldoer eller kontonumre\n- gi samtykke til break-glass",
+       "beskrivelse_md": "Kritiske handlinger krever ny BankID eller passkey med brukerverifisering, uansett hvordan brukeren logget inn:\n\n- godkjenne lønnskjøring og betalingsforslag\n- endre eller godkjenne kontonummer\n- eksportere persondata og revisorpakke\n- bekrefte import av navneliste\n- vise grunnlaget for § 7-31 per person\n- endre roller, arbeidsdelingsunntak og agenttilgang\n- installere app med skrivepakke\n- signere importbatch med saldoer eller kontonumre\n- gi samtykke til break-glass",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -2368,7 +2376,8 @@
        ],
        "kilder": [
         "F-arkitektur §4.8",
-        "R2-okosystem §2.1"
+        "R2-okosystem §2.1",
+        "natt/N38"
        ],
        "merknad_md": "Se også F-LED-05."
       },
@@ -2415,7 +2424,7 @@
       {
        "id": "F-SIK-05",
        "navn": "Rollekatalog med standardroller",
-       "beskrivelse_md": "Brutto leverer standardroller som kunden og byrået kan bruke direkte eller kopiere og snevre inn:\n\n- Kunde-admin, Lønnsansvarlig, Lønnsmedarbeider, Godkjenner (attestant), Økonomisjef, HR, Leder, Ansatt\n- Lønn: helse og Lønn: trekk og fagforening\n- Systemforvalter (lønnsarter, regler, maler, testmiljø)\n- Revisor (lesing, tidsbegrenset)\n- Byrå-admin, Byrå-lønnsmedarbeider, Oppdragsansvarlig\n- Attestant uten lønnsinnsyn (lokallag)\n- Leverandørsupport (break-glass), Agent og Integrasjon",
+       "beskrivelse_md": "Brutto leverer standardroller som kunden og byrået kan bruke direkte eller kopiere og snevre inn:\n\n- Kunde-admin, Lønnsansvarlig, Lønnsmedarbeider, Godkjenner (attestant), Økonomisjef, HR, Leder, Ansatt\n- Lønn: helse og Lønn: trekk og fagforening\n- Systemforvalter (lønnsarter, regler, maler, testmiljø)\n- Revisor (lesing, tidsbegrenset)\n- Byrå-admin, Byrå-lønnsmedarbeider, Byrå-kontrollør, Oppdragsansvarlig\n- Kundegodkjenner og Betalingsfullmektig (byråoppdrag)\n- Attestant uten lønnsinnsyn (lokallag)\n- Leverandørsupport (break-glass), Agent og Integrasjon",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -2424,7 +2433,7 @@
         "Byrå",
         "IT-ansvarlig"
        ],
-       "regler_md": "En rolle kan ikke gi mer enn den som tildeler har. Rolleendringer krever step-up, logges og varsles [F-arkitektur §3.3]. Tildeling av rolle til bruker (D-Rolletildeling) eies av K5.",
+       "regler_md": "En rolle kan ikke gi mer enn den som tildeler har. Rolleendringer krever step-up, logges og varsles [F-arkitektur §3.3]. Tildeling av rolle til bruker (D-Rolletildeling) eies av K5. Hele rollekatalogen designes nå, også rollene godkjenningsflyten og betalingen trenger (B39, B40) [natt/N10].",
        "data": [
         "D-Rolledefinisjon",
         "D-Rolletildeling",
@@ -2439,7 +2448,8 @@
        ],
        "kilder": [
         "F-arkitektur §3.3",
-        "D-praksis §3.1"
+        "D-praksis §3.1",
+        "natt/N10"
        ],
        "merknad_md": ""
       },
@@ -2486,7 +2496,7 @@
         "Lønnsansvarlig",
         "Personvernombud"
        ],
-       "regler_md": "Konfidensielle grupper maskeres også i kontrollrapporter, bilag og bankfil. Må fra 100 ansatte [R2-virksomhet §3]. Ingen kan endre egne data, og lønnsmedarbeidere kan ikke endre egen lønn [D-praksis §3.2].",
+       "regler_md": "Konfidensielle grupper maskeres også i kontrollrapporter, bilag og bankfil. Må fra 100 ansatte [R2-virksomhet §3]. Ingen kan endre egne data, og lønnsmedarbeidere kan ikke endre egen lønn [D-praksis §3.2]. Dataklassene for A07 per person (identitet, lønn, fagforening, trekkpålegg, fravær og person) legges i D-Rolledefinisjon [natt/N38 §7]. Under en terskel for antall bidragsytere klassifiseres summen av fagforeningstrekk som `fagforening`. Parse-jobben lagrer antall bidragsytere som et flagg, ikke per person [natt/N19].",
        "data": [
         "D-Rolledefinisjon",
         "D-Person",
@@ -2499,7 +2509,9 @@
        ],
        "kilder": [
         "F-arkitektur §3.3",
-        "D-praksis §3.3"
+        "D-praksis §3.3",
+        "natt/N38 §7",
+        "natt/N19"
        ],
        "merknad_md": ""
       },
@@ -2516,7 +2528,7 @@
         "Kunde-admin",
         "Personvernombud"
        ],
-       "regler_md": "Lønnsbeløp vernes med lønnstilgang og logget lesing, men krypteres ikke [S §2 pkt. 6]. Helse og fagforening som kan leses ut av lønnsdata regnes som lønnsdata og får samme vern. En rådgiver vurderer løsningen opp mot art. 9 før drift [S §2 pkt. 7]. 5800-serien er helseopplysning og skjermes [S §2 pkt. 8].",
+       "regler_md": "Lønnsbeløp vernes med lønnstilgang og logget lesing, men krypteres ikke [S §2 pkt. 6]. Helse og fagforening som kan leses ut av lønnsdata regnes som lønnsdata og får samme vern. En rådgiver vurderer løsningen opp mot art. 9 før drift [S §2 pkt. 7]. 5800-serien er helseopplysning og skjermes [S §2 pkt. 8]. Konto 2650 (trukket fagforeningskontingent) og fagforeningsfradraget i A07 (FR.FAGF) er særlige kategorier på linje med 5800. De skjermes også når linjene bare er lest fra kundens hovedbok [natt/N23]. Lønn per person fra A07 krever lønnstilgang [natt/N05]. Fagforening og utleggstrekk per person fra A07 normaliseres ikke. Bare summer per opplysningspliktig og måned lagres, og summen krever lønnstilgang [natt/N38 §7].",
        "data": [
         "D-Rolledefinisjon",
         "D-Lonnslinje",
@@ -2533,7 +2545,10 @@
        "kilder": [
         "S-avklaringer §2",
         "R3-kritikk-domene D-33",
-        "B-myndigheter §11"
+        "B-myndigheter §11",
+        "natt/N23",
+        "natt/N05",
+        "natt/N38 §7"
        ],
        "merknad_md": "S §2 pkt. 7 behandler helse i lønnsdata som lønnsdata. R3 ber om en egen rolle «Lønn: helse». Begge kan stemme: samme vern, men egen rolle for å se detaljene. Avklares med rådgiver (se spørsmål). Se også F-FRA-05 og F-HEL-09."
       },
@@ -2549,7 +2564,7 @@
         "Kunde-admin",
         "Lønnsansvarlig"
        ],
-       "regler_md": "Lesetilgang, tidsbegrenset, alt logges [F-arkitektur §3.3, VK-49]. Standard varighet forslås til 90 dager (verifiseres med revisorer).",
+       "regler_md": "Lesetilgang, tidsbegrenset, alt logges [F-arkitektur §3.3, VK-49]. Standard varighet forslås til 90 dager (verifiseres med revisorer). Personnivå bare med step-up. Fagforening og konto 5800 vises bare som sum [natt/N07].",
        "data": [
         "D-Rolledefinisjon",
         "D-Rolletildeling",
@@ -2561,7 +2576,8 @@
        ],
        "kilder": [
         "D-praksis §3.3",
-        "F-arkitektur §3.3"
+        "F-arkitektur §3.3",
+        "natt/N07"
        ],
        "merknad_md": "Se også F-BYR-29 og F-RAP-19."
       },
@@ -2847,7 +2863,7 @@
         "Personvernombud",
         "IT-ansvarlig"
        ],
-       "regler_md": "AES-256-GCM med tenant-ID som tilleggsdata, så chiffertekst ikke kan flyttes mellom tenanter [F-arkitektur §3.4]. Lønnsbeløp krypteres ikke [S §2 pkt. 6]. Intern person-ID brukes som nøkkel overalt (personopplysningsloven § 12).",
+       "regler_md": "AES-256-GCM med tenant-ID som tilleggsdata, så chiffertekst ikke kan flyttes mellom tenanter [F-arkitektur §3.4]. Lønnsbeløp krypteres ikke [S §2 pkt. 6]. Intern person-ID brukes som nøkkel overalt (personopplysningsloven § 12). Fødselsnummer brukes aldri i id-er eller URL-er [natt/N12]. Permisjonsbeskrivelsen fra A07 krypteres, fordi sykdom i over 12 måneder rapporteres som permisjon. Rå A07 krypteres med egen DEK (`a07_raa`) [natt/N38 §7].",
        "data": [
         "D-Krypteringsnokkel",
         "D-Person",
@@ -2861,7 +2877,9 @@
        "behov": [],
        "kilder": [
         "F-arkitektur §3.4",
-        "S-avklaringer §2"
+        "S-avklaringer §2",
+        "natt/N12",
+        "natt/N38 §7"
        ],
        "merknad_md": "Om personlige kontonumre i kontaktdata også skal krypteres, er åpent fra Sally [S §7]."
       },
@@ -2938,7 +2956,7 @@
         "Kunde-admin",
         "Brutto drift"
        ],
-       "regler_md": "Kvitteringen logger bare antall og koder, aldri innhold [S §2 pkt. 10]. Ansatte kan laste ned egne lønnsslipper før sletting [F-arkitektur §4.11].",
+       "regler_md": "Kvitteringen logger bare antall og koder, aldri innhold [S §2 pkt. 10]. Ansatte kan laste ned egne lønnsslipper før sletting [F-arkitektur §4.11]. Data merkes med kildesystem. Opphører utviklervilkårene for et kildesystem, slettes data fra den kilden etter retur til kunden. Brutto bekrefter slettingen skriftlig [natt/N40].",
        "data": [
         "D-Oppbevaringsregel",
         "D-Krypteringsnokkel",
@@ -2948,7 +2966,8 @@
        "behov": [],
        "kilder": [
         "F-arkitektur §4.11",
-        "B-myndigheter §11"
+        "B-myndigheter §11",
+        "natt/N40"
        ],
        "merknad_md": ""
       },
@@ -2963,7 +2982,7 @@
         "IT-ansvarlig",
         "Brutto drift"
        ],
-       "regler_md": "Hver datalagring har formål, eier, oppbevaringstid og slettedato i et eget compliance-dokument [S §1 pkt. 2]. Port 9 krever at alt regnskapsmateriale ligger i Norge [R3-kritikk-domene D-32]. Registeret publiseres som datakart for kunder [G-moduler-2026 §2.8].",
+       "regler_md": "Hver datalagring har formål, eier, oppbevaringstid og slettedato i et eget compliance-dokument [S §1 pkt. 2]. Port 9 krever at alt regnskapsmateriale ligger i Norge [R3-kritikk-domene D-32]. Registeret publiseres som datakart for kunder [G-moduler-2026 §2.8]. `regnskapsmateriale = sann` krever `land = NO`, også for backup og revisjonslogg. Feilsporing, telemetri og e-post får filtre, og registeret kartlegger underleverandører for logg, feilsporing og e-post som kan inneholde lønnsdata [natt/N19, natt/N30].",
        "data": [
         "D-Lagringssted",
         "D-Underleverandor",
@@ -2975,7 +2994,9 @@
        ],
        "kilder": [
         "R3-kritikk-domene D-32",
-        "S-avklaringer §1"
+        "S-avklaringer §1",
+        "natt/N19",
+        "natt/N30"
        ],
        "merknad_md": ""
       },
@@ -2990,7 +3011,7 @@
         "Byrå",
         "Økonomisjef"
        ],
-       "regler_md": "Plikten ligger hos hver bokføringspliktig, også når en SaaS-leverandør lagrer dataene. Søknad har ikke vært nødvendig siden 27.1.2025 [S §1 pkt. 4]. Bortfaller hvis primærdata og backup ligger i Norge (B9).",
+       "regler_md": "Plikten ligger hos hver bokføringspliktig, også når en SaaS-leverandør lagrer dataene. Søknad har ikke vært nødvendig siden 27.1.2025 [S §1 pkt. 4]. Bortfaller hvis primærdata og backup ligger i Norge (B9). Meldeplikten gjelder også backup i annet EØS-land (verifiseres med Skatteetaten) [natt/N19].",
        "data": [
         "D-Lagringsmelding",
         "D-Lagringssted",
@@ -3000,7 +3021,8 @@
        "behov": [],
        "kilder": [
         "S-avklaringer §1",
-        "R3-kritikk-domene D-32"
+        "R3-kritikk-domene D-32",
+        "natt/N19"
        ],
        "merknad_md": "S viser til § 7-5, R2-moduler til § 7-7. Paragrafen må avklares [R3-kritikk-domene D-32]."
       },
@@ -3036,7 +3058,7 @@
       {
        "id": "F-SIK-26",
        "navn": "Full eksport og arkiv ved opphør",
-       "beskrivelse_md": "Når kunden avslutter, eller bytter byrå, kan alle data eksporteres: lønnsslipper som PDF/A, CSV og JSON av alle data, a-meldinger, betalingsfiler, posteringer, arbeidsforhold-ID, saldoer hittil i år og revisjonslogg. Eksportformatet er dokumentert. Kunden velger skrivebeskyttet arkivabonnement i 5 år eller sletting innen 90 dager.",
+       "beskrivelse_md": "Når kunden avslutter, eller bytter byrå, kan alle data eksporteres: lønnsslipper som PDF/A, CSV og JSON av alle data, a-meldinger, betalingsfiler, posteringer, arbeidsforhold-ID, saldoer hittil i år og revisjonslogg. Pakken har også lønnsjournal og bokføringsgrunnlag med regnskapets bilagsnumre uendret, betalingsdokumentasjon, systembeskrivelse, kontrollsporbeskrivelse og prosjektdokumentasjon. Eksportformatet er dokumentert. Kunden velger skrivebeskyttet arkivabonnement i 5 år eller sletting innen 90 dager.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -3044,7 +3066,7 @@
         "Byrå",
         "IT-ansvarlig"
        ],
-       "regler_md": "Kunden har oppbevaringsplikten [F-arkitektur §4.11]. Eksport krever step-up og logges.",
+       "regler_md": "Kunden har oppbevaringsplikten [F-arkitektur §4.11]. Eksport krever step-up og logges. Sletting når kunden går, skjer etter retur til kunden og bare etter kvittering for mottak med manifest-hash. Brutto bekrefter slettingen skriftlig [natt/N40, natt/N30]. Med bilagsnumrene uendret holder kontrollsporet i fem år etter at kunden har sluttet [natt/N30, natt/N02]. Arkivabonnement er `D-Abonnement.status = arkiv`. Prosjektdokumentasjon følger oppbevaringsregelen `prosjektdokumentasjon` [natt/N34].",
        "data": [
         "D-Abonnement",
         "D-Importjobb",
@@ -3059,7 +3081,11 @@
        ],
        "kilder": [
         "F-arkitektur §4.11",
-        "R2-byra §2.8"
+        "R2-byra §2.8",
+        "natt/N40",
+        "natt/N30",
+        "natt/N02",
+        "natt/N34"
        ],
        "merknad_md": "Se også F-BYR-30."
       }
@@ -3082,10 +3108,11 @@
         "Personvernombud",
         "IT-ansvarlig"
        ],
-       "regler_md": "Basert på EUs standardklausuler (2021/915). Må inneholde særlige kategorier, sikkerhetstiltak, bistand ved innsyn og DPIA, varsling av avvik innen 24 timer, revisjonsrett og sletting ved opphør [F-arkitektur §4.3]. All behandling av persondata i EU/EØS [F-arkitektur §4.4].",
+       "regler_md": "Basert på EUs standardklausuler (2021/915). Må inneholde særlige kategorier, sikkerhetstiltak, bistand ved innsyn og DPIA, varsling av avvik innen 24 timer, revisjonsrett og sletting ved opphør [F-arkitektur §4.3]. All behandling av persondata i EU/EØS [F-arkitektur §4.4]. Databehandleravtalen er signert før første produksjonskall med kundedata. Røyktest mot Bruttos eget orgnr med `utenInntektsmottakere = true` kan gjøres før [natt/N06]. DPA-vedlegget lister kategoriene, formålene og instruksen som konfigurasjon. Avtalemodell, versjon, hvem som godtok og når lagres på D-Abonnement [natt/N19, natt/N38]. Den offentlige listen viser også ledd to i kjeden, med adresse og kontaktpunkt (EDPB 22/2024). KI står i DPA og kundeavtale som valgfri underleverandør, av til kunden slår den på, med 30 dagers varsel [natt/N19, natt/N12].",
        "data": [
         "D-Underleverandor",
-        "D-Lagringssted"
+        "D-Lagringssted",
+        "D-Abonnement"
        ],
        "integrasjoner": [],
        "behov": [
@@ -3095,14 +3122,18 @@
        "kilder": [
         "F-arkitektur §4.3",
         "F-arkitektur §4.4",
-        "B-myndigheter §11"
+        "B-myndigheter §11",
+        "natt/N06",
+        "natt/N19",
+        "natt/N38",
+        "natt/N12"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-SIK-28",
        "navn": "DPIA-mal og vurdering av særlige kategorier",
-       "beskrivelse_md": "Brutto leverer en referanse-DPIA og en mal kunden kan fylle ut, med KI-tillegg. Dokumentet beskriver formål, dataflyt, særlige kategorier, roller, risiko og tiltak. En ekstern rådgiver vurderer løsningen for helse og fagforening før drift.\n\n- Brutto fører protokoll over behandlingsaktiviteter som databehandler (art. 30 nr. 2).\n- Kunden får mal for egen protokoll (art. 30 nr. 1) med lønn, fravær, HR og integrasjoner ferdig beskrevet.",
+       "beskrivelse_md": "Brutto leverer en referanse-DPIA for produktet etter WP248, med risikoliste, mal, terskelvurdering og tiltaksvedlegg, og en mal kunden kan fylle ut, med KI-tillegg. Dokumentet beskriver formål, dataflyt, særlige kategorier, roller, risiko og tiltak. En ekstern rådgiver vurderer løsningen for helse og fagforening før drift.\n\n- Brutto fører protokoll over behandlingsaktiviteter som databehandler (art. 30 nr. 2).\n- Kunden får mal for egen protokoll (art. 30 nr. 1) med lønn, fravær, HR og integrasjoner ferdig beskrevet.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -3110,7 +3141,7 @@
         "Personvernombud",
         "Kunde-admin"
        ],
-       "regler_md": "DPIA er trolig påkrevd hos kundene fordi ansattdata og særlige kategorier behandles systematisk [F-arkitektur §4.6, B-myndigheter §11]. Del av port 9 [R3-kritikk-domene D-33].",
+       "regler_md": "DPIA er trolig påkrevd hos hver kunde fordi ansattdata og særlige kategorier behandles systematisk [F-arkitektur §4.6, B-myndigheter §11]. Ingen av de 14 punktene på Datatilsynets liste treffer fase 1, men tre av de ni kriteriene er oppfylt [natt/N19]. Risikolista har R1–R15 fra natt/N38 og R16–R21 fra natt/N19. Fagforeningskontingent fra A07 er særlig kategori og tas med [natt/N05]. Terskelvurdering og DPIA-mal inngår i oppstarten av kunden, og dokumentene lagres i D-Dokument med versjon og hvem som godtok. Del av port 9 [R3-kritikk-domene D-33].",
        "data": [
         "D-Dokument",
         "D-Lagringssted"
@@ -3120,7 +3151,10 @@
        "kilder": [
         "R3-kritikk-domene D-33",
         "F-arkitektur §4.6",
-        "S-avklaringer §2"
+        "S-avklaringer §2",
+        "natt/N19",
+        "natt/N38",
+        "natt/N05"
        ],
        "merknad_md": ""
       },
@@ -3135,7 +3169,7 @@
         "Kunde-admin",
         "Lønnsfaglig ansvarlig (Brutto)"
        ],
-       "regler_md": "Bokføringsforskriften § 5-6 krever beskrivelsen, og det er et leveransekrav til leverandøren [B-myndigheter §10.2]. Beskrivelsen oppbevares like lenge som kjøringene som brukte versjonen [F-arkitektur §4.11].",
+       "regler_md": "Bokføringsforskriften § 5-6 krever beskrivelsen, og det er et leveransekrav til leverandøren [B-myndigheter §10.2]. Beskrivelsen oppbevares like lenge som kjøringene som brukte versjonen [F-arkitektur §4.11]. Beskrivelsen forklarer samlebilaget og kontrollsporet mellom regnskapets bilag og journalen i Brutto [natt/N02].",
        "data": [
         "D-Programversjon",
         "D-Dokument"
@@ -3147,14 +3181,15 @@
        ],
        "kilder": [
         "R3-kritikk-domene D-30",
-        "B-myndigheter §10.2"
+        "B-myndigheter §10.2",
+        "natt/N02"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-SIK-30",
        "navn": "Innsyn, retting og dataportabilitet for registrerte",
-       "beskrivelse_md": "Ansatte, tidligere ansatte og honorarmottakere kan be om innsyn. Brutto lager et innsynsuttrekk per person med alle datakategorier, kilder og mottakere, og hjelper kunden med retting, begrensning og dataportabilitet. Saken har frist og status.\n\n- Selvbetjening for det meste i ansattportalen.\n- Sletting avslås når bokføringsplikten krever oppbevaring.\n- Mal for informasjon til ansatte og honorarmottakere om behandlingen (art. 13 og 14), publisert i ansattportalen.\n- Uttrekket viser mottakere av dataene: myndigheter, bank, pensjonsleverandør og installerte apper.",
+       "beskrivelse_md": "Ansatte, tidligere ansatte og honorarmottakere kan be om innsyn. Brutto lager et innsynsuttrekk per person med alle datakategorier, kilder og mottakere, og hjelper kunden med retting, begrensning og dataportabilitet. Saken har frist og status.\n\n- Selvbetjening for det meste i ansattportalen.\n- Sletting avslås når bokføringsplikten krever oppbevaring.\n- Mal for informasjon til ansatte og honorarmottakere om behandlingen (art. 13 og 14), publisert i ansattportalen. Malen for art. 14 sier fra fase 1 at A07 hentes fra Skatteetaten, og hvorfor.\n- Uttrekket viser mottakere av dataene: myndigheter, bank, pensjonsleverandør og installerte apper.\n- Forslag til MVP: uttrekket viser kilde per felt (navneliste, regnskapssystem, A07, Enhetsregisteret).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -3179,7 +3214,9 @@
        ],
        "kilder": [
         "F-arkitektur §4.3",
-        "B-myndigheter §11"
+        "B-myndigheter §11",
+        "natt/N19",
+        "natt/N38"
        ],
        "merknad_md": ""
       },
@@ -3518,7 +3555,7 @@
         "Byrå",
         "Lønnsansvarlig"
        ],
-       "regler_md": "Tom `employmentId` betyr at ID-en må hentes fra a-ordningen [R2-ansattdata-tripletex-reai F5]. Faste lønnslinjer, trekk og skattekort finnes ikke i API-et og må komme fra eksport eller legges inn [R2-ansattdata-tripletex-reai A1.4]. Kostnadsfordeling rekonstrueres fra `Payslip.department` per måned.",
+       "regler_md": "Tom `employmentId` betyr at ID-en må hentes fra a-ordningen [R2-ansattdata-tripletex-reai F5]. Faste lønnslinjer, trekk og skattekort finnes ikke i API-et og må komme fra eksport eller legges inn [R2-ansattdata-tripletex-reai A1.4]. Kostnadsfordeling rekonstrueres fra `Payslip.department` per måned. `employmentId` er bare et hint om ID fra forrige system [natt/N35].",
        "data": [
         "D-Importjobb",
         "D-Person",
@@ -3537,7 +3574,8 @@
        "kilder": [
         "R2-ansattdata-tripletex-reai A1",
         "R2-ansattdata-tripletex-reai F5",
-        "https://tripletex.no/v2-docs/"
+        "https://tripletex.no/v2-docs/",
+        "natt/N35"
        ],
        "merknad_md": ""
       },
@@ -3551,7 +3589,7 @@
         "Implementeringsansvarlig (Brutto)",
         "Lønnsansvarlig"
        ],
-       "regler_md": "`employment-reporting.employmentId` lik `null` betyr at ID-en er generert av ReAi. Den faktiske ID-en hentes fra a-ordningen [R2-ansattdata-tripletex-reai F5]. Faste trekk har ingen fra–til-dato, saldo eller prioritet og må suppleres.",
+       "regler_md": "`employment-reporting.employmentId` lik `null` betyr at ID-en er generert av ReAi. Den faktiske ID-en hentes fra a-ordningen [R2-ansattdata-tripletex-reai F5]. Faste trekk (`recurring-post-tax-deductions`) mangler konto, saldo, mottaker, periode og prioritet. De importeres som D-Trekk, aldri som D-Trekkpalegg [natt/N21]. ReAi rapporterer trolig ikke utleggstrekk i a-meldingen (verifiseres), så utleggstrekk hentes alltid på nytt fra Skatteetaten eller brev og registreres med fire øyne [natt/N11].",
        "data": [
         "D-Importjobb",
         "D-Person",
@@ -3565,7 +3603,10 @@
        "behov": [],
        "kilder": [
         "R2-ansattdata-tripletex-reai A2",
-        "R2-ansattdata-tripletex-reai F5"
+        "R2-ansattdata-tripletex-reai F5",
+        "natt/N21",
+        "natt/N11",
+        "natt/N35"
        ],
        "merknad_md": "Må hvis en pilotkunde kommer fra ReAi."
       },
@@ -3579,7 +3620,7 @@
         "Implementeringsansvarlig (Brutto)",
         "Byrå"
        ],
-       "regler_md": "Kuttes først hvis kapasiteten svikter. Tripletex-API og generisk fil beholdes [R3-kritikk-strategi §2.5].",
+       "regler_md": "Kuttes først hvis kapasiteten svikter. Tripletex-API og generisk fil beholdes [R3-kritikk-strategi §2.5]. PowerOffice `ReportingId` er ID-en som rapporteres, og brukes direkte. Det gjelder også `ReportingId` for permisjon og permittering [natt/N35].",
        "data": [
         "D-Importjobb",
         "D-Person",
@@ -3591,14 +3632,15 @@
        ],
        "behov": [],
        "kilder": [
-        "F-arkitektur §6.2"
+        "F-arkitektur §6.2",
+        "natt/N35"
        ],
        "merknad_md": "Feltlisten er ikke kartlagt i R2 (verifiseres). Runde B: satt til Bør fordi den kuttes først. Må hvis pilotbyrået har mange PowerOffice-klienter."
       },
       {
        "id": "F-MIG-08",
        "navn": "Visma.net Payroll, Visma Lønn og Huldt & Lillevik",
-       "beskrivelse_md": "Visma.net Payroll via API hvis partneravtale gir tilgang, ellers rapporteksport til Excel. Visma Lønn og Huldt & Lillevik via rapporter og faste ASCII-formater mot Excel-malen.",
+       "beskrivelse_md": "Visma.net Payroll via API hvis partneravtale gir tilgang, ellers rapporteksport til Excel. Visma Lønn (Huldt & Lillevik) kan ikke kjøre lønn etter 2024 og er bare aktuell for historisk import, via rapporter og faste ASCII-formater mot Excel-malen.",
        "niva": "Integrasjon",
        "behovsvekt": "Bør",
        "roller": [
@@ -3616,7 +3658,8 @@
        ],
        "behov": [],
        "kilder": [
-        "F-arkitektur §6.2"
+        "F-arkitektur §6.2",
+        "natt/N37"
        ],
        "merknad_md": ""
       },
@@ -3778,14 +3821,14 @@
       {
        "id": "F-MIG-14",
        "navn": "Mapping av kodelister med «ukjent» som stopp",
-       "beskrivelse_md": "Arbeidsforholdstype, ansettelsesform, avlønningstype, arbeidstidsordning, sluttårsak, permisjonstype, trekkode og dimensjoner mappes etter faste tabeller for Tripletex og ReAi og egne tabeller for andre kilder. `NOT_CHOSEN`, `null` og 0 blir «ukjent» og blokkerer a-meldingen for arbeidsforholdet til noen har avklart dem.",
+       "beskrivelse_md": "Arbeidsforholdstype, ansettelsesform, arbeidstidsordning, sluttårsak, permisjonstype, trekkode og dimensjoner mappes etter faste tabeller for Tripletex og ReAi og egne tabeller for andre kilder. `NOT_CHOSEN`, `null` og 0 blir «ukjent» og blokkerer a-meldingen for arbeidsforholdet til noen har avklart dem.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "Implementeringsansvarlig (Brutto)",
         "Lønnsansvarlig"
        ],
-       "regler_md": "Ukjent er en egen verdi og blir aldri en standardverdi [R2-ansattdata-tripletex-reai F5 regel 2]. Antatt utfasede permisjonskoder (`LEAVE_OF_ABSENCE`, `EDUCATIONAL`, `COMPASSIONATE`) krever avklaring.",
+       "regler_md": "Ukjent er en egen verdi og blir aldri en standardverdi [R2-ansattdata-tripletex-reai F5 regel 2]. Antatt utfasede permisjonskoder (`LEAVE_OF_ABSENCE`, `EDUCATIONAL`, `COMPASSIONATE`) krever avklaring. Avlønningstype utgikk i 2019 (F282 avvisning). Feltet kan leses ved import, men mappes aldri til a-meldingen og blokkerer aldri [natt/N36].",
        "data": [
         "D-Mappingregel",
         "D-Arbeidsforhold",
@@ -3795,7 +3838,8 @@
        "integrasjoner": [],
        "behov": [],
        "kilder": [
-        "R2-ansattdata-tripletex-reai F5"
+        "R2-ansattdata-tripletex-reai F5",
+        "natt/N36"
        ],
        "merknad_md": ""
       },
@@ -3842,12 +3886,13 @@
         "Lønnsansvarlig",
         "Byrå"
        ],
-       "regler_md": "Skatteetaten anbefaler videreføring (alternativ 1). Alternativ 3 bruker sluttårsak «byttet lønnssystem eller regnskapsfører» og ny ID fra dagen etter [A-marked §7.1]. Feil ID gir nye arbeidsforhold i a-ordningen [R2-ansattdata-tripletex-reai F5]. Port M krever 100 % bevarte ID-er [R3-kritikk-domene D-18].\n\n- Dato for siste lønnsendring og siste endring i stillingsprosent hentes fra kilden og settes aldri til importdatoen. Ellers viser a-meldingen endringer som ikke har skjedd.\n- Frilans- og honorararbeidsforhold rapporteres bare i måneder med utbetaling, men ID-en videreføres likevel.\n- Arbeidsforhold avsluttet før overgangen importeres som historikk og rapporteres ikke på nytt. En sluttdato som registreres etter overgangen for et løpende arbeidsforhold, rapporteres av Brutto.",
+       "regler_md": "Skatteetaten anbefaler videreføring (alternativ 1). Alternativ 3 bruker sluttårsak «byttet lønnssystem eller regnskapsfører» og ny ID fra dagen etter [A-marked §7.1]. Feil ID gir nye arbeidsforhold i a-ordningen [R2-ansattdata-tripletex-reai F5]. Port M krever 100 % bevarte ID-er [R3-kritikk-domene D-18].\n\n- Dato for siste lønnsendring og siste endring i stillingsprosent hentes fra kilden og settes aldri til importdatoen. Ellers viser a-meldingen endringer som ikke har skjedd.\n- Frilans- og honorararbeidsforhold rapporteres bare i måneder med utbetaling, men ID-en videreføres likevel.\n- Arbeidsforhold avsluttet før overgangen importeres som historikk og rapporteres ikke på nytt. En sluttdato som registreres etter overgangen for et løpende arbeidsforhold, rapporteres av Brutto.\n- Forslag til MVP: For Tripletex og ReAi tas arbeidsforhold-ID-en fra A07. ReAi-genererte ID-er hentes fra A07 før første a-melding fra Brutto. De lærte koblingene fra fase 1 (D-Personkobling) er migreringsgrunnlaget for alternativ 1. PowerOffice `ReportingId` brukes direkte, også for permisjon og permittering [natt/N35, natt/N21].",
        "data": [
         "D-Arbeidsforhold",
         "D-Permisjon",
         "D-AMelding",
-        "D-Migreringsavvik"
+        "D-Migreringsavvik",
+        "D-Personkobling"
        ],
        "integrasjoner": [
         "Skatteetaten avstemmingsrapport-API"
@@ -3858,7 +3903,9 @@
        "kilder": [
         "A-marked §7.1",
         "S-avklaringer §4 pkt. 20",
-        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/spesielle-forhold/bytte-lonnssystem"
+        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/spesielle-forhold/bytte-lonnssystem",
+        "natt/N35",
+        "natt/N21"
        ],
        "merknad_md": "Se også F-PER-20."
       },
@@ -4094,7 +4141,7 @@
         "Lønnsansvarlig",
         "Byrå"
        ],
-       "regler_md": "Trekkpålegg-API-et krever at kunden har sendt minst én a-melding fra Brutto. Alle løpende pålegg må derfor migreres manuelt med KID, saldo og kode før første lønn [R3-kritikk-domene D-23]. Avtalt trekk uten avtalereferanse blokkeres [R3-kritikk-domene D-06].",
+       "regler_md": "Trekkpålegg-API-et krever at kunden har sendt minst én a-melding fra Brutto. Alle løpende pålegg må derfor migreres manuelt med KID, saldo og kode før første lønn [R3-kritikk-domene D-23]. Avtalt trekk uten avtalereferanse blokkeres [R3-kritikk-domene D-06]. Faste trekk fra ReAi blir D-Trekk, aldri D-Trekkpalegg. Utleggstrekk hentes på nytt fra Skatteetaten eller brev, med fire øyne [natt/N21]. Forslag til MVP: Første lønnskjøring bruker manuelt registrerte trekk. Etter første a-melding sammenlignes trekkregisteret med Trekkpålegg-API-et, og avvik blir sak [natt/N26].",
        "data": [
         "D-Trekkpalegg",
         "D-Trekk",
@@ -4106,7 +4153,9 @@
        "kilder": [
         "R3-kritikk-domene D-23",
         "R3-kritikk-domene D-06",
-        "F-arkitektur §6.1"
+        "F-arkitektur §6.1",
+        "natt/N21",
+        "natt/N26"
        ],
        "merknad_md": ""
       },
@@ -5855,7 +5904,8 @@
    "id": "D-Tilskuddsprofil",
    "navn": "Tilskuddsprofil for prosjekt med ekstern finansiør",
    "omrade": "RAP",
-   "beskrivelse_md": "Regler for hvordan lønnskost rapporteres til en finansiør for et prosjekt. Knyttet 1:1 til en dimensjonsverdi av typen prosjekt. Brukes av finansiørrapport og timeark. Satser og tak må verifiseres mot gjeldende utlysning.",
+   "fase1": "Fase 1 design",
+   "beskrivelse_md": "Regler for hvordan lønnskost rapporteres til en finansiør for et prosjekt. n:1 til en dimensjonsverdi av typen prosjekt, fordi ett prosjekt kan ha flere finansiører. Finansiørfeltene ligger her og ikke i D-Dimensjonsverdi. Brukes av finansiørrapport og timeark. Satsene (1,2 promille, 700 kr, 1 100 kr, 1 695 timer og 215 dager) ligger som data i D-Regelpakke med gyldighetsår og må verifiseres mot gjeldende utlysning. Datamodellen låses nå. Ingen funksjoner i fase 1 (natt/N34).",
    "felt": [
     {
      "navn": "id",
@@ -5907,7 +5957,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "forskningsradet | horizon_europe | innovasjon_norge | helsedirektoratet | stiftelsen_dam | kommune | annet"
+     "merknad": "forskningsradet | forskningsrad_institutt | skattefunn | horizon_europe | innovasjon_norge | helsedirektoratet | stiftelsen_dam | kommune | annet"
     },
     {
      "navn": "finansior_prosjektnummer",
@@ -5933,7 +5983,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "timesats_promille | dagssats_215 | faktisk_kost | fast_sats"
+     "merknad": "nfr_faktisk | nfr_institutt_kategori | promille_sjablong | eu_dagsats_215 | faktisk_kost | fast_sats"
     },
     {
      "navn": "timesats_faktor_promille",
@@ -5946,7 +5996,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Forskningsrådet: ca. 0,8–1,1 promille av avtalt årslønn (verifiseres)."
+     "merknad": "SkatteFUNN og Innovasjon Norge: 1,2 promille av avtalt årslønn. Forskningsrådets 0,8–1,1 promille gjelder bare budsjettet."
     },
     {
      "navn": "timesats_tak",
@@ -5959,7 +6009,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Forskningsrådet: 1 100 kr per time (verifiseres)."
+     "merknad": "Forskningsrådet: 1 100 kr per time. SkatteFUNN og Innovasjon Norge: 700 kr per time."
     },
     {
      "navn": "maks_timer_per_aar",
@@ -5972,7 +6022,33 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Forskningsrådet: 1 850 (verifiseres)."
+     "merknad": "1 850 per person for Forskningsrådet, SkatteFUNN og Innovasjon Norge."
+    },
+    {
+     "navn": "aarsverk_timer",
+     "type": "heltall",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Forskningsrådet: 1 695, eller 1 600 når det kan begrunnes."
+    },
+    {
+     "navn": "tak_gjelder",
+     "type": "kode",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "prosjekt | finansior"
     },
     {
      "navn": "produktive_dager_per_aar",
@@ -6040,6 +6116,32 @@
      "merknad": ""
     },
     {
+     "navn": "signering",
+     "type": "kode",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "maanedlig | kvartalsvis | lopende. Med hvem som signerer."
+    },
+    {
+     "navn": "stotteberettigede_lonnsartgrupper",
+     "type": "kodeliste",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
      "navn": "krever_revisorbekreftelse",
      "type": "boolsk",
      "pakrevd": "Nei",
@@ -6051,6 +6153,32 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
+    },
+    {
+     "navn": "oppbevaring_aar_etter_slutt",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Forskningsrådet: 10. Styrer oppbevaringsregelen prosjektdokumentasjon."
+    },
+    {
+     "navn": "rapportert_til",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Siste låste periode."
     },
     {
      "navn": "gyldig_fra",
@@ -8023,11 +8151,163 @@
    ]
   },
   {
+   "id": "D-Kodeverk",
+   "navn": "Kodeverk (lokal kopi av eksterne kodelister)",
+   "omrade": "PLA",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Lokal, versjonert kopi av eksterne kodelister som kontrollene og valideringen bruker: Skatteetatens kodeliste-regneark og SSB Klass 145 (yrkeskatalogen), 7 (STYRK-08) og 426 (korrespondanse fra 145 til STYRK-08). Klass synkes ukentlig. Det lages en sak når 145 har koder som mangler i 426. Kan alternativt bli domenet `kodeliste` i D-Mappingregel. Avklares mot D-Mappingregel, D-Kodemapping (K3) og D-Lonnsartmapping (K2), som allerede overlapper (natt/N36, natt/N08).",
+   "felt": [
+    {
+     "navn": "id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "skatteetaten_regneark | klass_145 | klass_7 | klass_426"
+    },
+    {
+     "navn": "kodeliste",
+     "type": "tekst(60)",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kodetypen i Skatteetatens regneark, for eksempel arbeidsforholdstype."
+    },
+    {
+     "navn": "versjon",
+     "type": "tekst(20)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kode",
+     "type": "tekst(20)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tekst_nb",
+     "type": "tekst(500)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tekst_nn",
+     "type": "tekst(500)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tekst_en",
+     "type": "tekst(500)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "maal",
+     "type": "tekst(20)",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Bare for klass_426: STYRK-08-koden yrkeskoden peker til."
+    },
+    {
+     "navn": "gyldig_fra",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gyldig_til",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
    "id": "D-Personkobling",
    "navn": "Personkobling (ekstern referanse til Brutto-person)",
    "omrade": "PLA",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Kobler en persons ID i en installasjon eller et kildesystem til Bruttos person og standard arbeidsforhold. Kandidater som ikke kobles automatisk, går til koblingskø. Invariant: én ekstern referanse peker på maks én person per installasjon på en dato. Personer slås aldri sammen automatisk. Referansene beholdes etter kildebytte.",
+   "beskrivelse_md": "Kobler en persons ID i en installasjon eller et kildesystem til Bruttos person og standard arbeidsforhold. Kandidater som ikke kobles automatisk, går til koblingskø. Invariant: én ekstern referanse peker på maks én person per installasjon på en dato. Personer slås aldri sammen automatisk. Referansene beholdes etter kildebytte. Koblingen går også per arbeidsforhold, fordi Tripletex og ReAi ikke gir a-meldingens arbeidsforhold-ID. Rekkefølgen er manuell kobling, rapportert ID fra kilden, lært ID og til slutt (person, virksomhet, startdato) med ett treff på hver side. Resten går til koblingskøen. Invariant: én A07-nøkkel kobles til høyst ett arbeidsforhold i kilden per dato (natt/N35).",
    "felt": [
     {
      "navn": "id",
@@ -8079,7 +8359,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "huma | tripletex | reai | planday | utleggsappen | orglab | tikket | annet"
+     "merknad": "huma | tripletex | reai | poweroffice | planday | utleggsappen | orglab | tikket | annet"
     },
     {
      "navn": "ekstern_personreferanse",
@@ -8121,6 +8401,32 @@
      "merknad": "Hint. Automatisk kobling bare når e-posten er verifisert gjennom kundens IdP."
     },
     {
+     "navn": "ekstern_arbeidsforholdsreferanse",
+     "type": "tekst(100)",
+     "pakrevd": "Betinget",
+     "kilde": "Integrasjon:kildesystem",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kildenøkkel for arbeidsforholdet, for eksempel Tripletex `Employment.id`. Fylt betyr at koblingen gjelder et arbeidsforhold."
+    },
+    {
+     "navn": "a07_arbeidsforhold_id",
+     "type": "tekst(150)",
+     "pakrevd": "Betinget",
+     "kilde": "Integrasjon:kildesystem",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "arbeidsforholdId",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "A07-nøkkelen: arbeidsforhold-ID-en slik den er rapportert. Tekst, aldri tall. Lært ID lagres her."
+    },
+    {
      "navn": "person_id",
      "type": "uuid",
      "pakrevd": "Betinget",
@@ -8144,7 +8450,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "På arbeidsforholdsnivå: Bruttos arbeidsforhold koblingen gjelder."
     },
     {
      "navn": "metode",
@@ -8157,7 +8463,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "eksakt_ansattnr | verifisert_epost | manuell | import"
+     "merknad": "eksakt_ansattnr | verifisert_epost | manuell | import | rapportert_id | laert_id | person_virksomhet_start"
     },
     {
      "navn": "treffsikkerhet",
@@ -8390,6 +8696,71 @@
      "merknad": ""
     },
     {
+     "navn": "dpa_modell",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "direkte | byra_underdatabehandler"
+    },
+    {
+     "navn": "dpa_versjon",
+     "type": "tekst(20)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Versjonen av databehandleravtalen som gjelder."
+    },
+    {
+     "navn": "dpa_akseptert_av",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Brukeren som godtok avtalen."
+    },
+    {
+     "navn": "dpa_akseptert_tid",
+     "type": "tidsstempel",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "dpa_fullmakt_ref",
+     "type": "uuid",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fullmaktsgrunnlaget for den som godtok, for eksempel D-Fullmakt når byrået godtar for kunden."
+    },
+    {
      "navn": "celle_id",
      "type": "tekst(20)",
      "pakrevd": "Ja",
@@ -8604,7 +8975,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "personopplysning | identitet | bank | lonnsdata | helse | fagforening | trekkpalegg | adresse_beskyttet"
+     "merknad": "personopplysning | identitet | bank | lonnsdata | helse | fagforening | trekkpalegg | fravaer | adresse_beskyttet"
     },
     {
      "navn": "omfangstype",
@@ -9680,7 +10051,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "identitet | bank | trekkpalegg | fagforening | helse | adresse_beskyttet | fritekst | myndighetskvittering | ki_samtale"
+     "merknad": "identitet | bank | trekkpalegg | fagforening | helse | adresse_beskyttet | fritekst | myndighetskvittering | ki_samtale | a07_raa"
     },
     {
      "navn": "nokkeltype",
@@ -9857,7 +10228,7 @@
    "id": "D-Lagringssted",
    "navn": "Lagringssted (register over alle lagre)",
    "omrade": "SIK",
-   "beskrivelse_md": "Register over hvert sted Brutto lagrer data: database, objektlager, backup, logg, søkeindeks, kø, KI-logg og eksterne verktøy. Viser formål, dataklasser, land og underleverandør, og om lageret inneholder regnskapsmateriale. Avgjør om meldeplikt etter bokføringsforskriften § 7-5 utløses. Publiseres som datakart.",
+   "beskrivelse_md": "Register over hvert sted Brutto lagrer data: database, objektlager, backup, logg, søkeindeks, kø, KI-logg og eksterne verktøy. Viser formål, dataklasser, land og underleverandør, og om lageret inneholder regnskapsmateriale. Avgjør om meldeplikt etter bokføringsforskriften § 7-5 utløses. Publiseres som datakart. Invariant: `regnskapsmateriale = sann` krever `land = NO`, også for backup og revisjonslogg.",
    "felt": [
     {
      "navn": "id",
@@ -10125,7 +10496,7 @@
    "id": "D-Oppbevaringsregel",
    "navn": "Oppbevaringsregel per datatype",
    "omrade": "SIK",
-   "beskrivelse_md": "Regel for hvor lenge en datatype oppbevares og hva som skjer etterpå. Godkjennes av jurist. Kunden kan forlenge, aldri korte under lovens minimum. Slettejobben bruker reglene.",
+   "beskrivelse_md": "Regel for hvor lenge en datatype oppbevares og hva som skjer etterpå. Godkjennes av jurist. Kunden kan forlenge, aldri korte under lovens minimum. Slettejobben bruker reglene. Klassen `prosjektdokumentasjon` (journal, timeark og finansiørrapporter for prosjekter med D-Tilskuddsprofil) varer til 10 år etter prosjektets sluttdato (Forskningsrådet) og går foran de vanlige 60 månedene (natt/N34).",
    "felt": [
     {
      "navn": "id",
@@ -10151,7 +10522,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Eksempel: lonnskjoring, lonnsslipp, amelding, revisjonslogg, skattekort, sykmelding, trekkpalegg, ki_samtale, importrad_raadata."
+     "merknad": "Eksempel: lonnskjoring, lonnsslipp, amelding, revisjonslogg, skattekort, sykmelding, trekkpalegg, ki_samtale, importrad_raadata, prosjektdokumentasjon."
     },
     {
      "navn": "beskrivelse",
@@ -10216,7 +10587,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "regnskapsaarets_slutt | opphor_arbeidsforhold | trekk_avsluttet | inntektsaarets_slutt | opprettet | sak_lukket"
+     "merknad": "regnskapsaarets_slutt | opphor_arbeidsforhold | trekk_avsluttet | inntektsaarets_slutt | opprettet | sak_lukket | prosjekt_slutt"
     },
     {
      "navn": "elektronisk_tilgjengelig_maaneder",
@@ -10544,7 +10915,7 @@
    "id": "D-Underleverandor",
    "navn": "Underleverandør (underdatabehandler og annen leverandør)",
    "omrade": "SIK",
-   "beskrivelse_md": "Leverandører som behandler kundedata for Brutto: sky, BankID-megler, e-post og SMS, digital post, bank, KI-modell, overvåking, support og compliance-plattform. Listen er offentlig. Endringer varsles kundene 30 dager før.",
+   "beskrivelse_md": "Leverandører som behandler kundedata for Brutto: sky, BankID-megler, e-post og SMS, digital post, bank, KI-modell, overvåking, support og compliance-plattform. Listen er offentlig. Endringer varsles kundene 30 dager før. Den offentlige listen viser også ledd to.",
    "felt": [
     {
      "navn": "id",
@@ -10599,6 +10970,45 @@
      "merknad": ""
     },
     {
+     "navn": "adresse",
+     "type": "tekst(300)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "EDPB 22/2024."
+    },
+    {
+     "navn": "kontaktpunkt",
+     "type": "tekst(200)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "EDPB 22/2024."
+    },
+    {
+     "navn": "morselskap_land",
+     "type": "tekst(2)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
      "navn": "tjeneste",
      "type": "kode",
      "pakrevd": "Ja",
@@ -10623,6 +11033,19 @@
      "reai": "–",
      "huma": "–",
      "merknad": "underdatabehandler | selvstendig_behandlingsansvarlig"
+    },
+    {
+     "navn": "underleverandor_av",
+     "type": "uuid",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ledd i kjeden. Tom for Bruttos egne underleverandører. Satt for ledd to, for eksempel Microsoft under Azure."
     },
     {
      "navn": "dataklasser",

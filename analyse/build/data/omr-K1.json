@@ -117,7 +117,7 @@
         "Økonomisjef",
         "Byrå"
        ],
-       "regler_md": "- Fribeløpet er 850 000 kr i spart avgift per foretak eller konsern per år i 2026 (B-myndigheter §5.1). Det gjelder sone 1a og sektorunntatte eller vanskeligstilte foretak i sone 2–5.\n- Statsforvaltning og helseforetak har ikke fribeløp i sone 1a.\n- Samlet tak for bagatellmessig støtte er 300 000 euro over tre år (B-myndigheter §5.1).\n- Fribeløpet forbrukes per konsern. Deler flere juridiske enheter fribeløpet, må alle ligge i samme D-Konsern.",
+       "regler_md": "- Fribeløpet er 850 000 kr i spart avgift per foretak eller konsern per år i 2026 (B-myndigheter §5.1). Det gjelder sone Ia og sektorunntatte aktiviteter og foretak i økonomiske vanskeligheter i sone Ia–V (N20).\n- Statsforvaltning og helseforetak har ikke fribeløp i sone 1a.\n- Samlet tak for bagatellmessig støtte er 300 000 euro over tre år (B-myndigheter §5.1).\n- Fribeløpet forbrukes per konsern. Deler flere juridiske enheter fribeløpet, må alle ligge i samme D-Konsern.\n- Fordeling i konsern: konsernet velger hvilke selskap som bruker fribeløpet. Hvert selskap rapporterer i januar andelen andre i konsernet skal bruke, som annen bagatellmessig støtte i a-meldingen (N20).",
        "data": [
         "D-Virksomhet",
         "D-Konsern",
@@ -132,7 +132,8 @@
        "kilder": [
         "B-myndigheter §5.1",
         "C-beregning §0.1",
-        "https://www.skatteetaten.no/contentassets/e72315197e7a4e49b000a6e33fda1642/20240827-a-meldingen_v2_3.xsd"
+        "https://www.skatteetaten.no/contentassets/e72315197e7a4e49b000a6e33fda1642/20240827-a-meldingen_v2_3.xsd",
+        "natt/N20"
        ],
        "merknad_md": "A-meldingens felt er `oppgave/annenBagatellmessigStoette` (XSD v2.3). R3-kritikk-domene B3 anbefaler å holde konsern som deler fribeløp utenfor første kohort. Hva som regnes som «ett foretak» for støtte, avklares (se åpent spørsmål)."
       },
@@ -642,12 +643,13 @@
         "Prosjektleder",
         "Økonomisjef"
        ],
-       "regler_md": "- Forskningsrådet: mottaker må ha system for timeregistrering i prosjektet. Anbefalt timesats er ca. 0,8 promille av avtalt årslønn ved lave indirekte kostnader og inntil 1,1 promille ved høye. Tak 1 100 kr per time og maks 1 850 timer per år per person (D-praksis §6.4) [verifiseres mot gjeldende utlysning].\n- Horizon Europe: dagssats er årlige personalkostnader delt på 215, ganger antall dager på prosjektet. Tiden må kunne identifiseres og etterprøves med timelister eller erklæring (D-praksis §6.4). Brutto støtter derfor både timebasert fordeling og fast andel med signert erklæring.\n- Prosjekter er ikke egne arbeidsforhold i a-meldingen. Skatteetaten sier at ulike prosjekter normalt skal være ett arbeidsforhold, og at kostnadsfordeling ikke skal gi flere arbeidsforhold.",
+       "regler_md": "- Forskningsrådet: mottaker må ha system for timeregistrering i prosjektet. Timesatsen er faktisk kostnad (nominell årslønn, sosiale kostnader og indirekte kostnader) delt på 1 695 timer (1 600 kan begrunnes). 0,8–1,1 promille gjelder bare budsjettet, og institutter bruker godkjente satser per stillingskategori. Tak 1 100 kr per time og maks 1 850 timer per år per person (D-praksis §6.4, N34).\n- SkatteFUNN og Innovasjon Norge: 1,2 promille av avtalt og reell årslønn, tak 700 kr per time og 1 850 timer per år (N34).\n- Satsene ligger som data i D-Sats med gyldighetsår.\n- Horizon Europe: dagssats er årlige personalkostnader delt på 215, ganger antall dager på prosjektet. Tiden må kunne identifiseres og etterprøves med timelister eller erklæring (D-praksis §6.4). Brutto støtter derfor både timebasert fordeling og fast andel med signert erklæring.\n- Prosjekter er ikke egne arbeidsforhold i a-meldingen. Skatteetaten sier at ulike prosjekter normalt skal være ett arbeidsforhold, og at kostnadsfordeling ikke skal gi flere arbeidsforhold.",
        "data": [
         "D-Prosjektdeltakelse",
         "D-Dimensjonsverdi",
         "D-Kostnadsfordeling",
-        "D-Timeregistrering"
+        "D-Timeregistrering",
+        "D-Tilskuddsprofil"
        ],
        "integrasjoner": [],
        "behov": [
@@ -659,9 +661,10 @@
        "kilder": [
         "D-praksis §6.4",
         "https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/",
-        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/arbeidsforholdsid/"
+        "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/arbeidsforholdsid/",
+        "natt/N34"
        ],
-       "merknad_md": "Ingen konkurrent leverer en ferdig prosjektlønnsrapport per finansiør (D-praksis §6.4). Satsene for Forskningsrådet og EU er ikke kontrollert mot primærkilde i denne runden. Se også F-TID-27 og F-RAP-29."
+       "merknad_md": "Ingen konkurrent leverer en ferdig prosjektlønnsrapport per finansiør (D-praksis §6.4). Se også F-TID-27 og F-RAP-29."
       }
      ]
     },
@@ -976,7 +979,7 @@
         "HR",
         "Byrå"
        ],
-       "regler_md": "- Kontrollsiffer etter mod11. D-nummer har 4–7 i første siffer (R2-ansattdata §F5). Syntetiske testnummer fra Tenor brukes bare i test.\n- A-melding sendes ikke for en person med uverifisert fødselsnummer før skattekortet er hentet uten feil (R2-okosystem §4.4.6).\n- Fødselsnummer krypteres, og all lesing logges (S-avklaringer §2 pkt. 6).\n- Folkeregisteret brukes ikke. Arbeidsgivere har ingen egen rettighetspakke (R2-myndighetsintegrasjoner §3.16).",
+       "regler_md": "- Kontrollsiffer etter mod11. D-nummer har 4–7 i første siffer (R2-ansattdata §F5).\n- Dagens kontrollsifferregel og 2032-regelen ligger i D-Regelpakke med byttedato. Fra 2032 bærer fødselsnummeret ikke kjønn eller århundre (N19, N38).\n- H-nummer og FH-nummer avvises.\n- Produksjon avviser syntetiske testnummer, og test-tenanter godtar bare syntetiske (N38).\n- Fødselsdato utledet fra D-nummer er ikke pålitelig.\n- A-melding sendes ikke for en person med uverifisert fødselsnummer før skattekortet er hentet uten feil (R2-okosystem §4.4.6).\n- Fødselsnummer krypteres, og all lesing logges (S-avklaringer §2 pkt. 6).\n- Folkeregisteret brukes ikke. Arbeidsgivere har ingen egen rettighetspakke (R2-myndighetsintegrasjoner §3.16).",
        "data": [
         "D-Person",
         "D-Skattekort",
@@ -995,7 +998,9 @@
         "R2-ansattdata-tripletex-reai §F5",
         "R2-myndighetsintegrasjoner §3.16",
         "S-avklaringer §2",
-        "R2-okosystem §4.4.6"
+        "R2-okosystem §4.4.6",
+        "natt/N38",
+        "natt/N19"
        ],
        "merknad_md": "Tripletex har eget felt for D-nummer (`dnumber`). ReAi har trolig begge i `nationalIdentityNumber`. Huma har `identifications` med `type = national`."
       },
@@ -1409,7 +1414,7 @@
         "Lønnsansvarlig",
         "HR"
        ],
-       "regler_md": "- Det gamle arbeidsforholdet får sluttdato og `aarsakTilSluttdato = endringIOrganisasjonsstrukturEllerByttetJobbInternt`. Det nye får ny startdato (Skatteetaten, «Ny jobb i annen underenhet»).\n- Vikariat i annen underenhet: permisjon med beskrivelsen «andre ikke-lovfestede permisjoner» på det faste arbeidsforholdet, og nytt arbeidsforhold i den andre underenheten.\n- Et arbeidsforhold kan bare være knyttet til én underenhet. Derfor ligger underenheten på det stabile arbeidsforholdet (R3-kritikk-domene D-13).\n- Ansiennitet for oppsigelsesfrist løper videre.",
+       "regler_md": "- Det gamle arbeidsforholdet får sluttdato og `aarsakTilSluttdato = endringIOrganisasjonsstrukturEllerByttetJobbInternt`. Det nye starter dagen etter (Skatteetaten, «Ny jobb i annen underenhet»).\n- Vikariat i annen underenhet: permisjon med beskrivelsen «andre ikke-lovfestede permisjoner» på det faste arbeidsforholdet, og nytt arbeidsforhold i den andre underenheten.\n- Et arbeidsforhold kan bare være knyttet til én underenhet. Derfor ligger underenheten på det stabile arbeidsforholdet (R3-kritikk-domene D-13).\n- Ansiennitet for oppsigelsesfrist løper videre.",
        "data": [
         "D-Arbeidsforhold",
         "D-Stillingsperiode",
@@ -1425,9 +1430,10 @@
        "kilder": [
         "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/spesielle-forhold/ny-jobb-i-annen-virksomhet-hos-samme-arbeidsgiver/",
         "R2-ansattdata-tripletex-reai §F3 og §G4",
-        "R3-kritikk-domene D-13"
+        "R3-kritikk-domene D-13",
+        "natt/N36"
        ],
-       "merknad_md": "Skatteetatens eksempel bruker samme arbeidsforholdsID (10) i ny underenhet, mens vikariat-eksempelet bruker ny ID (25). Brutto genererer alltid ny ID, men må tåle importerte ID-er som går igjen på tvers av underenheter (åpent spørsmål)."
+       "merknad_md": "Skatteetatens eksempel for fast flytting beholder samme arbeidsforholdsID (10) i ny underenhet, mens vikariat-eksempelet bruker ny ID (25). At Brutto alltid lager ny ID, er også gyldig (N36). Brutto må tåle importerte ID-er som går igjen på tvers av underenheter. Hva ID-en er unik per, er fortsatt et åpent spørsmål."
       },
       {
        "id": "F-PER-17",
@@ -1649,14 +1655,14 @@
       {
        "id": "F-PER-24",
        "navn": "Yrkeskode",
-       "beskrivelse_md": "Brukeren velger yrkeskode fra SSBs yrkeskatalog (7 siffer, de fire første er STYRK-08). Brutto foreslår kode fra stillingen og viser beskrivelsen.\n\n- Søk på tittel og kode.\n- Varsel når en lederkode (første siffer 1) brukes for en stilling uten personal- og økonomiansvar.",
+       "beskrivelse_md": "Brukeren velger yrkeskode fra SSBs yrkeskatalog (Klass 145, 7 siffer, bygger på STYRK-98). Brutto foreslår kode fra stillingen og viser beskrivelsen.\n\n- Søk på tittel og kode.\n- Varsel når en lederkode (første siffer 1) brukes for en stilling uten personal- og økonomiansvar. Lederkodesjekken gjøres på STYRK-08-koden.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "HR",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Bare koder fra SSBs yrkeskatalog kan brukes. Koder som 0000 000 og 9999 999 gir avvisning (Skatteetaten, veiledning om yrkeskode).\n- Koden bestemmes av arbeidsoppgavene, ikke utdanning eller stillingstype.\n- Yrkeskode er påkrevd for ordinære og maritime arbeidsforhold og for frilansere. Den skal ikke oppgis for pensjon og ytelser uten arbeidsforhold.",
+       "regler_md": "- Bare koder fra SSBs yrkeskatalog kan brukes. Koder som 0000 000 og 9999 999 gir avvisning (Skatteetaten, veiledning om yrkeskode).\n- Koden bestemmes av arbeidsoppgavene, ikke utdanning eller stillingstype.\n- Yrkeskode er påkrevd for ordinære og maritime arbeidsforhold og for frilansere. Den skal ikke oppgis for pensjon og ytelser uten arbeidsforhold.\n- Yrkeskoden valideres mot Klass 145, ikke mot STYRK-08. STYRK-08 (Klass 7) brukes til visning og statistikk via korrespondansetabell 426 (N36).\n- Klass 145, 7 og 426 synkes ukentlig. Koder i 145 som mangler i 426, gir sak (N08).",
        "data": [
         "D-Stillingsperiode",
         "D-Stilling"
@@ -1670,9 +1676,11 @@
        ],
        "kilder": [
         "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/yrkeskode/",
-        "R2-ansattdata-tripletex-reai §F5"
+        "R2-ansattdata-tripletex-reai §F5",
+        "natt/N36",
+        "natt/N08"
        ],
-       "merknad_md": "Hvilken Klass-klassifikasjon som er yrkeskatalogen med 7 siffer, er ikke kontrollert [verifiseres]. Tripletex har oppslag via `/employee/employment/occupationCode`."
+       "merknad_md": "Tripletex har oppslag via `/employee/employment/occupationCode`."
       },
       {
        "id": "F-PER-25",
@@ -1710,7 +1718,7 @@
         "HR",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- `loennsansiennitet` er en dato. Den er obligatorisk for ordinære og maritime arbeidsforhold i virksomheter som følger hovedtariffavtalen i staten, kommunene og de fleste foretak i finansnæringen (Skatteetaten).\n- `loennstrinn` er obligatorisk når avtalt lønn er knyttet til lønnstrinn, for eksempel staten, finans og deler av HUK. Ikke for medlemmer av Akademikerne i staten (Skatteetaten).\n- Lønnsansiennitet skiller seg fra ansettelsestid, som bare sier hvor lenge personen har jobbet.",
+       "regler_md": "- `loennsansiennitet` er en dato. Den er obligatorisk for ordinære og maritime arbeidsforhold i virksomheter som følger hovedtariffavtalen i staten, kommunene og de fleste foretak i finansnæringen (Skatteetaten).\n- `loennstrinn` er obligatorisk når avtalt lønn er knyttet til lønnstrinn, for eksempel staten, finans og deler av HUK. Ikke for medlemmer av Akademikerne i staten (Skatteetaten). Statens hovedlønnstabell falt bort 1.5.2024, og lønn i staten angis i kroner. Om kravet fortsatt gjelder for staten, må vurderes [verifiseres] (N20).\n- Lønnsansiennitet skiller seg fra ansettelsestid, som bare sier hvor lenge personen har jobbet.",
        "data": [
         "D-Stillingsperiode",
         "D-Lonnstabell",
@@ -1725,7 +1733,8 @@
        "kilder": [
         "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/lonnsansiennitet/",
         "https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/lonnstrinn/",
-        "C-beregning §8.1"
+        "C-beregning §8.1",
+        "natt/N20"
        ],
        "merknad_md": "Hverken Tripletex eller ReAi har lønnstrinn eller ansiennitet per ansatt (R2-ansattdata §E8). Om lønnstrinnet skal ligge på stillingsperioden eller bare på lønnsavtalen (K2), må avklares mellom K1 og K2."
       },
@@ -1985,7 +1994,7 @@
       {
        "id": "F-PER-35",
        "navn": "Ansattoversikt fra a-ordningen og regnskapssystemet",
-       "beskrivelse_md": "Brutto viser alle ansatte og andre inntektsmottakere hos kunden uten at noen registrerer dem i Brutto.\n\n- Grunnlaget er inntektsmottakere og arbeidsforhold slik a-ordningen har registrert dem i avstemmingsrapporten (F-MYN-21).\n- Navn, e-post, ansattnummer, avdeling og kontonummer hentes fra regnskapssystemet når kunden har koblet det til, og når systemet har feltene (F-REG-29).\n- Personene kobles på fødselsnummer, arbeidsforhold-ID og ansattnummer. Usikre treff går til koblingskøen (F-PLA-17).\n- Oversikten viser aktive og avsluttede arbeidsforhold, stillingsprosent, yrke og hvilken kilde hvert felt kommer fra.\n- Feltene er skrivebeskyttet. Brutto blir først kilde når lønnskjøringen kommer.",
+       "beskrivelse_md": "Brutto viser alle ansatte og andre inntektsmottakere hos kunden uten at noen registrerer dem i Brutto.\n\n- Grunnlaget er `a07_arbeidsforhold`: ett øyeblikksbilde per arbeidsforhold og måned fra avstemmingsrapporten (F-MYN-21).\n- Avstemmingsrapporten har arbeidsforholdene, men navn, ansattnummer og avdeling må komme fra regnskapssystemet (F-REG-29) eller fra en navneliste. E-post hentes fra regnskapssystemet når systemet har feltet. Kontonummer hentes ikke.\n- Personer uten navnekilde vises med maskert fødselsnummer og et tilbud om å koble til regnskapssystemet eller laste opp en navneliste.\n- Personene kobles på fødselsnummer, arbeidsforhold-ID og ansattnummer. Usikre treff går til koblingskøen (F-PLA-17).\n- Oversikten viser aktive og avsluttede arbeidsforhold, stillingsprosent, yrke og arbeidsforhold-ID. Hvert felt viser kilden det kommer fra (D-Feltkilde), og uenighet mellom kilder vises som konflikt (D-Feltkonflikt).\n- Kunden kan eksportere arbeidsforhold-ID-ene. Tripletex viser ikke ID-en.\n- Et arbeidsforhold som blir borte fra A07 uten sluttdato, får status `forsvunnet` og lenke til forgjengeren når en ny ID har tatt over (ANS-18). Oversikten viser når NAV setter maskinell sluttdato.\n- Trekkoversikt per ansatt og måned med `utleggstrekk[]` fra A07: kode, beløp, dato og implisitt prosent. Den krever ingen ny tilgang, men ligger bak lønnstilgang (F-SIK-08).\n- Feltene er skrivebeskyttet. Brutto blir først kilde når lønnskjøringen kommer.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -1994,14 +2003,16 @@
         "Lønnsansvarlig",
         "Revisor"
        ],
-       "regler_md": "- Fødselsnummer og kontonummer krypteres og vises maskert (F-SIK-19).\n- A-ordningen er fasit for arbeidsforhold, stillingsprosent og yrke. Regnskapssystemet er kilde for kontaktdata og avdeling.\n- En person med flere arbeidsforhold vises med ett arbeidsforhold per linje.",
+       "regler_md": "- Fødselsnummer krypteres og vises maskert (F-SIK-19). Kontonummer trengs ikke før utbetaling og er ikke med i fase 1 (S #6).\n- A-ordningen er fasit for arbeidsforhold, stillingsprosent og yrke. Regnskapssystemet er kilde for kontaktdata og avdeling.\n- En person med flere arbeidsforhold vises med ett arbeidsforhold per linje.\n- Arbeidsforhold kobles på arbeidsforhold-ID, deretter på (fødselsnummer, underenhet, startdato) med ett treff på hver side. Resten går til koblingskøen (N35). ReAi gir `employmentId = null` for genererte ID-er og må kobles slik. Mangler `enterpriseOrganizationNumber`, slår ANS-13 til. ReAi har navn i ett felt (N21).\n- NAV setter maskinell sluttdato når et arbeidsforhold ikke er bekreftet eller avsluttet innen tre måneder (N36).\n- Permitteringer leses fra `permisjon[]` med `beskrivelse = permittering`. `permittering[]` er tom til 2030 (N36).\n- MVP: Brutto blir master for arbeidsforhold, og kilderegelen snus. Avvik mot A07 betyr da at noe er rapportert feil. ANS-04, ANS-08 og ANS-09 kjøres mot Bruttos egen a-melding før innsending. Leserne fra fase 1 gjenbrukes som importadaptere i migreringen (F-MIG-05, -06, -07, -16 og -17) (N05).",
        "data": [
         "D-Person",
         "D-Arbeidsforhold",
         "D-Stillingsperiode",
-        "D-Personbankkonto",
         "D-Personkobling",
-        "D-Avstemmingsrapport"
+        "D-Avstemmingsrapport",
+        "D-Kildeobservasjon",
+        "D-Feltkilde",
+        "D-Feltkonflikt"
        ],
        "integrasjoner": [
         "Skatteetaten Avstemmingsrapport A-melding API",
@@ -2012,9 +2023,16 @@
        "kilder": [
         "Gründerens føringer 28.10.2026 (fase 1)",
         "fase1.json P03 og P07",
-        "R2-myndighetsintegrasjoner §3.9"
+        "R2-myndighetsintegrasjoner §3.9",
+        "natt/N05 §7",
+        "natt/N03",
+        "natt/N35",
+        "natt/N36",
+        "natt/N28",
+        "natt/N01",
+        "natt/N21"
        ],
-       "merknad_md": "Ny i runde 5 for fase 1. Hvor langt tilbake Brutto henter (forslaget er 13 måneder rullerende), er ikke avklart. Hvilke arbeidsforholdsfelt avstemmingsrapporten har med, må verifiseres [verifiseres]. Se også F-PER-01 og F-PER-10."
+       "merknad_md": "Ny i runde 5 for fase 1. Hvor langt tilbake Brutto henter (forslaget er 13 måneder rullerende), er ikke avklart. Hvilke arbeidsforholdsfelt avstemmingsrapporten har med, må verifiseres [verifiseres]. Om navn og arbeidsforhold kommer med når flere måneder bestilles samtidig, må også verifiseres [verifiseres] (N03, N05). Se også F-PER-01 og F-PER-10."
       }
      ]
     }
@@ -2485,6 +2503,32 @@
      "merknad": "DAGL, REGN, REVI, LEDE fra `/enheter/{orgnr}/roller`. Viser hvem som kan godkjenne systembruker og om byrået er regnskapsfører."
     },
     {
+     "navn": "revisjonsplikt",
+     "type": "bool",
+     "pakrevd": "Nei",
+     "kilde": "Brreg",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Styrer revisorutdraget og om kontrolloppstillingen skal bekreftes av revisor (`skalBekreftesAvRevisor`). Revisoren hentes fra rollen REVI i Enhetsregisteret (N24)."
+    },
+    {
+     "navn": "foretakskategori",
+     "type": "enum(mikro, sma, mellomstore, store)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Etter regnskapsloven § 1-5 (endret 2024). Styrer hvilke notegrunnlag Brutto viser (N24)."
+    },
+    {
      "navn": "konsern",
      "type": "ref D-Konsern",
      "pakrevd": "Nei",
@@ -2587,6 +2631,32 @@
      "reai": "SalarySettingsDto.pensionProviderPeriods",
      "huma": "–",
      "merknad": "Eies av K2. Påkrevd for private arbeidsgivere med OTP-plikt."
+    },
+    {
+     "navn": "pensjonsordningstype",
+     "type": "enum(privat_otp, offentlig, ikke_pliktig, vedtak)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Settes av byrået i fase 1. Offentlig ordning undertrykker L-21a og L-21c. D-Pensjonsordning tar over i MVP (F-ORG-27, N16)."
+    },
+    {
+     "navn": "forventede_pensjonsinnretninger",
+     "type": "liste organisasjonsnummer",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "oppgave/pensjonsinnretning/identifikator",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Pensjonsinnretningene kunden forventes å oppgi i a-meldingen. Brukes av L-21 i fase 1 (N16)."
     },
     {
      "navn": "tariffavtaler",
@@ -2699,7 +2769,7 @@
    "navn": "Underenhet (virksomhet i a-meldingen)",
    "omrade": "ORG",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Underenheten i Enhetsregisteret der arbeidsforhold rapporteres og AGA beregnes. Kalles «virksomhet» i a-meldingen.\n\n- Relasjoner: n:1 D-Virksomhet, 1:n D-Arbeidsforhold, n:1 D-Kommune (via kommunenummer), 1:n D-Lokasjon (som standard).\n- Sone, kommune og beregningskode er bitemporale, fordi rettet sone gir retting av AGA (R3-kritikk-domene D-38).\n- Invarianter: et arbeidsforhold er knyttet til nøyaktig én underenhet. Arbeidsforhold kan ikke starte før oppstartsdato eller etter nedleggelse.",
+   "beskrivelse_md": "Underenheten i Enhetsregisteret der arbeidsforhold rapporteres og AGA beregnes. Kalles «virksomhet» i a-meldingen.\n\n- Relasjoner: n:1 D-Virksomhet, 1:n D-Arbeidsforhold, n:1 D-Kommune (via kommunenummer), sone fra D-Sonedel, 1:n D-Lokasjon (som standard).\n- Sone, kommune og beregningskode er bitemporale, fordi rettet sone gir retting av AGA (R3-kritikk-domene D-38).\n- Invarianter: et arbeidsforhold er knyttet til nøyaktig én underenhet. Arbeidsforhold kan ikke starte før oppstartsdato eller etter nedleggelse.",
    "felt": [
     {
      "navn": "id",
@@ -2780,6 +2850,19 @@
      "merknad": "Brreg `beliggenhetsadresse.kommunenummer`."
     },
     {
+     "navn": "koordinat",
+     "type": "punkt",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:Kartverket",
+     "historikk": "Bitemporal",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra Kartverkets adresse-API for beliggenhetsadressen. Trengs for de 12 kommunene med mer enn én sone (N20)."
+    },
+    {
      "navn": "aga_sone",
      "type": "kode",
      "pakrevd": "Ja",
@@ -2790,7 +2873,20 @@
      "tripletex": "Municipality.payrollTaxZone",
      "reai": "– (utledes)",
      "huma": "–",
-     "merknad": "Kodeliste: 1, 1a, 2, 3, 4, 4a, 5. Utledes fra D-Kommune på gyldighetsdatoen."
+     "merknad": "Kodeliste: 1, 1a, 2, 3, 4, 4a, 5. Utledes fra D-Sonedel for kommunen på gyldighetsdatoen. I delte kommuner brukes koordinaten. Sonen vises per underenhet i ansattoversikten sammen med kilden (N20)."
+    },
+    {
+     "navn": "sone_kilde",
+     "type": "enum(kommune, koordinat, overstyrt)",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Bitemporal",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hvordan sonen er funnet: kommunenummer alene, oppslag på koordinat i delt kommune, eller manuell overstyring (N20)."
     },
     {
      "navn": "aga_sone_overstyrt",
@@ -3131,7 +3227,7 @@
    "id": "D-Kommune",
    "navn": "Kommune med AGA-sone (referansedata)",
    "omrade": "ORG",
-   "beskrivelse_md": "Ny entitet (K1). Referansetabell over kommuner med sonetilhørighet per år. Brukes til å utlede sonen for underenheter og lokasjoner.\n\n- Kilder: SSB Klass «Standard for kommuneinndeling» (klassifikasjon 131) og Skatteetatens sonetabell.\n- Invarianter: én sone per kommune og dato. Sammenslåtte kommuner peker til etterfølgeren.",
+   "beskrivelse_md": "Ny entitet (K1). Referansetabell over kommuner med sonetilhørighet per år. Brukes til å utlede sonen for underenheter og lokasjoner.\n\n- Kilder: SSB Klass «Standard for kommuneinndeling» (klassifikasjon 131) og Skatteetatens kommunekatalog (CSV bak Datawrapper-tabellen, 370 rader for 2026).\n- Sonen ligger i D-Sonedel, fordi 12 kommuner har mer enn én sone. Sonene følger grunnkretser der (N20).\n- Import: kommunekatalogen for 2026 og tilbake til minst 2023, med Klass-korrespondanse for 2024-numrene. Kommuneendringer hentes fra Klass 131 (`changes`). Neste endring er 1.1.2028 (Vest-Lofoten og Gran).\n- Invarianter: sammenslåtte kommuner peker til etterfølgeren.",
    "felt": [
     {
      "navn": "kommunenummer",
@@ -3171,19 +3267,6 @@
      "reai": "–",
      "huma": "–",
      "merknad": ""
-    },
-    {
-     "navn": "aga_sone",
-     "type": "kode",
-     "pakrevd": "Ja",
-     "kilde": "Skatteetaten",
-     "historikk": "Gyldighet",
-     "sensitivitet": "Åpen",
-     "amelding": "sone",
-     "tripletex": "Municipality.payrollTaxZone",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "Om noen kommuner er delt mellom soner, avklares mot Skatteetatens tabell [verifiseres]."
     },
     {
      "navn": "gyldig_fra",
@@ -3236,6 +3319,144 @@
      "reai": "–",
      "huma": "–",
      "merknad": "Satser hardkodes aldri (C-beregning §11.2)."
+    }
+   ]
+  },
+  {
+   "id": "D-Sonedel",
+   "navn": "AGA-sone per kommune og år (referansedata)",
+   "omrade": "ORG",
+   "beskrivelse_md": "Ny entitet (N20). Sonetilhørighet per kommune og sonetabellår. En kommune har én rad per sone. I 12 kommuner gjelder mer enn én sone, og da avgjør adressen (koordinaten på D-Underenhet) hvilken sone som gjelder.\n\n- Relasjoner: n:1 D-Kommune.\n- Kilde: Skatteetatens kommunekatalog. Kilde-URL, hash og hentetidspunkt lagres på raden. D-Kilderegister gjelder per tenant og brukes ikke til referansedata.\n- Invarianter: satser og soner hardkodes aldri.",
+   "felt": [
+    {
+     "navn": "sonetabell_ar",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kommunenummer",
+     "type": "tekst(4)",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sone",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "sone",
+     "tripletex": "Municipality.payrollTaxZone",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kodeliste: 1, 1a, 2, 3, 4, 4a, 5."
+    },
+    {
+     "navn": "delomrade_tekst",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Skatteetatens kommentar om delområdet."
+    },
+    {
+     "navn": "delt_kommune",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sann når kommunen har mer enn én sone."
+    },
+    {
+     "navn": "gyldig_fra",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Skatteetaten",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gyldig_til",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Skatteetaten",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde_url",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde_hash",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "hentet_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Åpen",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
     }
    ]
   },
@@ -3953,7 +4174,7 @@
    "id": "D-Dimensjonsverdi",
    "navn": "Dimensjonsverdi (prosjekt, kostnadssted, aktivitet, egendefinert)",
    "omrade": "ORG",
-   "beskrivelse_md": "En verdi innenfor en dimensjonstype. Prosjekter kan ha finansiørattributter for prosjektlønn.\n\n- Relasjoner: n:1 D-Dimensjonstype, n:1 forelder, 1:n D-Prosjektdeltakelse, brukes i D-Kostnadsfordeling og D-Postering.\n- Invarianter: ingen ny føring etter sluttdato. Historiske linjer beholder verdien.",
+   "beskrivelse_md": "En verdi innenfor en dimensjonstype. Finansiørfeltene for prosjektlønn ligger i D-Tilskuddsprofil (K6), som er n:1 til prosjektet (N34).\n\n- Relasjoner: n:1 D-Dimensjonstype, n:1 forelder, 1:n D-Prosjektdeltakelse, 1:n D-Tilskuddsprofil (K6), brukes i D-Kostnadsfordeling og D-Postering.\n- Invarianter: ingen ny føring etter sluttdato. Historiske linjer beholder verdien.",
    "felt": [
     {
      "navn": "id",
@@ -4097,71 +4318,6 @@
      "reai": "ProjectRes.customerId",
      "huma": "–",
      "merknad": ""
-    },
-    {
-     "navn": "finansior",
-     "type": "tekst",
-     "pakrevd": "Nei",
-     "kilde": "Bruker",
-     "historikk": "Gyldighet",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "F.eks. Forskningsrådet, EU Horizon Europe, Innovasjon Norge, Helsedirektoratet, Stiftelsen Dam."
-    },
-    {
-     "navn": "finansior_prosjektnummer",
-     "type": "tekst",
-     "pakrevd": "Nei",
-     "kilde": "Bruker",
-     "historikk": "Nei",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "Project.contractReference [verifiseres]",
-     "reai": "–",
-     "huma": "–",
-     "merknad": ""
-    },
-    {
-     "navn": "kostnadsmodell",
-     "type": "enum(nfr_timesats, eu_dagsats_215, faktisk_kost, prosent)",
-     "pakrevd": "Nei",
-     "kilde": "Bruker",
-     "historikk": "Gyldighet",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "Styrer beregning av timesats i prosjektlønnsrapporten."
-    },
-    {
-     "navn": "timesats_tak",
-     "type": "beløp",
-     "pakrevd": "Nei",
-     "kilde": "Bruker",
-     "historikk": "Gyldighet",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "NFR: 1 100 kr per time [verifiseres]."
-    },
-    {
-     "navn": "maks_timer_per_aar_per_person",
-     "type": "heltall",
-     "pakrevd": "Nei",
-     "kilde": "Bruker",
-     "historikk": "Gyldighet",
-     "sensitivitet": "Intern",
-     "amelding": "–",
-     "tripletex": "–",
-     "reai": "–",
-     "huma": "–",
-     "merknad": "NFR: 1 850 timer [verifiseres]."
     },
     {
      "navn": "stengt_etter",
@@ -4554,7 +4710,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Fra årslønn og kostnadsmodell. NFR: 0,8–1,1 promille av årslønn [verifiseres]."
+     "merknad": "Fra årslønn og kostnadsmetoden i D-Tilskuddsprofil. NFR: faktisk kostnad delt på 1 695 timer. SkatteFUNN og Innovasjon Norge: 1,2 promille av årslønn, tak 700 kr (N34)."
     },
     {
      "navn": "kostpris_intern",
@@ -5129,7 +5285,7 @@
     },
     {
      "navn": "betalingskanal",
-     "type": "enum(fil, bank_api)",
+     "type": "enum(fil, bank_api, betalingspartner)",
      "pakrevd": "Ja",
      "kilde": "Bruker",
      "historikk": "Gyldighet",
@@ -5138,7 +5294,7 @@
      "tripletex": "–",
      "reai": "CompanyBankRes.providerType",
      "huma": "–",
-     "merknad": "Først fil, senere bank-API (BET, K4)."
+     "merknad": "Kanalnøytral modell uten leverandørnavn. Ett betalingsforslag går ut gjennom adaptere: fil, betalingspartner (open banking-leverandør, B40), multibank og regnskapssystemets bankmodul (BET, K4, N09)."
     },
     {
      "navn": "bankavtale_id",
@@ -5199,7 +5355,7 @@
    "navn": "Person",
    "omrade": "PER",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Et menneske som får lønn, honorar eller annen ytelse, eller som er planlagt ansatt. Felles for hele leietakeren.\n\n- Relasjoner: 1:n D-Arbeidsforhold, 1:n D-Kontaktinfo, 1:n D-Personbankkonto, 1:n D-Parorende, 1:n D-Barn, 1:n D-Skattetilknytning, 1:n D-Skattekort (K2), 1:n D-Dokument.\n- Invarianter: fødselsnummer eller D-nummer er unikt per leietaker. Dødsdato låser utbetalingsmåte og lønnsartvalg (C-beregning §11.2).\n- Navn og identitet har gyldighetshistorikk. Kontaktinfo har bare revisjonslogg.",
+   "beskrivelse_md": "Et menneske som får lønn, honorar eller annen ytelse, eller som er planlagt ansatt. Felles for hele leietakeren.\n\n- Relasjoner: 1:n D-Arbeidsforhold, 1:n D-Kontaktinfo, 1:n D-Personbankkonto, 1:n D-Parorende, 1:n D-Barn, 1:n D-Skattetilknytning, 1:n D-Skattekort (K2), 1:n D-Dokument.\n- Invarianter: fødselsnummer eller D-nummer er unikt per leietaker. Dødsdato låser utbetalingsmåte og lønnsartvalg (C-beregning §11.2).\n- Navn og identitet har gyldighetshistorikk. Kontaktinfo har bare revisjonslogg.\n- MVP: navn har Brutto som kilde og bekreftes med BankID når den ansatte aktiverer ansattportalen (N05, N38). Når Huma kobles på som HR-master, avgjør kilderegelen i D-Kilderegister hvilken kilde som vinner for navn.",
    "felt": [
     {
      "navn": "id",
@@ -5485,7 +5641,7 @@
      "tripletex": "Employee.id",
      "reai": "EmployeeRes.id + personId",
      "huma": "users.id",
-     "merknad": "Kilde-ID-er for idempotent import og kobling. Beholdes etter kildebytte (OK-172)."
+     "merknad": "Kilde-ID-er for idempotent import og kobling. Beholdes etter kildebytte (OK-172). Regnskapssystemets ansatt-id per integrasjon (Tripletex `employee.id`, PowerOffice `EmployeeNo`) trengs bare for personer med reskontrolinjer og ligger i D-Personkobling (N02)."
     }
    ]
   },
@@ -5683,7 +5839,7 @@
    "id": "D-Personbankkonto",
    "navn": "Personlig bankkonto (versjon)",
    "omrade": "PER",
-   "fase1": "Fase 1",
+   "fase1": "Fase 1 design",
    "beskrivelse_md": "Konto lønn utbetales til. Hver endring er en ny versjon med verifisering.\n\n- Relasjoner: n:1 D-Person, brukes av D-Betalingslinje (K4).\n- Invarianter: høyst én aktiv konto for nettolønn per person og dato (med mindre deling er avtalt). En versjon i karantene eller uverifisert kan ikke brukes. Den som verifiserte kontoen, kan ikke godkjenne første betaling til den (S-avklaringer §5 pkt. 24).\n\nSe også D-Kontoendring (BET), som eier endringsflyten og kontonummer-skjoldet.",
    "felt": [
     {
@@ -6393,7 +6549,7 @@
    "navn": "Arbeidsforhold (stabil del)",
    "omrade": "PER",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Forholdet mellom en person og én underenhet i én juridisk enhet. Den stabile delen ligger her. Innhold som endres over tid, ligger i D-Stillingsperiode.\n\n- Relasjoner: n:1 D-Person, n:1 D-Virksomhet, n:1 D-Underenhet, 1:n D-Stillingsperiode, 1:n D-Kostnadsfordeling, 1:n D-Lonnsavtale (K2), 1:n D-Permisjon og D-Fravaer (K3), n:m D-Pensjonsmedlemskap (K2), 1:n D-Lederrelasjon, 0:1 forrige arbeidsforhold.\n- Underenhet og type ligger her, ikke på versjonen. Bytte av underenhet gir nytt arbeidsforhold (R3-kritikk-domene D-13).\n- Invarianter: arbeidsforholdId gjenbrukes aldri for et nytt arbeidsforhold. Start ≤ slutt. Lønnslinjer bare innenfor aktiv periode, med unntak for etterbetaling, feriepenger og sluttoppgjør (C-beregning §11.2).\n- Bitemporal.",
+   "beskrivelse_md": "Forholdet mellom en person og én underenhet i én juridisk enhet. Den stabile delen ligger her. Innhold som endres over tid, ligger i D-Stillingsperiode.\n\n- Relasjoner: n:1 D-Person, n:1 D-Virksomhet, n:1 D-Underenhet, 1:n D-Stillingsperiode, 1:n D-Kostnadsfordeling, 1:n D-Lonnsavtale (K2), 1:n D-Permisjon og D-Fravaer (K3), n:m D-Pensjonsmedlemskap (K2), 1:n D-Lederrelasjon, 0:1 forrige arbeidsforhold.\n- Underenhet og type ligger her, ikke på versjonen. Bytte av underenhet gir nytt arbeidsforhold (R3-kritikk-domene D-13).\n- Nøkkel: (opplysningspliktig, underenhet, person, `arbeidsforhold_id`) (N05).\n- Sammenstilt visning: hvert felt peker på observasjonen det kommer fra (D-Kildeobservasjon, D-Feltkilde).\n- Invarianter: arbeidsforholdId gjenbrukes aldri for et nytt arbeidsforhold. Start ≤ slutt. Lønnslinjer bare innenfor aktiv periode, med unntak for etterbetaling, feriepenger og sluttoppgjør (C-beregning §11.2).\n- Bitemporal.",
    "felt": [
     {
      "navn": "id",
@@ -6416,10 +6572,10 @@
      "historikk": "Nei",
      "sensitivitet": "Intern",
      "amelding": "arbeidsforhold/arbeidsforholdId",
-     "tripletex": "Employment.employmentId",
-     "reai": "EmployeeEmploymentReportingRes.employmentId",
+     "tripletex": "– (A07 er kilden. `Employment.employmentId` er bare et importert hint)",
+     "reai": "EmployeeEmploymentReportingRes.employmentId når satt, ellers A07",
      "huma": "–",
-     "merknad": "Påkrevd i praksis for alle typer unntatt pensjon. Genereres unik. Importert ID beholdes (metode 1)."
+     "merknad": "Påkrevd i praksis for alle typer unntatt pensjon. Genereres unik. Importert ID beholdes (metode 1). Lagres som tekst nøyaktig slik den kommer, med store og små bokstaver og ledende nuller, aldri som tall. Sortering skiller store og små bokstaver. Skatteetaten: høyst 150 tegn av typen `a-z A-Z 0-9 - _ .`, unik bare per person og virksomhet. A07 er fasit for rapportert ID (N35, N36)."
     },
     {
      "navn": "person",
@@ -6601,7 +6757,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Ved intern flytting, overdragelse eller typebytte."
+     "merknad": "Ved intern flytting, overdragelse eller typebytte. Lenker også til forgjengeren når en ny arbeidsforhold-ID har tatt over uten at den gamle er avsluttet (ANS-18, N36)."
     },
     {
      "navn": "forventet_sluttdato",
@@ -6748,7 +6904,7 @@
     },
     {
      "navn": "status",
-     "type": "enum(planlagt, aktiv, avsluttet, feilregistrert)",
+     "type": "enum(planlagt, aktiv, avsluttet, forsvunnet, feilregistrert)",
      "pakrevd": "Ja",
      "kilde": "Beregnet",
      "historikk": "Nei",
@@ -6757,7 +6913,20 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "`forsvunnet`: borte fra A07 uten sluttdato (ANS-04, ANS-18, N36)."
+    },
+    {
+     "navn": "nav_maskinell_sluttdato_forventet",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Dato NAV setter som sluttdato hvis arbeidsforholdet ikke er bekreftet eller avsluttet innen tre måneder: siste dag i måneden det sist ble bekreftet. Vises i ansattoversikten (N36)."
     },
     {
      "navn": "kilde",
@@ -6835,7 +7004,7 @@
      "tripletex": "Employment.id",
      "reai": "EmployeeEmploymentRelationRes.id",
      "huma": "positions.id",
-     "merknad": "Kilde-ID-er for idempotent import og kobling. Beholdes etter kildebytte (OK-172)."
+     "merknad": "Kilde-ID-er for idempotent import og kobling. Beholdes etter kildebytte (OK-172). Skiller `rapportert_id` (ID-en i a-meldingen) og `intern_id` (kildesystemets nøkkel, for eksempel Tripletex `Employment.id`) (N35)."
     }
    ]
   },
@@ -6844,7 +7013,7 @@
    "navn": "Stillingsperiode (versjon av arbeidsforholdet)",
    "omrade": "PER",
    "fase1": "Fase 1",
-   "beskrivelse_md": "Innholdet i arbeidsforholdet for en periode: stillingsprosent, arbeidstid, yrke, ansettelsesform, stilling og tariff. Tilsvarer Tripletex `EmploymentDetails` og ReAi `employmentLines`.\n\n- Relasjoner: n:1 D-Arbeidsforhold, n:1 D-Stilling, n:1 D-Organisasjonsenhet, n:1 D-Lokasjon, n:1 D-Tariffavtale, n:1 D-Arbeidstidsordning (K3, arbeidsplan).\n- Bitemporal. Versjonene overlapper ikke for samme registreringstid.\n- Organisasjonstilhørighet ligger her, så historikk følger arbeidsforholdet og ikke personen.",
+   "beskrivelse_md": "Innholdet i arbeidsforholdet for en periode: stillingsprosent, arbeidstid, yrke, ansettelsesform, stilling og tariff. Tilsvarer Tripletex `EmploymentDetails` og ReAi `employmentLines`.\n\n- Relasjoner: n:1 D-Arbeidsforhold, n:1 D-Stilling, n:1 D-Organisasjonsenhet, n:1 D-Lokasjon, n:1 D-Tariffavtale, n:1 D-Arbeidstidsordning (K3, arbeidsplan).\n- Bitemporal. Versjonene overlapper ikke for samme registreringstid.\n- Fase 1: stillingsperiodene utledes av månedsbildene i A07 (`a07_arbeidsforhold`). `registrert_fra` er hentetidspunktet (N05, D08).\n- Organisasjonstilhørighet ligger her, så historikk følger arbeidsforholdet og ikke personen.",
    "felt": [
     {
      "navn": "id",
@@ -7293,6 +7462,306 @@
      "type": "enum(bruker, import, huma, masseendring)",
      "pakrevd": "Ja",
      "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Kildeobservasjon",
+   "navn": "Kildeobservasjon",
+   "omrade": "PER",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Én observasjon av en person eller et arbeidsforhold fra én kilde, i én periode og fra én henting. Mellomlaget i tre lag: rådata (D07, uendret og kryptert) → observasjoner per kilde → sammenstilt visning (D-Person, D-Arbeidsforhold, D-Stillingsperiode). Visningen kan alltid bygges på nytt fra observasjonene (N05).\n\n- Relasjoner: n:1 D-Person eller D-Arbeidsforhold når observasjonen er koblet, n:1 rådata (D-Avstemmingsrapport, henting eller importrad), 1:n D-Feltkilde.\n- Invarianter: en observasjon endres aldri. Ny henting gir ny rad.\n- Avgrensning: D-Kilderegister (PLA) sier hvilken kilde som vinner. D-Personkobling (PLA) kobler en ekstern ID til en person. D-Kildeobservasjon lagrer bare hva kilden sa.",
+   "felt": [
+    {
+     "navn": "id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "enum(a07, tripletex, poweroffice, reai, import, bruker)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kildereferanse",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Rapport-, hentings- eller importrad-ID."
+    },
+    {
+     "navn": "periode",
+     "type": "tekst(7)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "ÅÅÅÅ-MM."
+    },
+    {
+     "navn": "hentet_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "ekstern_id",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "ID-en i kilden."
+    },
+    {
+     "navn": "normaliserte_felt",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Normaliserte verdier fra kilden. Fødselsnummer krypteres."
+    }
+   ]
+  },
+  {
+   "id": "D-Feltkilde",
+   "navn": "Feltkilde",
+   "omrade": "PER",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Sier hvilken observasjon og kilde som vant for ett felt i den sammenstilte visningen. Det gjør det mulig å vise «Kilde: A07 september 2026» eller «Kilde: Tripletex, hentet 28.10» (N05).\n\n- Relasjoner: n:1 D-Kildeobservasjon. Gjelder ett felt på D-Person, D-Arbeidsforhold eller D-Stillingsperiode. Regelen som avgjør vinneren, ligger i D-Kilderegister (PLA).\n- Invarianter: akkurat én vinner per felt og tidspunkt.\n- Kan lagres som JSONB på entiteten. Utviklerne avgjør.",
+   "felt": [
+    {
+     "navn": "entitet",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "D-Person, D-Arbeidsforhold eller D-Stillingsperiode."
+    },
+    {
+     "navn": "entitet_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "felt",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "observasjon",
+     "type": "ref D-Kildeobservasjon",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "regel",
+     "type": "ref D-Kilderegister",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kilderegelen som ga vinneren."
+    },
+    {
+     "navn": "tidspunkt",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Feltkonflikt",
+   "navn": "Feltkonflikt",
+   "omrade": "PER",
+   "fase1": "Fase 1",
+   "beskrivelse_md": "Et felt der to kilder har ulike verdier. Brutto retter ikke i kildesystemet i fase 1. Konflikten vises og blir et avvik av typen `kildekonflikt` (N05).\n\n- Relasjoner: gjelder ett felt på D-Person, D-Arbeidsforhold eller D-Stillingsperiode, n:m D-Kildeobservasjon, 0..1 D-Avvik.\n- Kan være en undertype av D-Avvik. Utviklerne avgjør.",
+   "felt": [
+    {
+     "navn": "id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "entitet",
+     "type": "kode",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "entitet_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "felt",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "verdier_per_kilde",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Verdien fra hver kilde med observasjonen den kommer fra."
+    },
+    {
+     "navn": "status",
+     "type": "enum(apen, akseptert, forklart)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kommentar",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
      "historikk": "Nei",
      "sensitivitet": "Intern",
      "amelding": "–",

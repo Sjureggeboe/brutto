@@ -20,7 +20,7 @@
         "Byrå",
         "Systemforvalter"
        ],
-       "regler_md": "- Sykelønn er 2018 og 2019. Utlegg er 1000 «Gjeld til ansatte». Feriepenger er 2015–2017. Styrehonorar er 2020 (S §6 pkt. 25 og 27).\n- Standardkontoene kommer fra Sjurs A07-mapping og kan endres per kunde. Lønnsarter utenfor utvalget får konto etter gruppen sin (S §6 pkt. 27).\n- Lovbestemte egenskaper på standardlønnsarter (a-meldingskode, trekk, AGA, fordel) kan ikke endres av kunden. Kunden endrer tekst, konto og dimensjonsregel (F §1.8).\n- Katalogen versjoneres sammen med regelpakken. Ny versjon av Skatteetatens kodeliste gir ny katalogversjon med endringsliste.\n- Lønnsbeskrivelser som er utgått i kodelisten (for eksempel `administrativForpleining`) kan ikke velges på nye lønnsarter.",
+       "regler_md": "- Sykelønn er 2018 og 2019. Utlegg er 1000 «Gjeld til ansatte». Feriepenger er 2015–2017. Styrehonorar er 2020 (S §6 pkt. 25 og 27).\n- Standardkontoene kommer fra Sjurs A07-mapping og kan endres per kunde. Lønnsarter utenfor utvalget får konto etter gruppen sin (S §6 pkt. 27).\n- Lovbestemte egenskaper på standardlønnsarter (a-meldingskode, trekk, AGA, fordel) kan ikke endres av kunden. Kunden endrer tekst, konto og dimensjonsregel (F §1.8).\n- Katalogen versjoneres sammen med regelpakken. Ny versjon av Skatteetatens kodeliste gir ny katalogversjon med endringsliste.\n- Lønnsbeskrivelser som er utgått i kodelisten (for eksempel `administrativForpleining`) kan ikke velges på nye lønnsarter.\n- De 26 standardlønnsartene får `fordel`, `amelding_beskrivelse`, `trekkpliktig`, `aga_pliktig` og `feriepengegrunnlag` fra beskrivelsesreglene i A07-mappingen. Flaggene valideres mot a-meldingens inntektskombinasjoner (MVP, N23).",
        "data": [
         "D-Lonnsart",
         "D-Regelpakke"
@@ -36,7 +36,8 @@
         "S-avklaringer §6 pkt. 25–27",
         "C-beregning §1.2",
         "F-arkitektur §1.8",
-        "https://data.skatteetaten.no/web/datakatalog/kodeliste/614aa2ed-d2d2-48ee-9341-9834f9b73567"
+        "https://data.skatteetaten.no/web/datakatalog/kodeliste/614aa2ed-d2d2-48ee-9341-9834f9b73567",
+        "natt/N23"
        ],
        "merknad_md": "Betydningen av 1001, 1002, 2001, 2002, 2028, 3008, 3009, 3016, 6002 og 6011 står ikke i kildene og må hentes fra Sjurs A07-mapping [verifiseres]. Kodelisten for lønnsbeskrivelse v1.2 har 82 koder, hvorav 77 er gyldige (hentet 28.10.2026)."
       },
@@ -167,7 +168,7 @@
         "Økonomisjef",
         "Byrå"
        ],
-       "regler_md": "- Fasit er Sjurs standardkontering (S §6 pkt. 27): fastlønn 5000, styrehonorar 5011, feriepenger 2940, gruppeliv 5250 mot 5290, kost 7150, km 7100, skattetrekk 2600, utleggstrekk 2610, bidragstrekk 2620, pensjonstrekk 2690, fagforening 2650, forskudd 2910, netto 2930, AGA 5400/2770, avsetning feriepenger 5020/2940 og AGA av feriepenger 5405/2785.\n- Konteringen i C §11.3 avviker og skal ikke brukes (R3 D-14).\n- Naturalytelser posteres mot motkonto (nullsum).\n- Nettolønn per ansatt posteres samlet per kjøring på 2930 og vises ikke i hovedboken uten lønnstilgang (S §2 pkt. 9).\n- 5800 (refusjon sykepenger) er helseopplysning og skjermes (S §2 pkt. 8).",
+       "regler_md": "- Fasit er Sjurs standardkontering (S §6 pkt. 27): fastlønn 5000, styrehonorar 5011, feriepenger 2940, gruppeliv 5250 mot 5290, kost 7150, km 7100, skattetrekk 2600, utleggstrekk 2610, bidragstrekk 2620, pensjonstrekk 2690, fagforening 2650, forskudd 2910, netto 2930, AGA 5400/2770, avsetning feriepenger 5020/2940 og AGA av feriepenger 5405/2785.\n- Konteringen i C §11.3 avviker og skal ikke brukes (R3 D-14).\n- Naturalytelser posteres mot motkonto (nullsum).\n- Nettolønn per ansatt posteres samlet per kjøring på 2930 og vises ikke i hovedboken uten lønnstilgang (S §2 pkt. 9).\n- 5800 (refusjon sykepenger) er helseopplysning og skjermes (S §2 pkt. 8).\n- Lønnsart → konto og konto → A07-gruppe må gi samme gruppe for hver standardlønnsart (N23).",
        "data": [
         "D-Lonnsart",
         "D-Kontomapping",
@@ -183,7 +184,8 @@
        "kilder": [
         "S-avklaringer §6 pkt. 27–28, §2 pkt. 8–9",
         "R3-kritikk-domene D-14",
-        "C-beregning §11.3"
+        "C-beregning §11.3",
+        "natt/N23"
        ],
        "merknad_md": "Overlapp med REG: lønnsarten har standardkonto. Mapping per regnskapssystem og per juridisk enhet eies av REG (D-Kontomapping). Se også F-ORG-18 og F-REG-08."
       },
@@ -533,7 +535,7 @@
       {
        "id": "F-LON-19",
        "navn": "Tariffbibliotek med lønnsstiger",
-       "beskrivelse_md": "Tariffavtaler lagres som data: avtaleområde, lønnsstiger eller lønnstabeller, trinn eller ansiennitet, beløp og gyldig fra-dato.\nBrutto leverer et delt bibliotek for de vanligste avtalene (Virke HUK, NHO Geneo, KS-lignende stiger og statens lønnstabell). Kunden eller byrået kan legge inn egne.\nTabeller importeres fra CSV eller JSON med feltene tariff, tabell, trinn eller ansiennitet, beløp og gyldig fra.",
+       "beskrivelse_md": "Tariffavtaler lagres som data: avtaleområde, lønnsstiger eller lønnstabeller, trinn eller ansiennitet, beløp og gyldig fra-dato.\nBrutto leverer et delt bibliotek for de vanligste avtalene (Virke HUK, NHO Geneo og KS-lignende stiger). Kunden eller byrået kan legge inn egne.\nTabeller importeres fra CSV eller JSON med feltene tariff, tabell, trinn eller ansiennitet, beløp og gyldig fra.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -542,7 +544,7 @@
         "Byrå",
         "Lønnsfaglig ansvarlig (Brutto)"
        ],
-       "regler_md": "- Satser legges inn fra protokollene som data, ikke som kode (C §8.2).\n- Virke HUK følger offentlige lønnsstiger. KS har garantilønn per stillingsgruppe og ansiennitet til 16 år (C §8.1–8.2).\n- En ny tabellversjon gjelder fra virkningsdatoen og gir retro for berørte arbeidsforhold.\n- Byråer trenger delte bibliotek på leietakernivå (C §8.2).",
+       "regler_md": "- Satser legges inn fra protokollene som data, ikke som kode (C §8.2).\n- Virke HUK følger offentlige lønnsstiger. KS har garantilønn per stillingsgruppe og ansiennitet til 16 år (C §8.1–8.2).\n- En ny tabellversjon gjelder fra virkningsdatoen og gir retro for berørte arbeidsforhold.\n- Byråer trenger delte bibliotek på leietakernivå (C §8.2).\n- Statens hovedlønnstabell (A-tabellen) falt bort 1.5.2024. Lønn i staten angis i kroner (N20).",
        "data": [
         "D-Tariffavtale",
         "D-Lonnstabell"
@@ -554,7 +556,8 @@
        "kilder": [
         "C-beregning §8",
         "D-praksis §2.2 og §7",
-        "R2-virksomhet VK-06"
+        "R2-virksomhet VK-06",
+        "natt/N20"
        ],
        "merknad_md": "Eksakte satser for 2026 er ikke hentet. ORG nevner tariffavtaler i sitt oppsett, men entiteten mangler i fellesisten. K2 legger til D-Tariffavtale."
       },
@@ -1268,7 +1271,7 @@
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- Satser 2026: sone 1 14,1 %, 1a 10,6 % til fribeløpet er brukt, 2 10,6 %, 3 6,4 %, 4 5,1 %, 4a 7,9 % og 5 0 % (C §0.1). Kodelisten har sonene 1, 1a, 2, 3, 4, 4a og 5.\n- Fribeløpet er 850 000 kr i spart avgift. C #17 gir AGA 131 000,00 når fribeløpet brukes opp.\n- Soneskifte gjelder fra måneden etter flytting. Ambulerende arbeid over halvparten av dagene i annen sone gir den sonens sats på den andelen (C #18).\n- Refusjon fra NAV trekkes fra med samme sats. Kunden velger metode: i forskutteringsmåneden eller når K27 viser mottatt beløp. Aldri begge (R3 D-08, GC-18).\n- A-meldingen har `arbeidsgiveravgift.loennOgGodtgjoerelse[]` og `tilskuddOgPremieTilPensjon[]` med `beregningskodeForArbeidsgiveravgift`, `sone`, `avgiftsgrunnlagBeloep` og `prosentsatsForAvgiftsberegning`, og `fradragIGrunnlagetForSone[]` (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- AGA-pliktige ytelser skal kunne vises per sats og sone (bokføringsforskriften § 3-1 nr. 9).",
+       "regler_md": "- Satser 2026: sone 1 14,1 %, 1a 10,6 % til fribeløpet er brukt, 2 10,6 %, 3 6,4 %, 4 5,1 %, 4a 7,9 % og 5 0 % (C §0.1). Kodelisten har sonene 1, 1a, 2, 3, 4, 4a og 5.\n- Fribeløpet er 850 000 kr i spart avgift. C #17 gir AGA 131 000,00 når fribeløpet brukes opp.\n- Soneskifte gjelder fra måneden etter flytting. Ambulerende arbeid over halvparten av dagene i annen sone gir den sonens sats på den andelen (C #18).\n- Refusjon fra NAV trekkes fra med samme sats. Kunden velger metode: i forskutteringsmåneden eller når K27 viser mottatt beløp. Aldri begge (R3 D-08, GC-18).\n- A-meldingen har `arbeidsgiveravgift.loennOgGodtgjoerelse[]` og `tilskuddOgPremieTilPensjon[]` med `beregningskodeForArbeidsgiveravgift`, `sone`, `avgiftsgrunnlagBeloep` og `prosentsatsForAvgiftsberegning`, og `fradragIGrunnlagetForSone[]` (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- AGA-pliktige ytelser skal kunne vises per sats og sone (bokføringsforskriften § 3-1 nr. 9).\n- Fribeløpet gjelder også sektorunntatte aktiviteter og foretak i økonomiske vanskeligheter i sone Ia–V. I konsern fordeles det via annen bagatellmessig støtte rapportert i januar (F-ORG-04, N20).",
        "data": [
         "D-Lonnslinje",
         "D-Akkumulator",
@@ -1289,7 +1292,8 @@
         "C-beregning §0.1, §2.2 steg 13, #17, #18",
         "R3-kritikk-domene D-08",
         "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
-        "https://lovdata.no/forskrift/2004-12-01-1558"
+        "https://lovdata.no/forskrift/2004-12-01-1558",
+        "natt/N20"
        ],
        "merknad_md": "Eierskap: AGA er ikke tildelt noe område i kartet. K2 tar beregningen i KJO. MYN eier rapporteringen og ORG eier sone per underenhet."
       },
@@ -1303,7 +1307,7 @@
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- Avsetning 5020 mot 2940 og AGA av feriepenger 5405 mot 2785 (S §6 pkt. 27).\n- AGA av avsetningen beregnes med sonen som gjelder for arbeidsforholdet når avsetningen gjøres [verifiseres praksis ved soneskifte].\n- Avsetning og utbetalte feriepenger avstemmes mot 2940 ved årsslutt (D §2.6).",
+       "regler_md": "- Avsetning 5020 mot 2940 og AGA av feriepenger 5405 mot 2785 (S §6 pkt. 27).\n- AGA av avsetningen beregnes med sonen som gjelder for arbeidsforholdet når avsetningen gjøres [verifiseres praksis ved soneskifte].\n- Avsetning og utbetalte feriepenger avstemmes mot 2940 ved årsslutt (D §2.6).\n- Feriepenger og avsetningen regnes i øre per ansatt med kommersiell avrunding, som i F-KJO-37 (N13 §2).",
        "data": [
         "D-Feriepengegrunnlag",
         "D-Lonnslinje",
@@ -1318,7 +1322,8 @@
        "kilder": [
         "C-beregning §2.1 steg 14",
         "S-avklaringer §6 pkt. 27",
-        "D-praksis §2.6"
+        "D-praksis §2.6",
+        "natt/N13 §2"
        ],
        "merknad_md": ""
       },
@@ -1389,7 +1394,7 @@
         "Systemforvalter",
         "Revisor"
        ],
-       "regler_md": "- Lønnsslipplinjer avrundes til øre, og netto er summen av avrundede linjer (F §1.10).\n- `forskuddstrekk.beloep` og `utleggstrekk.beloep` er heltall i a-meldingen (`BeloepSomHeltall`). `inntekt.beloep` og `fradrag.beloep` er desimaltall (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- Tabelltrekk gir hele kroner. Avrunding av prosenttrekk må verifiseres (C §13 pkt. 2).\n- AGA beregnes på summen per sone og måned, ikke per ansatt (F §1.10).",
+       "regler_md": "- Lønnsslipplinjer avrundes til øre, og netto er summen av avrundede linjer (F §1.10).\n- `forskuddstrekk.beloep` og `utleggstrekk.beloep` er heltall i a-meldingen (`BeloepSomHeltall`). `inntekt.beloep` og `fradrag.beloep` er desimaltall (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- Avrundingstabellen ligger som data i D-Regelpakke (N13 §2). Prosenttrekk rundes ned på grunnlag og trekk (skattebetalingsforskriften §§ 5-10-4 og 5-5-4). Fagforeningskontingent som fradrag rundes opp (§ 5-9-1). Skatte- og avgiftskrav rundes ned (§ 10-4-4). Tabelltrekk gir hele kroner.\n- I a-meldingen er trekk og «AGA å betale» (`sumArbeidsgiveravgift`) heltall.\n- AGA beregnes på summen per sone og måned, ikke per ansatt (F §1.10).",
        "data": [
         "D-Regelpakke",
         "D-Lonnslinje"
@@ -1399,7 +1404,8 @@
        "kilder": [
         "F-arkitektur §1.10",
         "C-beregning §13",
-        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
+        "natt/N13 §2"
        ],
        "merknad_md": "Nytt funn: trekkbeløp er heltall i a-meldingens JSON-skjema. Det støtter avrunding av trekk til hele kroner."
       },
@@ -1480,7 +1486,7 @@
         "Byrå",
         "Revisor"
        ],
-       "regler_md": "- Blokkerende avvik hindrer godkjenning. Advarsler må kvitteres.\n- Terskler kommer fra kundens oppsett eller byråmalen (BY-04).\n- Forhåndsvalidering mot a-meldingens forretningsregler (blant annet F529 og F532) kjøres før godkjenning. MYN eier reglene (VK-22).\n- Kontrollen «OTP-kunde uten premie i terminen» hører med (R3 D-01).\n- Lønnsart eller mapping i karantene som er brukt i kjøringen, er blokkerende (GC-21).\n- Cut-off-test: lønn etter sluttdato og ugodkjente linjer som er utbetalt skal være 0 (VK-55).",
+       "regler_md": "- Blokkerende avvik hindrer godkjenning. Advarsler må kvitteres.\n- Terskler kommer fra kundens oppsett eller byråmalen (BY-04).\n- Forhåndsvalidering mot a-meldingens forretningsregler (blant annet F529 og F532) kjøres før godkjenning. MYN eier reglene (VK-22).\n- Kontrollen «OTP-kunde uten premie i terminen» hører med (R3 D-01).\n- Lønnsart eller mapping i karantene som er brukt i kjøringen, er blokkerende (GC-21).\n- Cut-off-test: lønn etter sluttdato og ugodkjente linjer som er utbetalt skal være 0 (VK-55).\n- Samordnet og gammelt utleggstrekk på samme utbetaling for samme person er blokkerende (F-TRK-18).",
        "data": [
         "D-Avvik",
         "D-Lonnskjoring",
@@ -1498,7 +1504,8 @@
         "D-praksis §1.3",
         "R2-virksomhet VK-63",
         "R2-byra BY-04",
-        "R3-kritikk-domene port 2"
+        "R3-kritikk-domene port 2",
+        "natt/N28 §2.5"
        ],
        "merknad_md": "R3 port 2: 50 innlagte feiltyper skal flagges 100 %. Se også F-MYN-38, F-MYN-42, F-RAP-14 og F-RAP-21."
       },
@@ -1599,14 +1606,14 @@
       {
        "id": "F-KJO-24",
        "navn": "Hard sperre og fryseregel",
-       "beskrivelse_md": "Betalingsfil, trekkbetalinger, a-meldingsbidrag og bilag kan ikke lages før godkjenningskjeden er fullført. Enhver endring etter godkjenning nullstiller godkjenningen.\nRett før godkjenning hentes skattekort og trekkpålegg på nytt. Finnes en nyere versjon, blokkeres godkjenningen og kjøringen beregnes på nytt.",
+       "beskrivelse_md": "Betalingsfil, trekkbetalinger, a-meldingsbidrag og bilag kan ikke lages før godkjenningskjeden er fullført. Enhver endring etter godkjenning nullstiller godkjenningen.\nRett før godkjenning hentes skattekort på nytt, og trekkpålegg for kunder med aktivt Trekkpålegg-API. Finnes en nyere versjon, blokkeres godkjenningen og kjøringen beregnes på nytt.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- Fryseregel: før godkjenning blokker og beregn på nytt. Etter godkjenning, men før utbetaling: varsle og la lønnsansvarlig velge mellom ny beregning og bruk fra neste kjøring. Etter utbetaling: gjelder fra neste kjøring (R2-myndighet §5.1, MYN-15).\n- Hjemmel for plikt til tilbakevirkende retting er ikke sjekket [verifiseres].",
+       "regler_md": "- Fryseregel: før godkjenning blokker og beregn på nytt. Etter godkjenning, men før utbetaling: varsle og la lønnsansvarlig velge mellom ny beregning og bruk fra neste kjøring. Etter utbetaling: gjelder fra neste kjøring (R2-myndighet §5.1, MYN-15).\n- Hjemmel for plikt til tilbakevirkende retting er ikke sjekket [verifiseres].\n- Ny henting av trekkpålegg gjelder bare kunder med aktivt Trekkpålegg-API. Kunder uten API bruker det manuelle registeret (N26).\n- Trekkpålegg hentes daglig, rett før beregning og rett før godkjenning. En ny versjon etter godkjenning gir varsel, ikke sperre (N28).",
        "data": [
         "D-Lonnskjoring",
         "D-Kjoringsgodkjenning",
@@ -1622,7 +1629,9 @@
        ],
        "kilder": [
         "R2-myndighetsintegrasjoner §5.1–5.2",
-        "R2-virksomhet VK-28"
+        "R2-virksomhet VK-28",
+        "natt/N26",
+        "natt/N28"
        ],
        "merknad_md": ""
       }
@@ -1807,7 +1816,7 @@
         "Lønnsansvarlig",
         "Lønnsmedarbeider"
        ],
-       "regler_md": "- Forskudd på lønn og reiseforskudd føres på 2910 og omklassifiseres ved årsslutt til 1572 og 1570 (S §6 pkt. 27).\n- Nedbetaling krever skriftlig avtale (aml. § 14-15 (3) c) og vernet beløp gjelder.\n- Forskudd er ikke inntekt før lønnen opptjenes. Rapporteringen i a-meldingen må avklares [verifiseres].",
+       "regler_md": "- Forskudd på lønn og reiseforskudd føres på 2910 og omklassifiseres ved årsslutt til 1572 og 1570 (S §6 pkt. 27).\n- Nedbetaling krever skriftlig avtale (aml. § 14-15 (3) c) og vernet beløp gjelder.\n- Forskudd er ikke inntekt før lønnen opptjenes. Rapporteringen i a-meldingen må avklares [verifiseres].\n- Saldo per ansatt for forskudd holdes i Brutto og posteres mot 2910 med ansatt når kontoen er reskontro. I Tripletex har 2910 `ledgerType` EMPLOYEE. Saldolisten per ansatt er balansedokumentasjon (bokføringsloven § 11, N02).",
        "data": [
         "D-Lonnskjoring",
         "D-Trekk"
@@ -1816,7 +1825,8 @@
        "behov": [],
        "kilder": [
         "S-avklaringer §6 pkt. 27",
-        "https://lovdata.no/lov/2005-06-17-62/§14-15"
+        "https://lovdata.no/lov/2005-06-17-62/§14-15",
+        "natt/N02"
        ],
        "merknad_md": ""
       }
@@ -1972,7 +1982,7 @@
         "Lønnsmedarbeider",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Grunnlaget er arbeidsvederlag utbetalt i opptjeningsåret: lønn, tillegg, overtid, bonus, AGP-lønn, omsorgspenger betalt av arbeidsgiver og fri kost. Ikke feriepenger, utgiftsgodtgjørelser, andre naturalytelser eller styrehonorar (C §3.1).\n- Bonus som er andel av nettoutbytte inngår ikke (ferieloven § 10). Ellers inngår bonus og provisjon (C #13).\n- Bare 2,3 %-tillegget for 60+ kan begrenses til 6G. Grunnsatsen har ikke tak (C §3.1, B §8.1).\n- NAV betaler feriepenger av sykepenger for inntil 48 dager per opptjeningsår. Arbeidsgiver velger FULL eller BEGRENSET plikt ved forskuttering (C §3.2).\n- Foreldrepenger: NAV betaler for de første 12 eller 15 ukene (C §3.2).\n- Grunnlaget for fjoråret migreres per person og avstemmes med diff 0 (R3 D-04).",
+       "regler_md": "- Grunnlaget er arbeidsvederlag utbetalt i opptjeningsåret: lønn, tillegg, overtid, bonus, AGP-lønn, omsorgspenger betalt av arbeidsgiver og fri kost. Ikke feriepenger, utgiftsgodtgjørelser, andre naturalytelser eller styrehonorar (C §3.1).\n- Bonus som er andel av nettoutbytte inngår ikke (ferieloven § 10). Ellers inngår bonus og provisjon (C #13).\n- Bare 2,3 %-tillegget for 60+ kan begrenses til 6G. Grunnsatsen har ikke tak (C §3.1, B §8.1).\n- NAV betaler feriepenger av sykepenger for inntil 48 dager per opptjeningsår. Arbeidsgiver velger FULL eller BEGRENSET plikt ved forskuttering (C §3.2).\n- Foreldrepenger: NAV betaler for de første 12 eller 15 ukene (C §3.2).\n- Grunnlaget for fjoråret migreres per person og avstemmes med diff 0 (R3 D-04).\n- Feriepenger regnes i øre per ansatt og utbetaling med kommersiell avrunding (`MidpointAwayFromZero`). Ferieloven har ingen avrundingsregel [verifiseres] (N13 §2).",
        "data": [
         "D-Feriepengegrunnlag",
         "D-Akkumulator"
@@ -1985,7 +1995,8 @@
         "C-beregning §3.1–3.2 og §3.5",
         "B-myndigheter §8.1",
         "R3-kritikk-domene D-04",
-        "https://lovdata.no/dokument/NL/lov/1988-04-29-21"
+        "https://lovdata.no/dokument/NL/lov/1988-04-29-21",
+        "natt/N13 §2"
        ],
        "merknad_md": "Feriedager (rett, tatt, overført) eies av FRA i D-Feriesaldo. Beløp eies av KJO."
       },
@@ -2107,7 +2118,7 @@
       {
        "id": "F-KJO-42",
        "navn": "Lønnsslipp med lovkrav",
-       "beskrivelse_md": "Ved utbetaling får den ansatte en skriftlig oppgave over beregningen av lønnen, grunnlaget for feriepenger og trekkene som er gjort.\nSlippen viser hver linje med lønnsart, antall, sats og beløp, trekkgrunnlag, forskuddstrekk med tabellnummer eller prosent, andre trekk, netto, utbetalingsdato og konto (maskert), og hittil i år.",
+       "beskrivelse_md": "Ved utbetaling får den ansatte en skriftlig oppgave over beregningen av lønnen, grunnlaget for feriepenger og trekkene som er gjort.\nSlippen viser hver linje med lønnsart, antall, sats og beløp, trekkperiode, beregningsgrunnlag med fradrag spesifisert, forskuddstrekk med tabellnummer eller prosent, utleggstrekk, andre trekk, netto, utbetalingsdato og konto (maskert), og hittil i år.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -2115,7 +2126,7 @@
         "Lønnsansvarlig",
         "Lønnsmedarbeider"
        ],
-       "regler_md": "- Aml. § 14-15 sjette ledd: oppgave over beregning av lønn, grunnlaget for feriepenger og foretatte trekk, ved utbetaling eller umiddelbart etter (B §10.1).\n- Feriepengegrunnlag hittil i år skal stå på hver slipp (R3 D-31).\n- Bokføringsforskriften § 5-6 krever per motpart lønn og ytelser, forskuddstrekk, utleggstrekk, tabellnummer eller trekkprosent, og per periode utbetalingsdato, brutto, naturalytelser, fradrag, trekkgrunnlag og trekk. Timelønte: timer per dag og samlet (B §10.2).\n- En korreksjon gir ny slipp som viser hva som er rettet. Den gamle beholdes.",
+       "regler_md": "- Aml. § 14-15 sjette ledd: oppgave over beregning av lønn, grunnlaget for feriepenger og foretatte trekk, ved utbetaling eller umiddelbart etter (B §10.1).\n- Feriepengegrunnlag hittil i år skal stå på hver slipp (R3 D-31).\n- Bokføringsforskriften § 5-6 krever per motpart lønn og ytelser, forskuddstrekk, utleggstrekk, tabellnummer eller trekkprosent, og per periode utbetalingsdato, brutto, naturalytelser, fradrag, trekkgrunnlag og trekk. Timelønte: timer per dag og samlet (B §10.2).\n- En korreksjon gir ny slipp som viser hva som er rettet. Den gamle beholdes.\n- Skattebetalingsforskriften § 5-10-20: slippen viser trekkperiode, tabell eller prosentsats, bruttolønn, beregningsgrunnlag med fradrag, forskuddstrekk og utleggstrekk (N13).",
        "data": [
         "D-Lonnsslipp",
         "D-Lonnslinje",
@@ -2133,7 +2144,8 @@
         "B-myndigheter §10.1–10.2",
         "R3-kritikk-domene D-31",
         "https://lovdata.no/lov/2005-06-17-62/§14-15",
-        "https://lovdata.no/forskrift/2004-12-01-1558"
+        "https://lovdata.no/forskrift/2004-12-01-1558",
+        "natt/N13"
        ],
        "merknad_md": "POR (K5) eier visningen i app og portal. KJO eier innholdet og lovkravene. SD Worx har egen menyrad for Payslip. Se også F-POR-08."
       },
@@ -2442,7 +2454,7 @@
         "Systemforvalter",
         "Lønnsfaglig ansvarlig (Brutto)"
        ],
-       "regler_md": "- Fradragstabeller 8000–8400 og tilleggstabeller 9010–9400. Finnmarkstabeller 6300–6700, sjøtabeller 0100 og 0101, standardfradrag 7300–7700 og spesialtabeller 7150–7170 (B §3.2, R2-myndighet §3.4).\n- Med fradrag over 400 000 beregnes alltid prosentkort (B §3.2).\n- Repoet `Skatteetaten/trekktabell` har ingen lisensfil. Bruk i kommersielt produkt må avklares (B §3.3).\n- Krav: 100 % treff mot alle publiserte trekktabeller, alle tabellnumre, perioder og trinn (R3 port 1).",
+       "regler_md": "- Fradragstabeller 8000–8400 og tilleggstabeller 9010–9400. Finnmarkstabeller 6300–6700, sjøtabeller 0100 og 0101, standardfradrag 7300–7700 og spesialtabeller 7150–7170 (B §3.2, R2-myndighet §3.4).\n- Med fradrag over 400 000 beregnes alltid prosentkort (B §3.2).\n- Repoet `Skatteetaten/trekktabell` har ingen lisensfil. Bruk i kommersielt produkt må avklares (B §3.3).\n- Krav: 100 % treff mot alle publiserte trekktabeller, alle tabellnumre, perioder og trinn (R3 port 1).\n- Trekkperioden velges etter hvor mange dager lønnen gjelder (skattebetalingsforskriften § 5-10-2): høyst 4 dager gir dagtabell, 5–10 dager uke, 11–17 dager 14 dager, 18–24 dager uketabell på ⅓ av lønnen med trekk × 3, og 25 dager til 1 måned + 3 dager måned. Flere måneder og skjeve perioder får tabell og faktor etter N13 §1.7. Hver regel får testcaser.",
        "data": [
         "D-Skattekort",
         "D-Lonnslinje",
@@ -2456,7 +2468,8 @@
         "B-myndigheter §3.2–3.3",
         "C-beregning §0 pkt. 5",
         "https://github.com/Skatteetaten/trekktabell",
-        "https://www.skatteetaten.no/satser/trekktabeller-i-tekstformat/?year=2026"
+        "https://www.skatteetaten.no/satser/trekktabeller-i-tekstformat/?year=2026",
+        "natt/N13 §1.7"
        ],
        "merknad_md": ""
       },
@@ -2470,7 +2483,7 @@
         "Lønnsmedarbeider",
         "Lønnsfaglig ansvarlig (Brutto)"
        ],
-       "regler_md": "- Tabellkort har både tabellnummer og prosentsats. Prosentsatsen brukes der tabell ikke kan brukes (C §1.1).\n- Overtid med periodelønn trekkes i praksis med tabell, men får ikke halvt trekk eller trekkfritak (C §1.2).\n- Grensen mellom tabell og prosent for uregelmessige ytelser må verifiseres mot skattebetalingsforskriften kap. 5 (C §13 pkt. 1).",
+       "regler_md": "- Tabellkort har både tabellnummer og prosentsats. Prosentsatsen brukes der tabell ikke kan brukes (C §1.1).\n- Overtid med periodelønn trekkes i praksis med tabell, men får ikke halvt trekk eller trekkfritak (C §1.2).\n- Grensen mellom tabell og prosent for uregelmessige ytelser må verifiseres mot skattebetalingsforskriften kap. 5 (C §13 pkt. 1).\n- Prosenttrekk = ⌊⌊grunnlag⌋ × p / 100⌋. Grunnlaget kuttes til hele kroner før prosenten brukes (skattebetalingsforskriften §§ 5-10-4 og 5-5-4).",
        "data": [
         "D-Lonnsart",
         "D-Skattekort",
@@ -2479,7 +2492,8 @@
        "integrasjoner": [],
        "behov": [],
        "kilder": [
-        "C-beregning §1.1–1.2 og §13"
+        "C-beregning §1.1–1.2 og §13",
+        "natt/N13 §2"
        ],
        "merknad_md": ""
       },
@@ -2703,7 +2717,7 @@
         "Lønnsansvarlig",
         "Byrå"
        ],
-       "regler_md": "- En ansatt har bare ett samordnet utleggstrekk, som kan dekke flere krav (B §7.1).\n- Start, endring og stans kommer som nye versjoner av samme `trekkid`. Stans = `sluttdato` og så `trekkstatus: avsluttet` (R2-myndighet §3.5).\n- Ny periode kan tidligst starte i morgen. KID er uendret mellom versjoner av samme trekk.\n- Vannmerke er høyeste `sekvensnummer` per trekkpliktig.\n- API-et krever at kunden har sendt minst én a-melding fra Brutto. Før det må pålegg registreres manuelt (R3 D-23).",
+       "regler_md": "- En ansatt har bare ett samordnet utleggstrekk, som kan dekke flere krav (B §7.1).\n- Start, endring og stans kommer som nye versjoner av samme `trekkid`. Stans = `sluttdato` og så `trekkstatus: avsluttet` (R2-myndighet §3.5).\n- Ny periode kan tidligst starte i morgen. KID er uendret mellom versjoner av samme trekk.\n- Vannmerke er høyeste `sekvensnummer` per trekkpliktig.\n- API-et krever at kunden har sendt minst én a-melding gjennom Brutto (R3 D-23, N26). Fram til da registreres trekkpålegg manuelt på ansattkortet (F-TRK-19).\n- Når API-et er aktivt, sammenlignes det manuelle registeret med API-et. Avvik blir sak. `kilde` på D-Trekkpalegg viser om pålegget er registrert manuelt eller hentet fra API-et.",
        "data": [
         "D-Trekkpalegg",
         "D-Person"
@@ -2718,7 +2732,8 @@
         "R2-myndighetsintegrasjoner §3.5",
         "B-myndigheter §7.1",
         "R3-kritikk-domene D-23",
-        "https://app.swaggerhub.com/apis/skatteetaten/trekkpaalegg-app/1.5.1"
+        "https://app.swaggerhub.com/apis/skatteetaten/trekkpaalegg-app/1.5.1",
+        "natt/N26"
        ],
        "merknad_md": "MYN eier API-kallene. TRK eier pålegget som trekkobjekt. Se også F-MYN-28."
       },
@@ -2732,7 +2747,7 @@
         "Lønnsmedarbeider",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Gamle trekk løper til perioden er over eller stoppmelding kommer, i en overgang 2026–2029 (R2-myndighet §3.5).\n- `utleggstrekkSamordnet` og `utleggstrekkSkatt` skal ikke blandes og betales til hver sin konto. Skatteetaten varslet 24.2.2026 om utbredt feilrapportering (B §7.1).\n- Gammelt `utleggstrekkSkatt` 2 000 og samordnet 3 500 fra 1.3.2028: gammelt avsluttes fra start av samordnet (GC-07).",
+       "regler_md": "- Gamle trekk løper til perioden er over eller stoppmelding kommer, i en overgang 2026–2029 (R2-myndighet §3.5).\n- `utleggstrekkSamordnet` og `utleggstrekkSkatt` skal ikke blandes og betales til hver sin konto. Skatteetaten varslet 24.2.2026 om utbredt feilrapportering (B §7.1).\n- Gammelt `utleggstrekkSkatt` 2 000 og samordnet 3 500 fra 1.3.2028: gammelt avsluttes fra start av samordnet (GC-07).\n- Gamle trekk sperres for utbetalinger fra og med første samordnede startdato, også trekk på vent (overgangsforskriften § 3).\n- Samordnet og gammelt trekk på samme utbetaling for samme person er en hard sperre i F-KJO-20.\n- Et nytt gammelt brev etter samordnet trekk blir en sak. Trekket er ugyldig (overgangsforskriften § 2).\n- `avsluttet_arsak = erstattet_av_samordnet` settes automatisk, og et menneske bekrefter.",
        "data": [
         "D-Trekkpalegg",
         "D-Avvik"
@@ -2742,14 +2757,15 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.5–3.6 og MYN-16",
         "B-myndigheter §7.1",
-        "R3-kritikk-domene GC-07"
+        "R3-kritikk-domene GC-07",
+        "natt/N28 §2.1 og §2.5"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-TRK-19",
        "navn": "Gamle trekk og bidrag fra brev",
-       "beskrivelse_md": "Pålegg etter gamle regler og bidragstrekk kommer som brev i Altinn eller i posten. Lønnsmedarbeider registrerer dem manuelt med påleggsgiver, saksnummer, beløp eller prosent, periode, KID, konto, prioritet og mottatt dato, og legger ved brevet.\nEn annen person kontrollerer registreringen før trekket tas i bruk.",
+       "beskrivelse_md": "Pålegg etter gamle regler og bidragstrekk kommer som brev i Altinn eller i posten. Lønnsmedarbeider registrerer dem manuelt med påleggsgiver, saksnummer, beløp eller prosent, periode, KID, konto, prioritet og mottatt dato, og legger ved brevet.\nEn annen person kontrollerer registreringen før trekket tas i bruk.\nFram til Trekkpålegg-API-et er aktivt for kunden, registreres også samordnede trekk manuelt på ansattkortet fra brevet i Altinn (MVP).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -2757,7 +2773,7 @@
         "Lønnsansvarlig",
         "Byrå"
        ],
-       "regler_md": "- Bokføringsforskriften § 5-6: for utleggstrekk skal det fremgå når pålegget er mottatt og trekkprosent eller beløp (B §10.2).\n- Utleggstrekk skatt etter gamle regler betales til felles konto med KID kravtype 03. Andre gamle trekk har KID og konto i brevet (R2-myndighet §3.6).\n- Avgiftskrav (mva, særavgift, toll) rapporteres ikke i a-meldingen (R2-myndighet §3.6).\n- En arbeidsgiver som ikke trekker etter pålegg kan bli ansvarlig for beløpet [verifiseres hjemmel] (R3 D-37).",
+       "regler_md": "- Bokføringsforskriften § 5-6: for utleggstrekk skal det fremgå når pålegget er mottatt og trekkprosent eller beløp (B §10.2).\n- Utleggstrekk skatt etter gamle regler betales til felles konto med KID kravtype 03. Andre gamle trekk har KID og konto i brevet (R2-myndighet §3.6).\n- Avgiftskrav (mva, særavgift, toll) rapporteres ikke i a-meldingen (R2-myndighet §3.6).\n- En arbeidsgiver som ikke trekker etter pålegg, kan bli ansvarlig for beløpet. Hjemmel for samordnet trekk er innkrevingsloven § 31 første ledd. For gamle trekk er det tvangsfullbyrdelsesloven § 7-22 tredje ledd og skattebetalingsloven § 16-20 slik de lød før 1.1.2026 [verifiseres] (R3 D-37, N29).\n- Trukket, men ikke betalt gir objektivt ansvar. Ikke trukket gir ansvar med omvendt bevisbyrde for aktsomhet, og aktsomhetsunntaket gjelder bare unnlatt trekk (N28 §3.3). Ansvaret oppstår uten vedtak og innkreves med utlegg etter varsel med minst tre ukers frist. Ansvar for manglende eller feil rapportering (innkrevingsloven § 31 andre ledd, § 39 tredje ledd: 20 % av trekkgrunnlaget fra 14 dager etter oppstart) krever vedtak med klagerett (N29).\n- Ved SAF-T-import av historisk lønnsgrunnlag flagges bevegelser på trekkontoene som tegn på aktive trekk som må registreres (REG).",
        "data": [
         "D-Trekkpalegg",
         "D-Dokument"
@@ -2769,7 +2785,10 @@
        "kilder": [
         "R2-myndighetsintegrasjoner §3.6",
         "B-myndigheter §7.2 og §10.2",
-        "R3-kritikk-domene D-23 og D-37"
+        "R3-kritikk-domene D-23 og D-37",
+        "natt/N26",
+        "natt/N28 §3.3",
+        "natt/N29"
        ],
        "merknad_md": "Bidrag ligger nå hos Innkrevingsmyndigheten i Skatteetaten (fra 1.1.2026). Om bidrag kommer via API-et eller som brev, er ikke avklart."
       },
@@ -2782,7 +2801,7 @@
        "roller": [
         "Lønnsmedarbeider"
        ],
-       "regler_md": "- Pålegg 6 000 og netto 4 500 etter forskuddstrekk: trekk 4 500, betales med ansattes KID første virkedag etter (C #15).\n- Beløpspålegg 6 000 ved lønn 10.1 og bonus 20.1: hele 6 000 i måneden. Prosentpålegg 20 %: av brutto ved hver utbetaling (GC-08).\n- Trekkdato = lønnsutbetalingsdato. A-meldingen har `utleggstrekk[]` med `beskrivelse`, `beloep` (heltall) og `datoForUtleggstrekk` (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- Om resten fremføres eller bortfaller er usikkert (C #15) [verifiseres].",
+       "regler_md": "- Pålegg 6 000 og netto 4 500 etter forskuddstrekk: trekk 4 500, betales med ansattes KID første virkedag etter (C #15).\n- Beløpspålegg 6 000 ved lønn 10.1 og bonus 20.1: hele 6 000 i måneden. Prosentpålegg 20 %: av brutto ved hver utbetaling (GC-08).\n- Trekkdato = lønnsutbetalingsdato. A-meldingen har `utleggstrekk[]` med `beskrivelse`, `beloep` (heltall) og `datoForUtleggstrekk` (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- For samordnet trekk fremføres ikke resten (N28) [verifiseres]. For gamle trekk er det usikkert (C #15) [verifiseres].",
        "data": [
         "D-Trekkpalegg",
         "D-Lonnslinje",
@@ -2796,21 +2815,22 @@
         "C-beregning §2.3 og #15",
         "R2-myndighetsintegrasjoner §3.5",
         "R3-kritikk-domene D-06 og GC-08",
-        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
+        "natt/N28"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-TRK-21",
        "navn": "Trekk som ikke kan gjennomføres",
-       "beskrivelse_md": "Kan et trekk ikke gjennomføres fordi lønnen er for lav, den ansatte har sluttet, er permittert eller sykmeldt, får lønnsansvarlig en påminnelse om å kontakte påleggsgiver med beløp og årsak.",
+       "beskrivelse_md": "Kan et gammelt trekk ikke gjennomføres fordi lønnen er for lav, den ansatte har sluttet, er permittert eller sykmeldt, får lønnsansvarlig en påminnelse om å kontakte påleggsgiver med beløp og årsak.\nFor samordnet trekk sendes ingen melding. Det holder å rapportere sluttdato og fravær riktig i a-meldingen (innkrevingsloven § 30 fjerde ledd).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "Lønnsmedarbeider",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Ingen elektronisk kanal er funnet. Arbeidsgiver må kontakte Innkrevingsmyndigheten, med mindre årsaken fremgår av a-meldingen (R2-myndighet §3.6).\n- Saken lukkes manuelt med dato og kanal for kontakten (MYN-17).",
+       "regler_md": "- For gamle trekk er ingen elektronisk kanal funnet. Arbeidsgiver må kontakte Innkrevingsmyndigheten, med mindre årsaken fremgår av a-meldingen (R2-myndighet §3.6).\n- Saken lukkes manuelt med dato og kanal for kontakten (MYN-17).",
        "data": [
         "D-Trekkpalegg",
         "D-Avvik"
@@ -2818,14 +2838,16 @@
        "integrasjoner": [],
        "behov": [],
        "kilder": [
-        "R2-myndighetsintegrasjoner §3.6 og MYN-17"
+        "R2-myndighetsintegrasjoner §3.6 og MYN-17",
+        "natt/N01",
+        "natt/N28 §3.3"
        ],
        "merknad_md": "Se også F-MYN-29."
       },
       {
        "id": "F-TRK-22",
        "navn": "Rapportering og betaling per trekk",
-       "beskrivelse_md": "Hvert pålegg gir egen a-meldingslinje og egen betaling til riktig konto og KID. Samordnet trekk, gamle skattetrekk og bidrag holdes atskilt i regnskapet.",
+       "beskrivelse_md": "Samordnet trekk og gammelt skattetrekk rapporteres i a-meldingen med én linje per person, kode og lønnsutbetalingsdato. Andre gamle trekk og gammelt bidrag rapporteres ikke. Hvert trekk betales til riktig konto og KID. Samordnet trekk, gamle skattetrekk og bidrag holdes atskilt i regnskapet.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -2833,7 +2855,7 @@
         "Økonomisjef",
         "Byrå"
        ],
-       "regler_md": "- Konti: utleggstrekk 2610, bidragstrekk 2620, egne kontoer atskilt fra utleggstrekk til skatt (S §6 pkt. 27 og 30).\n- Samordnet trekk betales til konto og KID fra pålegget. Gammelt skattetrekk til 7694 05 24802 med KID kravtype 03 (R2-myndighet §3.10).\n- A-meldingskode for bidrag er ikke funnet [verifiseres].",
+       "regler_md": "- Konti: utleggstrekk 2610, bidragstrekk 2620, egne kontoer atskilt fra utleggstrekk til skatt (S §6 pkt. 27 og 30).\n- Samordnet trekk: én betalingslinje per person per utbetaling til 7694 05 69814 med KID fra pålegget. Frist første virkedag etter utbetalingen (innkrevingsloven § 30 andre ledd).\n- Gammelt skattetrekk: én samlet betalingslinje for alle ansatte på utbetalingen til 7694 05 24802 med termin-KID kravtype 03. Frist første virkedag etter utbetalingen (overgangsforskriften § 3 første ledd, R2-myndighet §3.10).\n- Andre gamle trekk og bidrag: konto og KID fra brevet.\n- Gammelt bidragstrekk rapporteres ikke i a-meldingen. Bidrag i et samordnet trekk rapporteres som `utleggstrekkSamordnet` (N01, N28 §3.1).\n- Fra 1.1.2027 gir trukket, men ikke betalt samordnet trekk forsinkelsesrente fra forfall (innkrevingsforskriften § 31-1). Satsen ligger i D-Sats. Forskuddstrekk har allerede rente fra forfall (N29).",
        "data": [
         "D-Trekkpalegg",
         "D-Betalingslinje",
@@ -2850,7 +2872,10 @@
        "kilder": [
         "S-avklaringer §6 pkt. 27 og 30",
         "R2-myndighetsintegrasjoner §3.10",
-        "B-myndigheter §4"
+        "B-myndigheter §4",
+        "natt/N01",
+        "natt/N28 §3.1–3.2",
+        "natt/N29"
        ],
        "merknad_md": "BET eier betalingen og MYN a-meldingen."
       }
@@ -2871,7 +2896,7 @@
         "Lønnsansvarlig",
         "Ansatt"
        ],
-       "regler_md": "- Hjemmel er tariffavtale (aml. § 14-15 (3) d). Trekket er ikke vernet (C §2.3).\n- A-meldingen: `fradrag` med beskrivelse `fagforeningskontingent` (Svalbard og Jan Mayen har egne koder) (kodeliste fradrag).\n- Fagforeningsmedlemskap er særlig kategori. Bare roller med tilgang ser trekket (S §2 pkt. 7, R3 D-33).\n- Konto 2650 (S §6 pkt. 27).\n- Fagforeningstrekk når netto er 0 er en egen testcase (C §12).",
+       "regler_md": "- Hjemmel er tariffavtale (aml. § 14-15 (3) d). Trekket er ikke vernet (C §2.3).\n- A-meldingen: `fradrag` med beskrivelse `fagforeningskontingent` (Svalbard og Jan Mayen har egne koder) (kodeliste fradrag).\n- Fagforeningsmedlemskap er særlig kategori. Bare roller med tilgang ser trekket (S §2 pkt. 7, R3 D-33).\n- Konto 2650 (S §6 pkt. 27).\n- Fagforeningstrekk når netto er 0 er en egen testcase (C §12).\n- Kontingent som trekkes fra i trekkgrunnlaget, rundes opp til hel krone (skattebetalingsforskriften § 5-9-1).",
        "data": [
         "D-Trekk",
         "D-Lonnslinje"
@@ -2886,7 +2911,8 @@
         "C-beregning §2.3",
         "S-avklaringer §2 pkt. 7 og §6 pkt. 27",
         "https://data.skatteetaten.no/web/datakatalog/kodeliste/e841705f-1d2f-4ad7-b339-5fb6ae3a21ef",
-        "https://lovdata.no/lov/2005-06-17-62/§14-15"
+        "https://lovdata.no/lov/2005-06-17-62/§14-15",
+        "natt/N13 §2"
        ],
        "merknad_md": ""
       },
@@ -2957,7 +2983,7 @@
         "Lønnsmedarbeider",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Ved flere gamle pålegg gjelder dekningsloven § 2-8: kategori først, så tidspunkt for pålegget (C §2.3).\n- Et trekk skal aldri gi negativ netto (C §2.3).\n- Reglene gjelder trekk i både lønn og feriepenger (aml. § 14-15). Junikjøringen med feriepenger går gjennom samme kø.\n- Rekkefølgen lagres i D-Lonnsinnstillinger.\n- Brutto 30 000, egenandel 2 %, prosentkort 30 %, utleggstrekk 4 000, fagforening 450, husleie 8 000 og lån 5 000 med vernet beløp 11 388 gir husleie 4 742, lån 0 og netto 11 388 (C #14).\n- Beløpstrekk tas i løpet av måneden. Prosenttrekk tas av brutto ved hver utbetaling (R3 D-06).",
+       "regler_md": "- Ved flere gamle pålegg gjelder dekningsloven § 2-8: kategori først, så tidspunkt for pålegget (C §2.3).\n- Et trekk skal aldri gi negativ netto (C §2.3).\n- Reglene gjelder trekk i både lønn og feriepenger (aml. § 14-15). Junikjøringen med feriepenger går gjennom samme kø.\n- Rekkefølgen lagres i D-Lonnsinnstillinger.\n- Brutto 30 000, egenandel 2 %, prosentkort 30 %, utleggstrekk 4 000, fagforening 450, husleie 8 000 og lån 5 000 med vernet beløp 11 388 gir husleie 4 742, lån 0 og netto 11 388 (C #14).\n- Beløpstrekk tas i løpet av måneden. Prosenttrekk tas av brutto ved hver utbetaling (R3 D-06).\n- Samordnet trekk har ingen vernet beholdning hos arbeidsgiver, ingen saldo og ingen fremføring. Netto kan gå til 0 (N28 §1.7).",
        "data": [
         "D-Trekk",
         "D-Trekkpalegg",
@@ -2968,7 +2994,8 @@
        "kilder": [
         "C-beregning §2.3 og #14",
         "R3-kritikk-domene D-06",
-        "https://www.skatteetaten.no/rettskilder/type/handboker/skattebetalingshandboken/gjeldende/kapittel-14.-tvangsfullbyrdelse-og-sikkerhetsstillelse/ID-14-5.001/ID-14-5.008/"
+        "https://www.skatteetaten.no/rettskilder/type/handboker/skattebetalingshandboken/gjeldende/kapittel-14.-tvangsfullbyrdelse-og-sikkerhetsstillelse/ID-14-5.001/ID-14-5.008/",
+        "natt/N28 §1.7"
        ],
        "merknad_md": ""
       },
@@ -2982,7 +3009,7 @@
         "Lønnsansvarlig",
         "Lønnsmedarbeider"
        ],
-       "regler_md": "- Livsoppholdssatser fra 1.7.2026: enslig 11 388, gift eller samboer 9 644, forsørger ektefelle 19 288, barn 0–5 år 3 645, 6–10 år 4 835, 11–14 år 6 102 og 15+ 7 020 per måned (C §0.1).\n- Vernet beløp for avtalte trekk har ingen lovfestet sats. Satsen er kundekonfigurasjon, ikke fasit (R3 D-06).\n- Satsene ligger i regelpakken med virkningsdato 1.7 (R3 D-43).",
+       "regler_md": "- Livsoppholdssatser fra 1.7.2026: enslig 11 388, gift eller samboer 9 644, forsørger ektefelle 19 288, barn 0–5 år 3 645, 6–10 år 4 835, 11–14 år 6 102 og 15+ 7 020 per måned (C §0.1).\n- Vernet beløp for avtalte trekk har ingen lovfestet sats. Satsen er kundekonfigurasjon, ikke fasit (R3 D-06).\n- Satsene ligger i regelpakken med virkningsdato 1.7 (R3 D-43).\n- Ved samordnet trekk kan netto gå til 0. Livsopphold beregnes av namsmyndigheten (N28 §1.7).",
        "data": [
         "D-Trekk",
         "D-Sats"
@@ -2992,14 +3019,15 @@
        "kilder": [
         "C-beregning §0.1 og §2.3",
         "R3-kritikk-domene D-06",
-        "https://www.regjeringen.no/no/tema/forbruker/gjeldsordning/livsoppholdssatser/id691824/"
+        "https://www.regjeringen.no/no/tema/forbruker/gjeldsordning/livsoppholdssatser/id691824/",
+        "natt/N28 §1.7"
        ],
        "merknad_md": ""
       },
       {
        "id": "F-TRK-28",
        "navn": "Trekksaldo og fremføring",
-       "beskrivelse_md": "Hvert trekkobjekt har saldo og historikk: opprinnelig beløp, trukket per kjøring, fremført og rest. Fremført ferietrekk og fremført avtalt trekk vises på slippen.\nSaldo migreres med KID og kontrolleres av to personer.",
+       "beskrivelse_md": "Avtalte trekk og gamle trekk har saldo og historikk: opprinnelig beløp, trukket per kjøring, fremført og rest. Fremført ferietrekk og fremført avtalt trekk vises på slippen.\nSaldo migreres med KID og kontrolleres av to personer.\nSamordnet trekk har ingen saldo og ingen fremføring (N28 §1.7).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
@@ -3018,7 +3046,8 @@
        ],
        "kilder": [
         "C-beregning §4.1–4.2",
-        "R3-kritikk-domene port M"
+        "R3-kritikk-domene port M",
+        "natt/N28 §1.7"
        ],
        "merknad_md": ""
       }
@@ -3073,7 +3102,7 @@
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- Minstekrav: innskudd minst 2 % av lønn opp til 12G fra første krone og første dag. Medlem fra 13 år (B §8.2, C §9).\n- Omfattet foretak har minst 2 personer med minst 75 % stilling, 1 arbeidstaker uten eierinteresse med minst 75 %, eller flere med minst 20 % som til sammen utgjør 2 årsverk (OTP-loven § 1).\n- Ordningen må opprettes innen 6 måneder (OTP-loven § 2).\n- Forslag om å øke minstesatsen til 4 % (Innst. 263 S (2025–2026)) har ukjent utfall [verifiseres].\n- Maksimalsatser er antatt 7 % (0–12G) + 18,1 % (7,1–12G) [verifiseres].",
+       "regler_md": "- Omfattet foretak (OTP-loven § 1): a) minst 2 personer med minst 75 % stilling, b) 1 arbeidstaker uten eierinteresse med minst 75 %, eller c) flere med minst 20 % stilling som til sammen utgjør 2 årsverk.\n- Unntak for foretak med ordning etter lov eller tariffavtale for statlig eller kommunalt ansatte (§ 1 (3)).\n- Ordningen må opprettes innen 6 måneder (§ 2 (2)). Skatteetaten kan fatte vedtak om plikt (§ 2 (4)).\n- Minstekrav (§ 4): innskudd minst 2 % av lønn opp til 12G fra første krone og første dag. Medlem fra 13 år (§ 4-2), uten 20 %-grense for medlemskap (B §8.2, C §9).\n- Forslaget om å øke minstesatsen til 4 % (Innst. 263 S (2025–2026)) ble ikke vedtatt etter komiteens tilråding. Loven sier 2 % [voteringen verifiseres].\n- Maksimalsatser er antatt 7 % (0–12G) + 18,1 % (7,1–12G) [verifiseres].",
        "data": [
         "D-Pensjonsordning",
         "D-Virksomhet"
@@ -3083,7 +3112,8 @@
        "kilder": [
         "B-myndigheter §8.2",
         "C-beregning §9",
-        "https://lovdata.no/lov/2005-12-21-124/§4"
+        "https://lovdata.no/lov/2005-12-21-124/§4",
+        "natt/N16 §5"
        ],
        "merknad_md": ""
       },
@@ -3123,7 +3153,7 @@
         "HR",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Medlemskap versjoneres med registreringstid fordi innmelding ofte registreres etterpå (R3 D-38).\n- Deltidsansatte får forholdsmessig innskudd (C §9).\n- Tilkallingsvakter og lærlinger omfattes. OTP fra første krone (C §6).\n- Medlemskap under ulønnet permisjon og permittering følger ordningens vilkår [verifiseres per leverandør].\n- DNB og andre melder inn og ut automatisk fra a-meldingen. Andre produkter, som personalforsikring, må oppdateres manuelt (D §2.7).",
+       "regler_md": "- Medlemskap versjoneres med registreringstid fordi innmelding ofte registreres etterpå (R3 D-38).\n- Deltidsansatte får forholdsmessig innskudd (C §9).\n- Tilkallingsvakter og lærlinger omfattes. OTP fra første krone (C §6).\n- Medlemskap under ulønnet permisjon og permittering følger ordningens vilkår [verifiseres per leverandør].\n- DNB og andre melder inn og ut automatisk fra a-meldingen. Andre produkter, som personalforsikring, må oppdateres manuelt (D §2.7).\n- Brutto melder ikke inn i leverandørens portal. HR får oppgaver: velge pensjonsgivende lønnsarter i portalen slik at de stemmer med Bruttos klassifisering, bekrefte eller kontrollere inn- og utmeldinger innen fristen, og melde sykdom over 12 måneder og uførhet (N16).",
        "data": [
         "D-Pensjonsmedlemskap",
         "D-Arbeidsforhold",
@@ -3138,7 +3168,8 @@
        "kilder": [
         "C-beregning §6 og §9",
         "D-praksis §2.7",
-        "R3-kritikk-domene D-38"
+        "R3-kritikk-domene D-38",
+        "natt/N16"
        ],
        "merknad_md": ""
       }
@@ -3173,21 +3204,22 @@
        ],
        "kilder": [
         "S-avklaringer §6 pkt. 27 og 29",
-        "R3-kritikk-domene D-01"
+        "R3-kritikk-domene D-01",
+        "natt/N16"
        ],
-       "merknad_md": "Hvordan premien kommer inn (manuelt, fra regnskap eller fra leverandør) er åpent (S §7, R3 (g) 19). Se også F-PEN-06, F-PEN-08 og F-REG-14."
+       "merknad_md": "Premien kommer inn i denne rekkefølgen: fra regnskapet (postering på OTP-kontoen med leverandør og betalingsdato), manuelt, og senere fra Finans Norges returfil eller EHF-linjer (N16). Ingen leverandør har dokumentert et åpent premie-API [verifiseres]. Se også F-PEN-06, F-PEN-08 og F-REG-14."
       },
       {
        "id": "F-PEN-06",
        "navn": "AGA av pensjonspremie",
-       "beskrivelse_md": "Brutto beregner AGA-grunnlag for tilskudd og premie til pensjonsordning fra registrert premie, fordelt per underenhet og sone etter pensjonsgrunnlaget, og legger det inn i a-meldingen for riktig måned.",
+       "beskrivelse_md": "Brutto beregner AGA-grunnlag for tilskudd og premie til pensjonsordning fra registrert premie, fordelt per underenhet og sone etter de øvrige avgiftspliktige ytelsene i samme kalendermåned, og legger det inn i a-meldingen for riktig måned.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "roller": [
         "Lønnsansvarlig",
         "Økonomisjef"
        ],
-       "regler_md": "- A-meldingen har `arbeidsgiveravgift.tilskuddOgPremieTilPensjon[]` per virksomhet med beregningskode, sone, grunnlag og sats (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- Premie 30 000 betalt 15.2.2028, 70 % i sone 1 og 30 % i sone 3: 21 000 × 14,1 % = 2 961 og 9 000 × 6,4 % = 576, til sammen 3 537 i februar (GC-17).\n- Om AGA følger betalingstidspunktet og om administrasjonskostnad inngår, er uavklart [verifiseres] (R3 D-01).",
+       "regler_md": "- A-meldingen har `arbeidsgiveravgift.tilskuddOgPremieTilPensjon[]` per virksomhet med beregningskode, sone, grunnlag og sats (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- AGA følger betalingsmåneden (Skatte-ABC A-15-2.4, N16).\n- Grunnlaget fordeles på soner etter forholdet mellom de øvrige avgiftspliktige ytelsene i samme kalendermåned, ikke etter pensjonsgrunnlaget (N16).\n- Administrasjonskostnader inngår i grunnlaget. Meglerhonorar og flyttekostnad inngår ikke. Innbetaling til premiefond gir AGA, bruk av fondet gir det ikke (N16).\n- GC-17 (premie 30 000 betalt 15.2.2028, fordelt 70/30 på sone 1 og 3) bygger på fordeling etter pensjonsgrunnlaget og må regnes om.",
        "data": [
         "D-Pensjonspremie",
         "D-Lonnskjoring",
@@ -3200,7 +3232,8 @@
        "kilder": [
         "R3-kritikk-domene D-01 og GC-17",
         "C-beregning §9",
-        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
+        "natt/N16"
        ],
        "merknad_md": "R3: AGA av OTP-premie mangler helt i planen. Uten inndatapunkt blir AGA for lav hver termin hos alle OTP-kunder. Se også F-PEN-05, F-PEN-08 og F-REG-14."
       },
@@ -3237,7 +3270,7 @@
         "Økonomisjef",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- KLP: avstemming av premiefaktura mot grunnlaget (VK-07). Avvik kvitteres som forklart eller rettet.",
+       "regler_md": "- KLP: avstemming av premiefaktura mot grunnlaget (VK-07). Avvik kvitteres som forklart eller rettet.\n- Forventet premie regnes med leverandørens lønnsbegrep og faktor 12,16. Avvik vurderes over 12 måneder, fordi noen leverandører avregner i januar–februar og fakturerer risiko årlig (N16).",
        "data": [
         "D-Pensjonspremie",
         "D-Akkumulator"
@@ -3251,7 +3284,8 @@
        ],
        "kilder": [
         "R2-virksomhet VK-07",
-        "D-praksis §2.7"
+        "D-praksis §2.7",
+        "natt/N16"
        ],
        "merknad_md": "Se også F-PEN-05, F-PEN-06 og F-REG-14."
       }
@@ -3301,7 +3335,7 @@
        "roller": [
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Påkrevd siden 2021. Mangler den, gir a-meldingen avvik (B §8.2, D §2.7).\n- Feltet er `pensjonsinnretning[].identifikator` på opplysningspliktig nivå (https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2).\n- Leverandørene henter data fra a-ordningen via Skatteetatens API-er. De er ikke åpne for systembruker (B §8.2).",
+       "regler_md": "- Påkrevd siden 2021 (B §8.2, D §2.7). A-ordningen gir bare avvik (MAGNET_EDAG-507, alvorlighet retningslinje) når premie er oppgitt uten innretning. OTP-plikt uten ordning gir ingen melding (N16).\n- Feltet er `JuridiskEntitet.pensjonsinnretning` (0..n) med `identifikator` (XSD v2.3).\n- Leverandørene henter data fra a-ordningen via Skatteetatens API-er. De er ikke åpne for systembruker (B §8.2).",
        "data": [
         "D-Pensjonsordning"
        ],
@@ -3312,7 +3346,8 @@
        "kilder": [
         "B-myndigheter §8.2",
         "D-praksis §2.7",
-        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2"
+        "https://app.swaggerhub.com/apis/skatteetaten/innrapportering-amelding-api/0.1.2",
+        "natt/N16"
        ],
        "merknad_md": "MYN eier innsendingen. Se også F-MYN-08."
       },
@@ -3466,7 +3501,7 @@
         "Lønnsmedarbeider",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- A-meldingen: `skattepliktigDelForsikringer` som naturalytelse. Kodelisten nevner blant annet ulykkesforsikring, gruppelivspremie og personavbruddsforsikring (kodeliste lønnsbeskrivelse).\n- Gruppeliv er skattepliktig over en grense [verifiseres grense].\n- Behandlingsforsikring: kildene er motstridende om skatteplikt [verifiseres] (C §13 pkt. 6).\n- Standardlønnsart 3012 Gruppelivsforsikring posteres 5250 mot 5290 (S §6 pkt. 27).",
+       "regler_md": "- A-meldingen: `skattepliktigDelForsikringer` som naturalytelse. Kodelisten nevner blant annet ulykkesforsikring, gruppelivspremie og personavbruddsforsikring (kodeliste lønnsbeskrivelse).\n- Gruppeliv, behandlingsforsikring, ulykkesforsikring, dekning utover yrkesskadeforsikringsloven og privat del av reiseforsikring er skattepliktig fra første krone. Premien kan behandles som skattefri gave innenfor gavegrensen på 5 000 kr (FSFIN § 5-15-1, N13 §3.2).\n- Standardlønnsart 3012 Gruppelivsforsikring posteres 5250 mot 5290 (S §6 pkt. 27).",
        "data": [
         "D-Forsikring",
         "D-Fordelsavtale",
@@ -3477,7 +3512,8 @@
        "kilder": [
         "C-beregning #31 og §13",
         "https://data.skatteetaten.no/web/datakatalog/kodeliste/614aa2ed-d2d2-48ee-9341-9834f9b73567",
-        "S-avklaringer §6 pkt. 27"
+        "S-avklaringer §6 pkt. 27",
+        "natt/N13 §3.2"
        ],
        "merknad_md": ""
       },
@@ -3491,7 +3527,7 @@
         "HR",
         "Lønnsansvarlig"
        ],
-       "regler_md": "- Personalforsikringer oppdateres ikke automatisk fra a-meldingen (D §2.7).",
+       "regler_md": "- Personalforsikringer oppdateres ikke automatisk fra a-meldingen (D §2.7).\n- Brutto melder ikke inn i leverandørens portal. Inn- og utmelding er en HR-oppgave (N16).",
        "data": [
         "D-Forsikring",
         "D-Arbeidsforhold"
@@ -3501,7 +3537,8 @@
        ],
        "behov": [],
        "kilder": [
-        "D-praksis §2.7"
+        "D-praksis §2.7",
+        "natt/N16"
        ],
        "merknad_md": "HR eier sjekklisten (D-Sjekkliste)."
       },
@@ -3536,7 +3573,7 @@
    "id": "D-Lonnsart",
    "navn": "Lønnsart (med versjoner)",
    "omrade": "LON",
-   "beskrivelse_md": "En lønnsart er en regel og en klassifikasjon for én linje på lønnsslippen. Den har stabil identitet (nummer) og versjoner med gyldig fra-dato.\nRelasjoner: 1:n til D-Lonnslinje (via versjon), n:1 til D-Regelpakke (kodelisteversjon), 1:n til D-Lonnsartmapping og D-Fastlinje.\nInvarianter: versjoner overlapper ikke. En versjon brukt i godkjent kjøring endres aldri. Flaggkombinasjonen må passe med a-meldingens kodeliste. Ferietrekk har alltid negativt fortegn.\nHistorikk: bitemporal (gyldig fra/til og registreringstid). Lønnslinjen lagrer snapshot av flaggene.",
+   "beskrivelse_md": "En lønnsart er en regel og en klassifikasjon for én linje på lønnsslippen. Den har stabil identitet (nummer) og versjoner med gyldig fra-dato.\nRelasjoner: 1:n til D-Lonnslinje (via versjon), n:1 til D-Regelpakke (kodelisteversjon), 1:n til D-Lonnsartmapping og D-Fastlinje.\nInvarianter: versjoner overlapper ikke. En versjon brukt i godkjent kjøring endres aldri. Flaggkombinasjonen må passe med a-meldingens kodeliste og inntektskombinasjoner. For standardlønnsartene kommer flaggene fra beskrivelsesreglene i A07-mappingen (N23). Ferietrekk har alltid negativt fortegn.\nHistorikk: bitemporal (gyldig fra/til og registreringstid). Lønnslinjen lagrer snapshot av flaggene.",
    "felt": [
     {
      "navn": "lonnsart_id",
@@ -9407,7 +9444,7 @@
    "navn": "Godkjenning av lønnskjøring",
    "omrade": "KJO",
    "fase1": "Fase 1 design",
-   "beskrivelse_md": "Ett ledd i godkjenningskjeden for en bestemt beregningsversjon. Bevis for kontroll og attestasjon (revisor, GRFS).\nRelasjoner: n:1 til D-Lonnskjoring, n:1 til D-Bruker. Invarianter: godkjenneren er ikke den som forberedte. Godkjenningen gjelder en resultat-hash. Endring etter godkjenning gjør den ugyldig. Se også D-Godkjenning (felles godkjenningsmodell) og D-Kundegodkjenning (kundens ledd i byråoppdrag).",
+   "beskrivelse_md": "Ett ledd i godkjenningskjeden for en bestemt beregningsversjon. Bevis for kontroll og attestasjon (revisor, GRFS).\nRelasjoner: n:1 til D-Lonnskjoring, n:1 til D-Bruker. Invarianter: godkjenneren er ikke den som forberedte. Godkjenningen gjelder en resultat-hash. Endring etter godkjenning gjør den ugyldig. Se også D-Godkjenning (felles godkjenningsmodell) og D-Kundegodkjenning (kundens ledd i byråoppdrag).\nMVP: D-Kundegodkjenning slås sammen med denne tabellen, med `ledd = kunde` (N10).",
    "felt": [
     {
      "navn": "godkjenning_id",
@@ -9930,7 +9967,7 @@
    "id": "D-Regelpakke",
    "navn": "Regelpakke",
    "omrade": "KJO",
-   "beskrivelse_md": "Versjonert, signert samling av satser, kodelisteversjon, avrundingspolicy og regelimplementasjoner med gyldig fra-dato. Arver fra forrige pakke.\nRelasjoner: 1:n til D-Sats, 1:n til D-Lonnskjoring. Invariant: publisert pakke endres aldri. Retting gir ny pakke-id. Historikk: gyldighet.",
+   "beskrivelse_md": "Versjonert, signert samling av satser, kodelisteversjon, avrundingspolicy og regelimplementasjoner med gyldig fra-dato. Arver fra forrige pakke.\nPensjon (N16): OTP-regler per gyldighetsår (minstesats, 12G-tak, aldersgrense, tersklene i § 1 og fristen), G per dato, Finans Norges klassifisering av lønnsbeskrivelser (alltid, kan, aldri; bransjenorm v1.03, faktor 12,16) og kjente pensjonsinnretninger med organisasjonsnummer.\nRelasjoner: 1:n til D-Sats, 1:n til D-Lonnskjoring. Invariant: publisert pakke endres aldri. Retting gir ny pakke-id. Historikk: gyldighet.",
    "felt": [
     {
      "navn": "regelpakke_id",
@@ -10034,7 +10071,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Avrundingstabellen som data (N13 §2, ADR-06 i N08). Hver regel har nøkkel, strategi (`ToZero`, `AwayFromZero`, `MidpointAwayFromZero`), nivå, retning for negative beløp, hjemmel og gyldig fra."
     },
     {
      "navn": "regelimplementasjoner",
@@ -10133,7 +10170,7 @@
    "id": "D-Sats",
    "navn": "Sats i regelpakke",
    "omrade": "KJO",
-   "beskrivelse_md": "Én parameter med verdi, gyldighet og kilde: G, AGA-satser per sone, fribeløp, trinnskatt, frikortgrense, kildeskattsatser, livsoppholdssatser, minstegrenser, normrente, bilsjablong, OTP-grenser og lignende.\nRelasjoner: n:1 til D-Regelpakke. Reisesatser eies av UTL (D-Godtgjorelsessats). Invariant: satser hardkodes aldri.",
+   "beskrivelse_md": "Én parameter med verdi, gyldighet og kilde: G, AGA-satser per sone, fribeløp, trinnskatt, frikortgrense, kildeskattsatser, livsoppholdssatser, minstegrenser, normrente, bilsjablong, OTP-grenser, skattefrie gavegrenser, forsinkelsesrente på utleggstrekk, finansiørsatser og lignende.\nGavegrenser (FSFIN § 5-15-1, uendret siden 2021): 5 000 kr per år for andre gaver, 4 000 kr for jubileums- og oppmerksomhetsgaver og 8 000 kr etter 20 års tjeneste (N13 §3.1).\nForsinkelsesrente på trukket, men ikke betalt samordnet trekk gjelder fra 1.1.2027 (innkrevingsforskriften § 31-1, N29).\nFinansiørsatser med gyldighetsår: 1,2 promille med tak 700 kr per time (SkatteFUNN og Innovasjon Norge), tak 1 100 kr per time og 1 695 årsverkstimer (Forskningsrådet) og 215 dagsverk (EU) (N34).\nRelasjoner: n:1 til D-Regelpakke. Reisesatser eies av UTL (D-Godtgjorelsessats). Invariant: satser hardkodes aldri.",
    "felt": [
     {
      "navn": "sats_id",
@@ -10604,7 +10641,7 @@
    "id": "D-Trekkpalegg",
    "navn": "Trekkpålegg (utleggstrekk og bidrag)",
    "omrade": "TRK",
-   "beskrivelse_md": "Pålegg fra en offentlig påleggsgiver om trekk i lønn: samordnet utleggstrekk via API, gamle utleggstrekk og bidrag fra brev. Lagres med alle versjoner.\nRelasjoner: n:1 til D-Person og D-Virksomhet, 1:n til D-Lonnslinje, 0..1 til D-Dokument (brev). Invarianter: bare ett aktivt samordnet trekk per ansatt. Samordnet trekk avslutter gamle. Trekkdato = lønnsutbetalingsdato.\nHistorikk: bitemporal (versjoner med registreringstid, R3 D-38).",
+   "beskrivelse_md": "Pålegg fra en offentlig påleggsgiver om trekk i lønn: samordnet utleggstrekk, gamle utleggstrekk og bidrag. Lagres med alle versjoner.\nRegistrering (MVP, beslutning 29.10.2026): Trekkpålegg registreres manuelt på ansattkortet fra start, også samordnede trekk. Trekkpålegg-API-et brukes først når kunden har sendt minst én a-melding gjennom Brutto (N26). Da sammenlignes det manuelle registeret med API-et, og avvik blir sak. Feltet `kilde` skiller manuell registrering fra API. Ved SAF-T-import av historisk lønnsgrunnlag flagges bevegelser på trekkontoene som tegn på aktive trekk (REG).\nRelasjoner: n:1 til D-Person og D-Virksomhet, 1:n til D-Lonnslinje, 0..1 til D-Dokument (brev). Invarianter: bare ett aktivt samordnet trekk per ansatt. Samordnet trekk avslutter gamle. Trekkdato = lønnsutbetalingsdato.\nHistorikk: bitemporal (versjoner med registreringstid, R3 D-38).",
    "felt": [
     {
      "navn": "trekkpalegg_id",
@@ -10864,7 +10901,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "utleggstrekkSamordnet | utleggstrekkSkatt | annen [verifiseres for bidrag]."
+     "merknad": "utleggstrekkSamordnet | utleggstrekkSkatt | ingen. Bidrag i et samordnet trekk rapporteres som utleggstrekkSamordnet. Gammelt bidrag og andre gamle trekk rapporteres ikke (N01)."
     },
     {
      "navn": "regnskapskonto",
@@ -10903,7 +10940,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "api | brev_altinn | brev_post | migrering."
+     "merknad": "api | brev_altinn | brev_post | migrering. Alle verdier unntatt `api` er manuell registrering på ansattkortet. Feltet brukes når det manuelle registeret sammenlignes med API-et etter første a-melding (N26)."
     },
     {
      "navn": "mottatt_dato",
@@ -11975,7 +12012,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Om AGA følger betalingsdato er uavklart [verifiseres]."
+     "merknad": "Avgjør AGA-måneden. AGA følger betalingsmåneden (N16)."
     },
     {
      "navn": "premie_arbeidsgiver",
@@ -11991,6 +12028,32 @@
      "merknad": ""
     },
     {
+     "navn": "sparing",
+     "type": "beløp",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sparedelen av premien, slik Finans Norges returfil har den (N16)."
+    },
+    {
+     "navn": "risiko",
+     "type": "beløp",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Risikodelen av premien, slik returfilen har den (N16)."
+    },
+    {
      "navn": "ansatt_andel",
      "type": "beløp",
      "pakrevd": "Nei",
@@ -12001,7 +12064,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Skal stemme med sum trekk 6008 i perioden. Ført på 2690 i lønn og gjort opp mot 2400 (K4)."
+     "merknad": "Skal stemme med sum trekk 6008 i perioden. Ført på 2690 i lønn og gjort opp mot 2400 (K4). Tilsvarer `egenandel` i returfilen."
     },
     {
      "navn": "reguleringspremie",
@@ -12027,7 +12090,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Om den inngår i AGA-grunnlaget er uavklart [verifiseres]."
+     "merknad": "Inngår i AGA-grunnlaget. Meglerhonorar og flyttekostnad inngår ikke (N16). Tilsvarer `omkostninger` i returfilen."
     },
     {
      "navn": "premiefond_bruk",
@@ -12040,7 +12103,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": ""
+     "merknad": "Bruk av premiefond gir ikke AGA. Innbetaling til fondet gir AGA (N16). Tilsvarer `fra_premiefond` i returfilen."
     },
     {
      "navn": "aga_grunnlag",
@@ -12066,7 +12129,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Per underenhet og sone etter pensjonsgrunnlag."
+     "merknad": "Per underenhet og sone etter de øvrige avgiftspliktige ytelsene i samme kalendermåned (N16)."
     },
     {
      "navn": "aga_rapporteringsmaned",
@@ -12092,7 +12155,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "manuell | regnskapsadapter | ehf | leverandor."
+     "merknad": "manuell | regnskapsadapter | ehf | leverandor. Rekkefølge: regnskapet (postering på OTP-kontoen), manuelt, senere returfil eller EHF (N16)."
     },
     {
      "navn": "bilag_ref",

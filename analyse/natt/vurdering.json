@@ -1,0 +1,6031 @@
+[
+ {
+  "id": "E001",
+  "n": "N03",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Faktarettelse med kilde (OpenAPI 1.0.2): A07 har ikke feriepengegrunnlag. Rett punktet til debet 2940 og rimelighetskontroll.",
+  "relatert": [
+   "E192",
+   "E117"
+  ]
+ },
+ {
+  "id": "E002",
+  "n": "N03",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-02, F-REG-03, nye D-A07Gruppe og D-A07Kontoregel",
+  "begrunnelse": "Endrer datamodellen riktig: saldoregel per konto er nødvendig for avstemming når lønn kjøres i annet system.",
+  "relatert": [
+   "E114",
+   "E117",
+   "E350"
+  ]
+ },
+ {
+  "id": "E003",
+  "n": "N03",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "F-RAP-15 (ny funksjon kontrolloppstilling)",
+  "begrunnelse": "Samme ny funksjon foreslås i RAP-gruppen. Hører hjemme i RAP; fase avgjøres i kontrollomfanget.",
+  "relatert": [
+   "E193",
+   "E272",
+   "E190"
+  ]
+ },
+ {
+  "id": "E004",
+  "n": "N03",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Dekket av N36-katalogen: ANS-17 (flere kildesystemer) og ANS-12 (Skatteetatens avvik per inntekt).",
+  "relatert": [
+   "E130"
+  ]
+ },
+ {
+  "id": "E005",
+  "n": "N03",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "F-PER-35 sier allerede at A07 gir arbeidsforhold og regnskapet navn, ansattnummer og avdeling. Flermånedspunktet er uverifisert.",
+  "relatert": [
+   "E039",
+   "F-REG-29"
+  ]
+ },
+ {
+  "id": "E006",
+  "n": "N03",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Kontolisten for IB/UB overlapper E118/E280/E452. Lesekravet bør styres av kontoreglene, ikke listes i teksten.",
+  "relatert": [
+   "E347",
+   "E118"
+  ]
+ },
+ {
+  "id": "E007",
+  "n": "N03",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-21, F-MYN-24",
+  "begrunnelse": "SBS-overvåking finnes i F-MYN-24. Kontraktstest mot TT02 foreslås også i E150.",
+  "relatert": [
+   "E150"
+  ]
+ },
+ {
+  "id": "E008",
+  "n": "N03",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json D-Avstemmingsrapport, D-Avstemmingslinje",
+  "begrunnelse": "Normalisert lag, skjema_variant og nye entiteter er modellvalg (N03 sp. 3–5). D-A07Gruppe/Kontoregel behandles i REG-gruppen.",
+  "relatert": [
+   "E002",
+   "E403",
+   "E209",
+   "D07",
+   "M06"
+  ]
+ },
+ {
+  "id": "E009",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Samme trekkoversikt som E305, som også har lønnstilgang og implisitt prosent.",
+  "relatert": [
+   "E305"
+  ]
+ },
+ {
+  "id": "E010",
+  "n": "N01",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42, omr-K4.json F-REG-30",
+  "begrunnelse": "T1–T5 bruker data fase 1 allerede henter, kildebelagt. T6 forutsetter Dialogporten (E173). T4/T5 krever trekkontoer (R02).",
+  "relatert": [
+   "E097",
+   "E084",
+   "E173",
+   "E011",
+   "P05",
+   "K01"
+  ]
+ },
+ {
+  "id": "E011",
+  "n": "N01",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-02 / F-REG-03 (standardkontering)",
+  "begrunnelse": "Endrer gründerens standardkontering (B5, S #27/#28). I dag 2610 utleggstrekk og 2620 bidrag. Fagvalg, ikke faktafeil.",
+  "relatert": [
+   "E486",
+   "B5",
+   "gruppe 1 REG"
+  ],
+  "sporsmal": "Skal standardkonteringen få underkontoer 2611 samordnet, 2612 gammel skatt, 2613 annet gammelt?",
+  "anbefaling": "Ja som valgfri finere mapping via kontoregler; behold 2610/2620 som standard for enkle kunder."
+ },
+ {
+  "id": "E012",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Myndighetsabonnement",
+  "begrunnelse": "Samme enum-verdi som E099 og E186; E186 er den komplette varianten.",
+  "relatert": [
+   "E186",
+   "E099"
+  ]
+ },
+ {
+  "id": "E013",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-03, fase1 M05",
+  "begrunnelse": "Samme pakkespørsmål som E180 (lonn for brevsensor hos direktekunder).",
+  "relatert": [
+   "E180"
+  ]
+ },
+ {
+  "id": "E014",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-28, F-TRK-17",
+  "begrunnelse": "Vilkår og vannmerke står allerede i F-MYN-28. Fasemerket dekkes av E100.",
+  "relatert": [
+   "E100",
+   "E063",
+   "E095"
+  ]
+ },
+ {
+  "id": "E015",
+  "n": "N01",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K2.json F-KJO-24",
+  "begrunnelse": "Motsier F-KJO-24, som blokkerer godkjenning ved nyere pålegg før godkjenning. Kilde: Skatteetatens webinar, lysbilde 19 (ny kjøring ikke påkrevd).",
+  "relatert": [
+   "E102",
+   "E092",
+   "F-MYN-28",
+   "N28",
+   "N29"
+  ],
+  "sporsmal": "Skal nytt eller endret trekkpålegg etter beregning, men før godkjenning, blokkere eller bare varsle?",
+  "anbefaling": "Skill trekkpålegg fra skattekort. Pålegg gir varsel med valg «beregn på nytt» eller «ta med i neste kjøring». Skattekort blokkerer fortsatt før godkjenning."
+ },
+ {
+  "id": "E016",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-TRK-21; omr-K4.json F-MYN-29",
+  "begrunnelse": "Samme retting som E312, som har hjemmelen (innkrevingsloven § 30 fjerde ledd). Bruk E312.",
+  "relatert": [
+   "E312",
+   "F-MYN-29 (gruppe MYN)"
+  ]
+ },
+ {
+  "id": "E017",
+  "n": "N01",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-22; D-Trekkpalegg.amelding_beskrivelse",
+  "begrunnelse": "Kildebelagt (Skatteetatens brev 28.01.2026, a-meldingsveiledning, N28 §3.1). Retter feil om egen a-meldingslinje per pålegg og fjerner [verifiseres] for bidrag.",
+  "relatert": [
+   "E314",
+   "E019"
+  ]
+ },
+ {
+  "id": "E018",
+  "n": "N01",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-17",
+  "begrunnelse": "Faktarettelse med Skatteetaten-kilder i N01: egen konto for samordnet trekk, KID for gammel skatt mangler i tilbakemeldingen. Termin-KID fortsatt [verifiseres].",
+  "relatert": [
+   "E404",
+   "D-KID"
+  ]
+ },
+ {
+  "id": "E019",
+  "n": "N01",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K2.json D-Trekkpalegg",
+  "begrunnelse": "Enum-utvidelsen kolliderer med E098 (regelverk) og E303 (namsmann→namsfogd). «Ingen sluttdato» motsier F-TRK-17 (stans = sluttdato). `kilde_dialog_id` er nyttig.",
+  "relatert": [
+   "E098",
+   "E303",
+   "E310",
+   "F-TRK-17",
+   "F-TRK-28"
+  ],
+  "sporsmal": "Hvordan skal D-Trekkpalegg revideres samlet?",
+  "anbefaling": "Én revisjon: regelverk = samordnet, gammelt_skatt, gammelt_si, gammelt_namsfogd, gammelt_kommune, bidrag. paleggsgiver bruker namsfogd. Samordnet: ingen saldo eller prioritet, sluttdato bare ved stans. Legg til kilde_dialog_id."
+ },
+ {
+  "id": "E020",
+  "n": "N01",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-BET-01, F-BET-05",
+  "begrunnelse": "Kildebelagt (N01, a-meldingskontrollen): samordnet trekk betales per mottaker med egen KID, gammel skatt samlet. Avklarer grupperingen i D-Betalingsoppdrag.",
+  "relatert": [
+   "D-Betalingsoppdrag"
+  ]
+ },
+ {
+  "id": "E021",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-15",
+  "begrunnelse": "Én trekkolonne er et spesialtilfelle av klientoversikten med kolonne per kontrollgruppe.",
+  "relatert": [
+   "E246",
+   "E198",
+   "E443"
+  ]
+ },
+ {
+  "id": "E022",
+  "n": "N01",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-08, F-SIK-16",
+  "begrunnelse": "Dekket: F-SIK-08 har rollen «Lønn: trekk og fagforening», F-SIK-16 logger lesing av trekkpålegg. «Ikke hente brevinnhold» står i E299.",
+  "relatert": [
+   "E299",
+   "F-SIK-08",
+   "F-SIK-16"
+  ]
+ },
+ {
+  "id": "E023",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Presisering uten scopeendring: hovedbok avstemmes per konto og grupperingskode; personnivå bare mot A07/lønnsdata.",
+  "relatert": [
+   "E347"
+  ]
+ },
+ {
+  "id": "E024",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Regnskapskonto, F-REG-29",
+  "begrunnelse": "Feltene finnes allerede; billig å fylle ved lesing og trengs i MVP. Svarer N02-spørsmål 5.",
+  "relatert": [
+   "E080",
+   "E335"
+  ]
+ },
+ {
+  "id": "E025",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json P05",
+  "begrunnelse": "2930-kontrollen hører i samme beslutning som første utgave av kontrollkatalogen. 2910-delen er MVP.",
+  "relatert": [
+   "E191",
+   "E247"
+  ]
+ },
+ {
+  "id": "E026",
+  "n": "N02",
+  "kategori": "BLOAT",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Selvsagt i fase 1, som bare leser. F-PER-35 sier allerede at ingen registrerer ansatte. Hører til bilagsdesign i MVP.",
+  "relatert": [
+   "E030"
+  ]
+ },
+ {
+  "id": "E027",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-05, D-Regnskapsoppsett.aggregering",
+  "begrunnelse": "AGA per sone og sats som linjer følger bokføringsforskriften § 3-1 nr. 9. Juster teksten «per lønnsart» i F-REG-05.",
+  "relatert": [
+   "E324",
+   "E512"
+  ]
+ },
+ {
+  "id": "E028",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-06, D-Regnskapsoppsett.loennsjournal_vedlegg",
+  "begrunnelse": "Kildebelagt (NBS 2 pkt. 4.7, N30). Setter standardverdi i eksisterende felt.",
+  "relatert": [
+   "E325"
+  ]
+ },
+ {
+  "id": "E029",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-07, D-Regnskapsoppsett",
+  "begrunnelse": "Nytt felt ansattreskontro gjør regelen eksplisitt. Standardverdien avhenger av svaret på E086.",
+  "relatert": [
+   "E086",
+   "E355"
+  ]
+ },
+ {
+  "id": "E030",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Personkobling",
+  "begrunnelse": "D-Personkobling har allerede installasjon, kildesystem og ekstern personreferanse. Bruk den, ikke et nytt objekt.",
+  "relatert": [
+   "E104",
+   "N35 D-Arbeidsforholdkobling"
+  ]
+ },
+ {
+  "id": "E031",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-17/18/19/22, D-Bilag",
+  "begrunnelse": "Samme sak som E510 (kort kjøringsreferanse); E510 er mer presis (≤ 20 tegn).",
+  "relatert": [
+   "E510"
+  ]
+ },
+ {
+  "id": "E032",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-10",
+  "begrunnelse": "Legger til hjemmel (bokføringsloven § 9, forskriften § 5-12). Liten og kildebelagt.",
+  "relatert": [
+   "E356",
+   "E521"
+  ]
+ },
+ {
+  "id": "E033",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-KJO-31; omr-K3.json F-UTL-20",
+  "begrunnelse": "Kildebelagt (bokføringsloven § 11, observert ledgerType EMPLOYEE på 2910 i Tripletex). Avklarer at saldo per ansatt ligger i Brutto.",
+  "relatert": [
+   "F-REG (gruppe REG)",
+   "F-UTL-20 (gruppe UTL)"
+  ]
+ },
+ {
+  "id": "E034",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-01",
+  "begrunnelse": "Spørsmålet om hvem som bokfører, besvares av E336 (N31).",
+  "relatert": [
+   "E336"
+  ]
+ },
+ {
+  "id": "E035",
+  "n": "N02",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-16",
+  "begrunnelse": "Balansedokumentasjon etter bokføringsloven § 11; MVP. Passer eksisterende årsslutt-funksjon.",
+  "relatert": []
+ },
+ {
+  "id": "E036",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-26, F-SIK-29",
+  "begrunnelse": "Samme exit-innhold som E328 (journal, bokføringsgrunnlag, uendrede bilagsnumre). Samlebilag-forklaringen hører i F-SIK-29 (E321).",
+  "relatert": [
+   "E328",
+   "E321",
+   "F-BYR-30"
+  ]
+ },
+ {
+  "id": "E037",
+  "n": "N02",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-28",
+  "begrunnelse": "Dekkes av E520: Brutto må selv aggregere grupper med én eller to ansatte. Varsel blir en del av den regelen.",
+  "relatert": [
+   "E520"
+  ]
+ },
+ {
+  "id": "E038",
+  "n": "N05",
+  "kategori": "INN",
+  "maal": "fase1.json P03 (forslag)",
+  "begrunnelse": "Presiserer P03-forslaget (Kombinasjon) i tråd med F-PER-35. Endrer bare forslagsteksten, ikke svarene.",
+  "relatert": [
+   "F-PER-35",
+   "E373",
+   "E464"
+  ]
+ },
+ {
+  "id": "E039",
+  "n": "N05",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Dataminimering: kontonummer trengs ikke uten utbetaling. Feltkilde følger av kravet om kilde per felt. Lagmodellen avklares med Peter og Sander (D08).",
+  "relatert": [
+   "E005",
+   "fase1 D08",
+   "fase1 D09"
+  ]
+ },
+ {
+  "id": "E040",
+  "n": "N05",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-21, fase1 P07, M10",
+  "begrunnelse": "Hentestrategi (3 mnd, fyll bakover til 13, ny bestilling ved ny innsending) er svar på M10/P07.",
+  "relatert": [
+   "E403",
+   "M06"
+  ]
+ },
+ {
+  "id": "E041",
+  "n": "N05",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "ANS-01–17 er erstattet av ANS-01–19 og ny rekkefølge i N36.",
+  "relatert": [
+   "E130"
+  ]
+ },
+ {
+  "id": "E042",
+  "n": "N05",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-29, F-PER-35",
+  "begrunnelse": "Endepunktene er nyttige, men «kontonummer hentes ikke» motsier dagens F-REG-29 og F-PER-35, og E196 vil lese bankkonto.",
+  "relatert": [
+   "E196",
+   "E080",
+   "E107",
+   "E039"
+  ],
+  "sporsmal": "Skal fase 1 hente kontonummer på ansatte fra regnskapet (L-31 svindelkontroll), eller ikke (dataminimering, S #6)?",
+  "anbefaling": "Ikke hent i fase 1. Fjern kontonummer fra F-REG-29 og F-PER-35; L-31 flyttes til MVP."
+ },
+ {
+  "id": "E043",
+  "n": "N05",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-PLA-17",
+  "begrunnelse": "Samme unntak fra F-PLA-17 som E103 (fnr-kobling). E103 har den fullstendige prioriterte regelen og erstatter N05-regelen (N35 §6).",
+  "relatert": [
+   "E103",
+   "E374",
+   "E465",
+   "D09"
+  ]
+ },
+ {
+  "id": "E044",
+  "n": "N05",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-PLA-13, F-MIG-10; D-Permisjon",
+  "begrunnelse": "Flytter tre ikke-fase-1-elementer inn i fase 1. Endrer fasegrensen i B37 og henger sammen med P03.",
+  "relatert": [
+   "E371",
+   "E363",
+   "P03",
+   "B37"
+  ],
+  "sporsmal": "Skal fase 1 ha enkel kilderegel per feltgruppe, navnelisteimport og permisjon som skrivebeskyttet A07-kopi?",
+  "anbefaling": "Ja, men bare navneliste og A07-kopi av permisjon. Fullt kilderegister (F-PLA-13) venter til MVP."
+ },
+ {
+  "id": "E045",
+  "n": "N05",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-39",
+  "begrunnelse": "Kobler ANS-13/14 til Brreg. Merknaden om at arbeidsforhold-API-ene bare er for NAV/SSB hindrer feil antakelse.",
+  "relatert": [
+   "E130"
+  ]
+ },
+ {
+  "id": "E046",
+  "n": "N05",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-38, omr-K6.json F-RAP-21",
+  "begrunnelse": "Dekket av N36-katalogen (ANS-07/08, ANS-02 med unntak) og E131.",
+  "relatert": [
+   "E130",
+   "E131",
+   "E135"
+  ]
+ },
+ {
+  "id": "E047",
+  "n": "N05",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K6.json F-RAP-22, F-RAP-07; fase1 P06",
+  "begrunnelse": "Kjønn fra fødselsnummer bør droppes (2032). Men alder kan utledes for fødselsnummer, se N05-tabellen og N38. Unntak: D-nummer.",
+  "relatert": [
+   "E372",
+   "E478",
+   "P06"
+  ],
+  "sporsmal": "Skal fase 1-grafer vise kjønn og aldersgruppe?",
+  "anbefaling": "Fjern kjønn fra fase 1 til det finnes HR-kilde. Aldersgruppe fra fødselsdato for fødselsnummer, ikke for D-nummer."
+ },
+ {
+  "id": "E048",
+  "n": "N05",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-08, F-SIK-28",
+  "begrunnelse": "F-SIK-08 dekker lønnstilgang og fagforening. A07 som kilde dekkes av E375, DPIA-delen av E474.",
+  "relatert": [
+   "E375",
+   "E474",
+   "E124"
+  ]
+ },
+ {
+  "id": "E049",
+  "n": "N05",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Arbeidsforhold + nye D-Kildeobservasjon/D-Feltkilde/D-Feltkonflikt",
+  "begrunnelse": "Former datamodellen nå (L03, D07). Avstem mot eksisterende D-Kilderegister (per datatype) og D-Personkobling så entitetene ikke overlapper.",
+  "relatert": [
+   "D-Kilderegister",
+   "E105",
+   "E464",
+   "D07",
+   "L03"
+  ]
+ },
+ {
+  "id": "E050",
+  "n": "N05",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-35 / F-MIG-05–07",
+  "begrunnelse": "Konsistent med P03 og F-PER-35 (Brutto blir kilde ved lønnskjøring). Gjenbruk av lesere i migrering er god planlegging.",
+  "relatert": [
+   "E144",
+   "E468",
+   "F-MIG-05"
+  ]
+ },
+ {
+  "id": "E051",
+  "n": "N06",
+  "kategori": "SJUR",
+  "maal": "fase1.json M02 / M01",
+  "begrunnelse": "Orgnr i system-id gjør valget dyrt å endre. M02 er «Alle tre», men selskapsvalget er forretning.",
+  "relatert": [
+   "M01",
+   "E064"
+  ],
+  "sporsmal": "Hvilket selskap skal være leverandør hos Digdir/Skatteetaten/Altinn, og hvem er teknisk eier og reserve?",
+  "anbefaling": "Velg selskapet som skal eie Brutto og kundeavtalene nå, før første søknad."
+ },
+ {
+  "id": "E052",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-01, fase1 M03",
+  "begrunnelse": "Rotasjon, alarm og egne nøkler per miljø står allerede. Resten (KMS, sertifikat, isVisible [verifiseres]) er svar på M03.",
+  "relatert": [
+   "M03",
+   "H04",
+   "E208"
+  ]
+ },
+ {
+  "id": "E053",
+  "n": "N06",
+  "kategori": "KONFLIKT",
+  "maal": "fase1.json M01/M02, omr-K4.json F-MYN-01",
+  "begrunnelse": "Sier at altinn:events.subscribe skal søkes om. E290/N25 viser at scopet er offentlig og ikke bestilles.",
+  "relatert": [
+   "E290",
+   "E183"
+  ],
+  "sporsmal": "Skal events.subscribe stå i søknadslisten?",
+  "anbefaling": "Fjern events.subscribe. Behold innrapporteringamelding og skattekorttilarbeidsgiver i samme søknadsrunde."
+ },
+ {
+  "id": "E054",
+  "n": "N06",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-MYN-02",
+  "begrunnelse": "Enkeltrettigheten gir ikke A03 (E180). Motsier også F-MYN-02 (alle pakker, S #16).",
+  "relatert": [
+   "E180",
+   "E062",
+   "E013"
+  ],
+  "sporsmal": "Hvilke tilgangspakker ber vi direktekunder om i fase 1: enkeltrettighet for A07, eller a-ordning + lonn fra start?",
+  "anbefaling": "a-ordning + lonn fra start (A07, A03, trekkbrev, skattekort klart). Særlig kategori og krav-og-utlegg via endringsforespørsel ved behov. Presiser S #16."
+ },
+ {
+  "id": "E055",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-04, F-MYN-05",
+  "begrunnelse": "Én agent med regnskapsforer-lonn, portal som standard og REGN-sjekk finnes. authorizedparties hører til M09/N06 sp. 5.",
+  "relatert": [
+   "M09"
+  ]
+ },
+ {
+  "id": "E056",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-06",
+  "begrunnelse": "Bysystem, MP-303, TimedOut, Rejected og slettet systembruker står allerede i F-MYN-06.",
+  "relatert": []
+ },
+ {
+  "id": "E057",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Plikten (B §2.9) og varslingsadressen står allerede i F-MYN-24.",
+  "relatert": []
+ },
+ {
+  "id": "E058",
+  "n": "N06",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-27; fase1 H08",
+  "begrunnelse": "Tydelig port: DPA signert før første produksjonskall med kundedata, røyktest mot eget orgnr før det. Kilde N06 §6.",
+  "relatert": [
+   "H08",
+   "M02",
+   "E470"
+  ]
+ },
+ {
+  "id": "E059",
+  "n": "N06",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 M07, M11",
+  "begrunnelse": "Krav til testoppsett: testbyrået må være Tenor-selskap registrert som regnskapsfører. Hører i TT02-testplanen. Syntetiske data står allerede i F-SIK-36.",
+  "relatert": [
+   "F-SIK-36",
+   "E147",
+   "M11"
+  ]
+ },
+ {
+  "id": "E060",
+  "n": "N06",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json D-Systembruker",
+  "begrunnelse": "Feltdetaljer; request_id, confirmUrl og request_utloper finnes. Vurder ev. godkjent_av_rolle i stedet for dagl_navn (dataminimering).",
+  "relatert": []
+ },
+ {
+  "id": "E061",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-01 / F-MYN-24",
+  "begrunnelse": "R3-kritikken slo E3.13 sammen med ES.2. Nøkler/scopes ligger i F-MYN-01; søknadslogg er driftsrutine, ikke ny F-id.",
+  "relatert": [
+   "E162",
+   "E291",
+   "F-MYN-01",
+   "F-MYN-24"
+  ]
+ },
+ {
+  "id": "E062",
+  "n": "N06",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-MYN-03",
+  "begrunnelse": "Lonn ved lønnskjøring motsier E180 (lonn fra fase 1) og F-MYN-02 (alle pakker fra start).",
+  "relatert": [
+   "E180",
+   "E054",
+   "E170"
+  ],
+  "sporsmal": "Hvilke tilgangspakker ber vi direktekunder om i fase 1: enkeltrettighet for A07, eller a-ordning + lonn fra start?",
+  "anbefaling": "a-ordning + lonn fra start (A07, A03, trekkbrev, skattekort klart). Særlig kategori og krav-og-utlegg via endringsforespørsel ved behov. Presiser S #16."
+ },
+ {
+  "id": "E063",
+  "n": "N06",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-28",
+  "begrunnelse": "Kravet om innsending og første a-melding står allerede i F-MYN-28.",
+  "relatert": [
+   "E100"
+  ]
+ },
+ {
+  "id": "E064",
+  "n": "N06",
+  "kategori": "KONFLIKT",
+  "maal": "fase1.json vurdering_md punkt 3",
+  "begrunnelse": "N06 sier 7–10 uker [verifiseres]; fase1-vurderingen sier 3–5 måneder. Begge er anslag uten kilde.",
+  "relatert": [
+   "E051",
+   "E290"
+  ],
+  "sporsmal": "Hvilket tidsanslag gjelder for myndighetsoppkoblingen?",
+  "anbefaling": "Behold 3–5 mnd som planleggingsanslag, noter 7–10 uker som beste tilfelle, og oppdater fra egen søknadslogg."
+ },
+ {
+  "id": "E065",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Lukker [verifiseres] i merknaden om endepunkter for Tripletex og PowerOffice. ReAi-prioritet avgjøres i R01.",
+  "relatert": [
+   "E156",
+   "E361"
+  ]
+ },
+ {
+  "id": "E066",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-29 regler",
+  "begrunnelse": "Strømming og minimering av SAF-T er riktig rådata-regel. Skriv «SAF-T 1.30 og 1.40» (E213).",
+  "relatert": [
+   "E213",
+   "E156"
+  ]
+ },
+ {
+  "id": "E067",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-01, F-REG-03, D-Regnskapskonto",
+  "begrunnelse": "Kildebelagt (Tripletex groupingCode, PowerOffice GroupingCategoryCode). Fjerner [verifiseres] i F-REG-03.",
+  "relatert": [
+   "E116",
+   "E505"
+  ]
+ },
+ {
+  "id": "E068",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-03",
+  "begrunnelse": "5390 → 5300 er lest fra Tripletex' grupperingskoder (N04/N23). F-REG-03 sier «5000 (antatt)», så rettelsen har kilde.",
+  "relatert": [
+   "E115",
+   "gruppe 1 REG"
+  ]
+ },
+ {
+  "id": "E069",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30 (saldomotor)",
+  "begrunnelse": "Kontrollsum IB + D − K = UB og fallback «delvis» er kjernen i avstemmingen. Endrer modellen.",
+  "relatert": [
+   "E349",
+   "E347"
+  ]
+ },
+ {
+  "id": "E070",
+  "n": "N04",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-28",
+  "begrunnelse": "Samme skjermingsregel som E348 (feltvalg, aldri employee på 5800/2650).",
+  "relatert": [
+   "E348",
+   "E081"
+  ]
+ },
+ {
+  "id": "E071",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K5.json F-BYR-08, F-BYR-15",
+  "begrunnelse": "Tilgangsdiagnosen bør dekke regnskapstilkoblingen og sjekke orgnr mot A07. Kvoter og jobbkø hører til A04/M10, ikke kartleggingen.",
+  "relatert": [
+   "E365",
+   "E217",
+   "E158",
+   "fase1 M10"
+  ]
+ },
+ {
+  "id": "E072",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Regnskapskonto",
+  "begrunnelse": "Riktig: saldo hører ikke på kontoen. Krever ny D-Regnskapssaldo (E073 i annen gruppe).",
+  "relatert": [
+   "E073",
+   "E347"
+  ]
+ },
+ {
+  "id": "E073",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-29 + nye D-Regnskapssaldo/D-Hovedbokslinje",
+  "begrunnelse": "Fase 1-avstemmingen mangler entitet for leste saldoer. Hold D-Regnskapshenting som type av D-Importjobb; felt til utviklerne.",
+  "relatert": [
+   "F-REG-29",
+   "D-Importjobb",
+   "gruppe 1 REG"
+  ]
+ },
+ {
+  "id": "E074",
+  "n": "N04",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K6.json D-Integrasjon; fase1 R03",
+  "begrunnelse": "Felt for token per regnskapssystem er utviklervalg (R03). Ta med som fakta at PowerOffice-klientnøkkelen bare vises én gang.",
+  "relatert": [
+   "R03",
+   "R01",
+   "E364",
+   "E508"
+  ]
+ },
+ {
+  "id": "E075",
+  "n": "N04",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-19",
+  "begrunnelse": "Åpent [verifiseres]-punkt. Dekkes av bilagsmodus utkast/bokført i E515.",
+  "relatert": [
+   "E515"
+  ]
+ },
+ {
+  "id": "E076",
+  "n": "N04",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-21",
+  "begrunnelse": "Motsies delvis av E367 (NXT før eAccounting, valg etter pilot). Én regel: rekkefølge etter pilotkundene.",
+  "relatert": [
+   "E367"
+  ]
+ },
+ {
+  "id": "E077",
+  "n": "N04",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-22",
+  "begrunnelse": "Fiken er «Kan» og MVP. Filter- og prisdetalj trengs ikke i kartleggingen nå.",
+  "relatert": [
+   "E516"
+  ]
+ },
+ {
+  "id": "E078",
+  "n": "N04",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-24",
+  "begrunnelse": "Gjenbruk av saldomotoren og ny avstemming ved endret bilag er riktig prinsipp for MVP. Webhook-detalj er utviklernes.",
+  "relatert": [
+   "E069",
+   "E245"
+  ]
+ },
+ {
+  "id": "E079",
+  "n": "N04",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere»-notat uten konsekvens for datamodellen nå (Visma ISV-avtale, egen SAF-T-eksport).",
+  "relatert": [
+   "E522"
+  ]
+ },
+ {
+  "id": "E080",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29, F-MIG-06",
+  "begrunnelse": "Endepunktliste som E042/E107; reskontro-delen dekkes av E024. ReAi i fase 1 avhenger av R01.",
+  "relatert": [
+   "E042",
+   "E024",
+   "E361"
+  ]
+ },
+ {
+  "id": "E081",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-28, F-SIK-08",
+  "begrunnelse": "Samme prinsipp som E347: saldo per konto som standard, posteringer på 2930/2940 er lønnsdata.",
+  "relatert": [
+   "E347"
+  ]
+ },
+ {
+  "id": "E082",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30, D-A07Kontoregel",
+  "begrunnelse": "ReAi-kontoene hører i regelsettet per lønnsmodul (E350, legg til reai_lonn). Per ansatt-avstemming krever lønnstilgang.",
+  "relatert": [
+   "E350"
+  ]
+ },
+ {
+  "id": "E083",
+  "n": "N21",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Salgsargument, ingen konsekvens for modell eller scope.",
+  "relatert": [
+   "E507",
+   "E243"
+  ]
+ },
+ {
+  "id": "E084",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Samme som T4 i N01. Påstanden om ReAi er [verifiseres].",
+  "relatert": [
+   "E010",
+   "E011"
+  ]
+ },
+ {
+  "id": "E085",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json D-Arbeidsforhold, omr-K6.json F-PLA-17",
+  "begrunnelse": "ReAi-detaljen inngår i koblingsregelen i E104 og N35. Feltdetaljene hører til adapteren.",
+  "relatert": [
+   "E104",
+   "F-PLA-17"
+  ]
+ },
+ {
+  "id": "E086",
+  "n": "N21",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-07, D-Regnskapsoppsett",
+  "begrunnelse": "netto_per_ansatt som standard for ReAi motsier S #9 og F-SIK-08 (samlet 2930). Ikke testet [verifiseres].",
+  "relatert": [
+   "E029",
+   "E355",
+   "F-SIK-08"
+  ],
+  "sporsmal": "Standard for nettolønn i Bruttos bilag: samlet 2930 (S #9) for alle, eller følge regnskapets modell (ReAi 2930 per ansatt, Tripletex 2910)?",
+  "anbefaling": "Samlet 2930 som standard. netto_per_ansatt bare som tilvalg der regnskapssystemet krever ansatt, etter test."
+ },
+ {
+  "id": "E087",
+  "n": "N21",
+  "kategori": "SJUR",
+  "maal": "fase1.json R01 / ny F-REG-adapter",
+  "begrunnelse": "Ny adapter i MVP er scope. Funnet om at salary-payments/import sperrer ReAis a-melding er viktig og bør stå i adapteren.",
+  "relatert": [
+   "E517",
+   "E108",
+   "E353",
+   "R01"
+  ],
+  "sporsmal": "Skal ReAi få bilagsadapter i MVP ved siden av Tripletex og PowerOffice Go?",
+  "anbefaling": "Bare hvis en pilotkunde bruker ReAi. Bruk manual-vouchers, aldri salary-payments/import."
+ },
+ {
+  "id": "E088",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-01",
+  "begrunnelse": "Dette er flyt A i E336.",
+  "relatert": [
+   "E336"
+  ]
+ },
+ {
+  "id": "E089",
+  "n": "N21",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-MIG-06, F-MIG-25; D-Trekk/D-Trekkpalegg",
+  "begrunnelse": "Riktig klassifisering i datamodellen: faste ReAi-trekk blir D-Trekk, aldri D-Trekkpalegg. Utleggstrekk hentes på nytt med fire øyne.",
+  "relatert": [
+   "E258",
+   "F-MIG-25",
+   "D-Trekkpalegg"
+  ]
+ },
+ {
+  "id": "E090",
+  "n": "N21",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-MIG-06, F-MIG-17",
+  "begrunnelse": "F-MIG-06 sier allerede at ReAi-genererte ID-er hentes fra a-ordningen. Resten dekkes av E110.",
+  "relatert": [
+   "E110",
+   "F-MIG-06"
+  ]
+ },
+ {
+  "id": "E091",
+  "n": "N21",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json F-TRK-06/07",
+  "begrunnelse": "Testpraksis, ikke kartlegging. F-TRK-07 har allerede Skatteetatens tekstfil som fasit.",
+  "relatert": [
+   "E422"
+  ]
+ },
+ {
+  "id": "E092",
+  "n": "N21",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json F-KJO-23/24",
+  "begrunnelse": "Salgsargument. Skillet mellom godkjenning og innsending står allerede i F-KJO-23/24.",
+  "relatert": [
+   "E224"
+  ]
+ },
+ {
+  "id": "E093",
+  "n": "N21",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-11",
+  "begrunnelse": "Godt mønster for korreksjon av avsetning uten ny lønn. Liten MVP-presisering.",
+  "relatert": [
+   "E350"
+  ]
+ },
+ {
+  "id": "E094",
+  "n": "N21",
+  "kategori": "KONFLIKT",
+  "maal": "–",
+  "begrunnelse": "«ReAi betaler skatt og AGA automatisk» som målbilde strider mot B12 (kunden signerer) og E232 (AGA først etter avstemming).",
+  "relatert": [
+   "B12",
+   "E232"
+  ],
+  "sporsmal": "Skal automatisk betaling være målbilde?",
+  "anbefaling": "Stryk målbilde-setningen. Behold ReAi-utlegg som senere-notat under F-UTL-01."
+ },
+ {
+  "id": "E095",
+  "n": "N26",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-28",
+  "begrunnelse": "F-MYN-28 er ikke fase 1 og har allerede vilkåret om innsending via Brutto.",
+  "relatert": [
+   "E100",
+   "E300"
+  ]
+ },
+ {
+  "id": "E096",
+  "n": "N26",
+  "kategori": "INN",
+  "maal": "omr-K5.json F-BYR-15",
+  "begrunnelse": "Kildebelagt: tjenestebeskrivelsen krever innsending gjennom systemet for Trekkpålegg-API. Fasegrensen følger av vilkårene, ikke av valg.",
+  "relatert": [
+   "E175",
+   "F-MYN-28",
+   "F-MYN-21",
+   "F-MYN-43"
+  ]
+ },
+ {
+  "id": "E097",
+  "n": "N26",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42, F-REG-30",
+  "begrunnelse": "Duplikat av E010.",
+  "relatert": [
+   "E010"
+  ]
+ },
+ {
+  "id": "E098",
+  "n": "N26",
+  "kategori": "SJUR",
+  "maal": "omr-K2.json D-Trekkpalegg (fase 1)",
+  "begrunnelse": "Utvider fase 1 utover B37. `innhentet_fra` dupliserer feltet `kilde` (api | brev_altinn | brev_post | migrering), som finnes.",
+  "relatert": [
+   "E019",
+   "B37",
+   "B22",
+   "F-BYR-15 (gruppe BYR)",
+   "N01"
+  ],
+  "sporsmal": "Skal et lett manuelt trekkregister være med i fase 1 (Bør), slik at T7–T9 kan kjøres?",
+  "anbefaling": "Nei, ikke i fase 1. Fase 1 bruker trekkoversikt fra A07 og brevsensor. Modellen designes nå med bitemporal historikk, og registeret bygges i MVP. Dropp innhentet_fra."
+ },
+ {
+  "id": "E099",
+  "n": "N26",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Myndighetsabonnement",
+  "begrunnelse": "Dekket av E186. Sak per brev følger av saksreglene i E178.",
+  "relatert": [
+   "E186",
+   "E178"
+  ]
+ },
+ {
+  "id": "E100",
+  "n": "N26",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-28, F-TRK-17",
+  "begrunnelse": "Konsistent. Legger til databehandleravtale og to moduser per klient. «MVP» er ikke vedtatt fase (B31).",
+  "relatert": [
+   "E014",
+   "E063",
+   "E095",
+   "E098",
+   "B31"
+  ]
+ },
+ {
+  "id": "E101",
+  "n": "N26",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-MIG-25",
+  "begrunnelse": "Liten, konsistent kontroll: etter første a-melding sammenlignes trekkregisteret med API-et, og avvik blir sak. Passer N26 plan B.",
+  "relatert": [
+   "F-TRK-19",
+   "E299"
+  ]
+ },
+ {
+  "id": "E102",
+  "n": "N26",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-KJO-24",
+  "begrunnelse": "Logisk følge av at API-et krever a-melding fra Brutto. Ny henting gir ingenting for kunder uten aktivt API.",
+  "relatert": [
+   "E015",
+   "F-MYN-28"
+  ]
+ },
+ {
+  "id": "E103",
+  "n": "N35",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-PLA-17, F-PER-35",
+  "begrunnelse": "Erstatter regelen i F-PLA-17 (bare ansattnummer eller IdP-verifisert e-post). Gir automatisk kobling på fødselsnummer. N05 ber selv om Sjurs svar.",
+  "relatert": [
+   "E043",
+   "E374",
+   "E465",
+   "E362",
+   "F-PER-35",
+   "D09"
+  ],
+  "sporsmal": "Godtar du automatisk kobling på eksakt fødselsnummer, og på (fnr, virksomhet, startdato) med ett treff, som unntak fra F-PLA-17?",
+  "anbefaling": "Ja. Bruk én prioritert regel: manuell, rapportert ID, lært ID, fnr-treff. Resten går til koblingskøen. Navn og fødselsdato blir bare forslag."
+ },
+ {
+  "id": "E104",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Arbeidsforhold",
+  "begrunnelse": "Rettelse med kilde: Tripletex employmentId er tom og ikke rapportert ID. A07 er fasit. Skillet mellom rapportert og intern ID påvirker datamodellen.",
+  "relatert": [
+   "E085",
+   "E030",
+   "E138"
+  ]
+ },
+ {
+  "id": "E105",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "omr-K6.json D-Personkobling",
+  "begrunnelse": "Kobling per arbeidsforhold trengs fordi Tripletex/ReAi mangler ID. Foretrekk utvidelse av D-Personkobling framfor ny entitet.",
+  "relatert": [
+   "E049",
+   "E108",
+   "D-Personkobling"
+  ]
+ },
+ {
+  "id": "E106",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "fase1.json D06 / omr-K1.json D-Arbeidsforhold",
+  "begrunnelse": "Kilde: XSD v2.3 RestriksjonIdentifikator (150 tegn, fast tegnsett). Regelverksriktighet, ikke implementasjonsvalg.",
+  "relatert": [
+   "E216",
+   "D06"
+  ]
+ },
+ {
+  "id": "E107",
+  "n": "N35",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Arbeidsforhold-endepunktene er samme sak som E042.",
+  "relatert": [
+   "E042",
+   "E108"
+  ]
+ },
+ {
+  "id": "E108",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "fase1.json R01 (forslag)",
+  "begrunnelse": "Faktainnspill til R01: PowerOffice Go gir eksakt kobling, Tripletex/ReAi trenger regelkobling. Påvirker rekkefølgen.",
+  "relatert": [
+   "E353",
+   "E087",
+   "E105"
+  ]
+ },
+ {
+  "id": "E109",
+  "n": "N35",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "ANS-18 og ANS-19 er med i N36-katalogen.",
+  "relatert": [
+   "E130"
+  ]
+ },
+ {
+  "id": "E110",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-MIG-05/06/07, F-MIG-16/17",
+  "begrunnelse": "Kobler fase 1 til migrering: lærte koblinger blir grunnlag for metode 1. Fyller hullet i F-MIG-07 (PowerOffice ReportingId).",
+  "relatert": [
+   "E090",
+   "E103",
+   "B16"
+  ]
+ },
+ {
+  "id": "E111",
+  "n": "N35",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 D06",
+  "begrunnelse": "Formatet på egne ID-er er et teknisk valg (N35 spør selv). Ny ID ved bytte av underenhet står allerede i F-PER-16.",
+  "relatert": [
+   "E139",
+   "F-PER-16",
+   "D06"
+  ]
+ },
+ {
+  "id": "E112",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Liten, men nyttig: Tripletex viser ikke ID-en. Støtter B16 (ID-er beholdes ved bytte). Kan vises allerede i fase 1.",
+  "relatert": [
+   "B16",
+   "E106"
+  ]
+ },
+ {
+  "id": "E113",
+  "n": "N35",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-PLA-22",
+  "begrunnelse": "Kort fakta som hindrer en modellfeil: Humas employmentId er ikke a-meldingens arbeidsforhold-ID.",
+  "relatert": [
+   "E465",
+   "F-MIG-12"
+  ]
+ },
+ {
+  "id": "E114",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-02, F-REG-03, D-Kontomapping nivå brutto_mal",
+  "begrunnelse": "Datafila er Sjurs A07-mapping som data (R02). Rett kontonavn etter E168 før bruk.",
+  "relatert": [
+   "E002",
+   "E168",
+   "E350"
+  ]
+ },
+ {
+  "id": "E115",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-03",
+  "begrunnelse": "Samme rettelse som E068 (5390 → 5300, 5800 → 5000).",
+  "relatert": [
+   "E068"
+  ]
+ },
+ {
+  "id": "E116",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Regnskapskonto",
+  "begrunnelse": "Samme som E067 (grupperingskategori fra CSV, kilde regnskap/sjur_standard).",
+  "relatert": [
+   "E067"
+  ]
+ },
+ {
+  "id": "E117",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Formler på hovedgruppe og regelsett per kunde og gruppe trengs for periodisering. Kildebelagt i N23.",
+  "relatert": [
+   "E002",
+   "E350",
+   "E439"
+  ]
+ },
+ {
+  "id": "E118",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Kontoliste som overlapper E006/E280/E452. Avledes av kontoreglene.",
+  "relatert": [
+   "E347",
+   "E006"
+  ]
+ },
+ {
+  "id": "E119",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "To små kontroller fra mappingen. Bør inn i én samlet kontrollkatalog med ANS-, T- og L-koder.",
+  "relatert": [
+   "E130",
+   "E133",
+   "E002"
+  ]
+ },
+ {
+  "id": "E120",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-21",
+  "begrunnelse": "Fakta fra OpenAPI: utleggstrekk bare per person. Avgjør bestillingsmodus for trekkontrollene.",
+  "relatert": [
+   "E199",
+   "E376",
+   "E010"
+  ]
+ },
+ {
+  "id": "E121",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-15",
+  "begrunnelse": "Avhenger av om kontrolloppstillingen kommer inn (E272).",
+  "relatert": [
+   "E272"
+  ]
+ },
+ {
+  "id": "E122",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-13",
+  "begrunnelse": "E351 svarer på [verifiseres]: ingen av systemene gir sone på posteringen.",
+  "relatert": [
+   "E351"
+  ]
+ },
+ {
+  "id": "E123",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Avstemmingslinje",
+  "begrunnelse": "Feltet regelsett tas sammen med de andre feltendringene i E200.",
+  "relatert": [
+   "E200"
+  ]
+ },
+ {
+  "id": "E124",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-08",
+  "begrunnelse": "Utvider skjermingen med 2650 og FR.FAGF. Gjelder også linjer som bare er lest fra hovedboken, og det er nettopp fase 1. Kilde N23.",
+  "relatert": [
+   "E375",
+   "E195",
+   "E048"
+  ]
+ },
+ {
+  "id": "E125",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-LON-01, D-Lonnsart",
+  "begrunnelse": "Feltene finnes på D-Lonnsart. Forslaget gir standardverdier fra N23-mapping, validert mot inntektskombinasjonene. Det oppfyller dagens invariant.",
+  "relatert": [
+   "E412",
+   "E126",
+   "F-REG-02/03 (gruppe REG)"
+  ]
+ },
+ {
+  "id": "E126",
+  "n": "N23",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-LON-06; omr-K4.json D-Kontomapping",
+  "begrunnelse": "Viktig invariant mellom to mappingveier: lønnsart→konto og konto→A07-gruppe. Ta inn invarianten. Testdetaljen hører til utviklerne.",
+  "relatert": [
+   "E125",
+   "D-A07Kontoregel (gruppe REG)"
+  ]
+ },
+ {
+  "id": "E127",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-KJO-14; omr-K4.json F-REG-11",
+  "begrunnelse": "F-REG-11 sier allerede at 2785 løses opp mot faktisk AGA ved utbetaling. Legg bare en henvisning i F-KJO-14. Merk: SAF-T bruker 2781, ikke 2785.",
+  "relatert": [
+   "F-REG-11 (gruppe REG)",
+   "S #27"
+  ]
+ },
+ {
+  "id": "E128",
+  "n": "N23",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-15, D-Regnskapsoppsett",
+  "begrunnelse": "Finnes allerede: aga_refusjonsmetode i D-Regnskapsoppsett og F-FRA-26. N15 vil ha den i fase 1.",
+  "relatert": [
+   "E440",
+   "F-FRA-26"
+  ]
+ },
+ {
+  "id": "E129",
+  "n": "N23",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere»: versjonert kodeliste dekkes av E143; KI-mapping finnes som F-MIG-13.",
+  "relatert": [
+   "E143",
+   "F-MIG-13"
+  ]
+ },
+ {
+  "id": "E130",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Konkret, kildebelagt katalog som erstatter foreløpig liste. Speiler F-regler. Standardtekst i kode er K01-svar.",
+  "relatert": [
+   "E004",
+   "E041",
+   "E046",
+   "E109",
+   "E466",
+   "K01",
+   "P05"
+  ]
+ },
+ {
+  "id": "E131",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-38, omr-K1.json F-PER-24",
+  "begrunnelse": "Faktarettelse fra SSB Klass: yrkeskoden bygger på STYRK-98 (Klass 145), ikke STYRK-08. Løser [verifiseres].",
+  "relatert": [
+   "E212",
+   "E143"
+  ]
+ },
+ {
+  "id": "E132",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-16",
+  "begrunnelse": "Regnearket R1 2026 har meldingstekster. Retter merknaden om manglende forklaringstekst.",
+  "relatert": [
+   "E133"
+  ]
+ },
+ {
+  "id": "E133",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-10, D-Regelpakke",
+  "begrunnelse": "Bekrefter at regler kommer som regneark, ikke API. Løser [verifiseres] i F-MYN-10.",
+  "relatert": [
+   "E143",
+   "E211",
+   "E132"
+  ]
+ },
+ {
+  "id": "E134",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Kildebelagt (forretningsregler R1 2026, NAV): status forsvunnet og frist for maskinell sluttdato gir nyttig kontroll i fase 1. Permittering verifiseres i TT02.",
+  "relatert": [
+   "E141",
+   "E138"
+  ]
+ },
+ {
+  "id": "E135",
+  "n": "N36",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-RAP-21",
+  "begrunnelse": "Unntakene er lønnsfaglige og merket [forslag] i N36. Styrer falske positive i fase 1.",
+  "relatert": [
+   "E136"
+  ],
+  "sporsmal": "Hvilke lønnsbeskrivelser kan lovlig komme etter sluttdato?",
+  "anbefaling": "Godta N36 §4 som standard. Unntak gir info, ikke feil, og krever kvittering."
+ },
+ {
+  "id": "E136",
+  "n": "N36",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-RAP-22",
+  "begrunnelse": "Årsverksdefinisjonen er lønnsfaglig og notegrunnlag (rskl. § 7-43/7-30). Står på Sjurs liste i morgen.md.",
+  "relatert": [
+   "E282",
+   "F-RAP-17"
+  ],
+  "sporsmal": "Hvordan regnes årsverk: uten tilkallingsvikarer og 0 %, snitt per måned?",
+  "anbefaling": "Ja. Telle personer og arbeidsforhold for seg. Utleide ansatte som filter. Publiser definisjonen i rapporten."
+ },
+ {
+  "id": "E137",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-MIG-14",
+  "begrunnelse": "Retter F-MIG-14: avlønningstype avvises fra 2019 (F282) og skal aldri mappes eller blokkere a-meldingen. Kilde N36. Lukker R5 punkt 11.",
+  "relatert": []
+ },
+ {
+  "id": "E138",
+  "n": "N36",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-PER-20",
+  "begrunnelse": "F-PER-20 sier allerede at ID lagres som den er. ANS-18/19 legges til som henvisning. Store/små bokstaver verifiseres i TT02.",
+  "relatert": [
+   "E141",
+   "F-MIG-16"
+  ]
+ },
+ {
+  "id": "E139",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-16",
+  "begrunnelse": "Kildebelagt eksempel fra Skatteetaten. Bekrefter at ny ID er gyldig, og kan lukke det åpne spørsmålet om ID ved bytte av underenhet.",
+  "relatert": [
+   "E111"
+  ]
+ },
+ {
+  "id": "E140",
+  "n": "N36",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Avvik; omr-K4.json D-Kontrollsak, D-Tilbakemeldingsavvik",
+  "begrunnelse": "Feltdetaljer. Hører til K02 («Hva inneholder et avvik?»). Ta med regelen mot dobbeltvarsel (speiler_regel) og alvorsmappingen fra Skatteetaten som innspill.",
+  "relatert": [
+   "K02",
+   "E267",
+   "E485"
+  ]
+ },
+ {
+  "id": "E141",
+  "n": "N36",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json D-Arbeidsforhold",
+  "begrunnelse": "Felt og status til E134. Vurder å bruke forrige_arbeidsforhold i stedet for nytt forgjenger_id.",
+  "relatert": [
+   "E134",
+   "E138"
+  ]
+ },
+ {
+  "id": "E142",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K3.json D-Permisjon",
+  "begrunnelse": "Kildebelagt (forretningsregler R1 2026, F520I). Retter merknaden «påkrevd i OpenAPI 0.1.2». Feltene registreres internt (N14), men rapporteres og leses ikke før 2030-01.",
+  "relatert": [
+   "E411",
+   "N14"
+  ]
+ },
+ {
+  "id": "E143",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "ny D-Kodeverk (PLA)",
+  "begrunnelse": "Lokale, versjonerte kodelister er referansedata kontrollene trenger. Avklar mot D-Mappingregel/D-Kodemapping/D-Lonnsartmapping, som allerede overlapper.",
+  "relatert": [
+   "E129",
+   "D-Mappingregel",
+   "D-Kodemapping"
+  ]
+ },
+ {
+  "id": "E144",
+  "n": "N36",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42 (MVP-merknad)",
+  "begrunnelse": "Samme kontroller på egen melding før innsending er riktig gjenbruk. Konsistent med B11 (F532-strategi).",
+  "relatert": [
+   "E050",
+   "B11",
+   "gruppe 2 MYN"
+  ]
+ },
+ {
+  "id": "E145",
+  "n": "N39",
+  "kategori": "INN",
+  "maal": "fase1.json M07 (forslag)",
+  "begrunnelse": "Endrer M07-forslaget: ingen ferdige A07-testdata i TT02, egne syntetiske a-meldinger trengs. Bekreftes med første kall.",
+  "relatert": [
+   "E154",
+   "M07"
+  ]
+ },
+ {
+  "id": "E146",
+  "n": "N39",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json M11",
+  "begrunnelse": "Testplanen er utviklernes. Pek M11 til N39 i stedet for å legge TV-/S-listen inn i kartleggingen.",
+  "relatert": [
+   "M11",
+   "E152"
+  ]
+ },
+ {
+  "id": "E147",
+  "n": "N39",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K6.json F-SIK-36; fase1 M07, T04",
+  "begrunnelse": "Testdataregister, identitetsvakter og opptaksvask er testoppsett utviklerne eier. Prinsippet om bare syntetiske data finnes allerede.",
+  "relatert": [
+   "E059",
+   "M07",
+   "T04"
+  ]
+ },
+ {
+  "id": "E148",
+  "n": "N39",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-01, fase1 H04",
+  "begrunnelse": "Testoppsett i TT02 og e-post til servicedesk [verifiseres] er handling for teknisk eier (M01).",
+  "relatert": [
+   "M01",
+   "H04"
+  ]
+ },
+ {
+  "id": "E149",
+  "n": "N39",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-21, F-MYN-42",
+  "begrunnelse": "Teststrategi med fixtures er utviklernes valg.",
+  "relatert": [
+   "E145"
+  ]
+ },
+ {
+  "id": "E150",
+  "n": "N39",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Endringen 12.10.2026 kom uten nytt versjonsnummer. Kontrakttest mot TT02 dekker en reell risiko.",
+  "relatert": [
+   "E007",
+   "E210",
+   "E184"
+  ]
+ },
+ {
+  "id": "E151",
+  "n": "N39",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-04, F-BYR-07",
+  "begrunnelse": "Testcase-detaljer.",
+  "relatert": [
+   "E145"
+  ]
+ },
+ {
+  "id": "E152",
+  "n": "N39",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json M10",
+  "begrunnelse": "M10-forslaget sier allerede «Mål grensen i TT02 før vi bestemmer oss».",
+  "relatert": [
+   "M10",
+   "E146"
+  ]
+ },
+ {
+  "id": "E153",
+  "n": "N39",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json D-Avstemmingsrapport",
+  "begrunnelse": "Implementasjonsdetalj for testopptak.",
+  "relatert": [
+   "D07"
+  ]
+ },
+ {
+  "id": "E154",
+  "n": "N39",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json M07/M11",
+  "begrunnelse": "Intern testverktøy, ikke produktfunksjon. D-Testscenario er bloat i datamodellen. Bør være spørsmål om kapasitet til generatoren.",
+  "relatert": [
+   "E145",
+   "E155",
+   "F-PLA-06"
+  ]
+ },
+ {
+  "id": "E155",
+  "n": "N39",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json M07/M11",
+  "begrunnelse": "Utvidelse av generatoren (E154) og driftsrutiner for testpålegg/Dolly.",
+  "relatert": [
+   "E154"
+  ]
+ },
+ {
+  "id": "E156",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-29, F-REG-30",
+  "begrunnelse": "Snur R01: SAF-T går fra reserve til første kilde. Grunnlaget (kundens eksport er ikke regulert) er [verifiseres].",
+  "relatert": [
+   "E251",
+   "E361",
+   "E065",
+   "E169",
+   "E108",
+   "E353"
+  ],
+  "sporsmal": "Hvilken regnskapskilde først i fase 1: SAF-T-opplasting (N40) eller Tripletex/PowerOffice-API med SAF-T som reserve (R01)? ReAi?",
+  "anbefaling": "SAF-T-opplasting og Tripletex-lesing bygges parallelt; API i produksjon først etter skriftlig svar på vilkårene. ReAi bare ved pilotbehov."
+ },
+ {
+  "id": "E157",
+  "n": "N40",
+  "kategori": "INN",
+  "maal": "design.json B13; omr-K5.json F-BYR-23",
+  "begrunnelse": "Kildebelagt (Tripletex-vilkår). Samsvarer med B13 og kodeagentgrensene. Gjør KI-sperren i fase 1 til et kontraktskrav.",
+  "relatert": [
+   "fase1 X02",
+   "fase1 X05"
+  ]
+ },
+ {
+  "id": "E158",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K5.json F-BYR-12, F-BYR-13, F-BYR-20",
+  "begrunnelse": "Treffer kjernen i byråtilbudet: oversikt på tvers av klienter med regnskapsdata kan kreve godkjenning fra Tripletex og Visma.",
+  "relatert": [
+   "E246",
+   "E071",
+   "E198",
+   "F-REG-29"
+  ],
+  "sporsmal": "Skal regnskapsdata i byråets porteføljevisning vente på skriftlig godkjenning og advokatvurdering?",
+  "anbefaling": "Ja. A07-data vises fritt på tvers av klienter. Regnskapsdata via SAF-T eller etter godkjenning. Ingen benchmark i fase 1."
+ },
+ {
+  "id": "E159",
+  "n": "N40",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-27",
+  "begrunnelse": "Samme DPA-tillegg som E470 (Altinns vilkår, Skatteetatens formålsgrense, KI). Byråvisning på tvers av klienter tas inn der.",
+  "relatert": [
+   "E470",
+   "E266",
+   "F-SIK-06"
+  ]
+ },
+ {
+  "id": "E160",
+  "n": "N40",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-22, F-SIK-26",
+  "begrunnelse": "Nytt og viktig: data merkes med kildesystem, og utviklervilkår som opphører utløser sletting av data fra den kilden. Returkvittering som i E328.",
+  "relatert": [
+   "E328",
+   "E250"
+  ]
+ },
+ {
+  "id": "E161",
+  "n": "N40",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json D-Integrasjon",
+  "begrunnelse": "D-Integrasjon har allerede partnervilkar_akseptert_versjon og samtykketekst_versjon. KI-samtykke venter (B13). Feltnavn bestemmer utviklerne.",
+  "relatert": [
+   "E265",
+   "E471"
+  ]
+ },
+ {
+  "id": "E162",
+  "n": "N40",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Overvåking av private API-vilkår passer som utvidelse av F-MYN-24, ikke av et eget register.",
+  "relatert": [
+   "E061",
+   "E469",
+   "F-MYN-24"
+  ]
+ },
+ {
+  "id": "E163",
+  "n": "N40",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "UI-detalj (tekstnavn i stedet for logo). Kan stå i en sjekkliste for pilot, ikke i kartleggingen.",
+  "relatert": []
+ },
+ {
+  "id": "E164",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-01",
+  "begrunnelse": "Formålsgrensen (§ 1.2.1) kan stoppe fase 1. A07 for kontroll er bare trolig innenfor [verifiseres].",
+  "relatert": [
+   "E173",
+   "E051"
+  ],
+  "sporsmal": "Sender vi formålsspørsmålet til Altinn/Digdir (og A03-spørsmålet til Skatteetaten) før SBS-vilkårene godtas?",
+  "anbefaling": "Ja, send nå sammen med valg av leverandørselskap (M02). Ikke godta vilkår før svar."
+ },
+ {
+  "id": "E165",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-02, F-MYN-04, F-MYN-05",
+  "begrunnelse": "Støtte for byråer uten REGN, lønnsbyråer, konsern og lokallag er målgruppe- og juridisk valg [advokat].",
+  "relatert": [
+   "E166",
+   "E170",
+   "E167",
+   "M13",
+   "B10"
+  ],
+  "sporsmal": "Skal Brutto støtte byråer uten REGN (direkte delegering) og lønnsbyråer i fase 1?",
+  "anbefaling": "Datamodellen tåler det (E166), men ikke målgruppe i fase 1 før advokat har vurdert. Lokallag via standard systembruker."
+ },
+ {
+  "id": "E166",
+  "n": "N40",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Systembruker, D-Klienttilknytning",
+  "begrunnelse": "Former modellen: flere systembrukere per byrå og pakkesett. Trengs uansett for Krav og betalinger (E296).",
+  "relatert": [
+   "E165",
+   "E296",
+   "M13"
+  ]
+ },
+ {
+  "id": "E167",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K5.json F-BYR-11",
+  "begrunnelse": "Juridisk vurdering ([advokat]) av byråer uten autorisasjon. Egenerklæringen er et nytt krav i onboarding.",
+  "relatert": [
+   "E323",
+   "E329"
+  ],
+  "sporsmal": "Skal byrået erklære autorisasjon eller unntak, og skal vi unngå uautoriserte lønnsbyråer?",
+  "anbefaling": "Ja til egenerklæring. Ta det med i den samlede advokatvurderingen."
+ },
+ {
+  "id": "E168",
+  "n": "N40",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-02, N23-malen",
+  "begrunnelse": "Lisensrisiko: SAF-T-kontonavn er © Regnskap Norge. Billig tiltak med kilde i SAF-T-repoet.",
+  "relatert": [
+   "E114"
+  ]
+ },
+ {
+  "id": "E169",
+  "n": "N40",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-18, F-REG-19",
+  "begrunnelse": "Forretnings- og juridisk sperre på MVP for de to viktigste adapterne. Krever Sjurs beslutning.",
+  "relatert": [
+   "E172",
+   "E255",
+   "E156"
+  ],
+  "sporsmal": "Skal lønnsbilag/lønnskjøring for Tripletex- og PowerOffice-kunder vente på skriftlig svar om API-vilkår (konkurranseklausul)?",
+  "anbefaling": "Ja. Søk lesing (fase 1) og bilag (MVP) hver for seg, advokat vurderer T1/T2/P2, bilagsfil er reserve."
+ },
+ {
+  "id": "E170",
+  "n": "N40",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-03",
+  "begrunnelse": "MVP-konsekvens av E165, [verifiseres]. Avgjøres sammen med pakkespørsmålet.",
+  "relatert": [
+   "E165",
+   "E180"
+  ]
+ },
+ {
+  "id": "E171",
+  "n": "N40",
+  "kategori": "INN",
+  "maal": "omr-K5.json F-BYR-09",
+  "begrunnelse": "F-BYR-09 er Bør og krever klientadministrator-pakken, som må testes i TT02. MVP passer. Fire øyne følger GRFS.",
+  "relatert": [
+   "fase1 M09",
+   "fase1 M11"
+  ]
+ },
+ {
+  "id": "E172",
+  "n": "N40",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-20/21/22",
+  "begrunnelse": "Samme prinsipp som E169: skriftlige API-vilkår før adapter bygges.",
+  "relatert": [
+   "E169"
+  ]
+ },
+ {
+  "id": "E173",
+  "n": "N27",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json ny F-MYN-43",
+  "begrunnelse": "Utvider fase 1 (B37) med A03, trekkbrev og tvangsmulkt via Dialogporten. Vilkår for A03 fra andre systemer uavklart.",
+  "relatert": [
+   "E174",
+   "E176",
+   "E178",
+   "E186",
+   "E187",
+   "E188",
+   "E406",
+   "E164",
+   "B37"
+  ],
+  "sporsmal": "Skal fase 1 ha en Dialogporten-sensor (polling) for A03, trekkbrev og tvangsmulkt?",
+  "anbefaling": "Ja, bare polling og metadata, som Bør i fase 1, betinget av Skatteetatens svar om A03. Ellers MVP."
+ },
+ {
+  "id": "E174",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-15",
+  "begrunnelse": "Følger av E173. Merk: reserven «les dialogen med dialogId» i F-MYN-15 setter sett-logg og må endres.",
+  "relatert": [
+   "E173",
+   "E297"
+  ]
+ },
+ {
+  "id": "E175",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-15",
+  "begrunnelse": "Samme omskriving av F-BYR-15 som E096. Ta med at A03 fra andre systemer må verifiseres i TT02.",
+  "relatert": [
+   "E096",
+   "F-MYN-43"
+  ]
+ },
+ {
+  "id": "E176",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-16",
+  "begrunnelse": "Fasekonsekvens av E173 (lesing av A03 for kontrollkunder).",
+  "relatert": [
+   "E173"
+  ]
+ },
+ {
+  "id": "E177",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Koblingsnøkkel og kilde = a03 er foreslått i E140 (N36).",
+  "relatert": [
+   "E140",
+   "E173"
+  ]
+ },
+ {
+  "id": "E178",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-22",
+  "begrunnelse": "Saksregler på riktig nivå. Kildesystem og flere innsendere virker uten Dialogporten; resten forutsetter E173.",
+  "relatert": [
+   "E173",
+   "E407",
+   "E300",
+   "E489"
+  ]
+ },
+ {
+  "id": "E179",
+  "n": "N27",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-30, F-MYN-17",
+  "begrunnelse": "Trekker F-MYN-17 delvis inn i fase 1. Avhenger av TT02-test [verifiseres].",
+  "relatert": [
+   "E289"
+  ],
+  "sporsmal": "Skal A03 (innbetalingsinformasjon via Dialogporten) inn i fase 1 for betalingskontrollen?",
+  "anbefaling": "Ja hvis TT02 bekrefter at A03 kan leses når et annet system har sendt. Ellers L-02/L-14 som rimelighetskontroll fra hovedboken."
+ },
+ {
+  "id": "E180",
+  "n": "N27",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-02, F-MYN-03",
+  "begrunnelse": "Endrer N06: enkeltrettigheten gir bare A07. Pakkevalget avgjør samtykke og hva fase 1 kan lese.",
+  "relatert": [
+   "E054",
+   "E013",
+   "E062",
+   "E295",
+   "E489",
+   "S #16"
+  ],
+  "sporsmal": "Hvilke tilgangspakker ber vi direktekunder om i fase 1: enkeltrettighet for A07, eller a-ordning + lonn fra start?",
+  "anbefaling": "a-ordning + lonn fra start (A07, A03, trekkbrev, skattekort klart). Særlig kategori og krav-og-utlegg via endringsforespørsel ved behov. Presiser S #16."
+ },
+ {
+  "id": "E181",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-04",
+  "begrunnelse": "F-MYN-04 sier allerede at regnskapsforer-lonn dekker fase 1-tjenestene.",
+  "relatert": [
+   "E288"
+  ]
+ },
+ {
+  "id": "E182",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-01",
+  "begrunnelse": "Systemregistreringen må ha pakkene som F-MYN-02/04 forutsetter. Konsistent.",
+  "relatert": [
+   "E287",
+   "E180"
+  ]
+ },
+ {
+  "id": "E183",
+  "n": "N27",
+  "kategori": "SJUR",
+  "maal": "fase1.json M-tema / omr-K4.json F-MYN (Dialogporten)",
+  "begrunnelse": "Å lese A03 og trekkbrev-metadata via Dialogporten i fase 1 er en utvidelse av fase 1 (B37). Scopes er allerede dekket.",
+  "relatert": [
+   "E189",
+   "E053",
+   "gruppe 2 MYN"
+  ],
+  "sporsmal": "Skal fase 1 også lese A03 og trekkbrev-metadata via Dialogporten?",
+  "anbefaling": "Ja for A03 hvis TT02 bekrefter tilgang uten ny scope; trekkbrev bare metadata, ingen PDF-innhold."
+ },
+ {
+  "id": "E184",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Billig signal når nye ressurser (f.eks. ske-arbeidsgiverkontroll) går i prod.",
+  "relatert": [
+   "E405",
+   "E406",
+   "E150"
+  ]
+ },
+ {
+  "id": "E185",
+  "n": "N27",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-23",
+  "begrunnelse": "Logging uten innhold og kryptert rådata står i F-MYN-23 og D07.",
+  "relatert": [
+   "D07",
+   "E173"
+  ]
+ },
+ {
+  "id": "E186",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Myndighetsabonnement",
+  "begrunnelse": "Endrer modellen: abonnement per systembruker og ressurs, ikke bare per orgnr. Forutsetter E173.",
+  "relatert": [
+   "E012",
+   "E099",
+   "E409",
+   "E173"
+  ]
+ },
+ {
+  "id": "E187",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Tilbakemelding",
+  "begrunnelse": "Tilbakemelding fra andre systemer endrer modellen (innsending_ref tom). Forutsetter E173.",
+  "relatert": [
+   "E173"
+  ]
+ },
+ {
+  "id": "E188",
+  "n": "N27",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Kontrollsak, D-Trekkpalegg",
+  "begrunnelse": "Viktig fakta: Dialogporten har ingen strukturerte trekkfelt, så registeret må fylles for hånd.",
+  "relatert": [
+   "E098",
+   "E173"
+  ]
+ },
+ {
+  "id": "E189",
+  "n": "N27",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "MVP-integrasjonsdetalj (resourceFilter, PDF-henting, Correspondence). Hører i MYN-funksjonene i gruppe 2.",
+  "relatert": [
+   "E183",
+   "gruppe 2 MYN"
+  ]
+ },
+ {
+  "id": "E190",
+  "n": "N07",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-30, F-REG-27, D-Avstemmingslinje",
+  "begrunnelse": "L-katalogen er god modell, men 29 kontroller i fase 1 utvider B37/P05 kraftig.",
+  "relatert": [
+   "E446",
+   "E279",
+   "E003",
+   "E200",
+   "E202"
+  ],
+  "sporsmal": "Hvor mange L-kontroller i første utgave av fase 1? P05 har 9, L-katalogen 31 (29 i F1).",
+  "anbefaling": "L-katalogen som datamodell. Første utgave: L-01, L-03, L-05, L-06, L-12, L-13, L-17, L-24, L-25. (r)-kontroller etter kalibrering."
+ },
+ {
+  "id": "E191",
+  "n": "N07",
+  "kategori": "SJUR",
+  "maal": "fase1.json P05",
+  "begrunnelse": "Endrer forslaget til hvilke kontroller fase 1 starter med. P05 er «Alle tre» og lønnsfaglig.",
+  "relatert": [
+   "E025",
+   "E247",
+   "E334",
+   "E496",
+   "E205"
+  ],
+  "sporsmal": "Skal L-katalogens første utgave (L-01, L-13, L-02, L-14, L-05–07, L-12, L-24, L-26, L-17, pluss L-03, L-16, 2930-saldo og L-32g) erstatte P05-forslaget?",
+  "anbefaling": "Ja, men maks ca. 12 kontroller i fase 1. L-16 og L-32g kan vises som UAVKLART/indikasjon."
+ },
+ {
+  "id": "E192",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Samme feriepengerettelse som E001 og E117, uttrykt som L-06 og L-18.",
+  "relatert": [
+   "E001"
+  ]
+ },
+ {
+  "id": "E193",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny F-id (RAP) kontrolloppstilling",
+  "begrunnelse": "Samme forslag som E272, som er mer fullstendig.",
+  "relatert": [
+   "E272",
+   "E248"
+  ]
+ },
+ {
+  "id": "E194",
+  "n": "N07",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-RAP-19",
+  "begrunnelse": "F-RAP-19 har ingen fase. Å ta inn en del i fase 1 er et omfangsvalg.",
+  "relatert": [
+   "E278",
+   "E331",
+   "E477",
+   "E272"
+  ],
+  "sporsmal": "Skal et smalt revisorutdrag (A07, avstemmingspakker, avvik med kvittering, hash) med i fase 1?",
+  "anbefaling": "Ja, som eksport av allerede signerte avstemminger. Lønnsjournal og attestasjon i MVP."
+ },
+ {
+  "id": "E195",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-09, F-SIK-03",
+  "begrunnelse": "Revisortilgang og step-up for persondataeksport finnes. Kravet om bare summer for særlige kategorier står i E124/E375. Formatene hører i F-RAP-04.",
+  "relatert": [
+   "E284",
+   "E124",
+   "E375",
+   "F-RAP-04"
+  ]
+ },
+ {
+  "id": "E196",
+  "n": "N07",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Lesing av bankkonto for L-31 motsier E042, E080 og E039 (kontonummer hentes ikke i fase 1).",
+  "relatert": [
+   "E042",
+   "E080",
+   "E039"
+  ],
+  "sporsmal": "Bankkonto i fase 1 eller ikke? Resten (bilagstype, dato for L-29) er uproblematisk.",
+  "anbefaling": "Dropp bankkonto i fase 1 og ta L-31 i MVP. Behold bilagstype og dato."
+ },
+ {
+  "id": "E197",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-39, omr-K6.json F-RAP-13",
+  "begrunnelse": "Sone per underenhet finnes i F-MYN-39. Sonetabell som data behandles i N20.",
+  "relatert": [
+   "N20"
+  ]
+ },
+ {
+  "id": "E198",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-15, omr-K6.json F-RAP-07",
+  "begrunnelse": "Samme som E246. Salgsdemoteksten er markedsføring og droppes.",
+  "relatert": [
+   "E246"
+  ]
+ },
+ {
+  "id": "E199",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-21",
+  "begrunnelse": "Samme bestillingskrav som E120.",
+  "relatert": [
+   "E120"
+  ]
+ },
+ {
+  "id": "E200",
+  "n": "N07",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Avstemmingslinje",
+  "begrunnelse": "kontrollpunkt = L-xx og differansetype = A07-xx endrer enumene riktig. Toleranse- og regelsettfelt hører med.",
+  "relatert": [
+   "E123",
+   "E190",
+   "E455"
+  ]
+ },
+ {
+  "id": "E201",
+  "n": "N07",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json D-Avstemming",
+  "begrunnelse": "Sporbarhet er krav (revisor), men hash- og versjonsfelt er utviklernes valg. F-REG-29 dekker gjenskaping.",
+  "relatert": [
+   "E200"
+  ]
+ },
+ {
+  "id": "E202",
+  "n": "N07",
+  "kategori": "INN",
+  "maal": "ny D-Kontrolloppsett (K)",
+  "begrunnelse": "Former datamodellen i tråd med K01/K03 og arv via D-Byramal/D-Malunntak. Toleransetyper bekreftes av utviklerne.",
+  "relatert": [
+   "E450",
+   "K01",
+   "K03",
+   "D-Byramal"
+  ]
+ },
+ {
+  "id": "E203",
+  "n": "N07",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Rapportkjoring",
+  "begrunnelse": "D-Rapportkjoring og F-RAP-03 sier allerede at signerte kjøringer ikke kan endres. Ny kjøring ved retting følger B6.",
+  "relatert": [
+   "F-RAP-03",
+   "B6"
+  ]
+ },
+ {
+  "id": "E204",
+  "n": "N07",
+  "kategori": "INN",
+  "maal": "omr-K5.json D-Oppdragsdokumentasjon",
+  "begrunnelse": "Byråer må dokumentere A07-avstemmingen etter GRFS fra fase 1. Lenken til D-Avstemming er en liten endring i modellen.",
+  "relatert": [
+   "E477",
+   "fase1 D11"
+  ]
+ },
+ {
+  "id": "E205",
+  "n": "N07",
+  "kategori": "INN",
+  "maal": "kontrollkatalog (fasemerking MVP)",
+  "begrunnelse": "Nyttig som fasemerke per L-kontroll, ikke som egen tekst. Overlapper E437, E444, E456 og B14 (kontonummer-skjold).",
+  "relatert": [
+   "E191",
+   "E437",
+   "E444",
+   "E456",
+   "B14"
+  ]
+ },
+ {
+  "id": "E206",
+  "n": "N07",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Salgsargument. Tallene skal uansett bekreftes i intervjuer.",
+  "relatert": [
+   "E242"
+  ]
+ },
+ {
+  "id": "E207",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json A01–A06, T03, T04",
+  "begrunnelse": "Konkret stack og CI-regler er utviklernes valg. Legg som forslag på spørsmålene, ikke i kartleggingen.",
+  "relatert": [
+   "E216",
+   "E218",
+   "E220"
+  ]
+ },
+ {
+  "id": "E208",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-01, fase1 M04",
+  "begrunnelse": "Signering i KMS og token-cache er svar på M03/M04. Crate-navn er bloat.",
+  "relatert": [
+   "M03",
+   "M04",
+   "H01",
+   "E052"
+  ]
+ },
+ {
+  "id": "E209",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-21",
+  "begrunnelse": "Kodegenerering, typer og lagring er utviklervalg (N03 sp. 1, D05, D07).",
+  "relatert": [
+   "E008",
+   "E403",
+   "D05",
+   "D07"
+  ]
+ },
+ {
+  "id": "E210",
+  "n": "N08",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "RSS finnes i F-MYN-24. URL-er er detalj. Hash av regneark følger av E133.",
+  "relatert": [
+   "E150",
+   "E133"
+  ]
+ },
+ {
+  "id": "E211",
+  "n": "N08",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-10, F-KJO-18",
+  "begrunnelse": "Crate-valg. Prinsippet dekkes av E133.",
+  "relatert": [
+   "E133"
+  ]
+ },
+ {
+  "id": "E212",
+  "n": "N08",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-38, F-PER-24",
+  "begrunnelse": "Synk av Klass 145/7/426 følger av E131 og D-Kodeverk (E143). Frekvens er detalj.",
+  "relatert": [
+   "E131",
+   "E143"
+  ]
+ },
+ {
+  "id": "E213",
+  "n": "N08",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Kildebelagt: SAF-T 1.40 er obligatorisk fra 1.1.2027. Ta bare SAF-T-delen; Rust-detaljene er utviklernes.",
+  "relatert": [
+   "E066",
+   "A01"
+  ]
+ },
+ {
+  "id": "E214",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 D02, D03; F-SIK-11",
+  "begrunnelse": "Rust- og Postgres-detaljer (TenantTx, FORCE RLS, sqlx-test) er svar på D02/D03. Prinsippet står i F-SIK-11.",
+  "relatert": [
+   "D02",
+   "D03",
+   "B7"
+  ]
+ },
+ {
+  "id": "E215",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 D09; F-SIK-19, F-SIK-20",
+  "begrunnelse": "F-SIK-19/20 har allerede AES-256-GCM, DEK per tenant og dataklasse og HMAC-indeks. «Ikke pgcrypto» er et utviklervalg i D09.",
+  "relatert": [
+   "D09"
+  ]
+ },
+ {
+  "id": "E216",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json D08",
+  "begrunnelse": "Postgres-detaljer (WITHOUT OVERLAPS, btree_gist, COLLATE C) er implementasjon.",
+  "relatert": [
+   "E106",
+   "D08"
+  ]
+ },
+ {
+  "id": "E217",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 A04, M10",
+  "begrunnelse": "Jobbkø og token-bøtte er implementasjon. Spørsmålet står allerede til Peter og Sander.",
+  "relatert": [
+   "E071"
+  ]
+ },
+ {
+  "id": "E218",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json D05 / K03",
+  "begrunnelse": "Crate og avrundingsstrategi er utviklernes valg. Prinsippet «ingen implisitt round()» kan stå i K03.",
+  "relatert": [
+   "E493",
+   "D05",
+   "K03"
+  ]
+ },
+ {
+  "id": "E219",
+  "n": "N08",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json F-RAP-03, F-RAP-04",
+  "begrunnelse": "Navn på crates og PDF/A-nivå bestemmer utviklerne. Formatkravet står allerede i F-RAP-04.",
+  "relatert": []
+ },
+ {
+  "id": "E220",
+  "n": "N08",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json (nytt spørsmål L)",
+  "begrunnelse": "PDF/A-verktøy og XSD-validering er implementasjonsvalg for lønnskjøring.",
+  "relatert": [
+   "E207"
+  ]
+ },
+ {
+  "id": "E221",
+  "n": "N09",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json B01–B09",
+  "begrunnelse": "Peter eier open banking. Funnene oppdaterer forslagene til B01–B09; ZTL mangler i valglisten til B01.",
+  "relatert": [
+   "E401",
+   "E232"
+  ]
+ },
+ {
+  "id": "E222",
+  "n": "N09",
+  "kategori": "INN",
+  "maal": "fase1.json P08 (forslag)",
+  "begrunnelse": "Konsistent med P08 og CLAUDE.md. Presiserer at fase 1 ikke trenger AIS.",
+  "relatert": [
+   "P08",
+   "E232"
+  ]
+ },
+ {
+  "id": "E223",
+  "n": "N09",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Bankkonto; omr-K4.json D-Betalingsforslag",
+  "begrunnelse": "D-Bankkonto.betalingskanal har bare fil og bank_api og mangler B40s leverandørkanal. Behold kanalnøytral modell uten leverandørnavn.",
+  "relatert": [
+   "E387",
+   "B40",
+   "fase1 B01"
+  ]
+ },
+ {
+  "id": "E224",
+  "n": "N09",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-KJO-23/24; omr-K4.json F-BET-06",
+  "begrunnelse": "Dekket av F-KJO-23 (hash), F-KJO-24 (endring nullstiller godkjenning), B12 (hash vist i bank) og G06.",
+  "relatert": [
+   "B12",
+   "B40",
+   "G04",
+   "G06"
+  ]
+ },
+ {
+  "id": "E225",
+  "n": "N09",
+  "kategori": "INN",
+  "maal": "ny D-Banksignering (BET)",
+  "begrunnelse": "Utbetaling designes nå (CLAUDE.md). Entiteten mangler ved siden av D-Betalingsforslag. Felt og statusverdier til Peter.",
+  "relatert": [
+   "E392",
+   "D-Betalingsforslag",
+   "B40"
+  ]
+ },
+ {
+  "id": "E226",
+  "n": "N09",
+  "kategori": "INN",
+  "maal": "ny D-Banksamtykke (BET)",
+  "begrunnelse": "Samtykke med 180 dagers gyldighet former modellen og kobling til D-Fullmakt. Felt til Peter.",
+  "relatert": [
+   "E393",
+   "D-Fullmakt",
+   "F-BYR-27"
+  ]
+ },
+ {
+  "id": "E227",
+  "n": "N09",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-BET-13",
+  "begrunnelse": "Regelen at InProgress ikke er betalt, står i E398. Statustabellen avgjør Peter.",
+  "relatert": [
+   "E398"
+  ]
+ },
+ {
+  "id": "E228",
+  "n": "N09",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json B02/B05",
+  "begrunnelse": "Datakrav per bank/partner. Mottakers adresse er ny personopplysning; bør vurderes mot dataminimering før den tas inn.",
+  "relatert": [
+   "E225",
+   "D-Betalingslinje"
+  ]
+ },
+ {
+  "id": "E229",
+  "n": "N09",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json D-Person",
+  "begrunnelse": "E390 svarer på [verifiseres]: ingen gateadresse og manuell sak ved utenlandsbetaling.",
+  "relatert": [
+   "E390"
+  ]
+ },
+ {
+  "id": "E230",
+  "n": "N09",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-BET-02",
+  "begrunnelse": "Bankfristen per debetkonto står i F-BET-02 og D-Klient.bankfrist_*. Frister per leverandør er detaljer.",
+  "relatert": [
+   "F-BYR-12"
+  ]
+ },
+ {
+  "id": "E231",
+  "n": "N09",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B13 / omr-K6.json F-SIK-31",
+  "begrunnelse": "Dekket: F-SIK-31 forbyr allerede agenter å utbetale, gi samtykke eller fullmakt.",
+  "relatert": [
+   "B13",
+   "F-SIK-31",
+   "E270"
+  ]
+ },
+ {
+  "id": "E232",
+  "n": "N09",
+  "kategori": "SJUR",
+  "maal": "design.json B12/B40, fase1.json B01–B09",
+  "begrunnelse": "ZTL med klientkonto gir motpartsrisiko og supportansvar hos Brutto. Det strider mot begrunnelsen i B12.",
+  "relatert": [
+   "E395",
+   "E400",
+   "E388",
+   "E094",
+   "B12",
+   "B40"
+  ],
+  "sporsmal": "Skal ZTL med klientkonto være første betalingspartner, når B12 sier at Brutto aldri flytter penger og ikke tar ansvar for pengeflyt?",
+  "anbefaling": "Ikke lås ZTL ennå. Advokat vurderer agentrolle, klientmidler og ansvarsbegrensning før partneravtale. Bankfil og PIS uten klientkonto er referansen."
+ },
+ {
+  "id": "E233",
+  "n": "N10",
+  "kategori": "SJUR",
+  "maal": "fase1.json G01–G07",
+  "begrunnelse": "G07-forslaget tar motoren i bruk i fase 1 (avstemmingspakken). CLAUDE.md sier at godkjenning bygges senere. «M1–M5» kolliderer med id-ene M01–M13.",
+  "relatert": [
+   "E241",
+   "F-REG-27",
+   "B39"
+  ],
+  "sporsmal": "Skal godkjenningsmotoren tas i bruk i fase 1 for kvittering av avstemmingspakken?",
+  "anbefaling": "Ja, bare ett-ledds kvittering med hash på motorens datamodell. Maler og flere ledd bygges senere."
+ },
+ {
+  "id": "E234",
+  "n": "N10",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-05; D-Rolletildeling",
+  "begrunnelse": "Legger BYRA_KONTROLLOR og BETALINGSFULLMEKTIG til katalogen. De trengs for B39 og B40. Rollene designes nå. I02 får kontrollør og kundegodkjenner.",
+  "relatert": [
+   "I02",
+   "B39",
+   "B40",
+   "E238"
+  ]
+ },
+ {
+  "id": "E235",
+  "n": "N10",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json D-Klient",
+  "begrunnelse": "D-Klient har allerede godkjenner, betaler, innsender, risiko, kontrollkrav og bankfrist. Bare godkjenningsmal er nytt (B39, G01).",
+  "relatert": [
+   "B39",
+   "fase1 G01"
+  ]
+ },
+ {
+  "id": "E236",
+  "n": "N10",
+  "kategori": "INN",
+  "maal": "omr-K5.json D-Fullmakt",
+  "begrunnelse": "Kildebelagt (Finanstilsynet 2018): bankfullmakt skal angi konto, typer og om den kan delegeres. Regulatorisk og ikke bare felt.",
+  "relatert": [
+   "E323"
+  ]
+ },
+ {
+  "id": "E237",
+  "n": "N10",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K3.json D-Godkjenning; omr-K5.json D-Godkjenningsregel",
+  "begrunnelse": "Avhenger av svaret på G07 (én godkjenningsmotor). Det må også avklares om D-Kjoringsgodkjenning slås inn i D-Godkjenning.",
+  "relatert": [
+   "G07",
+   "B39",
+   "E240"
+  ]
+ },
+ {
+  "id": "E238",
+  "n": "N10",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-SIK-12, F-SIK-13; D-Arbeidsdelingsregel",
+  "begrunnelse": "F-SIK-12 er «Fase 1 design». Én regel i drift på avstemmingen flytter fasegrensen og påvirker små byråer. Henger sammen med K05.",
+  "relatert": [
+   "K05",
+   "F-SIK-13",
+   "E234"
+  ],
+  "sporsmal": "Skal regelen «den som kvitterer et avvik, kan ikke kontrollere pakken» håndheves i fase 1, med unntak for små byråer?",
+  "anbefaling": "Ja. Én regel i drift er billig, kan testes og selges til byråer. Unntaket krever begrunnelse og navngitt kontrollmottaker."
+ },
+ {
+  "id": "E239",
+  "n": "N10",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-15",
+  "begrunnelse": "Dekket: D-Revisjonslogg har rolle_brukt og step_up, og B39 har hash på det som er godkjent. Avvisning er en handling og logges allerede.",
+  "relatert": [
+   "B39",
+   "D-Revisjonslogg"
+  ]
+ },
+ {
+  "id": "E240",
+  "n": "N10",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Lonnskjoring.status",
+  "begrunnelse": "Endrer formen på tilstandsmodellen ved å splitte statusen i flere spor. Det er et ADR-valg for utviklerne (G07, T05). Fornuftig retning.",
+  "relatert": [
+   "G07",
+   "T05",
+   "E237",
+   "F-BET-06 (gruppe BET)",
+   "F-BYR-24/26/27 (gruppe BYR)"
+  ]
+ },
+ {
+  "id": "E241",
+  "n": "N10",
+  "kategori": "INN",
+  "maal": "omr-K5.json D-Kundegodkjenning + omr-K2.json D-Kjoringsgodkjenning",
+  "begrunnelse": "Sammenslåingen er allerede foreslått i entitetsbeskrivelsen. Resten (mobil, KPI-er) parkeres til MVP-scope.",
+  "relatert": [
+   "E233",
+   "D-Godkjenning"
+  ]
+ },
+ {
+  "id": "E242",
+  "n": "N10",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Salgsargument og konkurrentnotat.",
+  "relatert": [
+   "E206"
+  ]
+ },
+ {
+  "id": "E243",
+  "n": "N11",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-REG-30, F-BYR-15",
+  "begrunnelse": "«Alle klienter avstemt i natt» motsier M10 og CLAUDE.md: A07 hentes ved behov, etter fristen den 5. og ved endring.",
+  "relatert": [
+   "E360",
+   "M10"
+  ],
+  "sporsmal": "Salgsløftet bruker nattlig henting.",
+  "anbefaling": "Formuler løftet som «hentet etter fristen og ved hver endring». Demo-teksten er ellers bloat."
+ },
+ {
+  "id": "E244",
+  "n": "N11",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Viktig designregel: betalinger finnes på dato, beløp og bilagstype, ikke via lønnsmodulen. Kildebelagt.",
+  "relatert": [
+   "E350"
+  ]
+ },
+ {
+  "id": "E245",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Avstemming, F-REG-27",
+  "begrunnelse": "Status inkl. gjenaapnet og årsak finnes allerede; rå A07 lagres per bestilling. Bare «én av flere kontrollører» er nytt.",
+  "relatert": [
+   "E256"
+  ]
+ },
+ {
+  "id": "E246",
+  "n": "N11",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K5.json F-BYR-12, F-BYR-13; omr-K6.json F-RAP-07",
+  "begrunnelse": "Nyttig kjerne for byrå, men kolonner bygd på regnskapsdata treffer aggregeringsforbudet i Tripletex- og PowerOffice-vilkårene (E158).",
+  "relatert": [
+   "E158",
+   "E198",
+   "E021",
+   "E443"
+  ],
+  "sporsmal": "Kan klientoversikten vise regnskapsbaserte kontroller før API-vilkårene er avklart?",
+  "anbefaling": "A07-kolonner (trekk, AGA, refusjon) nå. Regnskapskolonner via SAF-T eller etter skriftlig godkjenning."
+ },
+ {
+  "id": "E247",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json P05",
+  "begrunnelse": "Utvidelse av første utgave (L-03, L-16); avgjøres sammen med E191.",
+  "relatert": [
+   "E191",
+   "E496"
+  ]
+ },
+ {
+  "id": "E248",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny F-id (RAP) kontrolloppstilling",
+  "begrunnelse": "Samme som E272. Konkurrentargumentet er ikke innhold i kartleggingen.",
+  "relatert": [
+   "E272"
+  ]
+ },
+ {
+  "id": "E249",
+  "n": "N11",
+  "kategori": "BLOAT",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Salgsargument, ingen endring i funksjon eller modell.",
+  "relatert": []
+ },
+ {
+  "id": "E250",
+  "n": "N11",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json D-Integrasjon; N40 T2",
+  "begrunnelse": "Forretnings- og juridisk risiko: Tripletex-vilkåret 4.2 (T2) kan ramme avstemming som Tripletex selger. Konkurrentlisten er bare argumentasjon.",
+  "relatert": [
+   "E160",
+   "N40"
+  ],
+  "sporsmal": "Skal vi søke Tripletex og PowerOffice om lesetilgang til avstemming (fase 1) og lønnsbilag (MVP) hver for seg, og ta T2 med til advokaten?",
+  "anbefaling": "Ja. Søk hver for seg, få advokatvurdering av T2 før henvendelsen og sett risikoen til middels–høy."
+ },
+ {
+  "id": "E251",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Samme sak som E156 (SAF-T som første kilde).",
+  "relatert": [
+   "E156"
+  ]
+ },
+ {
+  "id": "E252",
+  "n": "N11",
+  "kategori": "SJUR",
+  "maal": "omr-K5.json F-BYR-33; design.json B17",
+  "begrunnelse": "Pris hører ikke hjemme i F-BYR-33. B17 prises per lønnsmottaker og passer ikke for fase 1, der ingen lønn kjøres.",
+  "relatert": [
+   "E366",
+   "B17"
+  ],
+  "sporsmal": "Hvordan skal fase 1 prises?",
+  "anbefaling": "Per klient per måned, ankret mot 15–87 kr, med påslag for kontroll per person. Testes i intervjuer."
+ },
+ {
+  "id": "E253",
+  "n": "N11",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json F-TRK-17; omr-K4.json F-MYN-28",
+  "begrunnelse": "F-TRK-17 og F-MYN-28 er allerede Må. Konkurrentlisten er salgsargument.",
+  "relatert": [
+   "E098",
+   "E359"
+  ]
+ },
+ {
+  "id": "E254",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-40",
+  "begrunnelse": "Samme fasespørsmål som E292.",
+  "relatert": [
+   "E292"
+  ]
+ },
+ {
+  "id": "E255",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-17/18/19",
+  "begrunnelse": "Samme som E169: filimport som reserve før lønn går live.",
+  "relatert": [
+   "E169"
+  ]
+ },
+ {
+  "id": "E256",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-25",
+  "begrunnelse": "Versjoner av a-meldingen finnes i D-AMelding; diff ved endring dekkes av L-24/gjenaapnet.",
+  "relatert": [
+   "E245"
+  ]
+ },
+ {
+  "id": "E257",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-KJO-20",
+  "begrunnelse": "F-KJO-20 sier allerede at blokkerende avvik hindrer godkjenning. Det dekker også innsendingen.",
+  "relatert": [
+   "E311"
+  ]
+ },
+ {
+  "id": "E258",
+  "n": "N11",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-MIG-06",
+  "begrunnelse": "Samme som E089: utleggstrekk fra ReAi hentes alltid på nytt.",
+  "relatert": [
+   "E089"
+  ]
+ },
+ {
+  "id": "E259",
+  "n": "N11",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json F-SIK-32",
+  "begrunnelse": "Konkurrentinfo. B15 dekker allerede ISAE-planen. Ingen konsekvens for datamodellen.",
+  "relatert": [
+   "B15"
+  ]
+ },
+ {
+  "id": "E260",
+  "n": "N12",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B13 / F-SIK-31",
+  "begrunnelse": "Dekket av B13, F-SIK-31 og X-temaet (assistenten kommer senere).",
+  "relatert": [
+   "B13",
+   "F-SIK-31"
+  ]
+ },
+ {
+  "id": "E261",
+  "n": "N12",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 H01, H06, D01; F-SIK-20, F-SIK-25",
+  "begrunnelse": "Konkret sky-, KMS- og PG-oppsett er svar på H01, H06 og D01. Søk om tilgang til Norway West nå, fordi det har ledetid.",
+  "relatert": [
+   "H01",
+   "H06",
+   "D01",
+   "B9"
+  ]
+ },
+ {
+  "id": "E262",
+  "n": "N12",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json X02 / I04",
+  "begrunnelse": "Merking per felt i OpenAPI med CI-sjekk er implementasjon. Dataklassene finnes alt (F-SIK-07).",
+  "relatert": [
+   "F-SIK-07",
+   "E268"
+  ]
+ },
+ {
+  "id": "E263",
+  "n": "N12",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-PLA-32, F-SIK-05",
+  "begrunnelse": "F-PLA-32 er «Fase 1 design». Å kode og teste agentgrenser i fase 1 er en scope-økning, og assistenten kommer senere (B37).",
+  "relatert": [
+   "F-SIK-31",
+   "D-Rolledefinisjon",
+   "I02",
+   "B13"
+  ],
+  "sporsmal": "Skal aktortype agent og forbudte handlinger bygges og testes i fase 1, selv om ingen agent finnes?",
+  "anbefaling": "Delvis. Ta aktortype og forbudte handlinger inn i datamodellen og tilgangssjekken nå. Testene skrives når assistenten kommer."
+ },
+ {
+  "id": "E264",
+  "n": "N12",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json F-SIK-15; D-Revisjonslogg, D-Lagringssted",
+  "begrunnelse": "Assistenten kommer senere. D-Revisjonslogg har allerede kanal og aktor_type. F-SIK-23 har KI-logger. En tom D-KI-kall-entitet gir ingen verdi nå.",
+  "relatert": [
+   "E263",
+   "B13"
+  ]
+ },
+ {
+  "id": "E265",
+  "n": "N12",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json D-Abonnement, D-Integrasjon",
+  "begrunnelse": "D-Abonnement har ki_aktivert. Datanivå 0–3 og samtykkefelt er for detaljert før KI (B13). Regelen om at byrået ikke samtykker for kunden går inn i E470.",
+  "relatert": [
+   "E470",
+   "E161",
+   "B13",
+   "X02"
+  ]
+ },
+ {
+  "id": "E266",
+  "n": "N12",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-27, F-SIK-28; D-Underleverandor",
+  "begrunnelse": "KI som valgfri underleverandør med varsel står i E470. F-SIK-28 har allerede KI-tillegg. De nye feltene i D-Underleverandor er detaljer.",
+  "relatert": [
+   "E470",
+   "E472"
+  ]
+ },
+ {
+  "id": "E267",
+  "n": "N12",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Avvik",
+  "begrunnelse": "Feltdetalj. Hører til K02 og X04. Er i tråd med B13 (deterministiske forklaringer fra sporet).",
+  "relatert": [
+   "K02",
+   "X04",
+   "B13",
+   "E140"
+  ]
+ },
+ {
+  "id": "E268",
+  "n": "N12",
+  "kategori": "INN",
+  "maal": "fase1.json X01 / D06, omr-K6.json F-SIK-19",
+  "begrunnelse": "Personvernregel: fødselsnummer aldri i id-er eller URL-er. Ikke funnet i kartleggingen i dag.",
+  "relatert": [
+   "E262",
+   "D06",
+   "D09"
+  ]
+ },
+ {
+  "id": "E269",
+  "n": "N12",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere» og implementasjon (CSP).",
+  "relatert": [
+   "E271"
+  ]
+ },
+ {
+  "id": "E270",
+  "n": "N12",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-MIG-13 / F-SIK-31",
+  "begrunnelse": "Å bruke KI i MVP for lønnsartmapping er et tidspunktvalg mot B13-kritikken. Flaggene helse og fagforening på lønnsart er nyttige.",
+  "relatert": [
+   "E271",
+   "E482",
+   "B13",
+   "F-MIG-13"
+  ],
+  "sporsmal": "Skal F-MIG-13 være første KI-bruk i MVP (bare kode, navn og flagg, opt-in)?",
+  "anbefaling": "Ja, bare metadata og opt-in. Ingen annen KI i produksjon før kjernen er stabil."
+ },
+ {
+  "id": "E271",
+  "n": "N12",
+  "kategori": "BLOAT",
+  "maal": "fase1.json X03",
+  "begrunnelse": "«Senere» med modellnavn som går ut på dato. X03 dekker leverandør og region. AI Act-grensen kan stå som én linje i X05.",
+  "relatert": [
+   "E270",
+   "E482",
+   "X03",
+   "X05"
+  ]
+ },
+ {
+  "id": "E272",
+  "n": "N24",
+  "kategori": "SJUR",
+  "maal": "ny F-id i RAP; omr-K6.json F-RAP-15",
+  "begrunnelse": "Ny funksjon med kilde (XSD v4–v7, SA 3801). Omfangsvalg om den hører til fase 1 (B37, P01).",
+  "relatert": [
+   "E193",
+   "E248",
+   "E121",
+   "E273",
+   "E274",
+   "E352",
+   "E454",
+   "P01"
+  ],
+  "sporsmal": "Skal kontrolloppstillingen (arbeidspapir, ikke innsending) være med i fase 1?",
+  "anbefaling": "Ja, som Bør i fase 1. Den gjenbruker A07-avstemmingen og saldo, og byråer og revisorer etterspør den."
+ },
+ {
+  "id": "E273",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Rapportdefinisjon, D-Rapportkjoring",
+  "begrunnelse": "D-Rapportkjoring har allerede signering og låsing. Kodenavn på definisjonen er en detalj.",
+  "relatert": [
+   "E272",
+   "E203"
+  ]
+ },
+ {
+  "id": "E274",
+  "n": "N24",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json F-RAP-04",
+  "begrunnelse": "Formatene står i F-RAP-04. XML-fragmentet er bare for en mulig partnerimport senere, og ingen verktøy tar det imot i dag (N24).",
+  "relatert": [
+   "E272"
+  ]
+ },
+ {
+  "id": "E275",
+  "n": "N24",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Verktøyspesifikk eksportdetalj. Avhenger av at kontrolloppstillingen tas inn (N03, gruppe 1).",
+  "relatert": [
+   "E276",
+   "E286",
+   "gruppe 1 REG"
+  ]
+ },
+ {
+  "id": "E276",
+  "n": "N24",
+  "kategori": "INN",
+  "maal": "kontrolloppstilling (F-REG-27/F-RAP-15)",
+  "begrunnelse": "Riktig kontoutvalg er regnskapsriktighet. Merk at 5950 (E453) ligger utenfor Tripletex-intervallet 5940–5949.",
+  "relatert": [
+   "E453",
+   "E275",
+   "gruppe 1 REG"
+  ]
+ },
+ {
+  "id": "E277",
+  "n": "N24",
+  "kategori": "INN",
+  "maal": "design.json B37 / fase1.json P01",
+  "begrunnelse": "Tydelig negativ avgrensning: ingen innsending til Skatteetaten og ingen skattemelding-scope i fase 1. Konsistent med B37.",
+  "relatert": [
+   "B37",
+   "E286"
+  ]
+ },
+ {
+  "id": "E278",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-19",
+  "begrunnelse": "Innholdet i revisorutdraget avgjøres sammen med E194. Utkast til ledelsens uttalelse er senere.",
+  "relatert": [
+   "E194"
+  ]
+ },
+ {
+  "id": "E279",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30, F-REG-27",
+  "begrunnelse": "Underreglene L-30a–i er katalogdetalj. Avgjøres med kontrollomfanget; terskler i D-Kontrolloppsett (E202).",
+  "relatert": [
+   "E190",
+   "E202"
+  ]
+ },
+ {
+  "id": "E280",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Kontoliste for L-30. Avledes av kontrollkatalogen og kontoreglene (E347).",
+  "relatert": [
+   "E347",
+   "E279"
+  ]
+ },
+ {
+  "id": "E281",
+  "n": "N24",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Virksomhet",
+  "begrunnelse": "Kildebelagt (rskl. § 1-5, endret 2024). Styrer notegrunnlag og revisorutdrag. To små felt, utledet fra Brreg.",
+  "relatert": [
+   "E283",
+   "E194"
+  ]
+ },
+ {
+  "id": "E282",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-22",
+  "begrunnelse": "Samme årsverksdefinisjon som E136. At definisjonen publiseres, står allerede i F-RAP-22.",
+  "relatert": [
+   "E136"
+  ]
+ },
+ {
+  "id": "E283",
+  "n": "N24",
+  "kategori": "INN",
+  "maal": "omr-K5.json F-ORL-13; omr-K6.json F-RAP-17",
+  "begrunnelse": "Faktarettelse med kilde (§ 7-31 og § 1-5). Fjerner [verifiseres]. Grunnlaget trenger roller (E383).",
+  "relatert": [
+   "E383",
+   "E281"
+  ]
+ },
+ {
+  "id": "E284",
+  "n": "N24",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-09",
+  "begrunnelse": "F-SIK-09 sier allerede at revisor kan hente revisorpakken selv.",
+  "relatert": [
+   "E195"
+  ]
+ },
+ {
+  "id": "E285",
+  "n": "N24",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "MVP-detalj (L-30c/d/h). Parkeres til kontrolloppstillingen og MVP-scope er avklart.",
+  "relatert": [
+   "E276"
+  ]
+ },
+ {
+  "id": "E286",
+  "n": "N24",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere»-tilbud til verktøyleverandører. Avgrensningen «ikke årsoppgjørsverktøy» kan stå sammen med E277.",
+  "relatert": [
+   "E277"
+  ]
+ },
+ {
+  "id": "E287",
+  "n": "N25",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-01",
+  "begrunnelse": "Om registreringen kan ha MVP-pakker nå og be om delmengde er teknisk [verifiseres].",
+  "relatert": [
+   "E182",
+   "E292"
+  ]
+ },
+ {
+  "id": "E288",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-02, F-MYN-04",
+  "begrunnelse": "Ingen endring; bekrefter F-MYN-04.",
+  "relatert": [
+   "E181",
+   "E296"
+  ]
+ },
+ {
+  "id": "E289",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30, F-REG-27",
+  "begrunnelse": "Samme sak som E179 (A03 i fase 1). Krav og betalinger er MVP.",
+  "relatert": [
+   "E179"
+  ]
+ },
+ {
+  "id": "E290",
+  "n": "N25",
+  "kategori": "INN",
+  "maal": "fase1.json M01 / omr-K4.json F-MYN-40",
+  "begrunnelse": "Retting med kilde (Altinn-dokumentasjon). Løser E053. F-MYN-40 avgrenses til kunder som sender a-melding via Brutto.",
+  "relatert": [
+   "E053",
+   "E293"
+  ]
+ },
+ {
+  "id": "E291",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-01 / F-MYN-24",
+  "begrunnelse": "Hører i samme register som E061, som slås inn i F-MYN-01/24.",
+  "relatert": [
+   "E061"
+  ]
+ },
+ {
+  "id": "E292",
+  "n": "N25",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-40",
+  "begrunnelse": "Behovsvekt Kan til Bør er prioritering. Krever ekstra pakker og egen agent-systembruker for byrå.",
+  "relatert": [
+   "E254",
+   "E295",
+   "E296",
+   "E290",
+   "E293"
+  ],
+  "sporsmal": "Skal Krav og betalinger (F-MYN-40) løftes fra Kan til Bør i MVP for kunder som sender a-melding via Brutto?",
+  "anbefaling": "Ja. Konkurrentene viser det, og L-02/L-14 blir eksakte. Behold hvitelisten (ikke MVA og restskatt)."
+ },
+ {
+  "id": "E293",
+  "n": "N25",
+  "kategori": "INN",
+  "maal": "nye D-Skattekrav/D-Skatteinnbetaling (MYN), D-KID",
+  "begrunnelse": "Former modellen for avstemming mot krav i MVP. Entitetsnivå nå; feltlisten til utviklerne.",
+  "relatert": [
+   "E294",
+   "E290",
+   "D-KID",
+   "F-MYN-40"
+  ]
+ },
+ {
+  "id": "E294",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-40",
+  "begrunnelse": "Bruken av Krav og betalinger i L-02/L-14 følger av E293.",
+  "relatert": [
+   "E293"
+  ]
+ },
+ {
+  "id": "E295",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-03",
+  "begrunnelse": "Følger av E292 og pakkespørsmålet E180.",
+  "relatert": [
+   "E292",
+   "E180"
+  ]
+ },
+ {
+  "id": "E296",
+  "n": "N25",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-04, D-Systembruker",
+  "begrunnelse": "Agent-systembruker kan ikke endres, så «én per byrå» må bli én per pakkesett. Endrer modellen.",
+  "relatert": [
+   "E166",
+   "E292"
+  ]
+ },
+ {
+  "id": "E297",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-15",
+  "begrunnelse": "Events bare for egne innsendinger følger av E174. typeFilter er detalj.",
+  "relatert": [
+   "E174",
+   "E173"
+  ]
+ },
+ {
+  "id": "E298",
+  "n": "N25",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-06, D-Myndighetsabonnement",
+  "begrunnelse": "Bare regelen om å slette abonnement når klienttilknytningen opphører. Feltet validert er bloat.",
+  "relatert": [
+   "E186"
+  ]
+ },
+ {
+  "id": "E299",
+  "n": "N25",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 M11; F-MIG-25, F-TRK-19",
+  "begrunnelse": "Gjelder MVP og Altinn-scope. Rettighetene for direktekunder er [verifiseres]. Testes i TT02 (M11). Prinsippet om aldri /content eller markasread bør beholdes.",
+  "relatert": [
+   "E022",
+   "E101",
+   "M11",
+   "F-TRK-19"
+  ]
+ },
+ {
+  "id": "E300",
+  "n": "N25",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-14, F-MYN-22",
+  "begrunnelse": "Portveien finnes ikke i kartleggingen. Saksregelen «flere innsendere» står i E178.",
+  "relatert": [
+   "E178",
+   "E095"
+  ]
+ },
+ {
+  "id": "E301",
+  "n": "N28",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Heuristikk som bare gir «indikasjon» og falske avvik. Lønnsfaglig vurdering av nytte i fase 1.",
+  "relatert": [
+   "E010",
+   "N28"
+  ],
+  "sporsmal": "Skal en grov T9-kontroll (utleggstrekk mot kontantlønn) vises som indikasjon i fase 1?",
+  "anbefaling": "Nei, parker til MVP når pålegg finnes. Test heuristikken i TT02 først."
+ },
+ {
+  "id": "E302",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "kontroll T1 (N01, F-MYN-42)",
+  "begrunnelse": "Lønnsfaglig riktighet med kilde i N28: sammenlign dato for utleggstrekk, ikke måned.",
+  "relatert": [
+   "gruppe 2 MYN",
+   "gruppe 4 TRK"
+  ]
+ },
+ {
+  "id": "E303",
+  "n": "N28",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json D-Trekkpalegg",
+  "begrunnelse": "Slås inn i den samlede revisjonen av D-Trekkpalegg i E019. Namsfogd har kilde (lov 19. juni 2026 nr. 45). Grunnlagsregelen hører til E308.",
+  "relatert": [
+   "E019",
+   "E308",
+   "E310"
+  ]
+ },
+ {
+  "id": "E304",
+  "n": "N28",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json D-Regelpakke",
+  "begrunnelse": "Dekket av B5 (lovregler som kode) og D-Regelpakke.regelimplementasjoner. Datoen 1.1.2027 for renter slås sammen med E488.",
+  "relatert": [
+   "B5",
+   "E488"
+  ]
+ },
+ {
+  "id": "E305",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-35",
+  "begrunnelse": "Trekkdata finnes i A07 uten ny tilgang. Ligger bak lønnstilgang (F-SIK-08). Gir trekkontroll i fase 1.",
+  "relatert": [
+   "E009",
+   "F-SIK-08"
+  ]
+ },
+ {
+  "id": "E306",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "kontrolltekster T1–T5 (F-MYN-42)",
+  "begrunnelse": "Regelen «ikke anta samordnet trekk» hindrer feil forklaringer. Kilde i N28. Produktteksten selv er ikke poenget.",
+  "relatert": [
+   "E302",
+   "E307"
+  ]
+ },
+ {
+  "id": "E307",
+  "n": "N28",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Kildeovervåking av utrullingsforskriften er et tilfelle av F-MYN-24.",
+  "relatert": [
+   "F-MYN-24",
+   "E162"
+  ]
+ },
+ {
+  "id": "E308",
+  "n": "N28",
+  "kategori": "SJUR",
+  "maal": "omr-K2.json F-TRK-20",
+  "begrunnelse": "Grunnlaget har kilde (kontantytelser før forskuddstrekk). «Ingen fremføring» og nedrunding er [verifiseres]. i64 i øre strider mot D05.",
+  "relatert": [
+   "E309",
+   "E422",
+   "D05",
+   "N26"
+  ],
+  "sporsmal": "Godtar du foreløpige regler for samordnet trekk til Skatteetaten svarer: ingen fremføring, nedrunding til hel krone og beløpstrekk så tidlig som mulig?",
+  "anbefaling": "Ja, og merk alle tre [verifiseres]. Still spørsmålene i henvendelsen fra N26. Ta reglene inn i F-TRK-20, men ikke heltallsformatet."
+ },
+ {
+  "id": "E309",
+  "n": "N28",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Lonnsart, F-LON-02",
+  "begrunnelse": "N28 spør selv om flagget skal være eget eller utledes av `fordel`. Det er et modellvalg. Behovet (eget grunnlag for utleggstrekk) er reelt.",
+  "relatert": [
+   "E308",
+   "E412"
+  ]
+ },
+ {
+  "id": "E310",
+  "n": "N28",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Trekkpalegg, D-Lonnslinje",
+  "begrunnelse": "Perioder som liste følger API-et. Om det blir egen tabell eller JSON, er et valg for utviklerne (N28, spørsmål 2). D-Lonnslinje har allerede trekkobjekt_id.",
+  "relatert": [
+   "E019",
+   "D08"
+  ]
+ },
+ {
+  "id": "E311",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-18",
+  "begrunnelse": "Kildebelagt (overgangsforskriften §§ 2 og 3). Presiserer sperre, sak og avslutning. Hard sperre ved begge trekktyper på samme utbetaling.",
+  "relatert": [
+   "E257",
+   "E019",
+   "F-KJO-20"
+  ]
+ },
+ {
+  "id": "E312",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-21; omr-K4.json F-MYN-29",
+  "begrunnelse": "Kildebelagt (innkrevingsloven § 30 fjerde ledd, brev 28.01.2026). Avgrenser påminnelsen til gamle trekk.",
+  "relatert": [
+   "E016",
+   "F-MYN-29 (gruppe MYN)"
+  ]
+ },
+ {
+  "id": "E313",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-26/27/28",
+  "begrunnelse": "Kildebelagt (N28 §1.7). Retter F-TRK-28: samordnet trekk har ingen saldo. Er i tråd med F-TRK-27 og F-TRK-26 (aldri negativ netto).",
+  "relatert": [
+   "E019"
+  ]
+ },
+ {
+  "id": "E314",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-22; omr-K4.json F-BET-01/05, D-KID",
+  "begrunnelse": "Kildebelagt (innkrevingsloven § 30 andre ledd, overgangsforskriften § 3, brev 28.01.2026). Gir riktig konto, KID og frist per trekktype.",
+  "relatert": [
+   "E017",
+   "F-BET-01/05 (gruppe BET)",
+   "B40"
+  ]
+ },
+ {
+  "id": "E315",
+  "n": "N28",
+  "kategori": "INN",
+  "maal": "a-melding utleggstrekk (MYN, MVP)",
+  "begrunnelse": "Rapporteringsregler med valideringskoder F294/F295/F528 er regelverksriktighet for egen a-melding.",
+  "relatert": [
+   "gruppe 2 MYN"
+  ]
+ },
+ {
+  "id": "E316",
+  "n": "N28",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-28, F-KJO-24",
+  "begrunnelse": "Henting før beregning og godkjenning og varsel etter godkjenning står i F-MYN-28 og F-KJO-24.",
+  "relatert": [
+   "E015",
+   "E102"
+  ]
+ },
+ {
+  "id": "E317",
+  "n": "N28",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Testsuite er utviklernes. F-RAP-12-delen (vis grunnlag, prosent, tak) hører i gruppe 5.",
+  "relatert": [
+   "F-RAP-12",
+   "gruppe 5 RAP"
+  ]
+ },
+ {
+  "id": "E318",
+  "n": "N30",
+  "kategori": "SJUR",
+  "maal": "design.json (ny B41)",
+  "begrunnelse": "Ny arkitekturbeslutning om dokumentasjonsmodell med juridiske konsekvenser (NBS 2, § 7-7 fra 2027). Låser felt i D-Bilag nå.",
+  "relatert": [
+   "E332",
+   "E327",
+   "E523",
+   "E481"
+  ],
+  "sporsmal": "Skal «modell A» (samlebilag i regnskapet, full journal i Brutto) bli standard og ny B-beslutning, sammen med prosjektlønn-ADR-en?",
+  "anbefaling": "Ja som Forslag-status; bekreft med 2–3 revisorer før MVP-planen låses."
+ },
+ {
+  "id": "E319",
+  "n": "N30",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Rettelsene gjelder nattoppdraget, ikke kartleggingen. Ingen treff på § 13-5 eller feil bruk av § 7-1/§ 4-1 i build/data.",
+  "relatert": [
+   "E318"
+  ]
+ },
+ {
+  "id": "E320",
+  "n": "N30",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-27, D-Oppbevaringsregel",
+  "begrunnelse": "Avstemmingspakker er regnskapsdokumentasjon (5 år). Følger GRFS og bokføringsloven § 13.",
+  "relatert": [
+   "E321",
+   "F-SIK-26"
+  ]
+ },
+ {
+  "id": "E321",
+  "n": "N30",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-SIK-29",
+  "begrunnelse": "F-SIK-29 er ikke i fase 1. En lett systembeskrivelse i fase 1 er en scope-økning, men gir revisor sporbarhet for kontrollkatalog og toleranser.",
+  "relatert": [
+   "E036",
+   "F-RAP-04"
+  ],
+  "sporsmal": "Skal en lett systembeskrivelse per programversjon (kilder, kontrollversjon, toleranser) med i revisorutdraget i fase 1?",
+  "anbefaling": "Ja. Den kan genereres fra versjonert konfigurasjon og koster lite."
+ },
+ {
+  "id": "E322",
+  "n": "N30",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-23, F-SIK-25",
+  "begrunnelse": "Dekket av B9, F-SIK-15 og F-SIK-23. E473 har den skarpere invarianten for lagringssted og filtrene.",
+  "relatert": [
+   "E473",
+   "B9"
+  ]
+ },
+ {
+  "id": "E323",
+  "n": "N30",
+  "kategori": "SJUR",
+  "maal": "omr-K5.json D-Fullmakt",
+  "begrunnelse": "Juridisk spørsmål om forhåndsgodkjenning. Står i den samlede advokatvurderingen i morgen.md.",
+  "relatert": [
+   "E329",
+   "E236",
+   "E167"
+  ],
+  "sporsmal": "Skal godkjenning uten kunde bare godtas med skriftlig og avgrenset fullmakt?",
+  "anbefaling": "Ja. Ta det med i advokatvurderingen sammen med E329."
+ },
+ {
+  "id": "E324",
+  "n": "N30",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-05, F-REG-17",
+  "begrunnelse": "Samme som E027; «grunnlag påkrevd» tas inn der.",
+  "relatert": [
+   "E027",
+   "E512"
+  ]
+ },
+ {
+  "id": "E325",
+  "n": "N30",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-06, D-Bilag",
+  "begrunnelse": "Journal låst med hash finnes alt (F-REG-06, vedlegg_hash). Bare lenken fra bokføringsgrunnlaget er ny.",
+  "relatert": [
+   "E028"
+  ]
+ },
+ {
+  "id": "E326",
+  "n": "N30",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-18/19/22, D-Bilag.status",
+  "begrunnelse": "Liten regel: BOKFØRT først når regnskapets bilagsnummer er skrevet tilbake. Knytter L-10 til F-REG-24.",
+  "relatert": [
+   "E078"
+  ]
+ },
+ {
+  "id": "E327",
+  "n": "N30",
+  "kategori": "INN",
+  "maal": "ny F-REG (kontrollsporbeskrivelse)",
+  "begrunnelse": "Lovkrav (bokføringsloven § 6, NBS 2 kap. 5). Bygger på eksisterende D-Programversjon og D-Regnskapsoppsett.",
+  "relatert": [
+   "E318",
+   "D-Programversjon"
+  ]
+ },
+ {
+  "id": "E328",
+  "n": "N30",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-26; D-Eksportpakke",
+  "begrunnelse": "Konkret exit-innhold og sletting først etter mottakskvittering styrker F-SIK-26. Arkivabonnement finnes, så den delen er bare en statusverdi.",
+  "relatert": [
+   "E036",
+   "E160",
+   "F-BYR-30"
+  ]
+ },
+ {
+  "id": "E329",
+  "n": "N30",
+  "kategori": "SJUR",
+  "maal": "omr-K5.json F-BYR-24; omr-K4.json F-BET-06",
+  "begrunnelse": "Krever advokatvurdering av kundens SCA som attestasjon og MVP-kanalregler.",
+  "relatert": [
+   "E323",
+   "B39",
+   "B40"
+  ],
+  "sporsmal": "Kan «godkjenn og signer» være én handling med to bevis (hash i Brutto og SCA i banken)?",
+  "anbefaling": "Ja som designmål. Avgjøres etter advokatvurderingen."
+ },
+ {
+  "id": "E330",
+  "n": "N30",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-26",
+  "begrunnelse": "Returfiler er betalingsdokumentasjon (NBS 7). Må med i eksporten. Eies av BET.",
+  "relatert": [
+   "F-BET-17",
+   "F-BET-22"
+  ]
+ },
+ {
+  "id": "E331",
+  "n": "N30",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-19",
+  "begrunnelse": "F-RAP-19 har allerede system- og rutinebeskrivelse og attestasjonsbevis. Kontrollsporbeskrivelsen er en egen ny funksjon i en annen gruppe.",
+  "relatert": [
+   "E194"
+  ]
+ },
+ {
+  "id": "E332",
+  "n": "N30",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json (ny B41)",
+  "begrunnelse": "Alternativet i ADR-en fra E318. Bygges bare ved behov.",
+  "relatert": [
+   "E318"
+  ]
+ },
+ {
+  "id": "E333",
+  "n": "N31",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Åpne poster på 2910 i fase 1 motsier N02 og N32, som legger 2910 per ansatt til MVP.",
+  "relatert": [
+   "E350",
+   "E347"
+  ],
+  "sporsmal": "Åpne poster på 2910 i fase 1?",
+  "anbefaling": "Vent til MVP. Fase 1 viser bare saldo på 2910."
+ },
+ {
+  "id": "E334",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json P05 / kontrollkatalog",
+  "begrunnelse": "L-32 hører i katalogen; L-32g i fase 1 avgjøres sammen med første utgave (E191).",
+  "relatert": [
+   "E191"
+  ]
+ },
+ {
+  "id": "E335",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Regnskapskonto",
+  "begrunnelse": "Bruken av reskontro til flytvalg hører i E343; feltet fylles allerede via E024.",
+  "relatert": [
+   "E343",
+   "E024"
+  ]
+ },
+ {
+  "id": "E336",
+  "n": "N31",
+  "kategori": "SJUR",
+  "maal": "omr-K3.json F-UTL-01",
+  "begrunnelse": "Valget av standardflyt for bokføring av utlegg avgjør B32s åpne punkt om MVA og eierskap, og former D-Utleggslinje.",
+  "relatert": [
+   "E034",
+   "E088",
+   "E338",
+   "E345",
+   "E513",
+   "E340",
+   "B32"
+  ],
+  "sporsmal": "Skal «den som utbetaler, bokfører» gjelde, med flyt B som standard og A og C som valg?",
+  "anbefaling": "Ja. Kilderegisteret må vite om kilden også bokfører, så flyt B ikke gir dobbel føring."
+ },
+ {
+  "id": "E337",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-02",
+  "begrunnelse": "F-UTL-02 har allerede installasjon, externalId og dublettkontroll på tvers av kilder. kildeKravId inngår i feltene i E345.",
+  "relatert": [
+   "E345"
+  ]
+ },
+ {
+  "id": "E338",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-04",
+  "begrunnelse": "Holdårsakene følger av flytvalget i E336. Kodelisten er en detalj.",
+  "relatert": [
+   "E336"
+  ]
+ },
+ {
+  "id": "E339",
+  "n": "N31",
+  "kategori": "BLOAT",
+  "maal": "omr-K3.json F-UTL-07",
+  "begrunnelse": "Statuskall per kilde er adapterdetaljer. Det at Utleggsappen mangler «utbetalt», bør med i henvendelsen til dem.",
+  "relatert": [
+   "F-UTL-07"
+  ]
+ },
+ {
+  "id": "E340",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-18",
+  "begrunnelse": "F-UTL-18 sier allerede det samme: bare rene refusjoner utenfor lønn. Legg til hjemlene § 7-2-3 og § 7-2-9.",
+  "relatert": [
+   "E336",
+   "B32"
+  ]
+ },
+ {
+  "id": "E341",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-20",
+  "begrunnelse": "F-UTL-20 (Kan) dekker allerede merking av forskudd mot dobbel utbetaling.",
+  "relatert": [
+   "F-KJO-31"
+  ]
+ },
+ {
+  "id": "E342",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-22, F-UTL-23",
+  "begrunnelse": "F-UTL-22 har allerede hash og lenke per kvittering. MVA per kode følger flytvalget i E336.",
+  "relatert": [
+   "E513",
+   "E336"
+  ]
+ },
+ {
+  "id": "E343",
+  "n": "N31",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-05",
+  "begrunnelse": "Riktig konsekvens for samlebilaget, men forutsetter flyt B som standard (E336, UTL-gruppen).",
+  "relatert": [
+   "E336",
+   "E509"
+  ]
+ },
+ {
+  "id": "E344",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-18",
+  "begrunnelse": "Lukking av poster er med i E514 (Tripletex) og ReAi-adapteren.",
+  "relatert": [
+   "E514"
+  ]
+ },
+ {
+  "id": "E345",
+  "n": "N31",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json D-Utleggslinje, D-Utleggsoppsett; omr-K6.json D-Kilderegister",
+  "begrunnelse": "Feltene følger E336. Invarianten om at kilden også bokfører, er kjernen og står i anbefalingen der.",
+  "relatert": [
+   "E336"
+  ]
+ },
+ {
+  "id": "E346",
+  "n": "N31",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere» uten konsekvens for modellen nå (Pleo, Expensify, OK-33).",
+  "relatert": []
+ },
+ {
+  "id": "E347",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-29, ny D-Regnskapssaldo",
+  "begrunnelse": "Viktig personvernregel: saldo som standard, D/K bare for utvalgte kontoer, bare summer lagres. Kildebelagt i data.",
+  "relatert": [
+   "E006",
+   "E118",
+   "E280",
+   "E452",
+   "E081",
+   "E073"
+  ]
+ },
+ {
+  "id": "E348",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-28",
+  "begrunnelse": "Kildebelagt: 5800 og 2650 har ansatt i Tripletex. Les bare som saldo.",
+  "relatert": [
+   "E070",
+   "E441"
+  ]
+ },
+ {
+  "id": "E349",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30 (saldomotor)",
+  "begrunnelse": "Kildebelagt (17 % reverseringer, 37 av 101 måneder feil). Posteringsdato teller. Visma-delen er [verifiseres].",
+  "relatert": [
+   "E069"
+  ]
+ },
+ {
+  "id": "E350",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-02, F-REG-03, D-A07Kontoregel",
+  "begrunnelse": "Rettinger lest i 16 kontoplaner. Fordeling av 2945 og «Øreavrunding» er fortsatt [verifiseres].",
+  "relatert": [
+   "E114",
+   "E117",
+   "E082"
+  ]
+ },
+ {
+  "id": "E351",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-RAP-13",
+  "begrunnelse": "Kildebelagt: posteringer har ikke sone. F-RAP-13 er fase 1, så AGA per sone må komme fra A07.",
+  "relatert": [
+   "E122"
+  ]
+ },
+ {
+  "id": "E352",
+  "n": "N32",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny F-id (RAP) kontrolloppstilling",
+  "begrunnelse": "Tillegg og fradrag fra IB/UB er innhold i kontrolloppstillingen (E272).",
+  "relatert": [
+   "E272"
+  ]
+ },
+ {
+  "id": "E353",
+  "n": "N32",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json R01",
+  "begrunnelse": "R01-forslaget har allerede Tripletex først.",
+  "relatert": [
+   "R01",
+   "E108",
+   "E087"
+  ]
+ },
+ {
+  "id": "E354",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-17",
+  "begrunnelse": "Enkel regel som gjør Bruttos egne bilag avstembare med saldomotoren.",
+  "relatert": [
+   "E349"
+  ]
+ },
+ {
+  "id": "E355",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-07, F-MIG",
+  "begrunnelse": "Migreringskonsekvens med kilde i Tripletex-data. Kunden må få beskjed om avvikende modell.",
+  "relatert": [
+   "E086",
+   "E029"
+  ]
+ },
+ {
+  "id": "E356",
+  "n": "N32",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-10",
+  "begrunnelse": "Reversering på samme dato gir ingen tidsavvik mot A07. Kildebelagt.",
+  "relatert": [
+   "E032",
+   "E521"
+  ]
+ },
+ {
+  "id": "E357",
+  "n": "N32",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-REG-14, F-REG-15",
+  "begrunnelse": "AGA-fradrag i refusjonsbilaget passer bare metoden «ved mottak». F-REG-15 sier at aga_refusjonsmetode styrer tidspunktet.",
+  "relatert": [
+   "E128",
+   "F-FRA-26"
+  ],
+  "sporsmal": "Når føres AGA-fradraget for NAV-refusjon?",
+  "anbefaling": "Følg aga_refusjonsmetode. Samme bilag som refusjonen bare ved «ved_mottak». Resten (OTP-AGA, ingen ansatt på 5800) er INN."
+ },
+ {
+  "id": "E358",
+  "n": "N32",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-18, F-REG-19",
+  "begrunnelse": "Adapterfakta hører i E514 (Tripletex) og E515 (PowerOffice).",
+  "relatert": [
+   "E514",
+   "E515"
+  ]
+ },
+ {
+  "id": "E359",
+  "n": "N32",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json F-TRK-17",
+  "begrunnelse": "Konkurrentpåstand merket [verifiseres]. Endrer ikke kartleggingen.",
+  "relatert": [
+   "E253"
+  ]
+ },
+ {
+  "id": "E360",
+  "n": "N37",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30, F-BYR-15",
+  "begrunnelse": "Samme salgsløfte som E243, med samme konflikt om «i natt».",
+  "relatert": [
+   "E243"
+  ]
+ },
+ {
+  "id": "E361",
+  "n": "N37",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-29, R01",
+  "begrunnelse": "Innspill til R01 (rekkefølge regnskap og ansattkilder). Avgjøres sammen med E156.",
+  "relatert": [
+   "E156",
+   "E462"
+  ],
+  "sporsmal": "Hvilken regnskapskilde først i fase 1: SAF-T-opplasting (N40) eller Tripletex/PowerOffice-API med SAF-T som reserve (R01)? ReAi?",
+  "anbefaling": "SAF-T-opplasting og Tripletex-lesing bygges parallelt; API i produksjon først etter skriftlig svar på vilkårene. ReAi bare ved pilotbehov."
+ },
+ {
+  "id": "E362",
+  "n": "N37",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K6.json F-PLA-17; D-Personkobling",
+  "begrunnelse": "Automatisk kobling på navn og fødselsdato strider mot N38/E374 (bare forslag som et menneske bekrefter). Er selv [verifiseres]. Kildeflagget for fnr er nyttig.",
+  "relatert": [
+   "E374",
+   "E103"
+  ],
+  "sporsmal": "Skal ett treff på navn og fødselsdato gi automatisk kobling?",
+  "anbefaling": "Nei. La det bli et forslag i koblingskøen, slik N38 sier. Behold flagget for om kilden gir fødselsnummer."
+ },
+ {
+  "id": "E363",
+  "n": "N37",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-PLA-13; D-Kilderegister",
+  "begrunnelse": "Kildetypene hører til den enkle kilderegelen i E044. D-Kilderegister har allerede kilde_type, og D-Feltkilde finnes ikke.",
+  "relatert": [
+   "E044",
+   "P03"
+  ]
+ },
+ {
+  "id": "E364",
+  "n": "N37",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Integrasjon",
+  "begrunnelse": "Autentiseringstyper for systemer utenom fase 1 er utviklerdetaljer. Slås sammen med E074 som innspill til R01 og R03.",
+  "relatert": [
+   "E074",
+   "E508",
+   "R01",
+   "R03"
+  ]
+ },
+ {
+  "id": "E365",
+  "n": "N37",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-08",
+  "begrunnelse": "Samme utvidelse av tilgangsdiagnosen som E071.",
+  "relatert": [
+   "E071"
+  ]
+ },
+ {
+  "id": "E366",
+  "n": "N37",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-33",
+  "begrunnelse": "Samme prisinnspill som E252.",
+  "relatert": [
+   "E252"
+  ]
+ },
+ {
+  "id": "E367",
+  "n": "N37",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-21, F-REG-20",
+  "begrunnelse": "Merknad: rekkefølge NXT/Visma.net velges etter pilotkundene; eAccounting via fil. Konsistent med dagens tekst.",
+  "relatert": [
+   "E076"
+  ]
+ },
+ {
+  "id": "E368",
+  "n": "N37",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-MIG-08, F-MIG-09",
+  "begrunnelse": "Faktarettelse med kilde (N37): Visma Lønn kan ikke kjøre lønn etter 2024, så den gjelder bare historisk import.",
+  "relatert": []
+ },
+ {
+  "id": "E369",
+  "n": "N37",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Posisjonering og konkurrentnotat. Hører i research, ikke kartleggingen.",
+  "relatert": [
+   "E370",
+   "B30"
+  ]
+ },
+ {
+  "id": "E370",
+  "n": "N37",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Markedsinformasjon uten konsekvens for scope eller modell.",
+  "relatert": [
+   "E369"
+  ]
+ },
+ {
+  "id": "E371",
+  "n": "N38",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-MIG-10",
+  "begrunnelse": "Navneliste i fase 1 er det samme scope-spørsmålet som E044. Innholdet (fnr som koblingsnøkkel, ingen lagret fil) er godt og bør følge med.",
+  "relatert": [
+   "E044",
+   "E374",
+   "E380",
+   "P03"
+  ],
+  "sporsmal": "Samme spørsmål som E044: navnelisteimport i fase 1?",
+  "anbefaling": "Ja, med feltene i E371, uten lagret originalfil og med blind indeks."
+ },
+ {
+  "id": "E372",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-PER-02",
+  "begrunnelse": "Kildebelagt regelendring 2032 (k1-regel, kjønn, århundre). H-nummer, syntetiske nummer og fødselsdato fra D-nummer er nyttig. Valg av crate er ikke det.",
+  "relatert": [
+   "E478",
+   "E047",
+   "D-Regelpakke"
+  ]
+ },
+ {
+  "id": "E373",
+  "n": "N38",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-22",
+  "begrunnelse": "F-BYR-22 «Grunnlag via lenke» finnes. Navneliste blir en variant i fase 1. WASM-valg er utviklernes.",
+  "relatert": [
+   "F-BYR-22",
+   "E038",
+   "D-Grunnlagsinnsending"
+  ]
+ },
+ {
+  "id": "E374",
+  "n": "N38",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-PLA-17",
+  "begrunnelse": "Del av den samlede koblingsregelen i E103. «§ 7-31-koblinger aldri automatisk» og «fødselsdato alene til køen» tas med der.",
+  "relatert": [
+   "E103",
+   "E362"
+  ]
+ },
+ {
+  "id": "E375",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-07, F-SIK-08, F-SIK-19",
+  "begrunnelse": "Former fase 1-modellen: fagforening og utleggstrekk per person lagres bare som summer, permisjonsbeskrivelsen krypteres og A07 rå får egen DEK. «x-dataklasse» er detalj.",
+  "relatert": [
+   "E475",
+   "E124",
+   "E048"
+  ]
+ },
+ {
+  "id": "E376",
+  "n": "N38",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-21, D07",
+  "begrunnelse": "«Avstemming» uten inntektsmottakere gir ikke trekk per person (E120) eller ANS-kontroller. Personvern mot kontrollverdi.",
+  "relatert": [
+   "E120",
+   "E199",
+   "E010",
+   "E130"
+  ],
+  "sporsmal": "Skal klienten kunne velge modus «Avstemming» uten inntektsmottakere?",
+  "anbefaling": "Ja som valg for personvern, men standard er «Ansattoversikt». Vis tydelig hvilke kontroller som da ikke kjører."
+ },
+ {
+  "id": "E377",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42, F-REG-30",
+  "begrunnelse": "Enkel kontroll på sumnivå mot 2650 (S #27), ingen data per person.",
+  "relatert": [
+   "P05",
+   "E010"
+  ]
+ },
+ {
+  "id": "E378",
+  "n": "N38",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-27; D-Abonnement",
+  "begrunnelse": "Instruks og godkjenning i D-Abonnement overlapper med dpa-feltene i E471.",
+  "relatert": [
+   "E471",
+   "E470"
+  ]
+ },
+ {
+  "id": "E379",
+  "n": "N38",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-28",
+  "begrunnelse": "E474 retter tellingen (tre, ikke fire av ni kriterier) og legger R16–R21 til N38-listen.",
+  "relatert": [
+   "E474"
+  ]
+ },
+ {
+  "id": "E380",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-03",
+  "begrunnelse": "Utvider listen med step-up for identitetsimport og visning av § 7-31-grunnlag. Eksport av persondata finnes allerede.",
+  "relatert": [
+   "E371",
+   "E381"
+  ]
+ },
+ {
+  "id": "E381",
+  "n": "N38",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json F-SIK-16; fase1 D10",
+  "begrunnelse": "F-SIK-16 sier allerede at lesing av fnr, lønn og helse logges som egen hendelsestype. Navnene på hendelsestypene bestemmer utviklerne (D10).",
+  "relatert": [
+   "D10"
+  ]
+ },
+ {
+  "id": "E382",
+  "n": "N38",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K6.json F-SIK-21, F-SIK-22",
+  "begrunnelse": "N38 R9 sier at A07 rå beholdes i 5 år i låst rapport. E476 erstatter dette: bare sumutdrag og hash i 60 måneder. Resten er detaljer.",
+  "relatert": [
+   "E476",
+   "D11"
+  ],
+  "sporsmal": "Hvilken regel gjelder for A07 rå når den inngår i en låst rapport?",
+  "anbefaling": "Følg E476: sumutdrag og hash i 60 måneder, og råfila rullerende i 13 måneder."
+ },
+ {
+  "id": "E383",
+  "n": "N38",
+  "kategori": "SJUR",
+  "maal": "omr-K1.json F-ORG-01, D-Virksomhet; omr-K5.json F-ORL-13",
+  "begrunnelse": "Ny entitet med navn og fødselsdato for rolleinnehavere er personvernrelevant. Søknad om rolleutskrift krever avklaring med Brreg.",
+  "relatert": [
+   "E479",
+   "E283",
+   "F-RAP-17"
+  ],
+  "sporsmal": "Skal Brutto lagre rolleinnehavere med historikk og søke om rolleutskrift-API?",
+  "anbefaling": "Ja, med minimale felt og kobling som forslag et menneske bekrefter. Søk først når Brreg har bekreftet bruk som databehandler."
+ },
+ {
+  "id": "E384",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "fase1.json I02 (forslag)",
+  "begrunnelse": "Finere rettigheter for lønn, identitet og fravær følger dataminimering og art. 9. Trekk per person ligger bak lonn.les.",
+  "relatert": [
+   "E386",
+   "gruppe 3 SIK"
+  ]
+ },
+ {
+  "id": "E385",
+  "n": "N38",
+  "kategori": "KONFLIKT",
+  "maal": "fase1.json D09 / omr-K1.json D-Person.fodselsdato",
+  "begrunnelse": "D-Person har fødselsdato, og F-PER-03 krever den for mottakere uten norsk ID. N38 sier selv at nummeret ikke gir sikker dato (D-nummer, 2032).",
+  "relatert": [
+   "E463",
+   "F-PER-03",
+   "D09"
+  ],
+  "sporsmal": "Skal fødselsdato lagres som eget felt?",
+  "anbefaling": "Fase 1: ikke lagre, utled ved behov. MVP: behold D-Person.fodselsdato bare for personer uten norsk ID eller usikker dato."
+ },
+ {
+  "id": "E386",
+  "n": "N38",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Person / omr-K6.json F-SIK-30",
+  "begrunnelse": "Nyttig MVP-retning (BankID-bekreftet navn, egne roller for fagforening og trekk). Kildevalg må avstemmes med Huma-regelen.",
+  "relatert": [
+   "E464",
+   "E384"
+  ]
+ },
+ {
+  "id": "E387",
+  "n": "N17",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-BET-22",
+  "begrunnelse": "Førstelinjesupport kan gjøre Brutto til agent for ZTL (risiko middels–høy i N17). Dette er juss og forretning, ikke kartlegging.",
+  "relatert": [
+   "E223",
+   "B12",
+   "B40",
+   "fase1 B09"
+  ],
+  "sporsmal": "Kan Brutto påta seg førstelinjesupport og rollen som teknisk leverandør for en betalingspartner?",
+  "anbefaling": "Ikke bind deg ennå. Hold kanalen generisk og ta rollen med i advokatvurderingen før en partneravtale."
+ },
+ {
+  "id": "E388",
+  "n": "N17",
+  "kategori": "PETER_SANDER",
+  "maal": "ny D-Partnerkunde (BET)",
+  "begrunnelse": "Avhenger av partnervalget (E232). Statusverdiene er ZTL-spesifikke.",
+  "relatert": [
+   "E232"
+  ]
+ },
+ {
+  "id": "E389",
+  "n": "N17",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json D-KID",
+  "begrunnelse": "KID-algoritmen og testvektoren er spesifikasjon for utviklerne. Behold dem i N17. Delingen av feltet er en detalj.",
+  "relatert": []
+ },
+ {
+  "id": "E390",
+  "n": "N17",
+  "kategori": "INN",
+  "maal": "omr-K4.json D-Betalingslinje, D-Betalingsoppdrag",
+  "begrunnelse": "Hard sperre for adressebeskyttelse er et personvernkrav med kilde (N17). Feltnavnene kan utviklerne bestemme.",
+  "relatert": [
+   "E229",
+   "E396"
+  ]
+ },
+ {
+  "id": "E391",
+  "n": "N17",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-BET-20",
+  "begrunnelse": "Kildebelagt bankregel (KID inngår ikke i duplikatsjekken). Treffer samordnede trekk med samme beløp. Én ny kontroll.",
+  "relatert": [
+   "E390"
+  ]
+ },
+ {
+  "id": "E392",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny D-Banksignering",
+  "begrunnelse": "Feltdetalj til entiteten i E225.",
+  "relatert": [
+   "E225"
+  ]
+ },
+ {
+  "id": "E393",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny D-Banksamtykke",
+  "begrunnelse": "Feltdetalj til E226. Krav om fødselsnummer på samtykkegiver må med i DPIA.",
+  "relatert": [
+   "E226",
+   "gruppe 3 SIK"
+  ]
+ },
+ {
+  "id": "E394",
+  "n": "N17",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 B07",
+  "begrunnelse": "Skjuling av lønn per kanal er innspill til Peters valg av leverandør (B07).",
+  "relatert": [
+   "B40"
+  ]
+ },
+ {
+  "id": "E395",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B12/B40",
+  "begrunnelse": "Kundeavtale og klientmiddelrisiko er en del av ZTL-spørsmålet (E232).",
+  "relatert": [
+   "E232"
+  ]
+ },
+ {
+  "id": "E396",
+  "n": "N17",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 B08; omr-K4.json F-BET-08",
+  "begrunnelse": "pain.001-versjonen er merket [verifiseres] med pilotbanker i F-BET-08. Det er et teknisk valg.",
+  "relatert": [
+   "E390"
+  ]
+ },
+ {
+  "id": "E397",
+  "n": "N17",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1 B01–B06",
+  "begrunnelse": "Detaljer for én leverandør før B40 har valgt leverandør.",
+  "relatert": [
+   "E387",
+   "E223"
+  ]
+ },
+ {
+  "id": "E398",
+  "n": "N17",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-BET-13, F-BET-17",
+  "begrunnelse": "Viktig regel: leverandørstatus «under behandling» er ikke betalt. Varsel etter lønnsdato beskytter den ansatte.",
+  "relatert": [
+   "E227"
+  ]
+ },
+ {
+  "id": "E399",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B40; omr-K4.json F-BET-22",
+  "begrunnelse": "B40 og F-BET-22 har allerede bankfil som reserve. Spørsmål B08 står til Peter.",
+  "relatert": [
+   "fase1 B08"
+  ]
+ },
+ {
+  "id": "E400",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B4/B12",
+  "begrunnelse": "Brutto som teknisk leverandør eller agent må vurderes av advokat i samme runde som E232.",
+  "relatert": [
+   "E232",
+   "B4"
+  ]
+ },
+ {
+  "id": "E401",
+  "n": "N17",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json B01/B02",
+  "begrunnelse": "Bankfakta til Peters svar på B01–B02, sammen med E221.",
+  "relatert": [
+   "E221"
+  ]
+ },
+ {
+  "id": "E402",
+  "n": "N14",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B11",
+  "begrunnelse": "B11 har spesifikasjon og testmiljø. Legg til 1.4.2027 (endelig innhold, kilde Skatteetaten 22.10.2026). Innholdsgjetningen er [verifiseres].",
+  "relatert": [
+   "B11"
+  ]
+ },
+ {
+  "id": "E403",
+  "n": "N14",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-MYN-21, D-Avstemmingsrapport",
+  "begrunnelse": "Versjonering av rå A07 per inntektsår og API overlapper skjema_variant (E008). Utviklervalg.",
+  "relatert": [
+   "E008",
+   "E209",
+   "E404"
+  ]
+ },
+ {
+  "id": "E404",
+  "n": "N14",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-15, D-Tilbakemelding",
+  "begrunnelse": "Samme versjonsprinsipp som E403. Tolerant parsing står i F-MYN-23. Tom KID dekkes av E018.",
+  "relatert": [
+   "E403",
+   "E018"
+  ]
+ },
+ {
+  "id": "E405",
+  "n": "N14",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Kalender med møter og milepæler. Milepælene står i F-MYN-20. Dialogporten-signal dekkes av E184.",
+  "relatert": [
+   "E184",
+   "E150"
+  ]
+ },
+ {
+  "id": "E406",
+  "n": "N14",
+  "kategori": "INN",
+  "maal": "omr-K4.json ny F-MYN-43",
+  "begrunnelse": "Tvangsmulkt-ressursen er i prod. Forutsetter E173.",
+  "relatert": [
+   "E173",
+   "E407"
+  ]
+ },
+ {
+  "id": "E407",
+  "n": "N14",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-22",
+  "begrunnelse": "Måned uten a-melding i A07 virker uten Dialogporten. Anslått mulkt bygger på sats [verifiseres] i F-MYN-19.",
+  "relatert": [
+   "E178",
+   "E408",
+   "E173"
+  ]
+ },
+ {
+  "id": "E408",
+  "n": "N14",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "F108 og F231 er øyeblikkelige og gir tvangsmulkt etter Skatteetaten. Liten, nyttig merking.",
+  "relatert": [
+   "E130",
+   "E407"
+  ]
+ },
+ {
+  "id": "E409",
+  "n": "N14",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-Myndighetsabonnement",
+  "begrunnelse": "Enum-verdien hører til E186. Feltet aktiv dekkes av status.",
+  "relatert": [
+   "E186"
+  ]
+ },
+ {
+  "id": "E410",
+  "n": "N14",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json D-Kontrollsak",
+  "begrunnelse": "Feltdetalj; kilde_ressurs overlapper kilde_dialog_id (E188).",
+  "relatert": [
+   "E188"
+  ]
+ },
+ {
+  "id": "E411",
+  "n": "N14",
+  "kategori": "INN",
+  "maal": "omr-K3.json D-Permisjon.loennet",
+  "begrunnelse": "Kildebelagt (A07 1.0.2 mangler `loennet`). Tre verdier hindrer falske antakelser fra A07.",
+  "relatert": [
+   "E142"
+  ]
+ },
+ {
+  "id": "E412",
+  "n": "N14",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K2.json D-Lonnsart, D-Lonnsartmapping",
+  "begrunnelse": "Motsier dagens D-Lonnsart, der a-meldingsfeltene ligger på versjonen. D-Lonnsartmapping gjelder ekstern kode til lønnsart, ikke a-meldingen. Motsier også E125.",
+  "relatert": [
+   "E125",
+   "E309",
+   "B11",
+   "F-LON-01"
+  ],
+  "sporsmal": "Skal a-meldingsmapping ligge på lønnsartversjonen eller i en egen tabell med gyldighet per regelpakke?",
+  "anbefaling": "Behold feltene på den versjonerte lønnsarten, knyttet til regelpakkens kodelisteversjon (F-LON-01). Ikke bruk D-Lonnsartmapping til dette. Enig i å vente med D-Inntekt."
+ },
+ {
+  "id": "E413",
+  "n": "N14",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Regelpakke; D-Kodeverk (finnes ikke)",
+  "begrunnelse": "Feltdetalj. D-Kodeverk finnes ikke i kartleggingen. Hører til format-strategien for 2.3 og 2.4 (B11).",
+  "relatert": [
+   "B11",
+   "D08",
+   "E412"
+  ]
+ },
+ {
+  "id": "E414",
+  "n": "N14",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-20",
+  "begrunnelse": "Serialiseringstrait er implementasjon. Datoene står i F-MYN-20. Presedens [verifiseres] er dekket av åpent spørsmål.",
+  "relatert": []
+ },
+ {
+  "id": "E415",
+  "n": "N14",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-14, D-AMelding",
+  "begrunnelse": "Bare som merknad: manuell opplasting planlagt JSON fra 2027 (Skatteetaten 18.06.2026) [verifiseres]. Konfig per format er bloat.",
+  "relatert": [
+   "E414"
+  ]
+ },
+ {
+  "id": "E416",
+  "n": "N14",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-MYN-19 / F-MYN-41",
+  "begrunnelse": "Tvangsmulkt er allerede omtalt i F-MYN-19/41. Events og kravtyper er MVP-detalj for gruppe 2.",
+  "relatert": [
+   "gruppe 2 MYN",
+   "E293"
+  ]
+ },
+ {
+  "id": "E417",
+  "n": "N13",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json K03",
+  "begrunnelse": "Konkrete toleranser med hjemmel (§ 10-4-4). Oppdater forslaget i K03; F185-avrunding testes i TT02.",
+  "relatert": [
+   "E200"
+  ]
+ },
+ {
+  "id": "E418",
+  "n": "N13",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-KJO-17, D-Regelpakke.avrundingspolicy",
+  "begrunnelse": "Avrundingstabellen har hjemler (skattebetalingsforskriften §§ 5-5-4, 5-9-1, 5-10-4, 10-4-4). Svarer på [verifiseres] i F-KJO-17. Utviklerne bestemmer strategifeltene.",
+  "relatert": [
+   "E423",
+   "E428",
+   "E429",
+   "E430",
+   "K03",
+   "D05"
+  ]
+ },
+ {
+  "id": "E419",
+  "n": "N13",
+  "kategori": "INN",
+  "maal": "omr-K2.json D-Sats; D-Kontrolloppsett (L-30h, L-30i)",
+  "begrunnelse": "Kildebelagt (FSFIN § 5-15-1, Skatte-ABC). Gir riktige gavegrenser og forsikringsregler for fase 1-kontrollene.",
+  "relatert": [
+   "F-REG-30 (gruppe REG)",
+   "N24"
+  ]
+ },
+ {
+  "id": "E420",
+  "n": "N13",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-24",
+  "begrunnelse": "Kildeliste for overvåking av trekkrutinen. MVP, og releasen eies av TRK/F-KJO-18.",
+  "relatert": []
+ },
+ {
+  "id": "E421",
+  "n": "N13",
+  "kategori": "PETER_SANDER",
+  "maal": "fase1.json L01",
+  "begrunnelse": "Innspill til L01: koden finnes uten lisens, så Brutto må skrive egen port. Tabellfilen kan brukes til testing.",
+  "relatert": [
+   "L01"
+  ]
+ },
+ {
+  "id": "E422",
+  "n": "N13",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K2.json F-TRK-07",
+  "begrunnelse": "f64 strider mot fase1 D05 («aldri flyttall») og F-KJO-17. Funnet er målt: eksakt desimal gir 1 kr feil i 60 rader.",
+  "relatert": [
+   "D05",
+   "L01",
+   "T03",
+   "T04",
+   "E091"
+  ],
+  "sporsmal": "Kan f64 tillates i én isolert trekkrutine som unntak fra D05?",
+  "anbefaling": "Legg funnet inn som premiss i L01 og D05, og la Peter og Sander bestemme. Crate-navn og CI-krav holdes utenfor kartleggingen."
+ },
+ {
+  "id": "E423",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-TRK-08",
+  "begrunnelse": "Avrundingen av prosenttrekk (§§ 5-10-4 og 5-5-4) står i tabellen i E418. Øre som heltall (i64) er et valg under D05.",
+  "relatert": [
+   "E418",
+   "D05"
+  ]
+ },
+ {
+  "id": "E424",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-TRK-09/16",
+  "begrunnelse": "F-TRK-09 og F-TRK-16 dekker allerede regelen. Legg bare til hjemmelen § 5-10-1.",
+  "relatert": []
+ },
+ {
+  "id": "E425",
+  "n": "N13",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-07",
+  "begrunnelse": "Kildebelagt (skattebetalingsforskriften § 5-10-2). Valg av trekkperiode mangler i F-TRK-07. Ta det inn som regel, ikke som ny F-id.",
+  "relatert": [
+   "F-KJO (lønnsfrekvens)"
+  ]
+ },
+ {
+  "id": "E426",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-TRK-10",
+  "begrunnelse": "F-TRK-10 har allerede «hittil i år, inkl. feriepenger». Hjemmelen for 50 % er fortsatt [verifiseres] i N13.",
+  "relatert": []
+ },
+ {
+  "id": "E427",
+  "n": "N13",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K2.json F-TRK-11/12, D-Lonnsart",
+  "begrunnelse": "Motsier F-TRK-12 («bonus, overtid trekkes fullt») mot § 5-7-2 fjerde ledd [praksis verifiseres]. Flaggene finnes (halvt_trekk, trekkfritak_juni).",
+  "relatert": [
+   "F-LON-02",
+   "E418"
+  ],
+  "sporsmal": "Skal tillegg som utbetales med lønnen for perioden få halvt trekk inntil gjennomsnittsfortjenesten?",
+  "anbefaling": "Ja, rett F-TRK-12 etter forskriften, og sjekk praksisen i Tripletex og Visma. Ta inn 21 %- og 12,3 %-reglene for juni. Bruk de eksisterende flaggnavnene."
+ },
+ {
+  "id": "E428",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-TRK-23",
+  "begrunnelse": "Står som rad i avrundingstabellen i E418 (§ 5-9-1: opp til hel krone).",
+  "relatert": [
+   "E418"
+  ]
+ },
+ {
+  "id": "E429",
+  "n": "N13",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json F-KJO-13",
+  "begrunnelse": "Avrundingsretningen for AGA (ned eller nærmeste krone) er åpen til den er testet i TT02. Det er spørsmålet i K03.",
+  "relatert": [
+   "K03",
+   "E418"
+  ]
+ },
+ {
+  "id": "E430",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-KJO-14/37",
+  "begrunnelse": "Ingen hjemmel funnet. Dette er en policy, og den hører som rad i E418 merket «policy».",
+  "relatert": [
+   "E418"
+  ]
+ },
+ {
+  "id": "E431",
+  "n": "N13",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json F-KJO-18",
+  "begrunnelse": "F-KJO-18 dekker forslagspakker og trekkrutinen i desember. Tallene for 2027 og driftsstegene er data og rutine, ikke kartlegging.",
+  "relatert": []
+ },
+ {
+  "id": "E432",
+  "n": "N13",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-KJO-33",
+  "begrunnelse": "F-KJO-33 har allerede binærsøk og minste grunnlag. Heltall i stedet for øre er en implementasjonsdetalj.",
+  "relatert": []
+ },
+ {
+  "id": "E433",
+  "n": "N13",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-KJO-42",
+  "begrunnelse": "Legger til hjemmelen (skattebetalingsforskriften § 5-10-20) og to elementer i F-KJO-42: trekkperiode og beregningsgrunnlag med fradrag.",
+  "relatert": []
+ },
+ {
+  "id": "E434",
+  "n": "N15",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-MYN-34",
+  "begrunnelse": "K27 i fase 1 utvider B37 og gir særlig kategori. Direktekunder trenger ekstra pakke.",
+  "relatert": [
+   "E436",
+   "B33",
+   "B37"
+  ],
+  "sporsmal": "Skal K27 (Oppgjørsrapport) hentes allerede i fase 1, bare som summer?",
+  "anbefaling": "Nei for direktekunder. Vurder for byrå (regnskapsforer-lonn) med bare summer i fase 1, ellers MVP."
+ },
+ {
+  "id": "E435",
+  "n": "N15",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Pollingfrekvens og idempotensnøkkel er implementasjon (som retry-logikk).",
+  "relatert": [
+   "gruppe 2 MYN"
+  ]
+ },
+ {
+  "id": "E436",
+  "n": "N15",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json D-NavRapport, D-NavRapportlinje",
+  "begrunnelse": "D-NavRapport finnes. Aggregerte linjer gjelder bare hvis E434 sier ja.",
+  "relatert": [
+   "E434"
+  ]
+ },
+ {
+  "id": "E437",
+  "n": "N15",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "For detaljert: behold L-22 som én kontroll med henvisning til N15 §4.",
+  "relatert": [
+   "E205"
+  ]
+ },
+ {
+  "id": "E438",
+  "n": "N15",
+  "kategori": "INN",
+  "maal": "omr-K3.json F-FRA-26; omr-K4.json F-REG-15",
+  "begrunnelse": "Kildebelagt (Skatteetatens prinsipputtalelse 3.11.2023). Fase 1-kontrollen mot dobbelt fradrag trenger metoden. Utviklerne avgjør hvor den lagres.",
+  "relatert": [
+   "F-REG-15 (gruppe REG)",
+   "B33"
+  ]
+ },
+ {
+  "id": "E439",
+  "n": "N15",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Regelsett for refusjon er et tilfelle av regelsett per kunde og gruppe (E117).",
+  "relatert": [
+   "E117"
+  ]
+ },
+ {
+  "id": "E440",
+  "n": "N15",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-15",
+  "begrunnelse": "Faktarettelse med kilde (Skatteetatens SAF-T-CSV): 1580 er tapsavsetning. Bruk 1579 eller underkonto.",
+  "relatert": [
+   "E128"
+  ]
+ },
+ {
+  "id": "E441",
+  "n": "N15",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-28, F-SIK-08",
+  "begrunnelse": "Personvernregel i tråd med S #8. K27 i fase 1 avgjøres i MYN-gruppen.",
+  "relatert": [
+   "E348"
+  ]
+ },
+ {
+  "id": "E442",
+  "n": "N15",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Lesing av bankkontoen går ut over «bare lønnskontoer» (N40 T5) og F-SIK-08.",
+  "relatert": [
+   "E347",
+   "E156"
+  ],
+  "sporsmal": "Hvor mye av bankkontoen skal leses for L-22b?",
+  "anbefaling": "Les bare bankposteringer med motkonto 5800 eller 1579x, aldri hele bankkontoen."
+ },
+ {
+  "id": "E443",
+  "n": "N15",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K5.json F-BYR-15",
+  "begrunnelse": "NAV-refusjon er én kontrollgruppe i klientoversikten. L-22a–f er F1 på sumnivå (N15).",
+  "relatert": [
+   "E246"
+  ]
+ },
+ {
+  "id": "E444",
+  "n": "N15",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B33 / omr-K3.json D-Refusjonskrav",
+  "begrunnelse": "B33 og D-Refusjonskrav dekker reskontroen. Ta bare statuskjeden og matchenøkkelen inn; «6 mnd fra 2027 hvis vedtatt» er usikker.",
+  "relatert": [
+   "B33",
+   "D-Refusjonskrav",
+   "E205"
+  ]
+ },
+ {
+  "id": "E445",
+  "n": "N15",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Konkurrentnotat. Poenget om at forventet refusjon alltid er et estimat kan stå i D-Refusjonskrav.",
+  "relatert": [
+   "E444"
+  ]
+ },
+ {
+  "id": "E446",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-30, F-REG-27",
+  "begrunnelse": "Underkontroller av L-21. Avgjøres med kontrollomfanget i E190.",
+  "relatert": [
+   "E190"
+  ]
+ },
+ {
+  "id": "E447",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-MYN-08, omr-K2.json F-PEN-10",
+  "begrunnelse": "Regelverksrettelse med kilde: MAGNET_EDAG-507 er retningslinje og gis bare når premie er oppgitt.",
+  "relatert": []
+ },
+ {
+  "id": "E448",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-PEN-02",
+  "begrunnelse": "Kildebelagt (OTP-loven §§ 1, 2, 4). Rydder regelen. 4 %-voteringen er fortsatt [verifiseres] og merkes.",
+  "relatert": [
+   "E449"
+  ]
+ },
+ {
+  "id": "E449",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json D-Regelpakke, D-Sats",
+  "begrunnelse": "G, OTP-grenser og Finans Norge v1.03 (faktor 12,16) finnes i D-Sats og F-PEN-03. Listen over innretninger er referansedata.",
+  "relatert": [
+   "E448",
+   "F-PEN-03"
+  ]
+ },
+ {
+  "id": "E450",
+  "n": "N16",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Konkrete toleranseverdier er data i D-Kontrolloppsett, ikke kartlegging.",
+  "relatert": [
+   "E202"
+  ]
+ },
+ {
+  "id": "E451",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Virksomhet",
+  "begrunnelse": "Eksisterende pensjonsordninger peker på D-Pensjonsordning, som ikke er i fase 1. L-21 trenger en lett angivelse av forventet ordning nå.",
+  "relatert": [
+   "F-ORG-27"
+  ]
+ },
+ {
+  "id": "E452",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Kontoliste for OTP. Avledes av kontoreglene (E347). Orgnr på OTP-posteringer er nytt og nyttig.",
+  "relatert": [
+   "E347"
+  ]
+ },
+ {
+  "id": "E453",
+  "n": "N16",
+  "kategori": "SJUR",
+  "maal": "omr-K2.json F-PEN-05, omr-K4.json F-REG-14, D-Pensjonsordning",
+  "begrunnelse": "Endrer gründerens kontering (5420 → 5950). Grupperingskoden for AS er [verifiseres] i N16.",
+  "relatert": [
+   "E276",
+   "E529",
+   "S #29"
+  ],
+  "sporsmal": "Skal OTP-premie føres på 5950 (eller kundens OTP-konto) i stedet for 5420?",
+  "anbefaling": "Ja, når grupperingskoden for AS er avklart. Juster kontrolloppstillingens intervall samtidig."
+ },
+ {
+  "id": "E454",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "ny F-id (RAP) kontrolloppstilling",
+  "begrunnelse": "Feltmapping i kontrolloppstillingen (E272).",
+  "relatert": [
+   "E272"
+  ]
+ },
+ {
+  "id": "E455",
+  "n": "N16",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K4.json D-Avstemmingslinje.differansetype",
+  "begrunnelse": "A07-P1–P3 brukes allerede i N03 og N23 for periodisering (påløpt lønn, feriepenger, reise).",
+  "relatert": [
+   "E200"
+  ],
+  "sporsmal": "Kodekollisjon i differansetype.",
+  "anbefaling": "Gi OTP-kodene eget prefiks, f.eks. A07-O1–O3."
+ },
+ {
+  "id": "E456",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-ORG-27 / omr-K2.json PEN",
+  "begrunnelse": "F-ORG-27 sier allerede «via a-ordningen», uten integrasjon per leverandør. Kravene til innretning i hver melding hører i PEN/MYN.",
+  "relatert": [
+   "F-ORG-27",
+   "E205"
+  ]
+ },
+ {
+  "id": "E457",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-PEN-06; omr-K4.json F-REG-14; D-Pensjonspremie",
+  "begrunnelse": "Kildebelagt (Skatte-ABC A-15-2.4). Retter feil sonefordeling og fjerner [verifiseres] om betalingsmåned og administrasjonskostnad. GC-17 må regnes om.",
+  "relatert": [
+   "F-REG-14 (gruppe REG)",
+   "E458"
+  ]
+ },
+ {
+  "id": "E458",
+  "n": "N16",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json F-PEN-05, D-Pensjonspremie",
+  "begrunnelse": "D-Pensjonspremie har allerede betalingsdato, premiefond, ansattandel og administrasjonskostnad. Felt fra returfilen er detaljer. Kilderekkefølgen stemmer med F-PEN-05.",
+  "relatert": [
+   "E457"
+  ]
+ },
+ {
+  "id": "E459",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-PEN-08",
+  "begrunnelse": "Presiserer avstemmingen: samme lønnsbegrep og faktor 12,16 som leverandøren, og 12 måneders vindu. Hindrer falske avvik.",
+  "relatert": [
+   "F-PEN-03"
+  ]
+ },
+ {
+  "id": "E460",
+  "n": "N16",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-PEN-04/17",
+  "begrunnelse": "Avklarer scope. Brutto melder ikke inn i leverandørportalen, så HR får oppgaver i stedet.",
+  "relatert": []
+ },
+ {
+  "id": "E461",
+  "n": "N16",
+  "kategori": "SJUR",
+  "maal": "omr-K2.json F-PEN-11/12/14/09; omr-K6.json F-MIG-27",
+  "begrunnelse": "KLP-fil er i dag Må, men formatet er ukjent. F-PEN-09, F-PEN-12 og F-MIG-27 er allerede dekket.",
+  "relatert": [
+   "F-MIG-27 (gruppe MIG)"
+  ],
+  "sporsmal": "Skal KLP-lønnsfilen (F-PEN-11) bare bygges hvis en pilotkunde har offentlig ordning?",
+  "anbefaling": "Ja. Gjør F-PEN-11 betinget (Bør). Behold F-PEN-12 som Kan. AFP får ingen egen rapportering."
+ },
+ {
+  "id": "E462",
+  "n": "N18",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json F-REG-29, F-PER-35, F-PLA-13",
+  "begrunnelse": "Huma er HR-kilde, ikke regnskap. Vilkåret «bare ved pilotkunde» spenner mot B21.",
+  "relatert": [
+   "E361"
+  ],
+  "sporsmal": "Skal Huma-lesing være med i fase 1 uansett (B21), eller bare hvis en pilotkunde har Huma?",
+  "anbefaling": "Bare hvis pilotkunde har Huma; ellers importmal for Humas eksport. Ingen byråtilgang i Huma-API-et."
+ },
+ {
+  "id": "E463",
+  "n": "N18",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-PLA-22 / fase1.json P03",
+  "begrunnelse": "Forutsetter Huma som kilde i fase 1, men P03 og F-PER-35 nevner ikke Huma. Feltlisten er god dataminimering.",
+  "relatert": [
+   "E464",
+   "E468",
+   "E469",
+   "E385",
+   "F-PLA-22"
+  ],
+  "sporsmal": "Skal Huma være kilde til ansattoversikten allerede i fase 1?",
+  "anbefaling": "Nei, bare hvis en pilotkunde krever det. Da med minimal feltliste og uten fødselsdato."
+ },
+ {
+  "id": "E464",
+  "n": "N18",
+  "kategori": "KONFLIKT",
+  "maal": "omr-K1.json F-PER-35 / D-Kilderegister",
+  "begrunnelse": "Huma som master for navn og avdeling strider mot F-PER-35 (regnskapet er kilde) og E386 (Brutto/BankID er kilde for navn).",
+  "relatert": [
+   "E386",
+   "E049",
+   "D-Kilderegister"
+  ],
+  "sporsmal": "Hvem er kilde for navn og avdeling?",
+  "anbefaling": "Kilderegel per kunde i D-Kilderegister: Huma når tilkoblet, ellers regnskapet; i MVP BankID-bekreftet navn i Brutto."
+ },
+ {
+  "id": "E465",
+  "n": "N18",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-PLA-17, F-PLA-22",
+  "begrunnelse": "Huma-varianten av koblingsregelen i E103. Huma er senere (F-PLA-22). «Aldri bare e-post» og Huma user.id som kildenøkkel tas med.",
+  "relatert": [
+   "E103",
+   "E113"
+  ]
+ },
+ {
+  "id": "E466",
+  "n": "N18",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-MYN-42",
+  "begrunnelse": "Huma som kilde er MVP (N18). ANS-20 og Huma-utvidelse parkeres til Huma-integrasjonen planlegges (B21).",
+  "relatert": [
+   "E130",
+   "B21"
+  ]
+ },
+ {
+  "id": "E467",
+  "n": "N18",
+  "kategori": "BLOAT",
+  "maal": "omr-K6.json D-Integrasjon, F-PLA-22",
+  "begrunnelse": "Huma kommer senere. Nøkkelroller og veiviser er implementasjon. Noter i F-PLA-22 at gamle Huma-nøkler har for brede rettigheter.",
+  "relatert": [
+   "F-PLA-22",
+   "E465"
+  ]
+ },
+ {
+  "id": "E468",
+  "n": "N18",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-PLA-22",
+  "begrunnelse": "F-PLA-22 dekker webhooks, innboks og nattlig avstemming. Legg til fraværsreglene og BankID-bekreftelse av kontonummer der.",
+  "relatert": [
+   "F-PLA-22",
+   "B14",
+   "E463"
+  ]
+ },
+ {
+  "id": "E469",
+  "n": "N18",
+  "kategori": "SJUR",
+  "maal": "design.json B21/B30",
+  "begrunnelse": "Vilkårene kan hindre at kunden gir Brutto tilgang (§ 3.4(a)) og forby konkurrenter. Det er forretningsrisiko for B21.",
+  "relatert": [
+   "B21",
+   "B30",
+   "E463",
+   "E162"
+  ],
+  "sporsmal": "Skal vi kreve skriftlig partneravtale med Huma før Huma-integrasjonen bygges?",
+  "anbefaling": "Ja. Hold målet om å erstatte Huma internt (B30) til avtalen er på plass."
+ },
+ {
+  "id": "E470",
+  "n": "N19",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-SIK-27",
+  "begrunnelse": "F-SIK-27 har to DPA-modeller uten standard. Valget av standard er forretning og juss. Samler E159 og E266.",
+  "relatert": [
+   "E159",
+   "E266",
+   "E058",
+   "E471",
+   "B7"
+  ],
+  "sporsmal": "Skal standard-DPA være direkte mellom kunde og Brutto (modell A), med byrålisens (modell B) som alternativ?",
+  "anbefaling": "Ja. Modell A som standard, B for byrålisens. EU-SCC 2021/915 med KI av som standard. Advokat før første kunde."
+ },
+ {
+  "id": "E471",
+  "n": "N19",
+  "kategori": "INN",
+  "maal": "omr-K6.json D-Abonnement, D-Klient",
+  "begrunnelse": "Gir sporbarhet for hvilken DPA-modell og -versjon som gjelder, og hvem som godtok den. Samler E378.",
+  "relatert": [
+   "E470",
+   "E378"
+  ]
+ },
+ {
+  "id": "E472",
+  "n": "N19",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-23; D-Underleverandor",
+  "begrunnelse": "Leddet i kjeden (underleverandor_av) og kontaktpunkt følger EDPB 22/2024 (kilde N19). Endrer modellen lite.",
+  "relatert": [
+   "E266"
+  ]
+ },
+ {
+  "id": "E473",
+  "n": "N19",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-23, F-SIK-24; D-Lagringssted",
+  "begrunnelse": "Gjør B9 til en sjekkbar invariant: regnskapsmateriale krever land NO. Meldeplikt for backup er [verifiseres med Skatteetaten]. CI-sjekken avgjør Peter og Sander.",
+  "relatert": [
+   "E322",
+   "B9",
+   "H05",
+   "F-SIK-24"
+  ]
+ },
+ {
+  "id": "E474",
+  "n": "N19",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-28",
+  "begrunnelse": "Retter tellingen i N38 til tre av ni kriterier og gir F-SIK-28 et innhold. Tilknytning til F-PLA-09 er tvilsom, så bruk oppstarten.",
+  "relatert": [
+   "E379",
+   "E048"
+  ]
+ },
+ {
+  "id": "E475",
+  "n": "N19",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-SIK-07, F-SIK-08, F-SIK-19",
+  "begrunnelse": "Kryptert permisjonsbeskrivelse står allerede i E375. Terskelen for små summer av fagforeningstrekk (R20) legges inn der.",
+  "relatert": [
+   "E375"
+  ]
+ },
+ {
+  "id": "E476",
+  "n": "N19",
+  "kategori": "SJUR",
+  "maal": "omr-K6.json F-SIK-21, F-SIK-22; D-Oppbevaringsregel; fase1 D11",
+  "begrunnelse": "Strider mot forslaget i D11 (alle a-ordningsdata i 5 år). Valget er juridisk og påvirker personvernet. Kilde N19 §4.",
+  "relatert": [
+   "E382",
+   "D11"
+  ],
+  "sporsmal": "Hvor lenge oppbevarer vi A07: rå per person i 13 måneder og låst rapport med sumutdrag og hash i 60 måneder, eller alt i 5 år?",
+  "anbefaling": "Velg 13 og 60 måneder. Det gir minst lagring av persondata. Få det bekreftet av jurist, og oppdater forslaget i D11."
+ },
+ {
+  "id": "E477",
+  "n": "N19",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json F-RAP-03",
+  "begrunnelse": "Hash og kontrollsum står allerede i F-RAP-03 og D-Rapportkjoring. Sumutdrag i stedet for rådata er en oppbevaringssak [revisor].",
+  "relatert": [
+   "E204",
+   "fase1 D11"
+  ]
+ },
+ {
+  "id": "E478",
+  "n": "N19",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-PER-02",
+  "begrunnelse": "Samme regel for 2032 som E372.",
+  "relatert": [
+   "E372"
+  ]
+ },
+ {
+  "id": "E479",
+  "n": "N19",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K1.json F-ORG-01",
+  "begrunnelse": "Søknaden om rolleutskrift avgjøres sammen med E383.",
+  "relatert": [
+   "E383"
+  ]
+ },
+ {
+  "id": "E480",
+  "n": "N19",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-SIK-30",
+  "begrunnelse": "Fase 1 henter A07 fra Skatteetaten. Kunden må da informere etter art. 14. Malen er liten og nyttig nå.",
+  "relatert": [
+   "E474"
+  ]
+ },
+ {
+  "id": "E481",
+  "n": "N19",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json sporsmal (DPIA) / gruppe 3 SIK",
+  "begrunnelse": "DPIA, helseroller og exit finnes som åpne punkter. § 7-7-endringen fra 2027 har kilde og hører i oppbevaring.",
+  "relatert": [
+   "E318",
+   "gruppe 3 SIK"
+  ]
+ },
+ {
+  "id": "E482",
+  "n": "N19",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere», delvis [verifiseres] (DPF-listen). Ingen konsekvens for modellen nå.",
+  "relatert": [
+   "E271",
+   "E270"
+  ]
+ },
+ {
+  "id": "E483",
+  "n": "N29",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-19 / kontrolltekster",
+  "begrunnelse": "Hjemler kontrollert mot Lovdata (N26 lukket). Gamle trekk er [verifiseres] og må merkes slik.",
+  "relatert": [
+   "E491",
+   "E487",
+   "gruppe 4 TRK"
+  ]
+ },
+ {
+  "id": "E484",
+  "n": "N29",
+  "kategori": "INN",
+  "maal": "omr-K2.json TRK / D-Sats",
+  "begrunnelse": "Rente fra 1.1.2027 har kilde (innkrevingsforskriften § 31-1). Satsen lagres som data, ikke i teksten.",
+  "relatert": [
+   "E493",
+   "D-Sats"
+  ]
+ },
+ {
+  "id": "E485",
+  "n": "N29",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K2.json D-Avvik; omr-K4.json D-Kontrollsak",
+  "begrunnelse": "Ansvarsrisiko med hjemmel per kontroll er et nyttig begrep. Feltene hører til K02 sammen med E140 og E267.",
+  "relatert": [
+   "K02",
+   "E140",
+   "E267",
+   "B24"
+  ]
+ },
+ {
+  "id": "E486",
+  "n": "N29",
+  "kategori": "INN",
+  "maal": "kontroll T5 (F-MYN-42)",
+  "begrunnelse": "Lønnsfaglig riktighet: forfall per utbetalingsdato, ikke månedssaldo. Kontolisten avhenger av E011.",
+  "relatert": [
+   "E011",
+   "gruppe 2 MYN"
+  ]
+ },
+ {
+  "id": "E487",
+  "n": "N29",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json K02 / D-Avvik",
+  "begrunnelse": "Legg «konsekvens og hjemmel» som felt i avviket (K02). Listen over kontroller er detalj.",
+  "relatert": [
+   "K02",
+   "E483"
+  ]
+ },
+ {
+  "id": "E488",
+  "n": "N29",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K2.json D-Regelpakke, D-Sats",
+  "begrunnelse": "Kalenderen finnes i F-BET-02 og F-ORG-24. Rentesatsen er en sats i D-Sats. Datoen 1.1.2027 dekkes sammen med E304.",
+  "relatert": [
+   "E304",
+   "F-BET-02 (gruppe BET)"
+  ]
+ },
+ {
+  "id": "E489",
+  "n": "N29",
+  "kategori": "SJUR",
+  "maal": "omr-K4.json ny F-MYN-43, F-MYN-22",
+  "begrunnelse": "Flere sensorhandlere i MVP krever nye pakker hos direktekunder (krav-og-utlegg eller ordinaer-post).",
+  "relatert": [
+   "E173",
+   "E180",
+   "E292"
+  ],
+  "sporsmal": "Hvilke tilgangspakker ber vi direktekunder om i fase 1: enkeltrettighet for A07, eller a-ordning + lonn fra start? Inkluder innkreving- og motregningsbrev i MVP?",
+  "anbefaling": "Ja for byrå (regnskapsforer-lonn). For direktekunder bare når krav-og-utlegg uansett gis (E292)."
+ },
+ {
+  "id": "E490",
+  "n": "N29",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json D10 / M08 / D07",
+  "begrunnelse": "Aktsomhetsloggen er krav til revisjonslogg og myndighetslogg: eksternt og eget tidspunkt, regelversjon.",
+  "relatert": [
+   "D10",
+   "M08",
+   "D07"
+  ]
+ },
+ {
+  "id": "E491",
+  "n": "N29",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-TRK-19",
+  "begrunnelse": "Retting av «[verifiseres hjemmel]» med kilde i N29.",
+  "relatert": [
+   "E483",
+   "gruppe 4 TRK"
+  ]
+ },
+ {
+  "id": "E492",
+  "n": "N29",
+  "kategori": "SJUR",
+  "maal": "design.json B4/B24",
+  "begrunnelse": "Ansvarsbegrensning i kundeavtalen er juss og forretning. Henger sammen med beregningsgarantien (B24).",
+  "relatert": [
+   "B4",
+   "B24",
+   "E232"
+  ],
+  "sporsmal": "Skal kundeavtalen for fase 1 si at Brutto er kontrollverktøy med begrenset dekning?",
+  "anbefaling": "Ja, i pilotavtalen. Advokat før første betalende kunde, i samme runde som E232."
+ },
+ {
+  "id": "E493",
+  "n": "N29",
+  "kategori": "KONFLIKT",
+  "maal": "fase1.json D05 / omr-K2.json TRK",
+  "begrunnelse": "«i64 øre, sats i basispunkter» strider mot D05-forslaget (rust_decimal/NUMERIC). Blokkeringsnivåene er lønnsfaglige og nyttige.",
+  "relatert": [
+   "D05",
+   "E218",
+   "E484"
+  ],
+  "sporsmal": "Hvem bestemmer pengerepresentasjonen?",
+  "anbefaling": "Overlat representasjonen til D05 (Peter og Sander). Behold bare at T7 og T10 blokkerer og T9 varsler."
+ },
+ {
+  "id": "E494",
+  "n": "N29",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "Ny F-TRK-29; omr-K6.json F-RAP-12, F-SIK-17",
+  "begrunnelse": "Dekkes av trekklisten (F-RAP-12), loggeksporten (F-SIK-17) og revisjonsloggen. Legg inn «aktsomhetskjede per ansatt» som regel der, ikke som ny F-id.",
+  "relatert": [
+   "F-RAP-12 (gruppe RAP)",
+   "F-SIK-17 (gruppe SIK)"
+  ]
+ },
+ {
+  "id": "E495",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-30 (L-16), F-ORG-03",
+  "begrunnelse": "Regelverksriktighet: i 12 delte kommuner følger sonen grunnkrets. Kommunenummer alene er ikke nok.",
+  "relatert": [
+   "E497",
+   "E190"
+  ]
+ },
+ {
+  "id": "E496",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "kontroll L-16 / D-Konsern",
+  "begrunnelse": "Regelverksriktig (fribeløp er spart avgift, ikke grunnlag; kilde N20). D-Konsern finnes. UAVKLART uten konsern er riktig.",
+  "relatert": [
+   "E247",
+   "E503",
+   "D-Konsern"
+  ]
+ },
+ {
+  "id": "E497",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Kommune",
+  "begrunnelse": "Kildebelagt: invarianten én sone per kommune er feil for 12 kommuner. D-Sonedel retter modellen. Kilde på D-Sonedel, ikke D-Kilderegister, som gjelder per tenant.",
+  "relatert": [
+   "E499",
+   "D-Kilderegister"
+  ]
+ },
+ {
+  "id": "E498",
+  "n": "N20",
+  "kategori": "BLOAT",
+  "maal": "omr-K2.json D-Regelpakke.kodeliste_versjoner",
+  "begrunnelse": "Feltdetalj. kodeliste_versjoner dekker prinsippet. Avhenger av forslagene om sonetabell i ORG.",
+  "relatert": [
+   "D-Sonedel (gruppe ORG)"
+  ]
+ },
+ {
+  "id": "E499",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "omr-K1.json D-Underenhet",
+  "begrunnelse": "Koordinat trengs for de delte kommunene (E497). Feltet geografi er bare enum og dekker ikke dette.",
+  "relatert": [
+   "E497"
+  ]
+ },
+ {
+  "id": "E500",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "omr-K2.json F-LON-19; omr-K1.json F-PER-26",
+  "begrunnelse": "Kildebelagt (Rikslønnsnemnda 20.11.2024, regjeringen.no). Retter «statens lønnstabell». Kravet om lønnstrinn i F-PER-26 må merkes [verifiseres].",
+  "relatert": [
+   "F-PER-26 (gruppe PER)"
+  ]
+ },
+ {
+  "id": "E501",
+  "n": "N20",
+  "kategori": "INN",
+  "maal": "omr-K1.json F-ORG-04",
+  "begrunnelse": "Liten rettelse med kilde (SKD-melding 2026): sone Ia–V for sektorunntak og fordeling i konsern via bagatellmessig støtte i januar.",
+  "relatert": [
+   "F-KJO-13"
+  ]
+ },
+ {
+  "id": "E502",
+  "n": "N20",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Researchinformasjon, delvis [verifiseres]. Begrunner E503, men hører ikke i kartleggingen.",
+  "relatert": [
+   "E503"
+  ]
+ },
+ {
+  "id": "E503",
+  "n": "N20",
+  "kategori": "SJUR",
+  "maal": "omr-K2.json F-LON-19 / D-Sats / D-Konsern",
+  "begrunnelse": "F-LON-19 lover flere bibliotek; B3-kritikken frarådet tariff som start. AGA-matrise og D-Konsern finnes og er uproblematiske.",
+  "relatert": [
+   "F-LON-19",
+   "B3",
+   "E504",
+   "E496"
+  ],
+  "sporsmal": "Hvilket tariffomfang i MVP?",
+  "anbefaling": "Bare Virke HUK kuratert, alt annet via CSV/JSON-import (F-LON-28). KS bare hvis pilot krever det."
+ },
+ {
+  "id": "E504",
+  "n": "N20",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere»: flere bibliotek og nytt sonekart. Ingen modellkonsekvens nå.",
+  "relatert": [
+   "E503"
+  ]
+ },
+ {
+  "id": "E505",
+  "n": "N33",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-29, F-REG-01",
+  "begrunnelse": "NXT, Uni Micro og Xledger er ikke fase 1-systemer. Merk: verdien brutto_tabell kolliderer med sjur_standard.",
+  "relatert": [
+   "E067"
+  ]
+ },
+ {
+  "id": "E506",
+  "n": "N33",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json D-Regnskapskonto",
+  "begrunnelse": "Feltdetaljer for MVA og dimensjonskrav i MVP. Avhenger av flyt B.",
+  "relatert": [
+   "E343",
+   "E509"
+  ]
+ },
+ {
+  "id": "E507",
+  "n": "N33",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-30",
+  "begrunnelse": "Salgsargument. Konsekvensen for kunden dekkes i E514.",
+  "relatert": [
+   "E514",
+   "E083"
+  ]
+ },
+ {
+  "id": "E508",
+  "n": "N33",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Integrasjon",
+  "begrunnelse": "Samme slags autentiseringsdetaljer som E364 og E074. Systemer utenom fase 1.",
+  "relatert": [
+   "E074",
+   "E364"
+  ]
+ },
+ {
+  "id": "E509",
+  "n": "N33",
+  "kategori": "PETER_SANDER",
+  "maal": "omr-K4.json F-REG-17",
+  "begrunnelse": "Felt i bilagskontrakten er utviklernes valg. MVA per linje henger på flyt B (E336).",
+  "relatert": [
+   "E343",
+   "E506"
+  ]
+ },
+ {
+  "id": "E510",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-05, F-REG-10, F-REG-17–22, D-Bilag",
+  "begrunnelse": "Kildebelagt feltgrense (SaftBatchId 35 tegn). Erstatter payrun:<id>:rev<n> fra G B4 overalt.",
+  "relatert": [
+   "E031"
+  ]
+ },
+ {
+  "id": "E511",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-23, D-Bilag",
+  "begrunnelse": "Uten innebygd nøkkel kan nye forsøk gi dobbel bokføring. Regelen er nødvendig; feltnavnet bestemmer utviklerne.",
+  "relatert": [
+   "E510"
+  ]
+ },
+ {
+  "id": "E512",
+  "n": "N33",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-05, F-RAP-13",
+  "begrunnelse": "Samme som E027; grunnlaget i linjeteksten tas inn der.",
+  "relatert": [
+   "E027"
+  ]
+ },
+ {
+  "id": "E513",
+  "n": "N33",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K3.json F-UTL-22, F-UTL-23",
+  "begrunnelse": "MVA i lønnsbilaget avhenger av flytvalget i E336. Kontrollen av konto og kode hører til bilagskontrakten i REG.",
+  "relatert": [
+   "E336",
+   "F-REG-09"
+  ]
+ },
+ {
+  "id": "E514",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-18",
+  "begrunnelse": "Lukker [verifiseres] i F-REG-18: lønnstransaksjoner kan ikke reverseres via API. Kunden må få beskjed om avstemmingsmodulen.",
+  "relatert": [
+   "E344",
+   "E358",
+   "E507"
+  ]
+ },
+ {
+  "id": "E515",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-19, D-Regnskapsoppsett",
+  "begrunnelse": "Lukker [verifiseres] i F-REG-19. bilagsmodus utkast/bokført dekker også E075.",
+  "relatert": [
+   "E075",
+   "E358"
+  ]
+ },
+ {
+  "id": "E516",
+  "n": "N33",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-22",
+  "begrunnelse": "Fiken er «Kan». Adapterdetalj uten konsekvens for modellen nå.",
+  "relatert": [
+   "E077"
+  ]
+ },
+ {
+  "id": "E517",
+  "n": "N33",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "fase1.json R01 / ReAi-adapter",
+  "begrunnelse": "Samme ReAi-adapter som E087.",
+  "relatert": [
+   "E087"
+  ]
+ },
+ {
+  "id": "E518",
+  "n": "N33",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-20",
+  "begrunnelse": "Adapterdetalj for MVP. Ansatt som leverandør er notert i E506.",
+  "relatert": [
+   "E506"
+  ]
+ },
+ {
+  "id": "E519",
+  "n": "N33",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K4.json F-REG-21",
+  "begrunnelse": "Reversering via motbilag dekkes av E521.",
+  "relatert": [
+   "E521"
+  ]
+ },
+ {
+  "id": "E520",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-28",
+  "begrunnelse": "Kildebelagt: ingen regnskapssystem skjuler små grupper. Brutto må aggregere selv, også i fase 1-visning.",
+  "relatert": [
+   "E037"
+  ]
+ },
+ {
+  "id": "E521",
+  "n": "N33",
+  "kategori": "INN",
+  "maal": "omr-K4.json F-REG-10",
+  "begrunnelse": "Avgjør modellen: reversering via API der det finnes, ellers motbilag med gjensidig referanse.",
+  "relatert": [
+   "E032",
+   "E356",
+   "E519"
+  ]
+ },
+ {
+  "id": "E522",
+  "n": "N33",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "«Senere»-adaptere uten konsekvens for modellen nå.",
+  "relatert": [
+   "E079"
+  ]
+ },
+ {
+  "id": "E523",
+  "n": "N34",
+  "kategori": "SJUR",
+  "maal": "design.json (ny B42) / B35",
+  "begrunnelse": "Ny ADR med betydning for D-Postering og målgruppen (stiftelser med tilskudd). Merket [verifiseres i revisorintervjuene].",
+  "relatert": [
+   "E318",
+   "E529",
+   "E530",
+   "B35"
+  ],
+  "sporsmal": "Skal «Brutto er underreskontroen for prosjektlønn» bli en B-beslutning?",
+  "anbefaling": "Ja som Forslag, samlet med E318. Verifiser i revisorintervjuene."
+ },
+ {
+  "id": "E524",
+  "n": "N34",
+  "kategori": "INN",
+  "maal": "omr-K6.json D-Tilskuddsprofil; omr-K1.json D-Dimensjonsverdi",
+  "begrunnelse": "Retter at finansørfelt finnes både i D-Dimensjonsverdi og D-Tilskuddsprofil, og gir n:1. Lister med kostnadsmetoder er detaljer.",
+  "relatert": [
+   "E526"
+  ]
+ },
+ {
+  "id": "E525",
+  "n": "N34",
+  "kategori": "INN",
+  "maal": "omr-K6.json F-RAP-29; omr-K1.json F-ORG-21; omr-K3.json F-TID-27; D-Tilskuddsprofil",
+  "begrunnelse": "Kildebelagt (N34-tabellen). Retter NFR (faktisk kost / 1 695) og legger til SkatteFUNN og IN (1,2 promille, 700 kr). «1,6» finnes ikke i kartleggingen.",
+  "relatert": [
+   "F-RAP-29 (gruppe RAP)",
+   "F-ORG-21 (gruppe ORG)"
+  ]
+ },
+ {
+  "id": "E526",
+  "n": "N34",
+  "kategori": "BLOAT",
+  "maal": "omr-K1.json D-Stilling",
+  "begrunnelse": "Feltdetalj for finansørrapport. Ingen funksjon i fase 1. D-Stilling har allerede stillingskategori.",
+  "relatert": [
+   "E524"
+  ]
+ },
+ {
+  "id": "E527",
+  "n": "N34",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "omr-K6.json D-Oppbevaringsregel",
+  "begrunnelse": "Kan løses med kunde_kan_forlenge (10 år, kilde N34). Merk at arkivabonnementet på 5 år i F-SIK-26 da ikke holder.",
+  "relatert": [
+   "F-SIK-26",
+   "E328"
+  ]
+ },
+ {
+  "id": "E528",
+  "n": "N34",
+  "kategori": "BLOAT",
+  "maal": "omr-K4.json F-REG-29",
+  "begrunnelse": "Forutsetter tilskuddsprofil, som ikke har funksjon i fase 1. Ta med i MVP for F-REG-24 per prosjekt.",
+  "relatert": []
+ },
+ {
+  "id": "E529",
+  "n": "N34",
+  "kategori": "SLÅ_SAMMEN",
+  "maal": "design.json B35",
+  "begrunnelse": "B35-kritikken har allerede proporsjonal fordeling av AGA, feriepenger og OTP og største rest. F-TID-25-delen er [verifiseres].",
+  "relatert": [
+   "B35",
+   "E453",
+   "E523"
+  ]
+ },
+ {
+  "id": "E530",
+  "n": "N34",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Stor «senere»-pakke. Parkeres til E523 er avgjort; ansatt i hovedbok bare ved betalende krav.",
+  "relatert": [
+   "E523"
+  ]
+ },
+ {
+  "id": "E531",
+  "n": "N34",
+  "kategori": "BLOAT",
+  "maal": "–",
+  "begrunnelse": "Konkurrentnotat.",
+  "relatert": []
+ }
+]
