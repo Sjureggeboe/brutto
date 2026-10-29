@@ -1,0 +1,1876 @@
+{
+ "meny": {
+  "omrader": {
+   "ORG": "Organisasjon og oppsett",
+   "PER": "Personer og arbeidsforhold",
+   "LON": "Lønnsavtaler og lønnsarter",
+   "KJO": "Lønnskjøring og beregning",
+   "TRK": "Skatt og trekk",
+   "PEN": "Pensjon og forsikring",
+   "FRA": "Ferie og fravær",
+   "TID": "Timer og arbeidstid",
+   "UTL": "Utlegg og reise (integrasjon)",
+   "MYN": "Myndigheter",
+   "BET": "Utbetaling og bank",
+   "REG": "Regnskap og kostnadsfordeling",
+   "POR": "Ansattportal og app",
+   "LED": "Leder og godkjenning",
+   "BYR": "Byrå",
+   "ORL": "Organisasjonsliv",
+   "RAP": "Rapporter og analyse",
+   "PLA": "Plattform og integrasjoner",
+   "SIK": "Sikkerhet, tilgang og personvern",
+   "MIG": "Migrering og import",
+   "HR": "HR og personaladministrasjon",
+   "UTV": "Kompetanse og utvikling",
+   "HEL": "Helse og oppfølging",
+   "KOM": "Kommunikasjon og startside"
+  },
+  "senere": [
+   "HR",
+   "UTV",
+   "HEL",
+   "KOM"
+  ],
+  "flater": [
+   {
+    "id": "lonn",
+    "navn": "Lønn",
+    "hvem": "Lønnsansvarlig, lønnsmedarbeider, administrator",
+    "tekst": "Hovedflaten for den som kjører lønn, enten i egen virksomhet eller for en klient i et byrå.",
+    "kol": [
+     {
+      "t": "Hjem",
+      "c": [
+       "KJO",
+       "KOM"
+      ],
+      "p": [
+       {
+        "navn": "Startside",
+        "hva": "Viser det som må gjøres nå.",
+        "innhold": [
+         "Neste lønnsdag og status for kjøringen",
+         "Frister for a-melding, forskuddstrekk og AGA-termin",
+         "Åpne oppgaver og saker i kontrollkøen",
+         "Nye skattekort, trekkpålegg og meldinger fra NAV"
+        ],
+        "data": [
+         "D-Lonnskjoring",
+         "D-Varsel",
+         "D-Tilbakemelding"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Oppgaver og varsler",
+        "hva": "Samler alt som venter på noen, på tvers av områdene.",
+        "innhold": [
+         "Oppgaver med eier, frist og område",
+         "Feil fra Skatteetaten, NAV og banken",
+         "Godkjenninger som venter",
+         "Filtrer per område og person"
+        ],
+        "data": [
+         "D-Varsel",
+         "D-Godkjenning"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Lønnskjøring",
+      "c": [
+       "KJO"
+      ],
+      "p": [
+       {
+        "navn": "Lønnskalender",
+        "hva": "Viser årshjulet med alle datoer som styrer lønnen.",
+        "innhold": [
+         "Lønnsdager, cut-off og a-meldingsfrist",
+         "Feriepenger i juni og halvt trekk i desember",
+         "Flere kalendere, for eksempel månedslønn og timelønn",
+         "Frister flyttes ved helg og helligdag"
+        ],
+        "data": [
+         "D-Lonnskalender"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Lønnsgrunnlag",
+        "hva": "Viser alt som skal med i neste kjøring, og hvor det kommer fra.",
+        "innhold": [
+         "Timer, fravær, tillegg, utlegg og honorarer",
+         "Kilde per linje: egen modul, Utleggsappen, Huma, import",
+         "Ukjente koder havner i karantene",
+         "Grunnlaget låses når kjøringen starter"
+        ],
+        "data": [
+         "D-Lonnsgrunnlag",
+         "D-Kilderegister"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kjøringer",
+        "hva": "Liste over kjøringer per periode med status.",
+        "innhold": [
+         "Status: utkast, beregnet, kontrollert, godkjent, utbetalt, rapportert",
+         "Start ordinær kjøring, ekstrakjøring eller forskudd",
+         "Testkjøring og simulering",
+         "En godkjent kjøring kan ikke endres"
+        ],
+        "data": [
+         "D-Lonnskjoring",
+         "D-Lonnslinje"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontroll og avvik",
+        "hva": "Viser bare det som avviker, med forklaring.",
+        "innhold": [
+         "Avvik mot forrige måned med årsak",
+         "Forklaring per lønnslinje: regel, sats og kilde",
+         "Kontrollregler per kunde",
+         "Merk avvik som sjekket"
+        ],
+        "data": [
+         "D-Avvik",
+         "D-Beregningsspor"
+        ],
+        "merk": "Byråene kjøper minutter per lønnsslipp. Her vinnes eller tapes tiden."
+       },
+       {
+        "navn": "Godkjenning",
+        "hva": "Fire øyne før lønnen låses og betales.",
+        "innhold": [
+         "Oppsummering: netto, trekk, AGA og antall mottakere",
+         "Den som kjørte kan ikke godkjenne",
+         "Logg over hvem som godkjente og når",
+         "Godkjenningen låser kjøringen og a-meldingsgrunnlaget"
+        ],
+        "data": [
+         "D-Lonnskjoring",
+         "D-Godkjenning"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Korreksjoner og etterbetaling",
+        "hva": "Retter feil og etterbetaler uten å endre det som er godkjent.",
+        "innhold": [
+         "Korreksjonskjøring for tidligere perioder",
+         "Etterbetaling etter lønnsoppgjør med virkningsdato",
+         "Tilbakebetaling før og etter 31. januar",
+         "Trekkavtale med ansatt (aml. § 14-15)"
+        ],
+        "data": [
+         "D-Lonnskjoring",
+         "D-Trekk"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Sluttoppgjør",
+        "hva": "Veiviser for siste lønn.",
+        "innhold": [
+         "Siste lønn, feriepenger og avspasering",
+         "Trekk etter avtale",
+         "Arbeidsforholdet avsluttes med sluttårsak",
+         "Egen flyt ved dødsfall"
+        ],
+        "data": [
+         "D-Arbeidsforhold",
+         "D-Feriesaldo"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Årshjul-veivisere",
+        "hva": "Hjelper gjennom de tunge månedene.",
+        "innhold": [
+         "Feriepenger i juni",
+         "Halvt trekk i desember",
+         "Nytt år: regelår, nye satser og skattekort i januar"
+        ],
+        "data": [
+         "D-Akkumulator",
+         "D-Skattekort"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Ansatte",
+      "c": [
+       "PER",
+       "ORL"
+      ],
+      "p": [
+       {
+        "navn": "Ansattliste",
+        "hva": "Finn og filtrer mottakere av lønn og honorar.",
+        "innhold": [
+         "Søk på navn, ansattnummer og fødselsdato",
+         "Filtrer på virksomhet, avdeling, status og mottakerklasse",
+         "Velg kolonner og eksporter",
+         "Merket når noe mangler, for eksempel skattekort eller konto"
+        ],
+        "data": [
+         "D-Person",
+         "D-Arbeidsforhold"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Ansattkortet",
+        "hva": "Alt om én person, med historikk.",
+        "innhold": [
+         "Fanene er vist under menyen",
+         "Flere arbeidsforhold per person",
+         "Tidslinje med «gjelder fra» for hver endring",
+         "Sensitive felt vises bare med riktig tilgang"
+        ],
+        "data": [
+         "D-Person",
+         "D-Arbeidsforhold",
+         "D-Stillingsperiode",
+         "D-Fastlinje",
+         "D-Kostnadsfordeling"
+        ],
+        "merk": "Se egen seksjon om ansattkortet lenger ned."
+       },
+       {
+        "navn": "Ny ansatt",
+        "hva": "Veiviser som sikrer at alt a-meldingen krever er med.",
+        "innhold": [
+         "Person med fødselsnummer eller D-nummer",
+         "Arbeidsforhold: type, stilling, prosent, yrkeskode og start",
+         "Lønn og faste linjer",
+         "Skattekort bestilles automatisk",
+         "Den ansatte registrerer konto selv med BankID"
+        ],
+        "data": [
+         "D-Person",
+         "D-Arbeidsforhold",
+         "D-Stillingsperiode"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Honorar og engasjement",
+        "hva": "For mottakere uten vanlig arbeidsforhold.",
+        "innhold": [
+         "Styrehonorar, verv, frivillige og ekstrahjelp",
+         "Mottakerklasse avgjør trekk, AGA og a-melding",
+         "Engangsinvitasjon der mottakeren bekrefter seg med BankID",
+         "Vedtaksreferanse og arbeidsdeling"
+        ],
+        "data": [
+         "D-Engasjement",
+         "D-Mottakerklasse",
+         "D-Honorarvedtak"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Masseendringer",
+        "hva": "Endre mange på én gang med forhåndsvisning.",
+        "innhold": [
+         "Lønnsoppgjør, avdeling, satser og tillegg",
+         "Virkningsdato og konsekvens før lagring",
+         "Angre før kjøringen er godkjent"
+        ],
+        "data": [
+         "D-Stillingsperiode",
+         "D-Fastlinje"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Fravær og tid",
+      "c": [
+       "FRA",
+       "TID"
+      ],
+      "p": [
+       {
+        "navn": "Fraværskalender",
+        "hva": "Fravær for alle, filtrert per enhet.",
+        "innhold": [
+         "Ferie, sykdom, permisjon og permittering",
+         "Filtrer på avdeling og prosjekt",
+         "Helseårsak vises aldri, bare type"
+        ],
+        "data": [
+         "D-Fravaer"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Ferie og saldoer",
+        "hva": "Saldohovedbok for ferie.",
+        "innhold": [
+         "Opptjent, tatt, overført og forskuttert",
+         "Femte ferieuke og 60+",
+         "Ferietrekk i fastlønn",
+         "Feriepengegrunnlag i fjor og i år"
+        ],
+        "data": [
+         "D-Feriesaldo",
+         "D-Akkumulator"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Sykefravær",
+        "hva": "Tilfeller med arbeidsgiverperiode.",
+        "innhold": [
+         "Egenmelding og sykmelding fra NAV",
+         "Telling av arbeidsgiverperioden med sammenslåing",
+         "Sykepengegrunnlag",
+         "Inntektsmelding som svar til NAV"
+        ],
+        "data": [
+         "D-Sykefravaerstilfelle",
+         "D-Inntektsmelding"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Permisjon og permittering",
+        "hva": "Fravær som skal i a-meldingen.",
+        "innhold": [
+         "Type, prosent og periode",
+         "Permittering med egen arbeidsgiverperiode",
+         "Rapportering i a-meldingen"
+        ],
+        "data": [
+         "D-Permisjon"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "NAV-refusjon",
+        "hva": "Følger pengene fra NAV.",
+        "innhold": [
+         "Refusjonskrav og forventet beløp",
+         "Import av K27 (refusjonsrapport fra NAV)",
+         "Avvik mellom forventet og mottatt",
+         "Varsel om tremånedersfristen"
+        ],
+        "data": [
+         "D-Refusjonskrav",
+         "D-NavRapport"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Timer",
+        "hva": "Timelister som blir lønnsgrunnlag.",
+        "innhold": [
+         "Timer per dag med prosjekt og aktivitet",
+         "Overtid med lovgrenser (aml. § 10-6)",
+         "Oversikt som aml. § 10-7 krever",
+         "Godkjenning og låsing"
+        ],
+        "data": [
+         "D-Timeregistrering",
+         "D-Godkjenning"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Arbeidsplaner og tillegg",
+        "hva": "Normaltid, turnus og tillegg.",
+        "innhold": [
+         "Normaltid per ansatt",
+         "Turnus og vakter importert fra vaktsystem",
+         "Kveld, natt, helg og helligdag"
+        ],
+        "data": [
+         "D-Arbeidstidsordning"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Utlegg og reise",
+      "c": [
+       "UTL"
+      ],
+      "p": [
+       {
+        "navn": "Mottatte utlegg",
+        "hva": "Linjer fra Utleggsappen og andre systemer.",
+        "innhold": [
+         "Kontroll og avvisning med beskjed tilbake til kilden",
+         "Refusjon i lønnen eller utenom",
+         "Ingen dobbel utbetaling ved korrigering"
+        ],
+        "data": [
+         "D-Utleggslinje",
+         "D-Reise"
+        ],
+        "merk": "Ingen egen utleggsmodul. Kvitteringen ligger hos kilden."
+       },
+       {
+        "navn": "Godtgjørelser",
+        "hva": "Reglene for utlegg og reise ligger i kjernen.",
+        "innhold": [
+         "Statens satser per år",
+         "Trekkfri og trekkpliktig del",
+         "A-meldingskoder og MVA-kode"
+        ],
+        "data": [
+         "D-Godtgjorelsessats"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kilder for utlegg",
+        "hva": "Velg hvilket system som leverer utlegg.",
+        "innhold": [
+         "Én kilde per kunde om gangen",
+         "Bytte av kilde ved periodeskifte"
+        ],
+        "data": [
+         "D-Kilderegister"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Skatt, trekk og pensjon",
+      "c": [
+       "TRK",
+       "PEN"
+      ],
+      "p": [
+       {
+        "navn": "Skattekort",
+        "hva": "Status per ansatt.",
+        "innhold": [
+         "Bestilles og hentes automatisk (polling)",
+         "Endringer i løpet av året",
+         "50 % trekk når skattekort mangler",
+         "Frikort og kildeskatt"
+        ],
+        "data": [
+         "D-Skattekort"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Trekkpålegg",
+        "hva": "Utleggstrekk og bidragstrekk.",
+        "innhold": [
+         "Samordnet utleggstrekk med KID per ansatt",
+         "Start, endring og stans",
+         "Vernet beløp og prioritet",
+         "Kvittering tilbake til Skatteetaten"
+        ],
+        "data": [
+         "D-Trekkpalegg",
+         "D-KID"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Andre trekk",
+        "hva": "Faste og avtalte trekk.",
+        "innhold": [
+         "Fagforening, lån og husleie",
+         "Trekk etter signert forhåndsavtale",
+         "Trekk som overstiger netto"
+        ],
+        "data": [
+         "D-Trekk"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Pensjon",
+        "hva": "Ordninger og medlemmer.",
+        "innhold": [
+         "OTP innskudd eller hybrid, KLP og SPK",
+         "Pensjonsgrunnlag per lønnsart",
+         "Premie føres fra faktura, ikke i kjøringen",
+         "Rapport til pensjonsleverandør"
+        ],
+        "data": [
+         "D-Pensjonsordning",
+         "D-Pensjonsmedlemskap"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Forsikringer",
+        "hva": "Forsikringer som fordel.",
+        "innhold": [
+         "Gruppeliv og yrkesskade",
+         "Helseforsikring som skattepliktig fordel"
+        ],
+        "data": [
+         "D-Forsikring"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Myndigheter",
+      "c": [
+       "MYN"
+      ],
+      "p": [
+       {
+        "navn": "A-melding",
+        "hva": "Én melding per opplysningspliktig og måned.",
+        "innhold": [
+         "Status og innhold",
+         "Validering mot Skatteetatens regler før innsending",
+         "Send med navngitt godkjenner",
+         "Tilbakemelding i klartekst og erstatningsmelding"
+        ],
+        "data": [
+         "D-AMelding",
+         "D-Innsending",
+         "D-Tilbakemelding"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Avstemming",
+        "hva": "Det Skatteetaten har mottatt, mot lønnen.",
+        "innhold": [
+         "Avstemmingsdata fra a-ordningen",
+         "Avvik per ansatt og beløp"
+        ],
+        "data": [
+         "D-AMelding"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "NAV",
+        "hva": "Det som går mellom Brutto og NAV.",
+        "innhold": [
+         "Forespørsler om inntektsmelding",
+         "Sykmeldinger",
+         "K27-rapporter"
+        ],
+        "data": [
+         "D-Inntektsmelding",
+         "D-NavRapport"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Årlige oppgaver",
+        "hva": "Det som skjer én gang i året.",
+        "innhold": [
+         "Sammenstillingsoppgave",
+         "Likestilling og lønnskartlegging (ARP)"
+        ],
+        "data": [
+         "D-Akkumulator"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Systembruker",
+        "hva": "Tilgangen til Altinn og Skatteetaten.",
+        "innhold": [
+         "Status for systembruker og tilgangspakker",
+         "Veiviser for oppsett",
+         "Varsel før noe utløper eller trekkes tilbake"
+        ],
+        "data": [
+         "D-Systembruker"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontrollkø",
+        "hva": "Feil fra myndighetene blir saker.",
+        "innhold": [
+         "Regel, eier og frist per sak",
+         "Løs, utsett eller tildel"
+        ],
+        "data": [
+         "D-Tilbakemelding"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Utbetaling og regnskap",
+      "c": [
+       "BET",
+       "REG"
+      ],
+      "p": [
+       {
+        "navn": "Betalinger",
+        "hva": "Betalingsforslag og bankfil.",
+        "innhold": [
+         "Netto lønn og forskuddstrekk med KID neste virkedag",
+         "Utleggstrekk, kreditorer og AGA per termin",
+         "Sendes via open banking-leverandør etter siste godkjenning",
+         "Bankfil (pain.001) som reserve",
+         "Status: startet, signert, utført eller avvist"
+        ],
+        "data": [
+         "D-Betalingsoppdrag",
+         "D-Betalingslinje",
+         "D-KID"
+        ],
+        "merk": "Kunden, eller regnskapsfører med fullmakt, signerer med BankID i bankens flyt. Brutto flytter aldri penger selv. Leverandør er ikke valgt (Peter)."
+       },
+       {
+        "navn": "Kontoendringer",
+        "hva": "Kontonummer-skjold.",
+        "innhold": [
+         "Nye kontonumre i karantene",
+         "BankID-steg og varsel til den ansatte",
+         "Den som verifiserte kan ikke godkjenne første betaling"
+        ],
+        "data": [
+         "D-Personbankkonto"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Bilag",
+        "hva": "Regnskapsbilag per kjøring.",
+        "innhold": [
+         "Standardkontering og grupperingskoder",
+         "Netto lønn samlet på én linje",
+         "Send til Tripletex, PowerOffice og andre",
+         "Status per bilag"
+        ],
+        "data": [
+         "D-Bilag",
+         "D-Postering",
+         "D-Kontomapping"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kostnadsfordeling",
+        "hva": "Lønn fordelt på dimensjoner.",
+        "innhold": [
+         "Avdeling, prosjekt og kostnadssted per linje",
+         "Omfordelingsbilag ved endring bakover i tid",
+         "Prosjektlønn for tilskudd"
+        ],
+        "data": [
+         "D-Kostnadsfordeling",
+         "D-Dimensjonsverdi"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Avstemming",
+        "hva": "Lønn, regnskap, a-melding og bank går i null.",
+        "innhold": [
+         "Avsetning for feriepenger og AGA",
+         "Skyldig trekk går i null",
+         "Avvik med forklaring"
+        ],
+        "data": [
+         "D-Postering",
+         "D-AMelding"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Rapporter",
+      "c": [
+       "RAP"
+      ],
+      "p": [
+       {
+        "navn": "Standardrapporter",
+        "hva": "De faste listene.",
+        "innhold": [
+         "Lønnsjournal og lønnsliste",
+         "Feriepengeliste og trekkliste",
+         "AGA-oversikt"
+        ],
+        "data": [
+         "D-Rapportdefinisjon"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontrollrapporter",
+        "hva": "For lønn og revisor.",
+        "innhold": [
+         "Endringer mot forrige måned",
+         "Endringslogg for stamdata og konto"
+        ],
+        "data": [
+         "D-Revisjonslogg"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Revisorpakke",
+        "hva": "Det revisor ber om, samlet.",
+        "innhold": [
+         "Avstemminger, lister og logger for perioden",
+         "Lesetilgang for revisor"
+        ],
+        "data": [],
+        "merk": ""
+       },
+       {
+        "navn": "Statistikk",
+        "hva": "Nøkkeltall over tid.",
+        "innhold": [
+         "Antall ansatte og lønnsutvikling",
+         "Sykefravær med skjerming",
+         "Likestilling (ARP)"
+        ],
+        "data": [],
+        "merk": ""
+       },
+       {
+        "navn": "Prognoser",
+        "hva": "Lønnskostnad framover.",
+        "innhold": [
+         "Neste 12 måneder med AGA, feriepenger og pensjon",
+         "Hva koster en ansettelse"
+        ],
+        "data": [],
+        "merk": ""
+       },
+       {
+        "navn": "Rapportbygger",
+        "hva": "Egne uttrekk og eksport.",
+        "innhold": [
+         "Velg felt og filtre",
+         "Eksport til Excel og CSV"
+        ],
+        "data": [
+         "D-Rapportdefinisjon"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Oppsett",
+      "c": [
+       "ORG",
+       "LON"
+      ],
+      "p": [
+       {
+        "navn": "Virksomhet",
+        "hva": "Juridisk enhet og underenheter.",
+        "innhold": [
+         "Hentes fra Brønnøysundregistrene",
+         "Underenheter med AGA-sone",
+         "Fribeløp og fritak for ideelle"
+        ],
+        "data": [
+         "D-Virksomhet",
+         "D-Underenhet"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Organisasjon og dimensjoner",
+        "hva": "Avdelinger, prosjekter og egne dimensjoner.",
+        "innhold": [
+         "Hierarki av avdelinger",
+         "Prosjekter, kostnadssteder og aktiviteter",
+         "Egendefinerte dimensjoner"
+        ],
+        "data": [
+         "D-Organisasjonsenhet",
+         "D-Dimensjonstype",
+         "D-Dimensjonsverdi"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Lønnsarter",
+        "hva": "Katalogen med flagg og kontering.",
+        "innhold": [
+         "Nummer og a-meldingskode",
+         "Flagg for skatt, AGA, feriepenger, pensjon og sykepenger",
+         "Debet- og kreditkonto",
+         "Maler og standardutvalg"
+        ],
+        "data": [
+         "D-Lonnsart"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Tariff og lønnsstiger",
+        "hva": "Lønnstabeller med virkningsdato.",
+        "innhold": [
+         "Trinn og ansiennitet",
+         "Tillegg etter avtale",
+         "Automatiske opprykk"
+        ],
+        "data": [
+         "D-Lonnstabell"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kalendere og perioder",
+        "hva": "Lønnsperioder og utbetalingsdager.",
+        "innhold": [
+         "Månedlig og hver 14. dag",
+         "Helligdager"
+        ],
+        "data": [
+         "D-Lonnskalender"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontoplan og kontering",
+        "hva": "Kobling mot regnskapet.",
+        "innhold": [
+         "Standardkontering",
+         "Grupperingskoder",
+         "Overstyring per kunde"
+        ],
+        "data": [
+         "D-Kontomapping"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Bank og betaling",
+        "hva": "Virksomhetens kontoer og betalingskanal.",
+        "innhold": [
+         "Lønnskonto og trekkonto",
+         "Fil eller direkte bankkobling"
+        ],
+        "data": [
+         "D-Bankkonto"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Pensjonsordninger",
+        "hva": "Avtaler med leverandører.",
+        "innhold": [
+         "Satser og vilkår",
+         "Hvem som er med"
+        ],
+        "data": [
+         "D-Pensjonsordning"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Godkjenningsflyter",
+        "hva": "Kunden setter opp hvem som godkjenner hva.",
+        "innhold": [
+         "Ferdige maler: bare regnskapsfører, leder og lønn, eller flere ledd",
+         "Ledd etter hverandre eller samtidig, der én eller alle må godkjenne",
+         "Regler etter rolle, avdeling, beløpsgrense, type og avvik",
+         "Arbeidsdeling håndheves uansett oppsett",
+         "Delegering og stedfortreder"
+        ],
+        "data": [
+         "D-Godkjenningsregel",
+         "D-Godkjenning",
+         "D-Arbeidsflyt"
+        ],
+        "merk": "Én godkjenningsmotor brukes av lønnskjøring, timer, fravær og utlegg."
+       }
+      ]
+     },
+     {
+      "t": "Administrasjon",
+      "c": [
+       "SIK",
+       "PLA",
+       "MIG"
+      ],
+      "p": [
+       {
+        "navn": "Brukere og roller",
+        "hva": "Hvem kan gjøre hva.",
+        "innhold": [
+         "Roller og lønnstilgang",
+         "Særlige kategorier (helse og fagforening)",
+         "Arbeidsdeling og kritiske kombinasjoner",
+         "BankID, passkeys og SSO"
+        ],
+        "data": [
+         "D-Bruker",
+         "D-Rolletildeling"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Integrasjoner",
+        "hva": "Tilkoblede systemer og status.",
+        "innhold": [
+         "Huma, Utleggsappen, OrgLab, Tikket, regnskap og tid",
+         "Én kilde per datatype (kilderegister)",
+         "Integrasjonsmonitor med feil"
+        ],
+        "data": [
+         "D-Integrasjon",
+         "D-Kilderegister"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "API og utviklere",
+        "hva": "For partnere og kundens IT.",
+        "innhold": [
+         "Apper og nøkler",
+         "Webhooks",
+         "Sandkasse"
+        ],
+        "data": [
+         "D-Integrasjon",
+         "D-Hendelse"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Import og migrering",
+        "hva": "Flytt inn fra et annet system.",
+        "innhold": [
+         "Tripletex, ReAi, Visma, SD Worx og Excel",
+         "Saldoer hittil i år og feriepengegrunnlag",
+         "Arbeidsforhold-ID beholdes",
+         "Parallellkjøring med avviksrapport"
+        ],
+        "data": [
+         "D-Importjobb",
+         "D-Migreringsavvik"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Revisjonslogg",
+        "hva": "Hvem endret hva, og når.",
+        "innhold": [
+         "Endringslogg",
+         "Tilgangslogg for sensitive data"
+        ],
+        "data": [
+         "D-Revisjonslogg",
+         "D-Tilgangslogg"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Personvern og oppbevaring",
+        "hva": "Regler for lagring og sletting.",
+        "innhold": [
+         "Oppbevaringstid per datatype",
+         "Lagringssted (Norge)",
+         "Databehandleravtale"
+        ],
+        "data": [
+         "D-Oppbevaringsregel",
+         "D-Lagringssted"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Abonnement",
+        "hva": "Avtale og bruk.",
+        "innhold": [
+         "Moduler og pris",
+         "Bruksmåling"
+        ],
+        "data": [],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "byra",
+    "navn": "Byrå",
+    "hvem": "Lønnsmedarbeider, fagleder og kvalitetsansvarlig i byrå",
+    "tekst": "Arbeidsflaten for byråer som kjører lønn for mange klienter. Når en klient åpnes, går brukeren inn i lønnsflaten for den klienten.",
+    "kol": [
+     {
+      "t": "Arbeid",
+      "c": [
+       "BYR"
+      ],
+      "p": [
+       {
+        "navn": "Arbeidskø",
+        "hva": "Alle klienter med neste steg.",
+        "innhold": [
+         "Status: grunnlag mottatt, kontrollert, godkjent av kunde, a-melding sendt",
+         "Frist og ansvarlig per klient",
+         "Filtrer per medarbeider og lønnsdato"
+        ],
+        "data": [
+         "D-Klient",
+         "D-Lonnskjoring"
+        ],
+        "merk": "Arbeidskø i stedet for porteføljedashbord (byrårapporten)."
+       },
+       {
+        "navn": "Samlekjøringer",
+        "hva": "Gjør det samme for mange klienter.",
+        "innhold": [
+         "Hent skattekort for alle",
+         "Send a-melding for alle som er klare",
+         "Samlet oversikt over tilbakemeldinger"
+        ],
+        "data": [
+         "D-Skattekort",
+         "D-AMelding"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontrollkø",
+        "hva": "Feil på tvers av klienter.",
+        "innhold": [
+         "Saker fra myndigheter og bank per klient"
+        ],
+        "data": [
+         "D-Tilbakemelding"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Klienter",
+      "c": [
+       "BYR"
+      ],
+      "p": [
+       {
+        "navn": "Klientliste",
+        "hva": "Porteføljen.",
+        "innhold": [
+         "Oppdragsansvarlig og lønnsdatoer",
+         "Regnskapssystem per klient",
+         "Åpne klienten i lønnsflaten"
+        ],
+        "data": [
+         "D-Klient"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Klienttilganger",
+        "hva": "Altinn for mange klienter.",
+        "innhold": [
+         "Systembruker for klientsystem",
+         "Status for klientdelegering",
+         "Tilgangspakken regnskapsforer-lonn"
+        ],
+        "data": [
+         "D-Systembruker"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kundeportal",
+        "hva": "Oppsett per klient.",
+        "innhold": [
+         "Lenke for lønnsgrunnlag",
+         "Hvem hos kunden godkjenner",
+         "Reservevei ved e-post"
+        ],
+        "data": [
+         "D-Klient"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Kvalitet",
+      "c": [
+       "BYR"
+      ],
+      "p": [
+       {
+        "navn": "Maler",
+        "hva": "Felles oppsett på tvers av klienter.",
+        "innhold": [
+         "Lønnsarter, kontering og kalendere",
+         "Rull ut til valgte klienter"
+        ],
+        "data": [
+         "D-Lonnsart",
+         "D-Kontomapping"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kontroll og GRFS",
+        "hva": "Krav til god regnskapsføringsskikk.",
+        "innhold": [
+         "Sjekklister per kjøring",
+         "Fire øyne",
+         "Oppdragsdokumentasjon i fem år"
+        ],
+        "data": [
+         "D-Oppdragsdokumentasjon"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Økonomi",
+      "c": [
+       "BYR"
+      ],
+      "p": [
+       {
+        "navn": "Fakturagrunnlag",
+        "hva": "Hva hver klient skal betale.",
+        "innhold": [
+         "Antall slipper og kjøringer per klient",
+         "Eksport til praksis- eller fakturasystem"
+        ],
+        "data": [
+         "D-Fakturagrunnlag"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Praksissystem",
+        "hva": "Kobling mot byråets eget system.",
+        "innhold": [
+         "Oppgaver og frister til Tally og andre",
+         "Timeforslag"
+        ],
+        "data": [
+         "D-Integrasjon"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "leder",
+    "navn": "Leder",
+    "hvem": "Linjeleder og prosjektleder",
+    "tekst": "Ledere ser bare sitt eget team og godkjenner fra én innboks.",
+    "kol": [
+     {
+      "t": "Godkjenninger",
+      "c": [
+       "LED"
+      ],
+      "p": [
+       {
+        "navn": "Innboks",
+        "hva": "Én innboks for alt som skal godkjennes.",
+        "innhold": [
+         "Ferie, fravær og timer",
+         "Utlegg fra Utleggsappen og andre kilder",
+         "Tillegg og honorarer",
+         "Frist og påminnelse"
+        ],
+        "data": [
+         "D-Godkjenning"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Mitt team",
+      "c": [
+       "LED",
+       "FRA",
+       "TID"
+      ],
+      "p": [
+       {
+        "navn": "Teamkalender",
+        "hva": "Hvem er borte når.",
+        "innhold": [
+         "Ferie og fravær uten helseårsak",
+         "Bemanning per dag"
+        ],
+        "data": [
+         "D-Fravaer"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Timer og saldoer",
+        "hva": "Status for teamet.",
+        "innhold": [
+         "Timer som mangler",
+         "Feriesaldo"
+        ],
+        "data": [
+         "D-Timeregistrering",
+         "D-Feriesaldo"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Kostnader",
+        "hva": "Lønnskostnad for enheten.",
+        "innhold": [
+         "Summert per avdeling og prosjekt",
+         "Ingen enkeltlønn uten tilgang"
+        ],
+        "data": [
+         "D-Kostnadsfordeling"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Innstillinger",
+      "c": [
+       "LED"
+      ],
+      "p": [
+       {
+        "navn": "Delegering",
+        "hva": "Stedfortreder i en periode.",
+        "innhold": [
+         "Hvem godkjenner når lederen er borte",
+         "Tidsbegrenset"
+        ],
+        "data": [
+         "D-Delegering"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ansatt",
+    "navn": "Ansatt",
+    "hvem": "Alle ansatte, i app og på nett",
+    "tekst": "Selvbetjening med BankID. Varsler viser aldri beløp.",
+    "kol": [
+     {
+      "t": "Hjem",
+      "c": [
+       "POR"
+      ],
+      "p": [
+       {
+        "navn": "Startside",
+        "hva": "Det viktigste for den ansatte.",
+        "innhold": [
+         "Neste lønn og lønnsdag",
+         "Feriesaldo",
+         "Oppgaver, for eksempel signering"
+        ],
+        "data": [
+         "D-Lonnsslipp",
+         "D-Feriesaldo"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Lønn",
+      "c": [
+       "POR"
+      ],
+      "p": [
+       {
+        "navn": "Lønnsslipper",
+        "hva": "Forklart linje for linje.",
+        "innhold": [
+         "Hvorfor beløpet er som det er",
+         "Egen forklaring i juni og desember",
+         "Arkiv og flere språk"
+        ],
+        "data": [
+         "D-Lonnsslipp"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Skatt",
+        "hva": "Skatt og årsoversikt.",
+        "innhold": [
+         "Skattekortinformasjon",
+         "Sammenstillingsoppgave"
+        ],
+        "data": [
+         "D-Skattekort"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Ferie og tid",
+      "c": [
+       "POR",
+       "FRA",
+       "TID"
+      ],
+      "p": [
+       {
+        "navn": "Ferie og fravær",
+        "hva": "Søk og meld fra.",
+        "innhold": [
+         "Søk om ferie",
+         "Egenmelding og sykt barn",
+         "Se saldo"
+        ],
+        "data": [
+         "D-Fravaer",
+         "D-Feriesaldo"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Timer",
+        "hva": "Registrer og send til godkjenning.",
+        "innhold": [
+         "Timer per dag med prosjekt"
+        ],
+        "data": [
+         "D-Timeregistrering"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Utlegg",
+        "hva": "Lenke til utleggssystemet.",
+        "innhold": [
+         "Åpner Utleggsappen eller kundens system",
+         "Status på utbetaling"
+        ],
+        "data": [
+         "D-Utleggslinje"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Meg",
+      "c": [
+       "POR"
+      ],
+      "p": [
+       {
+        "navn": "Profil",
+        "hva": "Egne opplysninger.",
+        "innhold": [
+         "Kontaktinfo og pårørende",
+         "Kontonummer med BankID-steg og varsel"
+        ],
+        "data": [
+         "D-Person",
+         "D-Personbankkonto"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Dokumenter",
+        "hva": "Avtaler og signering.",
+        "innhold": [
+         "Arbeidsavtale og trekkavtaler",
+         "E-signering"
+        ],
+        "data": [
+         "D-Dokument"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "kunde",
+    "navn": "Kundeportal",
+    "hvem": "Byråets kunde, ofte daglig leder",
+    "tekst": "Minimal flate for kunder som har lønn hos et byrå.",
+    "kol": [
+     {
+      "t": "Lønn",
+      "c": [
+       "BYR"
+      ],
+      "p": [
+       {
+        "navn": "Lever grunnlag",
+        "hva": "Send timer og endringer til byrået.",
+        "innhold": [
+         "Skjema eller opplasting via lenke",
+         "Frist og påminnelse"
+        ],
+        "data": [
+         "D-Lonnsgrunnlag"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Godkjenn lønn",
+        "hva": "Godkjenn før utbetaling.",
+        "innhold": [
+         "Oppsummering og avvik",
+         "Godkjenning logges i oppdragsdokumentasjonen"
+        ],
+        "data": [
+         "D-Godkjenning"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Spørsmål om avvik",
+        "hva": "Svar på det byrået lurer på.",
+        "innhold": [
+         "Spørsmål knyttet til konkrete linjer"
+        ],
+        "data": [
+         "D-Melding"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "honorar",
+    "navn": "Honorarmottaker",
+    "hvem": "Styremedlemmer, tillitsvalgte, frivillige og ekstrahjelp",
+    "tekst": "For dem som får honorar eller godtgjørelse uten vanlig arbeidsforhold, ofte via OrgLab eller Tikket.",
+    "kol": [
+     {
+      "t": "Kom i gang",
+      "c": [
+       "ORL",
+       "POR"
+      ],
+      "p": [
+       {
+        "navn": "Bekreft deg",
+        "hva": "Engangsinvitasjon.",
+        "innhold": [
+         "Logg inn med BankID",
+         "Bekreft fødselsnummer og kontonummer"
+        ],
+        "data": [
+         "D-Engasjement",
+         "D-Personbankkonto"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Utbetalinger",
+      "c": [
+       "ORL",
+       "POR"
+      ],
+      "p": [
+       {
+        "navn": "Mine utbetalinger",
+        "hva": "Honorarer og godtgjørelser.",
+        "innhold": [
+         "Slipper og status",
+         "Skatteinformasjon"
+        ],
+        "data": [
+         "D-Lonnsslipp"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "hr",
+    "navn": "HR (senere)",
+    "later": true,
+    "hvem": "HR-sjef og HR-medarbeider",
+    "tekst": "Det SD Worx og Huma dekker utover lønn. Huma brukes som HR-kilde fram til denne flaten finnes.",
+    "kol": [
+     {
+      "t": "Personal",
+      "c": [
+       "HR"
+      ],
+      "p": [
+       {
+        "navn": "Dokumentarkiv",
+        "hva": "Personalmappe med tilgangsnivå.",
+        "innhold": [
+         "Arbeidsavtaler og attester",
+         "Oppbevaring og sletting"
+        ],
+        "data": [
+         "D-Dokument"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Arbeidsavtaler",
+        "hva": "Maler med e-signering.",
+        "innhold": [
+         "Minimumsinnhold etter aml. § 14-6"
+        ],
+        "data": [
+         "D-Arbeidsavtale"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Onboarding og offboarding",
+        "hva": "Sjekklister.",
+        "innhold": [
+         "Oppgaver til HR, leder og IT"
+        ],
+        "data": [
+         "D-Sjekkliste"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Organisasjonskart",
+        "hva": "Hvem rapporterer til hvem.",
+        "innhold": [
+         "Bygget fra avdelinger og ledere"
+        ],
+        "data": [
+         "D-Organisasjonsenhet"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Utstyr",
+        "hva": "Utstyr per ansatt.",
+        "innhold": [
+         "Utlevert og innlevert"
+        ],
+        "data": [
+         "D-Utstyr"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Kompetanse og utvikling",
+      "c": [
+       "UTV"
+      ],
+      "p": [
+       {
+        "navn": "Kompetanse",
+        "hva": "Oversikt, søk og godkjenning.",
+        "innhold": [
+         "Jobbprofiler og GAP-analyse",
+         "Sertifikater med utløp"
+        ],
+        "data": [
+         "D-Kompetanse",
+         "D-Jobbprofil",
+         "D-Sertifikat"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Medarbeidersamtaler",
+        "hva": "Maler, plan og oversikt.",
+        "innhold": [
+         "Gjennomføring og signering",
+         "Statistikk"
+        ],
+        "data": [
+         "D-Medarbeidersamtale"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Mål",
+        "hva": "Individuelle mål.",
+        "innhold": [
+         "Fordeling og statistikk"
+        ],
+        "data": [
+         "D-Mal"
+        ],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Helse og oppfølging",
+      "c": [
+       "HEL"
+      ],
+      "p": [
+       {
+        "navn": "Sykefraværsoppfølging",
+        "hva": "Frister etter aml. § 4-6.",
+        "innhold": [
+         "Oppfølgingsplan og dialogmøter",
+         "Oppgaver og varsler til leder og HR"
+        ],
+        "data": [
+         "D-Oppfolgingsplan",
+         "D-Dialogmote",
+         "D-Oppfolgingsoppgave"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Helsesøk",
+        "hva": "Streng skjerming.",
+        "innhold": [
+         "Bare for HR-administrator"
+        ],
+        "data": [],
+        "merk": ""
+       }
+      ]
+     },
+     {
+      "t": "Kommunikasjon",
+      "c": [
+       "KOM"
+      ],
+      "p": [
+       {
+        "navn": "Kunngjøringer",
+        "hva": "Startside med innhold.",
+        "innhold": [
+         "Kunngjøringer, lenker og karusell"
+        ],
+        "data": [
+         "D-Kunngjoring"
+        ],
+        "merk": ""
+       },
+       {
+        "navn": "Meldinger",
+        "hva": "Meldinger mellom HR, lønn og ansatt.",
+        "innhold": [],
+        "data": [
+         "D-Melding"
+        ],
+        "merk": ""
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "ansattkort": [
+   [
+    "Oversikt",
+    "Status, hva som mangler (skattekort, konto, kostnadsfordeling) og siste lønnsslipp."
+   ],
+   [
+    "Personalia",
+    "Navn, fødselsnummer eller D-nummer, adresse, adressebeskyttelse, språk, pårørende. Fødselsnummer vises maskert."
+   ],
+   [
+    "Arbeidsforhold",
+    "Ett eller flere arbeidsforhold med tidslinje: type, underenhet, stilling, prosent, timer per uke, arbeidstidsordning, yrkeskode, start, slutt og sluttårsak."
+   ],
+   [
+    "Lønn og faste linjer",
+    "Avtalt lønn, lønnstrinn, faste tillegg og trekk med fra- og til-dato."
+   ],
+   [
+    "Skatt og trekk",
+    "Skattekort med kilde og dato, trekkpålegg med KID, fagforening og andre trekk."
+   ],
+   [
+    "Ferie og fravær",
+    "Feriesaldo, fravær, sykefraværstilfeller med arbeidsgiverperiode, permisjoner."
+   ],
+   [
+    "Pensjon",
+    "Medlemskap, ordning, pensjonsgrunnlag."
+   ],
+   [
+    "Kostnadsfordeling",
+    "Avdeling, prosjekt og kostnadssted i prosent med gyldighetsdatoer."
+   ],
+   [
+    "Lønnsslipper",
+    "Alle slipper med forklaring, også fra migrert historikk."
+   ],
+   [
+    "Dokumenter",
+    "Arbeidsavtale, trekkavtaler og andre dokumenter."
+   ],
+   [
+    "Historikk",
+    "Endringslogg: hvem endret hva, når, og fra når det gjelder."
+   ]
+  ],
+  "monstre": [
+   [
+    "Status og frist",
+    "Hver kjøring, melding og oppgave har en statuschip og en frist. Det som haster vises først."
+   ],
+   [
+    "Avviksliste",
+    "Vis bare det som avviker fra forrige måned, med årsak i klartekst. Resten er grønt."
+   ],
+   [
+    "Forklaring per tall",
+    "Hvert beløp kan åpnes: regel, sats, grunnlag og kilde. Samme mønster for lønn, ansatt og revisor."
+   ],
+   [
+    "Gjelder fra",
+    "Endringer har en virkningsdato. Tidslinjen viser fortid og framtid, og endring bakover gir korreksjon."
+   ],
+   [
+    "Fire øyne",
+    "Godkjenning av en annen enn den som gjorde jobben. Knappen viser hvem som kan godkjenne."
+   ],
+   [
+    "Kilde og eier",
+    "Data fra Huma, Utleggsappen eller import merkes med kilde. Felt som eies av en annen kilde er skrivebeskyttet."
+   ],
+   [
+    "Karantene ved import",
+    "Ukjente koder og nye kontonumre stoppes til noen har sett på dem."
+   ],
+   [
+    "Masseendring med forhåndsvisning",
+    "Se konsekvensen for alle berørte før lagring."
+   ],
+   [
+    "Kontrollkø",
+    "Feil fra Skatteetaten, NAV og bank blir saker med eier og frist."
+   ],
+   [
+    "Skjermede felt",
+    "Helse, fagforening og lønn vises bare med riktig tilgang, og lesing logges."
+   ],
+   [
+    "Varsel uten beløp",
+    "E-post og push sier at noe har skjedd. Beløp vises bare etter innlogging."
+   ],
+   [
+    "Arbeidsflatevelger",
+    "Samme person kan være ansatt, leder og lønnsmedarbeider. Bytt flate uten ny innlogging."
+   ]
+  ],
+  "sdworx": [
+   [
+    "People",
+    "Person Information, New Employment, Process Overview, Advanced Search, Messages, Delegate, Reports",
+    "Lønn › Ansatte (PER), Lønn › Rapporter (RAP), Leder › Delegering (LED). Process Overview og Messages hører til HR senere (KOM)."
+   ],
+   [
+    "Time",
+    "Calendar, Team Planning, Work Time Schedule",
+    "Lønn › Fravær og tid (FRA, TID), Leder › Mitt team"
+   ],
+   [
+    "Expense",
+    "Voucher Handling, Import/Export, General Settings, Employments",
+    "Lønn › Utlegg og reise (UTL), bare via integrasjon"
+   ],
+   [
+    "Competence",
+    "Competence Overview, Competence Search, GAP Analysis, Job Profiles, Competence Approval",
+    "HR senere › Kompetanse og utvikling (UTV)"
+   ],
+   [
+    "Organization",
+    "Organization Chart",
+    "Lønn › Oppsett › Organisasjon (ORG). Kartet som visning hører til HR senere."
+   ],
+   [
+    "Perform",
+    "Individual Talks, Individual Targets, Talks Overview, Talk Statistics, Target Distribution, Target Statistics",
+    "HR senere › Kompetanse og utvikling (UTV)"
+   ],
+   [
+    "SalaryReview",
+    "Salary Review",
+    "Lønn › Ansatte › Masseendringer og Lønnskjøring › Korreksjoner (LON, KJO)"
+   ],
+   [
+    "Analytics",
+    "Dashboard",
+    "Lønn › Rapporter › Statistikk (RAP)"
+   ],
+   [
+    "Payslip",
+    "Payslip",
+    "Ansatt › Lønnsslipper (POR)"
+   ],
+   [
+    "Health",
+    "Task Overview, Health Search",
+    "Lønn › Fravær og tid (FRA). Oppfølging og helsesøk hører til HR senere (HEL)."
+   ],
+   [
+    "Back2Work",
+    "Task Overview, HR Administrator",
+    "HR senere › Helse og oppfølging (HEL)"
+   ],
+   [
+    "Security",
+    "Audit",
+    "Lønn › Administrasjon › Revisjonslogg (SIK)"
+   ],
+   [
+    "Admin Modules",
+    "Employment, Salary Review, Organization, Talent, Health, Back2Work, Connector",
+    "Lønn › Oppsett og Administrasjon (ORG, LON, PLA). Talent, Health og Back2Work hører til HR senere."
+   ],
+   [
+    "Dashboard Management",
+    "Announcements, Links, Slideshow",
+    "HR senere › Kommunikasjon (KOM)"
+   ],
+   [
+    "(ikke i menyen)",
+    "Lønnskjøring, a-melding, trekk, betaling, regnskap, byrå",
+    "Lønn › Lønnskjøring, Myndigheter, Utbetaling og regnskap. Byrå og Kundeportal er egne flater."
+   ]
+  ]
+ }
+}

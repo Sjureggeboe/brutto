@@ -1,0 +1,4469 @@
+{
+ "omrader": [
+  {
+   "id": "UTV",
+   "navn": "Kompetanse og utvikling",
+   "ingress_md": "**HR-utvidelse for senere.** Gründeren har valgt rent lønnssystem først. Området er kartlagt lett, med grupper, funksjoner og kjernefelt. UTV dekker kompetanse, sertifikater med utløp, kurs, jobbprofiler, medarbeidersamtaler og mål (SD Worx Competence og Perform, Admin › Talent). Brukere er HR, ledere og ansatte. K1 eier person, stilling og personalmappe. K2 eier lønnsoppgjøret i LON, og UTV leverer bare grunnlag til det.",
+   "grupper": [
+    {
+     "id": "UTV.1",
+     "navn": "Kompetanse og sertifikater",
+     "funksjoner": [
+      {
+       "id": "F-UTV-01",
+       "navn": "Kompetanseoversikt og godkjenning",
+       "beskrivelse_md": "HR vedlikeholder en katalog over kompetanser: fagområder, språk, utdanning, sertifikat- og autorisasjonstyper. Ansatte registrerer egen kompetanse med nivå og dokumentasjon. Leder eller HR godkjenner (SD Worx Competence Approval). Leder ser kompetansen i teamet, og ansattkortet viser godkjent og ventende kompetanse.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Leder",
+        "Ansatt"
+       ],
+       "regler_md": "Selvregistrert kompetanse regnes ikke som godkjent før leder eller HR har godkjent den. Dokumentasjon som vitnemål og kursbevis lagres i personalmappen (D-Dokument, K1) med kategori og oppbevaringsregel.",
+       "data": [
+        "D-Kompetanse",
+        "D-Sertifikat",
+        "D-Person",
+        "D-Dokument"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H14",
+        "HR-19"
+       ],
+       "kilder": [
+        "R0-sdworx-meny",
+        "R2-moduler-integrasjoner §5.2",
+        "R2-virksomhet §2.4.1"
+       ],
+       "merknad_md": "R2-moduler satte HR-19 til «Ikke nå, partner». Gründeren vil ha full kartlegging, så funksjonen står her som HR-utvidelse. Huma Open API 1.89.0 har ingen ressurs for kompetanse (https://openapi.humahr.com/v3/api-docs). Migrering fra Huma må gå via eksport [verifiseres]."
+      },
+      {
+       "id": "F-UTV-02",
+       "navn": "Sertifikater og autorisasjoner med utløp og varsling",
+       "beskrivelse_md": "Sertifikater registreres med utstedt dato, utløpsdato, utsteder og dokument. Typiske eksempler er HMS-kurs, førerkort med klasse, truckførerbevis, førstehjelp, helsepersonellautorisasjon og politiattest. Ansatt, leder og HR får varsel før utløp (forslag 90, 30 og 0 dager). En oversikt viser utløpte og manglende sertifikater mot jobbprofilen.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Leder",
+        "Ansatt"
+       ],
+       "regler_md": "- Helsepersonellautorisasjon kan kontrolleres mot Helsepersonellregisteret (HPR) [verifiseres tilgang og API].\n- Politiattest: lagre bare at attesten er fremvist, type (ordinær, utvidet, barneomsorg), dato og hvem som kontrollerte. Selve attesten skal ikke lagres lenger enn formålet krever (politiregisterloven og politiregisterforskriften) [verifiseres]. Opplysninger om straffbare forhold er GDPR art. 10 og skjermes som særlig kategori.\n- Førerkort kan avsløre helse gjennom vilkår eller begrensninger. Lagre bare klasse og gyldighet.\n- Varsel er nøytralt og nevner bare sertifikattypen og utløpsdatoen (F-KOM-01).",
+       "data": [
+        "D-Sertifikat",
+        "D-Kompetanse",
+        "D-Jobbprofil",
+        "D-Varsel",
+        "D-Oppgave"
+       ],
+       "integrasjoner": [
+        "Helsepersonellregisteret (HPR) [verifiseres]"
+       ],
+       "behov": [
+        "VK-H14"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4.1 (VK-H14)",
+        "D-praksis §11.1 (Nordlys driver omsorg)"
+       ],
+       "merknad_md": "Bør for helse og omsorg, bygg og transport. Kan for andre kunder. Dette er den delen av UTV som ligger nærmest lovkrav."
+      },
+      {
+       "id": "F-UTV-03",
+       "navn": "Kompetansesøk",
+       "beskrivelse_md": "HR og leder søker etter ansatte med en gitt kompetanse, nivå eller gyldig sertifikat, filtrert på enhet og lokasjon. Brukes til bemanning, beredskap og prosjekter. Leder ser eget team, og HR ser alle.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR",
+        "Leder"
+       ],
+       "regler_md": "Søket viser aldri skjermede felt som politiattest eller helsebetingede begrensninger. Ansatte med adressebeskyttelse vises bare for HR [verifiseres mot K1].",
+       "data": [
+        "D-Sertifikat",
+        "D-Kompetanse"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H14"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Competence Search)"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "UTV.2",
+     "navn": "Jobbprofiler, GAP-analyse og kurs",
+     "funksjoner": [
+      {
+       "id": "F-UTV-04",
+       "navn": "Jobbprofiler med kompetansekrav",
+       "beskrivelse_md": "En jobbprofil beskriver en rolle med formål, ansvar og krav: kompetanse med minstenivå, sertifikater som må være gyldige, og kurs som må være fullført innen et antall dager etter oppstart. Profilen kobles til stilling (D-Stilling, K1). Endringer versjoneres.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR"
+       ],
+       "regler_md": "Jobbprofil og stillingskategori for ARP («arbeid av lik verdi», VK-43) er to ulike ting. Stillingskategorien eies av K1 og K2. Profilen kan foreslå kategori. Den styrer den ikke.",
+       "data": [
+        "D-Jobbprofil",
+        "D-Kompetansekrav",
+        "D-Stilling"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-43",
+        "VK-H14"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Job Profiles)",
+        "https://openapi.humahr.com/v3/api-docs"
+       ],
+       "merknad_md": "Huma har bare stillingstitler (`JobTitle`: `id`, `name`, `description`) uten krav. De kan importeres som tomme profiler."
+      },
+      {
+       "id": "F-UTV-05",
+       "navn": "GAP-analyse",
+       "beskrivelse_md": "Sammenligner en person med jobbprofilen og en enhet med summen av profilene. Viser kompetanse som mangler, er under nivå eller utløper snart. Kan foreslå kurs som lukker gapet.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR",
+        "Leder"
+       ],
+       "regler_md": "",
+       "data": [
+        "D-Jobbprofil",
+        "D-Kompetansekrav",
+        "D-Sertifikat",
+        "D-Kurs"
+       ],
+       "integrasjoner": [],
+       "behov": [],
+       "kilder": [
+        "R0-sdworx-meny (GAP Analysis)"
+       ],
+       "merknad_md": "Lite brukt hos kunder med under 100 ansatte. Verdien ligger i sertifikatkrav i helse og omsorg."
+      },
+      {
+       "id": "F-UTV-06",
+       "navn": "Kurs og opplæring",
+       "beskrivelse_md": "Kurskatalog med interne og eksterne kurs og e-læring. Påmelding med godkjenning fra leder, deltakerliste og fullført-status. Fullført kurs gir kompetanse eller sertifikat automatisk. Lovpålagt opplæring kan merkes, for eksempel verneombud og AMU-medlemmer (aml. § 6-5) og leders HMS-opplæring (aml. § 3-5). E-læring løses med integrasjon mot et LMS.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR",
+        "Leder",
+        "Ansatt"
+       ],
+       "regler_md": "Kursdager i arbeidstiden påvirker lønn bare hvis kunden registrerer dem som fravær (FRA, K3). Reise og diett til kurs går gjennom UTL (K3). Verneombudsopplæringen er minst 40 timer [verifiseres].",
+       "data": [
+        "D-Kurs",
+        "D-Sertifikat",
+        "D-Kompetanse"
+       ],
+       "integrasjoner": [
+        "LMS (valgfritt)"
+       ],
+       "behov": [
+        "VK-H18"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4.1 (VK-H18)"
+       ],
+       "merknad_md": "Læringsplattform er «Ikke nå» i R2 (VK-H18). Kurskatalog og registrering av fullført kurs er nok."
+      }
+     ]
+    },
+    {
+     "id": "UTV.3",
+     "navn": "Medarbeidersamtaler og mål",
+     "funksjoner": [
+      {
+       "id": "F-UTV-07",
+       "navn": "Samtalemaler",
+       "beskrivelse_md": "Maler for medarbeidersamtale, oppfølgingssamtale, prøvetidssamtale, lønnssamtale og sluttsamtale. En mal har seksjoner med spørsmål, skala eller fritekst, og angir hvem som fyller ut (ansatt, leder eller begge). En gjennomført samtale beholder malversjonen.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR"
+       ],
+       "regler_md": "Malen merker felt som lønnsdata (lønnssamtale) eller fortrolige. Fritekst får advarsel mot helseopplysninger. Helse hører hjemme i HEL.",
+       "data": [
+        "D-Samtalemal"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "HR-10",
+        "VK-H12"
+       ],
+       "kilder": [
+        "R2-moduler-integrasjoner §5.2 (HR-10)",
+        "https://humahr.com/no/blogg/tips_og_triks_m%C3%B8temodul"
+       ],
+       "merknad_md": "Huma har en møtemodul med møtetyper, blant annet «Oppfølgingsplan ved sykemelding». I Brutto ligger sykefraværsoppfølging i HEL, med egen skjerming."
+      },
+      {
+       "id": "F-UTV-08",
+       "navn": "Planlegging, gjennomføring, signering og oversikt",
+       "beskrivelse_md": "HR starter en samtalerunde for en enhet eller hele virksomheten med frist. Leder avtaler tid, begge forbereder seg hver for seg, leder skriver referat, og begge bekrefter i portalen. Oversikten viser status per leder og enhet (planlagt, gjennomført, signert). Statistikken viser gjennomføringsgrad (SD Worx Talks Overview og Talk Statistics). Samtalerunden kjører i arbeidsflytmotoren (F-KOM-04).",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Leder",
+        "Ansatt"
+       ],
+       "regler_md": "- Den ansattes forberedelse er privat til den deles.\n- Referatet arkiveres i personalmappen med egen oppbevaringsregel.\n- Ved lederbytte går åpne samtaler til ny leder. Signerte samtaler følger personen. Hva ny leder får se, styres av en regel [verifiseres].\n- Signering er bekreftelse i portalen med logg. BankID trengs ikke.\n- Statistikk er aggregert og viser aldri innhold.",
+       "data": [
+        "D-Medarbeidersamtale",
+        "D-Samtalemal",
+        "D-Arbeidsflyt",
+        "D-Dokument"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "HR-10",
+        "VK-H12"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4.1 (VK-H12)",
+        "R2-moduler-integrasjoner §5.3"
+       ],
+       "merknad_md": "VK-H12 er Må for å erstatte Huma fullt ut. Uten samtaler beholder kunden Huma, og prisgevinsten faller bort."
+      },
+      {
+       "id": "F-UTV-09",
+       "navn": "Individuelle mål, målfordeling og målstatistikk",
+       "beskrivelse_md": "Mål med beskrivelse, frist, vekt og status, knyttet til samtalen. Målfordeling bryter mål for en enhet ned til individuelle mål (SD Worx Target Distribution). Statistikk viser oppnåelse per enhet.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "Leder",
+        "Ansatt",
+        "HR"
+       ],
+       "regler_md": "",
+       "data": [
+        "D-Mal",
+        "D-Medarbeidersamtale"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H12",
+        "VK-H18"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Individual Targets, Target Distribution, Target Statistics)"
+       ],
+       "merknad_md": "OKR og 360 er «Ikke nå» (VK-H18). En enkel målliste holder for 10–1000 ansatte."
+      }
+     ]
+    },
+    {
+     "id": "UTV.4",
+     "navn": "Kobling til lønnsoppgjør og talent",
+     "funksjoner": [
+      {
+       "id": "F-UTV-10",
+       "navn": "Grunnlag til lønnsoppgjøret (SalaryReview)",
+       "beskrivelse_md": "UTV leverer data til lønnsoppgjøret som K2 eier i LON: lederens lønnsforslag fra lønnssamtalen, kompetanse og fullførte kurs, og målstatus. Oppgjøret leser dette som grunnlag. UTV beregner ingen lønn og endrer ingen lønnsavtale.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "HR",
+        "Lønnsansvarlig"
+       ],
+       "regler_md": "Lønnsforslag og innholdet i lønnssamtalen er lønnsdata og krever lønnstilgang. En leder uten lønnstilgang ser ikke lønnsfeltene (VK-48). Lokale forhandlinger følger tariffens frister, for eksempel 31.10 i HUK 2026 (R2-virksomhet §2.4).",
+       "data": [
+        "D-Medarbeidersamtale",
+        "D-Mal",
+        "D-Sertifikat",
+        "D-Lonnsavtale"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-39",
+        "VK-41",
+        "VK-48",
+        "VK-H05"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4",
+        "R0-sdworx-meny (SalaryReview)"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-UTV-11",
+       "navn": "Talent og etterfølgerplanlegging (vurdering)",
+       "beskrivelse_md": "Vurdering: overbygd for de fleste kundene med 10–1000 ansatte. Hvis det bygges, holder en enkel liste over nøkkelstillinger, mulige etterfølgere og beredskap (klar nå, klar om 1–2 år). Talentvurderinger som 9-boks anbefales ikke.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR",
+        "Leder"
+       ],
+       "regler_md": "Vurderinger av personer er personopplysninger med full innsynsrett etter GDPR art. 15. Det gjør fritekstvurderinger risikable.",
+       "data": [
+        "D-Jobbprofil",
+        "D-Person"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H18"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Admin › Talent)"
+       ],
+       "merknad_md": "Anbefaling: ikke bygg. Relevant først for 300+ ansatte og konsern."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HEL",
+   "navn": "Helse og oppfølging",
+   "ingress_md": "**HR-utvidelse for senere.** Gründeren har valgt rent lønnssystem først. Området er kartlagt lett, men lovkravene og skjermingen er kartlagt grundig fordi de henger sammen med fravær, arbeidsgiverperiode og NAV. HEL dekker oppfølging av sykmeldte etter aml. § 4-6 og ftrl. §§ 8-7 a, 8-8 og 25-2: oppfølgingssak, frister, oppfølgingsplan, dialogmøter, tilrettelegging, nærmeste leder og deling med NAV og fastlege (SD Worx Health og Back2Work). Brukere er nærmeste leder, HR-administrator (helse) og den sykmeldte. **Grense mot FRA (K3):** K3 eier fraværet, sykmeldingen fra NAV, arbeidsgiverperioden, refusjon og inntektsmelding. HEL eier oppfølgingen, leser fraværet og endrer det aldri.",
+   "grupper": [
+    {
+     "id": "HEL.1",
+     "navn": "Oppfølgingssak, frister og oppgaver",
+     "funksjoner": [
+      {
+       "id": "F-HEL-01",
+       "navn": "Oppfølgingssak opprettes fra sykefraværet",
+       "beskrivelse_md": "Når FRA registrerer sykefravær (egenmelding eller sykmelding fra NAV-API-et), oppretter HEL en oppfølgingssak for arbeidsforholdet. Saken samler plan, møter, oppgaver og logg. Fravær med kort mellomrom legges i samme sak. Friskmelding lukker saken etter en karenstid, og nytt fravær innen karenstiden gjenåpner den. HR kan opprette sak manuelt ved redusert arbeidsevne uten sykmelding.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR-administrator (helse)",
+        "Leder"
+       ],
+       "regler_md": "- Aml. § 4-6 første ledd gjelder redusert arbeidsevne etter ulykke, sykdom eller slitasje, også uten sykmelding.\n- Fristene løper fra første fraværsdag når arbeidstaker er helt eller delvis borte (aml. § 4-6 tredje ledd).\n- Sammenslåing: NAVs nærmeste leder-API regner en sykmelding som aktiv til 16 dager etter sluttdato. Om HEL skal slå sammen tilfeller med samme 16-dagersregel som arbeidsgiverperioden (K3), må avklares mot NAVs regel for oppfølgingstilfelle [verifiseres].\n- Om egenmeldingsdager før sykmeldingen teller med i 4- og 7-ukersfristen, må verifiseres [verifiseres].\n- Saken kopierer aldri diagnose. Arbeidsgivers kopi av sykmeldingen har ikke diagnose (R2-moduler §2.1).",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Sykefravaerstilfelle",
+        "D-Fravaer",
+        "D-Arbeidsforhold"
+       ],
+       "integrasjoner": [
+        "NAV sykepenger-API (sykmelding, via K3)"
+       ],
+       "behov": [
+        "HR-12",
+        "FT-24",
+        "VK-H11"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://www.nav.no/arbeidsgiver/oppfolging-sykmeldte",
+        "https://narmesteleder-api.nav.no/swagger",
+        "R2-moduler-integrasjoner §2.1 og §5.5"
+       ],
+       "merknad_md": "Er Huma kilde for fravær (K-HUMA), får HEL fraværet fra FRA på samme måte, fordi FRA normaliserer kilden. Bruker kunden Humas sykefraværsoppfølging, skal HEL være slått av, så det ikke går to oppfølgingsløp. Huma starter oppfølgingen automatisk fra NAV-sykmeldingen (https://humahr.com/no/nav)."
+      },
+      {
+       "id": "F-HEL-02",
+       "navn": "Fristmotor for lovpålagte milepæler",
+       "beskrivelse_md": "Hver sak får beregnede frister fra første fraværsdag og graden. Fristene vises som tidslinje og blir oppgaver (F-HEL-03). Ved endret grad, nytt fravær eller friskmelding beregnes fristene på nytt, og endringen logges. Reglene ligger i en versjonert regelpakke, slik at lovendringer kan rulles ut uten kodeendring.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR-administrator (helse)",
+        "Leder"
+       ],
+       "regler_md": "| Milepæl | Frist | Hjemmel |\n|---|---|---|\n| Oppfølgingsplan utarbeidet | Senest når arbeidstaker har vært helt eller delvis borte i 4 uker, med mindre det er åpenbart unødvendig | aml. § 4-6 tredje ledd |\n| Plan sendt til sykmelder | Så snart planen er utarbeidet | aml. § 4-6 tredje ledd |\n| Dialogmøte 1 innkalt | Senest innen 7 uker ved helt fravær, med mindre det er åpenbart unødvendig. Ved delvis fravær når arbeidsgiver, arbeidstaker eller sykmelder finner det hensiktsmessig | aml. § 4-6 fjerde ledd |\n| Aktivitetskravet | Arbeidsrelatert aktivitet senest innen 8 uker, unntatt når medisinske grunner klart er til hinder eller aktivitet ikke kan gjennomføres på arbeidsplassen. NAV vurderer. Arbeidsgiver kan dokumentere at tilrettelegging ikke er mulig | ftrl. § 8-8 annet ledd |\n| Svar til NAV før dialogmøte 2 | Ca. én uke før den ansatte meldes som kandidat får arbeidsgiver SMS eller e-post og svarer i Dine sykmeldte | nav.no (oppdatert 04.05.2026) |\n| Oppdatert plan til NAV | Senest én uke før dialogmøte i regi av NAV | aml. § 4-6 tredje ledd, ftrl. § 25-2 tredje ledd |\n| Dialogmøte 2 (NAV) | NAV holder møtet senest når arbeidsuførheten har vart i 26 uker, med mindre det er åpenbart unødvendig. Arbeidsgiver må delta | ftrl. § 8-7 a annet ledd, ftrl. § 25-2 annet ledd |\n| Dialogmøte 3 (NAV) | Ved behov. Arbeidstaker, arbeidsgiver, sykmelder eller NAV kan kreve nytt møte | ftrl. § 8-7 a tredje ledd |\n| Plan utlevert til NAV | Når NAV krever det | ftrl. § 25-2 fjerde ledd |\n| Oppsigelsesvern | 12 måneder etter at arbeidsuførheten inntraff | aml. § 15-8 |\n| Maksdato sykepenger | 248 sykepengedager (52 uker). Datoen hentes fra NAV eller K3, og HEL beregner den ikke selv | ftrl. § 8-12 |\n| Sykefravær over 12 måneder | Rapporteres som permisjon i a-meldingen (FRA, FT-52) | Skatteetaten |\n\n- «Åpenbart unødvendig» krever begrunnelse, dato og hvem som vurderte. Unntaket logges og vises i dokumentasjonen.\n- Systemet merker aldri en plikt som oppfylt uten en handling fra et menneske.\n- Gradert sykmelding: plikten til dialogmøte 1 gjelder ved helt fravær. Ved delvis fravær blir oppgaven «vurder dialogmøte». Går graden til 100 % før uke 7, får saken fristen tilbake. Hvordan 7 uker regnes når fraværet først var delvis, må verifiseres [verifiseres].",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Oppfolgingsoppgave",
+        "D-Sykefravaerstilfelle"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "FT-24",
+        "HR-12"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://lovdata.no/lov/1997-02-28-19/§8-7a",
+        "https://lovdata.no/lov/1997-02-28-19/§8-8",
+        "https://lovdata.no/lov/1997-02-28-19/§25-2",
+        "https://lovdata.no/lov/2005-06-17-62/§15-8",
+        "https://lovdata.no/lov/1997-02-28-19/§8-12",
+        "https://www.nav.no/arbeidsgiver/oppfolging-sykmeldte"
+       ],
+       "merknad_md": "Verifisert 28.10.2026 mot Lovdata (aml. § 4-6, ftrl. §§ 8-7 a, 8-8 og 25-2) og nav.no/arbeidsgiver/oppfolging-sykmeldte (oppdatert 04.05.2026). Fristene i oppdraget stemmer. Ftrl. § 8-7 a kaller 26-ukersmøtet bare «dialogmøte». Nummereringen 1, 2 og 3 er NAVs praksis. Aml. § 15-8 og ftrl. § 8-12 er ikke lest på nytt i denne runden [verifiseres]."
+      },
+      {
+       "id": "F-HEL-03",
+       "navn": "Oppgaver, varsling og eskalering til leder og HR",
+       "beskrivelse_md": "Fristene blir oppgaver i innboksen (D-Oppgave, KOM) for nærmeste leder, med kopi til HR-administrator. Varsel går før fristen (forslag 7 og 2 dager før) og på forfallsdagen. Oppgaver som ikke er utført, eskaleres til HR og leders leder. Stedfortreder overtar ved leders fravær. Den sykmeldte får egne oppgaver: medvirke i planen og bekrefte den.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "HR-administrator (helse)",
+        "Ansatt"
+       ],
+       "regler_md": "- Varsler og oppgavetitler er nøytrale. E-post, SMS og push sier bare «Du har en oppfølgingsoppgave i Brutto», uten navn, grad eller årsak.\n- Kalenderinvitasjoner til møter merkes private og får nøytral tittel.\n- Ved lederbytte flyttes åpne oppgaver til ny nærmeste leder. Tidligere leder mister tilgangen til saken.",
+       "data": [
+        "D-Oppfolgingsoppgave",
+        "D-Oppgave",
+        "D-Varsel"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "HR-12",
+        "VK-M04"
+       ],
+       "kilder": [
+        "R2-moduler-integrasjoner §5.2",
+        "https://humahr.com/no/nav"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "HEL.2",
+     "navn": "Oppfølgingsplan, dialogmøter og tilrettelegging",
+     "funksjoner": [
+      {
+       "id": "F-HEL-04",
+       "navn": "Oppfølgingsplan",
+       "beskrivelse_md": "Leder og den sykmeldte lager planen sammen. Feltene følger NAVs LPS-API, slik at planen kan sendes uten omforming: typisk arbeidsdag, oppgaver som kan og ikke kan gjøres, tidligere og planlagt tilrettelegging, andre muligheter, oppfølging, evalueringsdato, kontaktperson og om den ansatte har medvirket. Hver endring gir ny versjon. Den ansatte bekrefter planen i portalen.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "Ansatt",
+        "HR-administrator (helse)"
+       ],
+       "regler_md": "- Innholdet følger aml. § 4-6 tredje ledd: vurdering av arbeidsoppgaver og arbeidsevne, tiltak i regi av arbeidsgiver, tiltak med bistand fra myndighetene og plan for videre oppfølging.\n- Har den ansatte ikke medvirket, kreves begrunnelse (`employeeHasNotContributedToPlanDescription`).\n- Planen beskriver funksjon og tiltak. Fritekst får advarsel mot diagnose og medisinske detaljer.\n- Den sykmeldte plikter å medvirke (ftrl. § 8-8 første ledd).",
+       "data": [
+        "D-Oppfolgingsplan",
+        "D-Oppfolgingssak"
+       ],
+       "integrasjoner": [
+        "NAV LPS oppfølgingsplan-API"
+       ],
+       "behov": [
+        "HR-12",
+        "FT-24"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://lovdata.no/lov/1997-02-28-19/§8-8",
+        "https://lps-oppfolgingsplan-mottak.nav.no/swagger"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-HEL-05",
+       "navn": "Dialogmøter, sykmelder og bedriftshelsetjeneste",
+       "beskrivelse_md": "Dialogmøte 1 planlegges og innkalles fra saken med tid, sted eller video og deltakere. Referatet skrives i saken, og planen oppdateres etter møtet. Dialogmøte 2 og 3 innkalles av NAV. Brutto registrerer innkallingen og referatet (hentes via F-HEL-07) og lager oppgave om å sende oppdatert plan senest én uke før. Bedriftshelsetjenesten (BHT) kan inviteres fra oppsettet med leverandør og kontaktperson.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "HR-administrator (helse)",
+        "Ansatt"
+       ],
+       "regler_md": "- Sykmelder skal innkalles hvis arbeidstaker ønsker det (aml. § 4-6 fjerde ledd).\n- NAV, BHT og andre relevante aktører kan innkalles hvis arbeidsgiver eller arbeidstaker ønsker det.\n- Helsepersonell som behandler eller har behandlet arbeidstakeren, kan ikke innkalles mot arbeidstakers ønske. Systemet spør derfor den ansatte før sykmelder eller behandler legges til, og lagrer svaret.\n- Arbeidsgiver må kunne dokumentere hvem som ble innkalt og hvem som deltok (aml. § 4-6 femte ledd). Feltene er påkrevd før møtet kan lukkes.\n- Den sykmeldte plikter å delta (ftrl. § 8-8). Manglende deltakelse registreres nøytralt. Konsekvensen for sykepengene vurderer NAV.",
+       "data": [
+        "D-Dialogmote",
+        "D-Oppfolgingsplan",
+        "D-Oppfolgingssak",
+        "D-Virksomhet"
+       ],
+       "integrasjoner": [
+        "NAV syfo-dokumentporten",
+        "E-post og kalender (ICS)"
+       ],
+       "behov": [
+        "HR-12",
+        "FT-24"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://lovdata.no/lov/1997-02-28-19/§8-7a",
+        "https://www.nav.no/arbeidsgiver/oppfolging-sykmeldte"
+       ],
+       "merknad_md": "BHT-leverandør og kontaktperson bør være felt på D-Virksomhet (K1) [avklares med K1]. Hvilke bransjer som må ha BHT, står i forskrift om organisering, ledelse og medvirkning [verifiseres]."
+      },
+      {
+       "id": "F-HEL-06",
+       "navn": "Tilrettelegging, gradert sykmelding og aktivitetskravet",
+       "beskrivelse_md": "Leder registrerer tilretteleggingstiltak med start, slutt og effekt: tilpassede oppgaver, redusert tid, hjemmekontor eller utstyr. Gradert sykmelding kommer fra FRA med grad per periode, og saken viser forventet arbeidstid. Ved 8 uker lager systemet en oppgave: bekreft at den ansatte er i aktivitet, eller dokumenter hvorfor tilrettelegging ikke er mulig. Tilretteleggingstilskudd fra NAV kan registreres som tiltak.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "HR-administrator (helse)"
+       ],
+       "regler_md": "- Graderingen og konsekvensen for lønn (forskuttering, AGP, refusjon) eies av K3 og K2. HEL leser graden og endrer den aldri.\n- Ftrl. § 8-8 annet ledd: arbeidsrelatert aktivitet senest innen 8 uker, med to unntak.\n- Arbeidsgivers begrunnelse for at tilrettelegging ikke er mulig, gis i dag i Dine sykmeldte. Om et LPS kan sende den, er ukjent [verifiseres].\n- Kan det bli aktuelt å flytte arbeidstakeren til annet arbeid, skal arbeidstakeren og tillitsvalgte høres først (aml. § 4-6 annet ledd).\n- Gradert sykmelding endrer forventet arbeidstid i TID (K3). HEL varsler ikke om dette selv.",
+       "data": [
+        "D-Oppfolgingsplan",
+        "D-Oppfolgingssak",
+        "D-Fravaer",
+        "D-Oppfolgingsoppgave"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "FT-24"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://lovdata.no/lov/1997-02-28-19/§8-8",
+        "https://www.nav.no/arbeidsgiver/oppfolging-sykmeldte"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "HEL.3",
+     "navn": "Deling med NAV og fastlege",
+     "funksjoner": [
+      {
+       "id": "F-HEL-07",
+       "navn": "Send oppfølgingsplan til NAV og fastlege, og hent dokumenter fra NAV",
+       "beskrivelse_md": "Planen sendes til NAV og/eller fastlegen med NAVs LPS-API: `POST /api/v1/followupplan`, og status hentes med `GET /api/v1/followupplan/{uuid}/sendingstatus`. Brutto henter NAVs sykefraværsdokumenter (planer og brev om dialogmøter) fra syfo-dokumentporten (`GET /api/v1/documents`, typene `OPPFOLGINGSPLAN` og `DIALOGMOTE`) og arkiverer dem i saken. Hver sending krever en navngitt bruker som godkjenner, og nyttelasten låses med hash.",
+       "niva": "Integrasjon",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Leder",
+        "HR-administrator (helse)"
+       ],
+       "regler_md": "- LPS-API-et bruker Maskinporten-scopet `nav:oppfolgingsplan/lps.write`. Arbeidsgiveren delegerer scopet til Brutto i Altinn. Om API-et støtter systembruker, er ikke dokumentert [verifiseres].\n- Dokumentporten bruker systembruker med scope `nav:syfo/dokumentporten` og Altinn-ressursene `nav_syfo_oppfolgingsplan` og `nav_syfo_dialogmote`. Dokumentene varsles via Dialogporten.\n- Feil som må håndteres: `NO_ACTIVE_SENT_SYKMELDING` og `NO_ACTIVE_ARBEIDSFORHOLD` (403), `GENERAL_PRACTITIONER_NOT_FOUND` og `EMPLOYEE_NOT_FOUND` (404). Svar 200 betyr ikke at fastlegen har fått planen. Sjekk `isSentToGeneralPractitionerStatus`.\n- `needsHelpFromNav = true` lager en oppgave hos NAV og krever beskrivelse.\n- Sending til fastlegen oppfyller plikten til å sende planen til sykmelder bare når fastlegen er sykmelder [verifiseres].\n- Agenter kan forberede, men ikke sende (S-avklaringer §3 pkt. 14–15).",
+       "data": [
+        "D-Oppfolgingsplan",
+        "D-Dialogmote",
+        "D-Innsending",
+        "D-Systembruker"
+       ],
+       "integrasjoner": [
+        "NAV LPS oppfølgingsplan-API",
+        "NAV syfo-dokumentporten",
+        "Altinn Dialogporten",
+        "Maskinporten"
+       ],
+       "behov": [
+        "HR-13",
+        "FT-25"
+       ],
+       "kilder": [
+        "https://lps-oppfolgingsplan-mottak.nav.no/swagger",
+        "https://github.com/navikt/lps-oppfolgingsplan-mottak",
+        "https://syfo-dokumentporten.nav.no/swagger",
+        "https://github.com/navikt/syfo-dokumentporten/wiki",
+        "https://www.nav.no/samarbeidspartner/ekstern-datautveksling/api-oversikt",
+        "B-myndigheter §6.1"
+       ],
+       "merknad_md": "R2 satte HR-13 til Kan. Jeg foreslår Bør: planen skal uansett til sykmelder og NAV, og alternativet er dobbel registrering i Dine sykmeldte. Om en plan sendt via LPS-API-et vises i Dine sykmeldte, er ukjent [verifiseres]."
+      },
+      {
+       "id": "F-HEL-08",
+       "navn": "Nærmeste leder til NAV",
+       "beskrivelse_md": "NAV trenger nærmeste leder for hver sykmeldt for å sende varsler og gi tilgang i Dine sykmeldte. Brutto foreslår leder fra organisasjonen (K1) og sender den med NAVs nærmeste leder-API: `POST /api/v1/linemanager` og `POST /api/v1/linemanager/revoke`. Krav fra NAV om å oppgi leder hentes med `GET /api/v1/linemanager/requirement`. Ved lederbytte i Brutto foreslås ny registrering.",
+       "niva": "Integrasjon",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR-administrator (helse)",
+        "Leder"
+       ],
+       "regler_md": "- Systembruker med scope `nav:syfo/narmesteleder/lps` og Altinn-ressursen `nav_syfo_oppgi-narmesteleder`.\n- Lederen må ha fødselsnummer, etternavn, mobil og e-post (`Manager`). Lederens fødselsnummer går dermed til NAV, og det må stå i personvernerklæringen.\n- Flere endepunkter krever aktiv sykmelding: verifisert, sendt til arbeidsgiver, og sluttdato ikke passert eller mindre enn 16 dager siden.\n- Nærmeste leder for oppfølging kan være en annen enn lederen i organisasjonskartet, for eksempel en stedfortreder.",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Person",
+        "D-Organisasjonsenhet"
+       ],
+       "integrasjoner": [
+        "NAV esyfo-narmesteleder API",
+        "Altinn Dialogporten"
+       ],
+       "behov": [
+        "FT-25",
+        "HR-13"
+       ],
+       "kilder": [
+        "https://narmesteleder-api.nav.no/swagger",
+        "https://github.com/navikt/esyfo-narmesteleder/wiki",
+        "https://www.nav.no/arbeidsgiver/oppfolging-sykmeldte"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "HEL.4",
+     "navn": "Skjerming, innsyn og dokumentasjon",
+     "funksjoner": [
+      {
+       "id": "F-HEL-09",
+       "navn": "Rollen HR-administrator og skjerming av helseopplysninger",
+       "beskrivelse_md": "Oppfølgingssaker er særlige kategorier (GDPR art. 9). Bare rollen «HR-administrator (helse)» ser alle saker (SD Worx Back2Work › HR Administrator). Nærmeste leder ser saker for egne ansatte så lenge lederrelasjonen varer. Lønnsansvarlig ser ikke HEL, bare fraværet som påvirker lønn (FRA). Den ansatte ser hele sin egen sak. All lesing logges med hvem, når og formål.",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "roller": [
+        "HR-administrator (helse)",
+        "Leder",
+        "Ansatt",
+        "Lønnsansvarlig"
+       ],
+       "regler_md": "- Behandlingsgrunnlag: aml. § 4-6 og ftrl. § 25-2 gir rettslig plikt (art. 6 nr. 1 c) og unntak etter art. 9 nr. 2 b [verifiseres av personvernrådgiver, S-avklaringer §7].\n- Dataminimering: ingen diagnose og ingen medisinske detaljer. HR kan maskere fritekst i ettertid, med logg.\n- **Lekkasjepunkter som skal stenges:**\n  - varsler, e-post og SMS: nøytral tekst (F-KOM-01)\n  - kalenderinvitasjoner: private, nøytral tittel\n  - startside og teamkalender: «borte», aldri «syk», for andre enn leder og HR-administrator\n  - rapporter: minste gruppestørrelse (forslag 5)\n  - søk og eksport: bare HR-administrator, og eksport logges\n  - lederbytte: ny leder ser ikke avsluttede saker\n  - API og webhooks: egen tilgangspakke for helse\n  - support: ingen tilgang uten tidsbegrenset samtykke fra kunden\n  - KI og agenter: ingen tilgang (S-avklaringer §3 pkt. 11)\n  - applikasjonslogger: bare id-er og statuskoder\n  - test: bare syntetiske data\n  - byrå: et byrå som kjører lønnen, får ikke tilgang til HEL\n  - prosessoversikt og innboks: prosesser og oppgaver med tilgangsklasse helse vises bare for den som har tilgang til saken\n- Oppbevaring: saken er HR-dokumentasjon. Bokføringsloven gjelder ikke. Slettefrist settes fra saken er avsluttet. Forslag: 3 år for å dekke tilsyn og tvist [verifiseres med personvernrådgiver].\n- Innsyn: den ansatte har rett til innsyn i hele saken (art. 15).",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Oppfolgingsplan",
+        "D-Dialogmote",
+        "D-Oppfolgingsoppgave",
+        "D-Rolletildeling",
+        "D-Tilgangslogg",
+        "D-Oppbevaringsregel"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "FT-58",
+        "VK-48"
+       ],
+       "kilder": [
+        "S-avklaringer-fra-sally §2 og §3",
+        "R3-kritikk-domene D-33 og E9.8",
+        "R2-moduler-integrasjoner §2.1"
+       ],
+       "merknad_md": "Rollen hører sammen med «Fravær – helse» (FT-58, K3) og «Lønn – helse» (R3 E9.8). K6 (SIK) bør eie én felles helserolle med tre visninger. Ellers får kunden tre roller å holde i synk [avklares]. Se også F-FRA-05 og F-SIK-08."
+      },
+      {
+       "id": "F-HEL-10",
+       "navn": "Helsesøk",
+       "beskrivelse_md": "HR-administrator søker i oppfølgingssaker etter status, frist, enhet, leder, grad og varighet (SD Worx Health › Health Search). Typiske søk: passerte frister, saker uten plan etter 4 uker, saker over 26 uker og saker som nærmer seg 12 måneder.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR-administrator (helse)"
+       ],
+       "regler_md": "Bare HR-administrator. Søket krever et formål, som logges. Treffene kan ikke eksporteres uten egen rettighet, og eksporten logges.",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Oppfolgingsoppgave",
+        "D-Tilgangslogg"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "FT-58"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Health Search)"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-HEL-11",
+       "navn": "Dokumentasjon og etterlevelse",
+       "beskrivelse_md": "Per sak: komplett logg over frister, hva som ble gjort og når, hvem som ble innkalt og deltok, planversjoner og hva som ble sendt til NAV og fastlege. Per virksomhet: rapport over overholdte og brutte frister per enhet. Brukes ved tilsyn fra Arbeidstilsynet og ved tvist.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR-administrator (helse)",
+        "HR"
+       ],
+       "regler_md": "- Aml. § 4-6 femte ledd krever at arbeidsgiver kan dokumentere oppfølgingsplan og dialogmøte, med hvem som ble innkalt og hvem som deltok.\n- Ftrl. § 25-2 første ledd: arbeidsgiver plikter å føre statistikk over sykefravær og fravær ved barns sykdom. Statistikken bygges i FRA (FT-55) og RAP (K6) fra fraværsdataene og leser ikke HEL.\n- Arbeidstilsynet fører tilsyn med aml. § 4-6 [verifiseres sanksjonsform].",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Dialogmote",
+        "D-Oppfolgingsplan",
+        "D-Revisjonslogg",
+        "D-Rapportdefinisjon"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "FT-55",
+        "VK-45"
+       ],
+       "kilder": [
+        "https://lovdata.no/lov/2005-06-17-62/§4-6",
+        "https://lovdata.no/lov/1997-02-28-19/§25-2"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-HEL-12",
+       "navn": "Avvik og HMS-melding (vurdering)",
+       "beskrivelse_md": "Vurdering: avvik og HMS-melding hører ikke hjemme i Brutto. Det er egne produkter, og R2 satte HR-22 og VK-H18 til «Ikke nå». Brutto kan ta imot en referanse fra kundens avvikssystem når et sykefravær er arbeidsrelatert, og vise at saken har en ekstern HMS-referanse.",
+       "niva": "Integrasjon",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR-administrator (helse)"
+       ],
+       "regler_md": "- Arbeidsgiver skal melde yrkesskade til NAV (ftrl. § 13-14) [verifiseres]. Det påvirker yrkesskadeforsikringen (PEN, K2).\n- Huma sender `workRelated` på fraværshendelsen. Feltet er en helseopplysning og får samme skjerming.",
+       "data": [
+        "D-Oppfolgingssak",
+        "D-Forsikring"
+       ],
+       "integrasjoner": [
+        "Avvikssystem (valgfritt)"
+       ],
+       "behov": [
+        "HR-22",
+        "VK-H18"
+       ],
+       "kilder": [
+        "R2-moduler-integrasjoner §5.2",
+        "R2-virksomhet §2.4.1",
+        "R2-okosystem §4.4.1"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "KOM",
+   "navn": "Kommunikasjon og startside",
+   "ingress_md": "**HR-utvidelse for senere.** Gründeren har valgt rent lønnssystem først. Området er kartlagt lett, bortsett fra varslingsmotoren og oppgaveinnboksen. Dem trenger lønnsprosessen fra start, så de er kartlagt grundig. KOM dekker startside, kunngjøringer, meldinger, varsler, ventende oppgaver og arbeidsflyt på tvers (SD Worx Home, People › Messages, People › Process Overview og Dashboard Management). **Grenser:** K5 eier godkjenningsflaten for ledere (LED) og ansattportalen (POR), og KOM eier motoren de bygger på. K1 eier innholdet i onboarding og offboarding (D-Sjekkliste), og KOM eier arbeidsflytmotoren og prosessoversikten.",
+   "grupper": [
+    {
+     "id": "KOM.1",
+     "navn": "Varsler og oppgaveinnboks",
+     "funksjoner": [
+      {
+       "id": "F-KOM-01",
+       "navn": "Varslingsmotor med app, push, e-post og SMS",
+       "beskrivelse_md": "Alle områder publiserer hendelser (D-Hendelse, K6). Varslingsmotoren slår opp regelen i varselkatalogen, finner mottakere fra roller og organisasjon og sender i valgt kanal: varsel i appen (alltid), push, e-post og SMS. Teams og Slack kobles på som integrasjon. Brukeren velger kanal per varseltype innenfor rammene kunden setter. Varsler kan samles i et daglig sammendrag. Leveringsloggen viser sendt, levert, feilet og lest.",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "roller": [
+        "Alle",
+        "Systemforvalter"
+       ],
+       "regler_md": "- Innhold i e-post, SMS og push er nøytralt: ingen beløp, ingen helse, ingen fødselsnummer eller kontonummer, og ingen navn på andre ansatte ved fravær. Varselet lenker til en innlogget visning (R3-kritikk-strategi, port 7).\n- Obligatoriske varsler (sikkerhet og frister med rettsvirkning) kan ikke slås av, for eksempel endret kontonummer og innsending som feilet.\n- Endret kontonummer varsles også på den gamle kanalen (R3 D-46).\n- Ingen vedlegg med persondata i e-post. Lønnsslippen sendes aldri som PDF på e-post (R2-moduler §6.12).\n- Stille timer for SMS og push (forslag 21–07), unntatt kritiske varsler.\n- Idempotens: samme hendelse gir ett varsel per mottaker og kanal. Feil prøves på nytt med økende ventetid. Avvist e-post gir en oppgave om å rette kontaktinformasjonen.\n- Språk følger brukerens valg (POR).\n- Byrå: varsler merkes med klient, og byråets brukere kan filtrere per klient.",
+       "data": [
+        "D-Varsel",
+        "D-Varselregel",
+        "D-Hendelse",
+        "D-Bruker",
+        "D-Kontaktinfo"
+       ],
+       "integrasjoner": [
+        "E-posttjeneste",
+        "SMS (Link Mobility, Sveve m.fl.)",
+        "Push (APNs og FCM)",
+        "Slack",
+        "Microsoft Teams"
+       ],
+       "behov": [
+        "HR-18",
+        "VK-M04"
+       ],
+       "kilder": [
+        "R2-moduler-integrasjoner §6.12",
+        "F-arkitektur (fellestjenester)",
+        "R3-kritikk-strategi port 7",
+        "R3-kritikk-domene D-46"
+       ],
+       "merknad_md": "SMS og Teams eller Slack var «fase 2» i R2. App og e-post er nok til lønnsprosessen fra start. Se også F-POR-27, F-LED-08, F-BYR-17, F-PLA-30 og F-KOM-02."
+      },
+      {
+       "id": "F-KOM-02",
+       "navn": "Varselkatalog for lønnsprosessen",
+       "beskrivelse_md": "Kunden får en ferdig katalog over varsler som lønnsprosessen trenger, med mottaker, tidspunkt og kanal. Kunden kan endre tidspunkt og mottakere, men kan ikke slå av obligatoriske varsler. Hvert område eier hendelsene sine. KOM eier katalogen, malene og leveringen.",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "roller": [
+        "Lønnsansvarlig",
+        "Leder",
+        "HR",
+        "Ansatt",
+        "Byrå"
+       ],
+       "regler_md": "| Hendelse | Mottaker | Når |\n|---|---|---|\n| Cut-off nærmer seg med ugodkjente timer, fravær eller utlegg | Leder, stedfortreder | 3 og 1 virkedag før (VK-M04, D-praksis §1.2) |\n| Cut-off passert med ugodkjente linjer | Lønnsansvarlig | Ved cut-off |\n| HR-endring registrert etter cut-off | Lønnsansvarlig | Straks (VK-47) |\n| Lønnskjøring klar til kontroll eller godkjenning | Godkjenner | Når kjøringen er beregnet |\n| Avvik i beregningen (D-Avvik) | Lønnsansvarlig | Ved beregning |\n| Skattekort mangler, eller nytt kort kom etter beregning | Lønnsansvarlig | Ved henting (R3 GC-22) |\n| Nyansatt mangler skattekort, kontonummer eller arbeidsavtale før første lønn | HR, lønnsansvarlig | Fast antall dager før utbetaling |\n| Kontonummer endret | Ansatt på gammel og ny kanal, lønnsansvarlig | Straks, obligatorisk (R3 D-46) |\n| Betalingsfil laget og venter signering i nettbanken | Den som signerer | Når filen er laget |\n| Lønnsslipp publisert | Ansatt | Ved publisering, uten beløp |\n| A-melding avvist, eller tilbakemelding med avvik | Lønnsansvarlig | Straks |\n| A-meldingsfristen (5. i måneden etter) nærmer seg uten kvittering | Lønnsansvarlig | 3 virkedager før |\n| Systembruker mangler, eller tilgang feilet (401) | Lønnsansvarlig, administrator | Straks (S-avklaringer §4 pkt. 17) |\n| NAV ber om inntektsmelding | Lønnsansvarlig | Ved mottak |\n| Refusjonskrav nærmer seg 3-månedersfristen | Lønnsansvarlig | 30 og 7 dager før (R3 E3.14) |\n| Trekkpålegg mottatt eller endret | Lønnsansvarlig | Ved mottak |\n| Sluttdato passert uten sluttoppgjør | Lønnsansvarlig | Ved neste kjøring (D-praksis §4.1) |\n| Permittering nærmer seg 26 uker | HR, lønnsansvarlig | 4 uker før (FT-48) |\n| Fjerde egenmeldingstilfelle på 12 måneder | Leder, HR | Ved tilfellet. Retten fratas aldri automatisk (FT-23) |\n| Frister i sykefraværsoppfølgingen | Leder, HR-administrator (helse) | F-HEL-02 |\n| Sertifikat utløper | Ansatt, leder, HR | F-UTV-02 |\n| Brudd på arbeidstidsgrenser | Leder | TID (K3) |\n",
+       "data": [
+        "D-Varselregel",
+        "D-Varsel",
+        "D-Oppgave",
+        "D-Lonnskjoring",
+        "D-Avvik",
+        "D-Skattekort",
+        "D-AMelding",
+        "D-Refusjonskrav"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-M04",
+        "VK-47",
+        "FT-23",
+        "FT-48"
+       ],
+       "kilder": [
+        "D-praksis §1.2 og §4.1",
+        "R3-kritikk-domene GC-22, D-46 og E3.14",
+        "S-avklaringer-fra-sally §4",
+        "R2-moduler-integrasjoner §2.2"
+       ],
+       "merknad_md": "Tidspunktene er forslag. Områdeagentene (K2–K5) bør bekrefte sine rader. Se også F-POR-27, F-LED-08, F-BYR-17, F-PLA-30 og F-KOM-01."
+      },
+      {
+       "id": "F-KOM-03",
+       "navn": "Felles oppgaveinnboks på tvers av områdene",
+       "beskrivelse_md": "Én innboks per bruker med alt som venter: godkjenninger (fra LED), avvik, oppgaver fra arbeidsflyter, oppfølgingsoppgaver, innsendinger som feilet og meldinger. Hver oppgave har frist, prioritet, eier, kilde og lenke til saken. Filtre på område, frist og klient. Oppgaver kan delegeres, og stedfortreder overtar ved fravær. Lønnsansvarlig har en egen visning: «blokkerer neste kjøring».",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "roller": [
+        "Lønnsansvarlig",
+        "Leder",
+        "HR",
+        "Ansatt",
+        "Byrå"
+       ],
+       "regler_md": "- Én oppgave per handling og ansvarlig. Oppgaven lukkes automatisk når kilden er fullført, også når godkjenningen skjer i et eksternt system (VK-M04).\n- Oppgaven arver tilgangen fra kilden. En oppgave om helse vises bare for den som har tilgang til saken, og titler er nøytrale.\n- Frister har samme format overalt: type, referanse, periode, forfallsdato, kilde og regel (S-avklaringer §4 pkt. 21).\n- Byrå: innboks på tvers av klienter med klientfilter (BYR, K5).\n- Revisjonsspor: hvem gjorde hva og når.",
+       "data": [
+        "D-Oppgave",
+        "D-Godkjenning",
+        "D-Avvik",
+        "D-Oppfolgingsoppgave",
+        "D-Arbeidsflyt",
+        "D-Delegering"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-M04",
+        "VK-47"
+       ],
+       "kilder": [
+        "R2-virksomhet §5.2 (VK-M04)",
+        "D-praksis §10.2",
+        "S-avklaringer-fra-sally §4"
+       ],
+       "merknad_md": "ReAi har en tilsvarende liste (`GET /api/dashboard/tasks`, `DashboardTaskRes`). Grensen mot LED (K5) må avklares: KOM eier oppgavemodellen og innboksen, og LED eier godkjenningsreglene og ledervisningen. D-Godkjenning (K3) lager en D-Oppgave. Se også F-FRA-42 og F-LED-01."
+      }
+     ]
+    },
+    {
+     "id": "KOM.2",
+     "navn": "Arbeidsflyt og prosessoversikt",
+     "funksjoner": [
+      {
+       "id": "F-KOM-04",
+       "navn": "Arbeidsflytmotor",
+       "beskrivelse_md": "Motoren kjører prosesser fra maler. En mal har trigger (hendelse, dato eller manuelt), trinn med oppgaver til roller, frister regnet fra en dato (for eksempel startdato minus 14 dager), betingelser (arbeidsforholdstype, enhet) og automatiske trinn som kaller andre områder: hent skattekort, send arbeidsavtale til signering, meld inn i pensjon, steng tilganger. K1 lager innholdet (sjekklister for onboarding og offboarding). UTV bruker motoren til samtalerunder og HEL til oppfølgingssaker.",
+       "niva": "Kjerne",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Lønnsansvarlig",
+        "Systemforvalter"
+       ],
+       "regler_md": "- Malen versjoneres. En pågående prosess fullføres på versjonen den startet med.\n- Automatiske trinn som sender til myndigheter, betaler eller signerer, krever et menneske (S-avklaringer §3 pkt. 14–15).\n- Trinn med lovfrist viser hjemmelen, for eksempel arbeidsavtale senest 7 dager etter start når arbeidsforholdet varer over én måned (aml. § 14-5, K1).\n- Trinn som lønn trenger, kan ikke fullføres før lønnsdataene er validert, for eksempel yrkeskode og arbeidstidsordning.",
+       "data": [
+        "D-Arbeidsflyt",
+        "D-Arbeidsflytmal",
+        "D-Sjekkliste",
+        "D-Oppgave",
+        "D-Hendelse"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H04",
+        "VK-H09",
+        "HR-08",
+        "HR-09"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4.1",
+        "R2-moduler-integrasjoner §5.2",
+        "R0-sdworx-meny (Process Overview)"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-KOM-05",
+       "navn": "Prosessoversikt for ansettelse, endring og avslutning",
+       "beskrivelse_md": "HR og lønn ser alle pågående prosesser med status per trinn (SD Worx People › Process Overview). Filtre på type, enhet, ansvarlig og forfall. Hver prosess viser «klar for lønn» med sjekkpunkter: arbeidsforhold komplett, skattekort hentet, kontonummer bekreftet, arbeidsavtale signert, pensjon innmeldt, og hvilken kjøring endringen kommer med i.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Lønnsansvarlig"
+       ],
+       "regler_md": "- Status på HR-endringer: mottatt, kontrollert, med i kjøring.\n- Endringer etter cut-off merkes som unntak med begrunnelse (VK-47, D-praksis §11.2).\n- Sluttdato passert uten sluttoppgjør gir varsel (F-KOM-02).\n- Prosesser med tilgangsklasse helse (sykefraværsoppfølging) vises bare for HR-administrator (helse) og nærmeste leder.",
+       "data": [
+        "D-Arbeidsflyt",
+        "D-Arbeidsforhold",
+        "D-Lonnskjoring"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-47",
+        "VK-H04"
+       ],
+       "kilder": [
+        "R2-virksomhet §2.4 (VK-47)",
+        "D-praksis §11.2"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "KOM.3",
+     "navn": "Startside og kunngjøringer",
+     "funksjoner": [
+      {
+       "id": "F-KOM-06",
+       "navn": "Rollebasert startside",
+       "beskrivelse_md": "Startsiden viser det rollen trenger nå. Lønnsansvarlig: lønnskalender, neste cut-off, kjøringer, åpne avvik og innsendinger. Leder: godkjenninger, hvem er borte i dag, oppfølgingsfrister og utløpende sertifikater i teamet. Ansatt: siste lønnsslipp, feriesaldo, egne oppgaver og kunngjøringer. HR: prosesser, nyansatte og sluttere. Byrå: klienter med frister. Kunden slår kort av og på per rolle.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Alle"
+       ],
+       "regler_md": "- Kortene bruker samme tilgang som kilden.\n- «Hvem er borte» viser «borte» uten årsak for andre enn leder og HR-administrator.\n- Bursdags- og jubileumskort viser ikke ansatte med adressebeskyttelse eller som har reservert seg.",
+       "data": [
+        "D-Bruker",
+        "D-Rolletildeling",
+        "D-Oppgave",
+        "D-Varsel",
+        "D-Kunngjoring"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "HR-23"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Home)",
+        "https://openapi.humahr.com/v3/api-docs"
+       ],
+       "merknad_md": "Huma har jubileer i API-et (`GET /users/jubilees` med feltet `public`)."
+      },
+      {
+       "id": "F-KOM-07",
+       "navn": "Kunngjøringer med målgruppe",
+       "beskrivelse_md": "HR og lønn publiserer kunngjøringer til en målgruppe: hele virksomheten, juridisk enhet, underenhet, avdeling, lokasjon, rolle eller ansattgruppe. Publiseringstid og utløp, festing øverst, valgfri lesebekreftelse og varsel. Eksempler: endret lønnsdato i desember, frist for ferieønsker, nytt lønnsoppgjør.",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "HR",
+        "Lønnsansvarlig",
+        "Ansatt"
+       ],
+       "regler_md": "Kunngjøringer skal ikke inneholde personopplysninger om andre enn avsenderen. Lesebekreftelse lagres per person og kan dokumentere at en rutine er lest. Digitale håndbøker med lesebekreftelse (VK-H15) kan bygge på dette.",
+       "data": [
+        "D-Kunngjoring",
+        "D-Organisasjonsenhet",
+        "D-Varsel"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "VK-H15"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (Dashboard Management › Announcements)"
+       ],
+       "merknad_md": ""
+      },
+      {
+       "id": "F-KOM-08",
+       "navn": "Lenker og karusell",
+       "beskrivelse_md": "Faste lenker (personalhåndbok, intranett, Dine sykmeldte) og en bildekarusell på startsiden, med samme målgruppestyring som kunngjøringer.",
+       "niva": "Modul",
+       "behovsvekt": "Kan",
+       "roller": [
+        "HR"
+       ],
+       "regler_md": "",
+       "data": [
+        "D-Kunngjoring"
+       ],
+       "integrasjoner": [],
+       "behov": [],
+       "kilder": [
+        "R0-sdworx-meny (Links, Slideshow)"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    },
+    {
+     "id": "KOM.4",
+     "navn": "Meldinger",
+     "funksjoner": [
+      {
+       "id": "F-KOM-09",
+       "navn": "Meldinger mellom ansatt, HR og lønn",
+       "beskrivelse_md": "Den ansatte sender en henvendelse til lønn eller HR fra portalen, for eksempel et spørsmål om lønnsslippen. Henvendelsen blir en tråd med kategori, status og ansvarlig, og kan knyttes til en lønnsslipp, et fravær eller en sak. Lønn og HR kan også skrive til én ansatt eller en gruppe. I byråkontekst kan kunden skrive til byrået (BYR).",
+       "niva": "Modul",
+       "behovsvekt": "Bør",
+       "roller": [
+        "Ansatt",
+        "Lønnsansvarlig",
+        "HR",
+        "Byrå"
+       ],
+       "regler_md": "- Kategorien styrer hvem som ser tråden: lønnsspørsmål til lønn, helse til HR-administrator (helse).\n- Den ansatte får advarsel mot å sende helseopplysninger i en lønnstråd.\n- En tråd med lønnsdata krever lønnstilgang.\n- Oppbevaring etter kategori.\n- Varslingskanal etter aml. kap. 2 A (HR-21) ligger utenfor og skal ikke bygges her.",
+       "data": [
+        "D-Melding",
+        "D-Varsel",
+        "D-Lonnsslipp",
+        "D-Fravaer"
+       ],
+       "integrasjoner": [],
+       "behov": [
+        "HR-18"
+       ],
+       "kilder": [
+        "R0-sdworx-meny (People › Messages)",
+        "D-praksis §10.1"
+       ],
+       "merknad_md": ""
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "entiteter": [
+  {
+   "id": "D-Kompetanse",
+   "navn": "Kompetanse (katalogelement)",
+   "omrade": "UTV",
+   "beskrivelse_md": "Ett element i kundens kompetansekatalog: fagområde, språk, utdanning, sertifikat- eller autorisasjonstype. 1:n til D-Sertifikat (ansattes registreringer) og til D-Kompetansekrav. Gyldighet på elementet, ingen bitemporal historikk.",
+   "felt": [
+    {
+     "navn": "kompetanse_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "navn",
+     "type": "tekst(120)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: «Truckførerbevis T4»."
+    },
+    {
+     "navn": "kategori",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fagkompetanse | Språk | Utdanning | Sertifikat | Autorisasjon | Kurs | Annet."
+    },
+    {
+     "navn": "beskrivelse",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "nivaskala",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ingen | 1–3 | 1–5."
+    },
+    {
+     "navn": "har_utlop",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Styrer varsling (F-UTV-02)."
+    },
+    {
+     "navn": "standard_gyldighet_mnd",
+     "type": "heltall",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd når har_utlop = true. Eksempel: 24."
+    },
+    {
+     "navn": "krever_dokumentasjon",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "krever_godkjenning",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Selvregistrering må godkjennes av leder eller HR."
+    },
+    {
+     "navn": "ekstern_kode",
+     "type": "tekst(40)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Førerkortklasse, HPR-autorisasjonstype e.l. [verifiseres kodeverk]."
+    },
+    {
+     "navn": "skjermingsklasse",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Normal | Straffeopplysning (politiattest, art. 10) | Helsebetinget. Styrer tilgang."
+    },
+    {
+     "navn": "gyldig_fra_til",
+     "type": "datoperiode",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Utgått element kan ikke velges i nye registreringer."
+    }
+   ]
+  },
+  {
+   "id": "D-Sertifikat",
+   "navn": "Ansattkompetanse og sertifikat",
+   "omrade": "UTV",
+   "beskrivelse_md": "En persons registrerte kompetanse, sertifikat eller autorisasjon. Gjelder også kompetanse uten utløp. n:1 til D-Person og D-Kompetanse, valgfri 1:1 til D-Dokument (K1) og n:1 til D-Kurs. Gyldighetsperiode, og hver endring logges.",
+   "felt": [
+    {
+     "navn": "sertifikat_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "person_id",
+     "type": "ref D-Person",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kompetanse_id",
+     "type": "ref D-Kompetanse",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "niva",
+     "type": "heltall",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd når skalaen har nivå."
+    },
+    {
+     "navn": "oppnadd_dato",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gyldig_til",
+     "type": "dato",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd når kompetansen har utløp. Driver varsel 90, 30 og 0 dager før."
+    },
+    {
+     "navn": "utsteder",
+     "type": "tekst(120)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "nummer",
+     "type": "tekst(40)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sertifikat- eller HPR-nummer. For politiattest lagres ikke innhold, bare type og dato."
+    },
+    {
+     "navn": "dokument_id",
+     "type": "ref D-Dokument",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd når kompetansen krever dokumentasjon."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Registrert | Venter godkjenning | Godkjent | Avvist | Utløpt."
+    },
+    {
+     "navn": "godkjent_av",
+     "type": "ref D-Bruker",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "godkjent_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ansatt | HR | Kurs | Integrasjon:HPR | Import."
+    }
+   ]
+  },
+  {
+   "id": "D-Kompetansekrav",
+   "navn": "Kompetansekrav i jobbprofil",
+   "omrade": "UTV",
+   "beskrivelse_md": "Et krav i en jobbprofil. n:1 til D-Jobbprofil og D-Kompetanse. Brukes i GAP-analyse og i oversikten over manglende sertifikater.",
+   "felt": [
+    {
+     "navn": "krav_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "jobbprofil_id",
+     "type": "ref D-Jobbprofil",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kompetanse_id",
+     "type": "ref D-Kompetanse",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "minimumsniva",
+     "type": "heltall",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "obligatorisk",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Obligatorisk krav gir varsel ved mangel. Ønsket krav vises bare i GAP."
+    },
+    {
+     "navn": "frist_dager_etter_start",
+     "type": "heltall",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: HMS-kurs innen 90 dager."
+    },
+    {
+     "navn": "hjemmel",
+     "type": "tekst(200)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lov, forskrift eller internt krav."
+    },
+    {
+     "navn": "gyldig_fra_til",
+     "type": "datoperiode",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Jobbprofil",
+   "navn": "Jobbprofil",
+   "omrade": "UTV",
+   "beskrivelse_md": "Beskrivelse av en rolle med krav. 1:n til D-Kompetansekrav, n:m til D-Stilling (K1). Versjoneres med gyldighet.",
+   "felt": [
+    {
+     "navn": "jobbprofil_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "JobTitle.id",
+     "merknad": ""
+    },
+    {
+     "navn": "navn",
+     "type": "tekst(120)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "JobTitle.name",
+     "merknad": ""
+    },
+    {
+     "navn": "beskrivelse",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "JobTitle.description",
+     "merknad": ""
+    },
+    {
+     "navn": "formal_og_ansvar",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "stilling_ids",
+     "type": "liste ref D-Stilling",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kobling til stilling i K1."
+    },
+    {
+     "navn": "yrkeskode",
+     "type": "tekst(7)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "yrke (hint)",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "STYRK-08 som hint. Fasit for a-meldingen ligger på arbeidsforholdet (K1)."
+    },
+    {
+     "navn": "organisasjonsenhet_id",
+     "type": "ref D-Organisasjonsenhet",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "versjon",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Utkast | Aktiv | Arkivert."
+    },
+    {
+     "navn": "eier_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Kurs",
+   "navn": "Kurs og kursdeltakelse",
+   "omrade": "UTV",
+   "beskrivelse_md": "Et kurs eller en kursgjennomføring med deltakere. Fullført deltakelse lager D-Sertifikat når kurset gir kompetanse.",
+   "felt": [
+    {
+     "navn": "kurs_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "navn",
+     "type": "tekst(160)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "type",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Internt | Eksternt | E-læring."
+    },
+    {
+     "navn": "leverandor",
+     "type": "tekst(120)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gir_kompetanse_id",
+     "type": "ref D-Kompetanse",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tidspunkt_fra_til",
+     "type": "tidsperiode",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "varighet_timer",
+     "type": "desimal",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kapasitet",
+     "type": "heltall",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kostnad_per_deltaker",
+     "type": "beløp",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kan fordeles på dimensjon via REG [verifiseres behov]."
+    },
+    {
+     "navn": "lovpalagt_hjemmel",
+     "type": "tekst(120)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: aml. § 6-5 (verneombud)."
+    },
+    {
+     "navn": "deltakere",
+     "type": "liste",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per deltaker: person_id, status (Påmeldt | Godkjent | Fullført | Ikke fullført | Avmeldt), fullfort_dato."
+    }
+   ]
+  },
+  {
+   "id": "D-Samtalemal",
+   "navn": "Samtalemal",
+   "omrade": "UTV",
+   "beskrivelse_md": "Mal for en samtaletype. 1:n til D-Medarbeidersamtale. Versjoneres. En samtale peker på malversjonen den ble startet med.",
+   "felt": [
+    {
+     "navn": "mal_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "navn",
+     "type": "tekst(120)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "samtaletype",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Medarbeidersamtale | Oppfølgingssamtale | Prøvetidssamtale | Lønnssamtale | Sluttsamtale."
+    },
+    {
+     "navn": "versjon",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "seksjoner",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per spørsmål: tekst, svartype (skala | fritekst | ja/nei), utfylles_av (ansatt | leder | begge), fortrolig, lønnsdata."
+    },
+    {
+     "navn": "inkluderer_mal",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Viser målseksjon (D-Mal)."
+    },
+    {
+     "navn": "inkluderer_lonn",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lønnsfelt krever lønnstilgang."
+    },
+    {
+     "navn": "krever_bekreftelse",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sprak",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "nb | nn | en."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Utkast | Aktiv | Arkivert."
+    }
+   ]
+  },
+  {
+   "id": "D-Medarbeidersamtale",
+   "navn": "Medarbeidersamtale",
+   "omrade": "UTV",
+   "beskrivelse_md": "En gjennomført eller planlagt samtale mellom leder og ansatt. Flyttet fra K1 til K7. n:1 til D-Arbeidsforhold, D-Samtalemal og eventuelt en samtalerunde (D-Arbeidsflyt). 1:n til D-Mal. Referatet arkiveres som D-Dokument i personalmappen.",
+   "felt": [
+    {
+     "navn": "samtale_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "arbeidsforhold_id",
+     "type": "ref D-Arbeidsforhold",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "leder_id",
+     "type": "ref D-Person",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Leder på samtaletidspunktet."
+    },
+    {
+     "navn": "mal_id_versjon",
+     "type": "ref D-Samtalemal",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "samtalerunde_id",
+     "type": "ref D-Arbeidsflyt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "planlagt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Planlagt | Forberedes | Gjennomført | Bekreftet | Avlyst."
+    },
+    {
+     "navn": "forberedelse_ansatt",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Privat for den ansatte til den deles."
+    },
+    {
+     "navn": "forberedelse_leder",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "referat",
+     "type": "json",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd ved Gjennomført. Advarsel mot helseopplysninger."
+    },
+    {
+     "navn": "lonnsforslag",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Lønnsdata",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Bare i lønnssamtale. Leses av lønnsoppgjøret (LON, K2)."
+    },
+    {
+     "navn": "bekreftet_ansatt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "bekreftet_leder_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "dokument_id",
+     "type": "ref D-Dokument",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Arkivert PDF i personalmappen."
+    }
+   ]
+  },
+  {
+   "id": "D-Mal",
+   "navn": "Mål",
+   "omrade": "UTV",
+   "beskrivelse_md": "Individuelt mål eller enhetsmål. Kan ha overordnet mål (målfordeling). n:1 til D-Person eller D-Organisasjonsenhet, valgfri n:1 til D-Medarbeidersamtale.",
+   "felt": [
+    {
+     "navn": "mal_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "eier_type",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Person | Enhet."
+    },
+    {
+     "navn": "eier_id",
+     "type": "ref",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "overordnet_mal_id",
+     "type": "ref D-Mal",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tittel",
+     "type": "tekst(200)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "beskrivelse",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "maleindikator",
+     "type": "tekst(120)",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "frist",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "vekt",
+     "type": "desimal",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ikke startet | I rute | Forsinket | Oppnådd | Ikke oppnådd | Avbrutt."
+    },
+    {
+     "navn": "fremdrift_prosent",
+     "type": "desimal",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "samtale_id",
+     "type": "ref D-Medarbeidersamtale",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Oppfolgingssak",
+   "navn": "Oppfølgingssak (sykefravær)",
+   "omrade": "HEL",
+   "beskrivelse_md": "Ny entitet fra K7. Én sak per arbeidsforhold og oppfølgingstilfelle. Leser 1:n D-Sykefravaerstilfelle (K3) og eier 1:n D-Oppfolgingsplan, D-Dialogmote og D-Oppfolgingsoppgave. Hele saken er særlig kategori fordi den avslører at personen er syk. Frister er beregnet og lagres med regelversjon. Saken endrer aldri fraværet.",
+   "felt": [
+    {
+     "navn": "sak_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "arbeidsforhold_id",
+     "type": "ref D-Arbeidsforhold",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sykefravaerstilfelle_ids",
+     "type": "liste ref D-Sykefravaerstilfelle",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra FRA (K3). Sammenslåingsregel [verifiseres mot NAVs oppfølgingstilfelle]."
+    },
+    {
+     "navn": "forste_fravaersdag",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Startpunkt for alle frister."
+    },
+    {
+     "navn": "gjeldende_grad",
+     "type": "prosent",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lest fra K3. Styrer om dialogmøte 1 er plikt."
+    },
+    {
+     "navn": "helt_borte_fra",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Første dag med 100 % fravær."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Aktiv | Avsluttet friskmeldt | Avsluttet sluttet | Avsluttet annet."
+    },
+    {
+     "navn": "naermeste_leder_id",
+     "type": "ref D-Person",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Leder for oppfølgingen. Foreslås fra organisasjonen (K1)."
+    },
+    {
+     "navn": "naermeste_leder_meldt_nav_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "NAV",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Svar fra `POST /api/v1/linemanager`."
+    },
+    {
+     "navn": "hr_administrator_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "frister",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Plan 4 uker, dialogmøte 1 7 uker, aktivitet 8 uker, 26 uker, 12 måneder (aml. § 15-8) med regelversjon."
+    },
+    {
+     "navn": "maksdato_sykepenger",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "NAV",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra NAV eller K3. HEL beregner den ikke."
+    },
+    {
+     "navn": "unntak_apenbart_unodvendig",
+     "type": "liste",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per milepæl: begrunnelse, vurdert_av, dato."
+    },
+    {
+     "navn": "bht_involvert",
+     "type": "bool",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "ekstern_hms_referanse",
+     "type": "tekst(80)",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:avvikssystem",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "absence.workRelated",
+     "merknad": "Settes når fraværet er arbeidsrelatert (F-HEL-12)."
+    },
+    {
+     "navn": "avsluttet_dato",
+     "type": "dato",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "slettedato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra D-Oppbevaringsregel. Forslag 3 år etter avsluttet sak [verifiseres]."
+    }
+   ]
+  },
+  {
+   "id": "D-Oppfolgingsplan",
+   "navn": "Oppfølgingsplan",
+   "omrade": "HEL",
+   "beskrivelse_md": "En versjon av oppfølgingsplanen i en sak. Feltene følger NAVs `FollowUpPlanDTO` i LPS-API-et, slik at planen kan sendes uten omforming. Ny versjon ved hver endring. Sendte versjoner er låst med hash.",
+   "felt": [
+    {
+     "navn": "plan_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sak_id",
+     "type": "ref D-Oppfolgingssak",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "versjon",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Utkast | Til bekreftelse | Bekreftet | Sendt | Erstattet."
+    },
+    {
+     "navn": "typisk_arbeidsdag",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `typicalWorkday`."
+    },
+    {
+     "navn": "oppgaver_som_kan_gjores",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `tasksThatCanStillBeDone`."
+    },
+    {
+     "navn": "oppgaver_som_ikke_kan_gjores",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `tasksThatCanNotBeDone`."
+    },
+    {
+     "navn": "tidligere_tilrettelegging",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `previousFacilitation`."
+    },
+    {
+     "navn": "planlagt_tilrettelegging",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `plannedFacilitation`."
+    },
+    {
+     "navn": "andre_muligheter",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `otherFacilitationOptions`."
+    },
+    {
+     "navn": "oppfolging",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `followUp`."
+    },
+    {
+     "navn": "evalueringsdato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `evaluationDate`. Lager oppgave."
+    },
+    {
+     "navn": "ansatt_har_medvirket",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `employeeHasContributedToPlan`. Ved false kreves `employeeHasNotContributedToPlanDescription`."
+    },
+    {
+     "navn": "kontaktperson",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `contactPersonFullName`, `contactPersonPhoneNumber`, `contactPersonEmail`. Normalt nærmeste leder."
+    },
+    {
+     "navn": "send_til_nav",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `sendPlanToNav`, `needsHelpFromNav`, `needsHelpFromNavDescription`."
+    },
+    {
+     "navn": "send_til_fastlege",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `sendPlanToGeneralPractitioner`, `messageToGeneralPractitioner`."
+    },
+    {
+     "navn": "nav_uuid_og_status",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "NAV",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "NAV: `uuid`, `isSentToNavStatus`, `isSentToGeneralPractitionerStatus`."
+    },
+    {
+     "navn": "sendt_av_tid_hash",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Navngitt godkjenner, tidspunkt og hash av nyttelasten."
+    },
+    {
+     "navn": "bekreftet_av_ansatt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Dialogmote",
+   "navn": "Dialogmøte",
+   "omrade": "HEL",
+   "beskrivelse_md": "Et dialogmøte eller annet oppfølgingsmøte i en sak. Dialogmøte 1 innkalles av arbeidsgiver. Dialogmøte 2 og 3 innkalles av NAV og registreres fra syfo-dokumentporten eller manuelt. Feltene dekker dokumentasjonskravet i aml. § 4-6 femte ledd.",
+   "felt": [
+    {
+     "navn": "mote_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sak_id",
+     "type": "ref D-Oppfolgingssak",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "type",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Dialogmøte 1 | Dialogmøte 2 (NAV) | Dialogmøte 3 (NAV) | Annet oppfølgingsmøte."
+    },
+    {
+     "navn": "innkalt_av",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Arbeidsgiver | NAV."
+    },
+    {
+     "navn": "innkalling_sendt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd for Dialogmøte 1. Måles mot 7-ukersfristen."
+    },
+    {
+     "navn": "tidspunkt",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "form",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fysisk | Video | Telefon."
+    },
+    {
+     "navn": "deltakere_innkalt",
+     "type": "liste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Rolle: Ansatt | Nærmeste leder | Sykmelder | BHT | NAV | Tillitsvalgt | Annen."
+    },
+    {
+     "navn": "deltakere_motte",
+     "type": "liste",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd før møtet lukkes (aml. § 4-6 femte ledd)."
+    },
+    {
+     "navn": "ansatt_onsker_sykmelder",
+     "type": "bool",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sykmelder skal innkalles når arbeidstaker ønsker det."
+    },
+    {
+     "navn": "ansatt_samtykke_helsepersonell",
+     "type": "bool",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Behandler kan ikke innkalles mot arbeidstakers ønske."
+    },
+    {
+     "navn": "referat",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "nav_dokument_id",
+     "type": "tekst(64)",
+     "pakrevd": "Nei",
+     "kilde": "NAV",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Id fra syfo-dokumentporten (`DIALOGMOTE`)."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Planlagt | Gjennomført | Avlyst | Unnlatt (åpenbart unødvendig)."
+    },
+    {
+     "navn": "begrunnelse_unnlatt",
+     "type": "tekst",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Oppfolgingsoppgave",
+   "navn": "Oppfølgingsoppgave",
+   "omrade": "HEL",
+   "beskrivelse_md": "En lovpålagt eller avtalt milepæl i en sak. Hver oppgave speiles som D-Oppgave i innboksen (KOM) med nøytral tittel. Fristen beregnes på nytt når grad eller fravær endres, og gammel frist logges.",
+   "felt": [
+    {
+     "navn": "oppgave_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sak_id",
+     "type": "ref D-Oppfolgingssak",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "innboks_oppgave_id",
+     "type": "ref D-Oppgave",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "milepael",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Oppfølgingsplan | Plan til sykmelder | Dialogmøte 1 | Vurder dialogmøte (gradert) | Aktivitet 8 uker | Plan til NAV før dialogmøte | Delta i dialogmøte NAV | Melde nærmeste leder | Evaluere plan | 12 måneder."
+    },
+    {
+     "navn": "hjemmel",
+     "type": "tekst(60)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: «aml. § 4-6 tredje ledd»."
+    },
+    {
+     "navn": "frist",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "frist_regel_versjon",
+     "type": "tekst(20)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "ansvarlig_rolle",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Nærmeste leder | HR-administrator | Ansatt."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Åpen | Utført | Unntatt | Bortfalt | Forfalt."
+    },
+    {
+     "navn": "utfort_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "utfort_av",
+     "type": "ref D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "unntak_begrunnelse",
+     "type": "tekst",
+     "pakrevd": "Betinget",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd ved Unntatt."
+    },
+    {
+     "navn": "eskalert_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Særlig kategori",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Varselregel",
+   "navn": "Varselregel (varselkatalog)",
+   "omrade": "KOM",
+   "beskrivelse_md": "Ny entitet fra K7. Én rad per varseltype i katalogen, med standardverdier fra Brutto og kundens tilpasninger. Hendelsen eies av området som publiserer den. 1:n til D-Varsel.",
+   "felt": [
+    {
+     "navn": "varseltype",
+     "type": "tekst(60)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: `lonn.cutoff.naermer_seg`."
+    },
+    {
+     "navn": "eier_omrade",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Områdekode, for eksempel KJO eller HEL."
+    },
+    {
+     "navn": "hendelse",
+     "type": "tekst(80)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hendelsestype fra D-Hendelse, eller tidsregel."
+    },
+    {
+     "navn": "mottakerregel",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Roller, relasjon (leder for, stedfortreder) og enhet."
+    },
+    {
+     "navn": "tidsregel",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Eksempel: 3 og 1 virkedag før cut-off."
+    },
+    {
+     "navn": "kanaler",
+     "type": "liste kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "App | Push | E-post | SMS | Teams | Slack."
+    },
+    {
+     "navn": "obligatorisk",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kan ikke slås av av bruker eller kunde."
+    },
+    {
+     "navn": "innholdsklasse",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Nøytral | Intern. Nøytral betyr ingen persondata utenfor innlogget visning."
+    },
+    {
+     "navn": "malnokkel",
+     "type": "tekst(80)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tekstmal per språk."
+    },
+    {
+     "navn": "lager_oppgave",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lager også D-Oppgave."
+    },
+    {
+     "navn": "aktiv",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  },
+  {
+   "id": "D-Varsel",
+   "navn": "Varsel (levering)",
+   "omrade": "KOM",
+   "beskrivelse_md": "Ett varsel til én mottaker i én kanal. n:1 til D-Varselregel og D-Hendelse. Innholdet lagres som malnøkkel og parametre uten persondata for kanaler utenfor appen. Leveringsloggen oppbevares like lenge som revisjonsloggen når varselet er obligatorisk (S-avklaringer §1 pkt. 3) [verifiseres].",
+   "felt": [
+    {
+     "navn": "varsel_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "varseltype",
+     "type": "ref D-Varselregel",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "hendelse_id",
+     "type": "ref D-Hendelse",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tom for tidsstyrte varsler."
+    },
+    {
+     "navn": "mottaker_bruker_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kanal",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "App | Push | E-post | SMS | Teams | Slack."
+    },
+    {
+     "navn": "adresse_hash",
+     "type": "tekst(64)",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hash av e-post eller mobil. Brukes ved varsel på gammel kanal."
+    },
+    {
+     "navn": "tekst_parametre",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Bare id-er, datoer og typer. Aldri beløp, helse, fødselsnummer eller kontonummer."
+    },
+    {
+     "navn": "lenke",
+     "type": "url",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Dyplenke til innlogget visning."
+    },
+    {
+     "navn": "klient_id",
+     "type": "ref D-Klient",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Byrå."
+    },
+    {
+     "navn": "planlagt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Flyttes ved stille timer."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Planlagt | Sendt | Levert | Feilet | Lest | Undertrykt | Samlet."
+    },
+    {
+     "navn": "forsok",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "feilkode",
+     "type": "tekst(40)",
+     "pakrevd": "Nei",
+     "kilde": "Integrasjon:kanal",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sendt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "lest_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "dedup_nokkel",
+     "type": "tekst(128)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hendelse + mottaker + kanal."
+    }
+   ]
+  },
+  {
+   "id": "D-Oppgave",
+   "navn": "Oppgave (innboks)",
+   "omrade": "KOM",
+   "beskrivelse_md": "Ny entitet fra K7. Ett element i den felles innboksen. Peker på kilden (godkjenning, avvik, arbeidsflyttrinn, oppfølgingsoppgave, innsending, melding) og arver tilgangen derfra. Kildeområdet oppretter og lukker oppgaven. KOM eier modellen og visningen. Se også D-Godkjenning, D-Avvik og D-Kontrollsak, som oppretter oppgaver.",
+   "felt": [
+    {
+     "navn": "oppgave_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "type",
+     "type": "tekst(60)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.type",
+     "huma": "–",
+     "merknad": "Eksempel: `godkjenn.timer`, `avvik.beregning`, `hel.oppfolgingsplan`."
+    },
+    {
+     "navn": "tittel",
+     "type": "tekst(160)",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.label",
+     "huma": "–",
+     "merknad": "Nøytral for helse og lønn. Detaljer bare i kilden."
+    },
+    {
+     "navn": "kilde_omrade",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kilde_ref",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.uiPath",
+     "huma": "–",
+     "merknad": "Entitet-id og id i kilden."
+    },
+    {
+     "navn": "ansvarlig_bruker_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.assignedUserId",
+     "huma": "–",
+     "merknad": "Enten bruker eller rolle."
+    },
+    {
+     "navn": "ansvarlig_rolle",
+     "type": "kodeliste",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "delegert_til_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra D-Delegering eller manuelt."
+    },
+    {
+     "navn": "frist",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.dueDate",
+     "huma": "–",
+     "merknad": "Format: type, referanse, periode, forfallsdato, kilde, regel (S-avklaringer §4 pkt. 21)."
+    },
+    {
+     "navn": "prioritet",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kritisk | Høy | Normal."
+    },
+    {
+     "navn": "blokkerer_kjoring_id",
+     "type": "ref D-Lonnskjoring",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Satt når oppgaven må løses før kjøringen kan godkjennes."
+    },
+    {
+     "navn": "klient_id",
+     "type": "ref D-Klient",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "DashboardTaskRes.tenantId",
+     "huma": "–",
+     "merknad": "Byrå."
+    },
+    {
+     "navn": "tilgangsklasse",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Arves fra kilden: Normal | Lønn | Helse."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Åpen | Pågår | Utført | Lukket av kilde | Avbrutt | Forfalt."
+    },
+    {
+     "navn": "opprettet_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "utfort_tid_av",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tidspunkt og bruker."
+    }
+   ]
+  },
+  {
+   "id": "D-Melding",
+   "navn": "Melding (henvendelse)",
+   "omrade": "KOM",
+   "beskrivelse_md": "En melding i en tråd mellom ansatt, HR, lønn og byrå. Kategorien styrer tilgang og oppbevaring.",
+   "felt": [
+    {
+     "navn": "melding_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "trad_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "kategori",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lønn | HR | Fravær | Helse | Byrå | Annet. Helse går bare til HR-administrator (helse)."
+    },
+    {
+     "navn": "avsender_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "mottaker",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Person, rolle eller gruppe."
+    },
+    {
+     "navn": "emne",
+     "type": "tekst(160)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tekst",
+     "type": "tekst",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kan inneholde lønnsdata eller helse. Klassen settes av kategori."
+    },
+    {
+     "navn": "vedlegg_ids",
+     "type": "liste ref D-Dokument",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "knyttet_til",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Lønnsslipp, fravær, sak e.l."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ny | Under behandling | Besvart | Lukket."
+    },
+    {
+     "navn": "ansvarlig_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "sendt_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "lest_tid",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "slettedato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Fra D-Oppbevaringsregel per kategori."
+    }
+   ]
+  },
+  {
+   "id": "D-Kunngjoring",
+   "navn": "Kunngjøring, lenke og karusell",
+   "omrade": "KOM",
+   "beskrivelse_md": "Innhold på startsiden med målgruppe. Typen skiller kunngjøring, lenke og karusellbilde.",
+   "felt": [
+    {
+     "navn": "kunngjoring_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "type",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kunngjøring | Lenke | Karusell."
+    },
+    {
+     "navn": "tittel",
+     "type": "tekst(160)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tekst",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "bilde_eller_url",
+     "type": "url",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "malgruppe",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Virksomhet, underenhet, enhet, lokasjon, rolle, ansattgruppe."
+    },
+    {
+     "navn": "publiseres_fra",
+     "type": "tidspunkt",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "utloper",
+     "type": "tidspunkt",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "festet",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "krever_lesebekreftelse",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "varsle",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Sender varsel via F-KOM-01."
+    },
+    {
+     "navn": "forfatter_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "lesebekreftelser",
+     "type": "liste",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per person: tidspunkt."
+    }
+   ]
+  },
+  {
+   "id": "D-Arbeidsflytmal",
+   "navn": "Arbeidsflytmal",
+   "omrade": "KOM",
+   "beskrivelse_md": "Definisjon av en prosess. Viser til D-Sjekkliste (K1) for innhold. Versjoneres. 1:n til D-Arbeidsflyt. Se også D-Godkjenningsregel (regler for godkjenningstrinn).",
+   "felt": [
+    {
+     "navn": "mal_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "navn",
+     "type": "tekst(120)",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "prosesstype",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Ansettelse | Endring | Avslutning | Samtalerunde | Sykefraværsoppfølging | Annet."
+    },
+    {
+     "navn": "versjon",
+     "type": "heltall",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "trigger",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hendelse (f.eks. `hr.employment.planned.v1`), dato eller manuelt."
+    },
+    {
+     "navn": "betingelser",
+     "type": "json",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Arbeidsforholdstype, enhet, ansattgruppe."
+    },
+    {
+     "navn": "trinn",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per trinn: navn, rolle, fristregel, sjekkliste_id, automatisk handling, avhengigheter, hjemmel, kreves_for_lonn."
+    },
+    {
+     "navn": "eier_omrade",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "gjelder_for",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Gyldighet",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Virksomhet eller enhet."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Utkast | Aktiv | Arkivert."
+    }
+   ]
+  },
+  {
+   "id": "D-Arbeidsflyt",
+   "navn": "Arbeidsflyt (prosessinstans)",
+   "omrade": "KOM",
+   "beskrivelse_md": "En kjørende prosess for en person eller enhet. Trinn blir D-Oppgave. Status «klar for lønn» beregnes fra trinn merket kreves_for_lonn. Se også D-Godkjenning: godkjenningstrinn i en arbeidsflyt bør bruke den samme modellen.",
+   "felt": [
+    {
+     "navn": "arbeidsflyt_id",
+     "type": "uuid",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "mal_id_versjon",
+     "type": "ref D-Arbeidsflytmal",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "prosesstype",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "arbeidsforhold_id",
+     "type": "ref D-Arbeidsforhold",
+     "pakrevd": "Betinget",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Tom for samtalerunde på enhet."
+    },
+    {
+     "navn": "utlost_av",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Hendelse-id eller bruker."
+    },
+    {
+     "navn": "referansedato",
+     "type": "dato",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Startdato, endringsdato eller sluttdato. Frister regnes herfra."
+    },
+    {
+     "navn": "status",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Planlagt | Pågår | Venter | Fullført | Avbrutt."
+    },
+    {
+     "navn": "trinnstatus",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Per trinn: status, oppgave_id, utført av og tid."
+    },
+    {
+     "navn": "klar_for_lonn",
+     "type": "bool",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "lonnskjoring_id",
+     "type": "ref D-Lonnskjoring",
+     "pakrevd": "Nei",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Kjøringen endringen kommer med i."
+    },
+    {
+     "navn": "etter_cutoff_begrunnelse",
+     "type": "tekst",
+     "pakrevd": "Nei",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Påkrevd når endringen kom etter cut-off (VK-47)."
+    },
+    {
+     "navn": "ansvarlig_id",
+     "type": "ref D-Bruker",
+     "pakrevd": "Ja",
+     "kilde": "Bruker",
+     "historikk": "Nei",
+     "sensitivitet": "Personopplysning",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    },
+    {
+     "navn": "tilgangsklasse",
+     "type": "kodeliste",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": "Normal | Lønn | Helse. Helse skjuler prosessen i oversikten for andre enn helserollen."
+    },
+    {
+     "navn": "startet_fullfort_tid",
+     "type": "json",
+     "pakrevd": "Ja",
+     "kilde": "Beregnet",
+     "historikk": "Nei",
+     "sensitivitet": "Intern",
+     "amelding": "–",
+     "tripletex": "–",
+     "reai": "–",
+     "huma": "–",
+     "merknad": ""
+    }
+   ]
+  }
+ ],
+ "sporsmal": [
+  {
+   "tittel": "Grensen mellom KOM og LED/POR for innboks og varsler",
+   "omrade": "KOM",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "LED (K5) har «én innboks for godkjenninger», og POR har varsler. KOM har varslingsmotor og felles oppgaveinnboks. Forslag: KOM eier D-Oppgave, D-Varsel og D-Varselregel som motor. LED eier godkjenningsregler og ledervisning, POR eier visningen for ansatte. D-Godkjenning (K3) lager D-Oppgave. Gjelder F-KOM-01–03. Avklares med K3 og K5."
+  },
+  {
+   "tittel": "Nye entiteter fra K7: D-Oppfolgingssak, D-Oppgave og D-Varselregel",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "Disse står ikke på felles entitetsliste. D-Oppfolgingssak trengs fordi saken har egne felt (leder for oppfølging, frister, unntak) som ikke hører hjemme i K3s D-Sykefravaerstilfelle. D-Oppgave og D-Varselregel trengs for innboksen og varselkatalogen. Ber om at de legges inn i listen."
+  },
+  {
+   "tittel": "Oppfølgingstilfelle mot sykefraværstilfelle, og når fristene starter",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "NAV",
+   "md": "Skal HEL slå sammen fravær med samme 16-dagersregel som arbeidsgiverperioden (K3), eller etter NAVs regel for oppfølgingstilfelle? Teller egenmeldingsdager før sykmeldingen med i 4- og 7-ukersfristen? Hvordan regnes 7 uker når fraværet først er delvis og så helt? Feil her gir feil frister og mulig brudd på aml. § 4-6. Gjelder F-HEL-01 og F-HEL-02. Forslag: spør NAV via samarbeidspartnerkanalen og les navikt-koden for oppfølgingstilfelle."
+  },
+  {
+   "tittel": "Tilgang og flyt for NAVs syfo-API-er",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "NAV",
+   "md": "LPS-API-et for oppfølgingsplan bruker scope `nav:oppfolgingsplan/lps.write` med delegering i Altinn. Nærmeste leder og dokumentporten bruker systembruker. Kan alt gå på samme systembruker? Vises en plan sendt via API i Dine sykmeldte? Kan et LPS svare på aktivitetskravet og NAVs forespørsel før dialogmøte 2? Gjelder F-HEL-06–08."
+  },
+  {
+   "tittel": "Oppbevaring og behandlingsgrunnlag for HR-data",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "Jurist",
+   "md": "Slettefrist for oppfølgingssaker (forslag 3 år etter avsluttet sak), medarbeidersamtaler, meldinger i kategorien helse og opplysninger om politiattest. Bekreft art. 9 nr. 2 b som grunnlag for HEL. Henger sammen med S-avklaringer §7 (rådgiver for art. 9). Gjelder F-HEL-09, F-UTV-02, F-UTV-08 og F-KOM-09."
+  },
+  {
+   "tittel": "Én helserolle eller tre",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "«Fravær – helse» (FT-58, K3), «Lønn – helse» (R3 E9.8) og «HR-administrator (helse)» (HEL) overlapper. Forslag: K6 eier én helserolle med tre visninger. Gjelder F-HEL-09."
+  },
+  {
+   "tittel": "Skal UTV bygges eller løses med partner?",
+   "omrade": "UTV",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "R2 satte kompetanse (HR-19), avvik (HR-22) og læringsplattform (VK-H18) til «Ikke nå, partner». Medarbeidersamtaler (VK-H12) er Må for å erstatte Huma fullt ut. Forslag når HR-utvidelsen kommer: bygg samtaler og sertifikater med utløp, og la resten være partner eller integrasjon."
+  },
+  {
+   "tittel": "BHT-leverandør på virksomheten",
+   "omrade": "HEL",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "F-HEL-05 trenger bedriftshelsetjeneste (leverandør, kontaktperson, avtalenummer) på D-Virksomhet. K1 bør legge til feltene."
+  }
+ ]
+}

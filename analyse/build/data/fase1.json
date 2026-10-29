@@ -1,0 +1,1100 @@
+{
+ "fase1": {
+  "tema": [
+   [
+    "P",
+    "Fase 1: produkt og omfang",
+    "Disse avgjør resten. Sjur, Peter og Sander bør svare på dem sammen."
+   ],
+   [
+    "T",
+    "Team og arbeidsform",
+    ""
+   ],
+   [
+    "A",
+    "Arkitektur i Rust",
+    ""
+   ],
+   [
+    "D",
+    "Data og database",
+    ""
+   ],
+   [
+    "M",
+    "Maskinporten, systembruker og Skatteetaten",
+    "Avstemmingsrapporten krever Maskinporten, systembruker og riktig tilgangspakke for hver kunde."
+   ],
+   [
+    "K",
+    "Avstemming og kontroller",
+    ""
+   ],
+   [
+    "R",
+    "Regnskapskilden",
+    "Gjelder hvis A07 skal avstemmes mot regnskapet."
+   ],
+   [
+    "G",
+    "Godkjenningsflyt",
+    "Noen kunder vil at avdelingsledere godkjenner, andre vil ha flere ledd, og noen vil bare at regnskapsfører godkjenner før utbetalingen går."
+   ],
+   [
+    "B",
+    "Utbetaling og open banking",
+    "Utbetalingsfiler skal sendes via en open banking-leverandør som skal velges. Peter svarer."
+   ],
+   [
+    "U",
+    "Frontend og grafer",
+    ""
+   ],
+   [
+    "I",
+    "Innlogging og tilgang",
+    ""
+   ],
+   [
+    "H",
+    "Hosting, drift og sikkerhet",
+    ""
+   ],
+   [
+    "X",
+    "Assistenten (senere)",
+    "Den kommer senere, men grensene bør bestemmes nå."
+   ],
+   [
+    "L",
+    "På vei mot lønnskjøring (fase 2)",
+    ""
+   ]
+  ],
+  "sporsmal": [
+   {
+    "id": "P01",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hva skal A07-dataene avstemmes mot?",
+    "why": "A07 viser hva Skatteetaten har mottatt. Byråene bruker mest tid på å stemme av lønn mot a-melding og regnskap: lønnskostnad i 5000-serien, skattetrekk på 2600, AGA på 2770 og feriepenger på 2940.",
+    "forslag": "Regnskapet først. Det gir mest verdi og krever bare lesetilgang.",
+    "valg": [
+     "Regnskapet (hovedbok)",
+     "Kundens lønnssystem",
+     "Begge",
+     "Bare kontroll av a-ordningsdata"
+    ]
+   },
+   {
+    "id": "P02",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvem er første bruker?",
+    "why": "Svaret avgjør tilgangspakke (regnskapsforer-lonn eller a-ordning), type systembruker og om skjermen starter med en klientliste eller én virksomhet.",
+    "forslag": "Regnskapsbyrå først. Ett byrå gir mange klienter, og avstemming er byråenes smerte.",
+    "valg": [
+     "Regnskapsbyrå",
+     "Virksomhet med egen lønn",
+     "Begge"
+    ]
+   },
+   {
+    "id": "P03",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvor kommer ansattoversikten fra i fase 1?",
+    "why": "Svaret avgjør om Brutto allerede nå er stedet der ansatte registreres, og hvor mye skjema vi må bygge.",
+    "forslag": "Hentes fra a-ordningen og berikes fra regnskapssystemets API. Brutto blir først master når lønnskjøring kommer.",
+    "valg": [
+     "Fra a-ordningen",
+     "Fra regnskaps- eller lønnssystemets API",
+     "Registreres i Brutto",
+     "Kombinasjon"
+    ]
+   },
+   {
+    "id": "P04",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Når er fase 1 ferdig?",
+    "why": "Uten et konkret mål vokser fase 1.",
+    "forslag": "Tre pilotkunder eller byråklienter blir avstemt hver måned i tre måneder uten regneark, og alle avvik har en forklaring.",
+    "valg": []
+   },
+   {
+    "id": "P05",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Hvilke kontroller skal med først?",
+    "why": "Kontrollene er det kunden ser verdien i.",
+    "forslag": "1) Forskuddstrekk i a-meldingen mot 2600. 2) AGA mot 2770 og 5400. 3) Opplysningspliktig lønn mot lønnskostnad. 4) Feriepengegrunnlag og avsetning på 2940. 5) Lønn uten aktivt arbeidsforhold. 6) Arbeidsforhold uten lønn. 7) Manglende stillingsprosent eller timer. 8) Store endringer mot forrige måned. 9) Feil Skatteetaten har registrert (sumInntekterMedFeil).",
+    "valg": []
+   },
+   {
+    "id": "P06",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Hvilke grafer gir mest verdi?",
+    "why": "",
+    "forslag": "Lønnskostnad per måned de siste 12 månedene, antall ansatte og årsverk over tid, AGA og forskuddstrekk per termin, og avvik over tid per klient.",
+    "valg": []
+   },
+   {
+    "id": "P07",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Hvor langt tilbake skal vi hente data?",
+    "why": "Mer historikk gir bedre trender, men flere kall og mer persondata å beskytte.",
+    "forslag": "13 måneder rullerende.",
+    "valg": [
+     "Inneværende år",
+     "13 måneder",
+     "3 år",
+     "5 år"
+    ]
+   },
+   {
+    "id": "P08",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Skal godkjenningsflyt og utbetaling være med i fase 1?",
+    "why": "Begge er store. Fase 1 som beskrevet leser bare data.",
+    "forslag": "Fase 2, men godkjenningsmotoren og datamodellen designes i fase 1.",
+    "valg": [
+     "Fase 1",
+     "Fase 2",
+     "Usikker"
+    ]
+   },
+   {
+    "id": "P09",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Når skal Brutto kjøre lønn selv?",
+    "why": "Svaret avgjør hvor mye av modellen for ansatte og arbeidsforhold som må være klar for beregning allerede nå.",
+    "forslag": "Sett et måltidspunkt, og bygg modellen i fase 1 som om lønnskjøring kommer.",
+    "valg": []
+   },
+   {
+    "id": "T01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvem eier hva?",
+    "why": "Tre personer skal dekke mange fagfelt: backend, frontend, myndighetsintegrasjon, infrastruktur og open banking.",
+    "forslag": "Ett forslag: Peter tar utbetaling, open banking og infrastruktur. Sander tar myndighetsintegrasjon og avstemming. Frontend deles.",
+    "valg": []
+   },
+   {
+    "id": "T02",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvor mye Rust-erfaring har dere, og hvor mye skal kodeagenter skrive?",
+    "why": "Svaret påvirker valg av rammeverk og hvor strenge reglene for gjennomgang må være.",
+    "forslag": "Kodeagenter kan skrive mye. Alt som berører penger, tilgang og myndigheter skal likevel leses av et menneske før det slås sammen.",
+    "valg": []
+   },
+   {
+    "id": "T03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan skal repoet se ut?",
+    "why": "",
+    "forslag": "Monorepo med Cargo workspace: crates/ for domenet, apps/api, apps/worker, web/ for frontend og infra/.",
+    "valg": [
+     "Monorepo med Cargo workspace",
+     "Flere repoer"
+    ]
+   },
+   {
+    "id": "T04",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hva må CI godkjenne før noe slås sammen?",
+    "why": "",
+    "forslag": "rustfmt, clippy med -D warnings, tester, sjekk av SQL mot migrasjonene, cargo-deny for lisenser og sårbarheter, og lint og tester for frontend.",
+    "valg": []
+   },
+   {
+    "id": "T05",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan dokumenterer vi beslutninger?",
+    "why": "",
+    "forslag": "Korte ADR-er i repoet, én per beslutning.",
+    "valg": []
+   },
+   {
+    "id": "A01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Modulær monolitt eller flere tjenester?",
+    "why": "",
+    "forslag": "Modulær monolitt med én binær for API og én for bakgrunnsjobber. Domenet deles i crates med klare grenser.",
+    "valg": [
+     "Modulær monolitt",
+     "Flere tjenester"
+    ]
+   },
+   {
+    "id": "A02",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket web-rammeverk?",
+    "why": "",
+    "forslag": "axum med tokio og tower.",
+    "valg": [
+     "axum",
+     "actix-web",
+     "Annet"
+    ]
+   },
+   {
+    "id": "A03",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilken API-stil?",
+    "why": "Frontend, assistenten og senere partnere skal bruke det samme API-et.",
+    "forslag": "REST med OpenAPI generert fra koden, for eksempel med utoipa. Frontend får en typesikker klient fra det.",
+    "valg": [
+     "REST med OpenAPI",
+     "GraphQL",
+     "gRPC"
+    ]
+   },
+   {
+    "id": "A04",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan kjører vi bakgrunnsjobber?",
+    "why": "Henting av A07 er bestilling og polling, med nye forsøk og svar som «for mange kall» (429).",
+    "forslag": "Jobbkø i Postgres (SKIP LOCKED) og outbox. Ingen Redis eller Kafka før det trengs.",
+    "valg": []
+   },
+   {
+    "id": "A05",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan håndterer vi feil?",
+    "why": "",
+    "forslag": "Typede feil i domenet (thiserror), kontekst i kanten (anyhow) og stabile feilkoder i API-et. Feil fra myndighetene blir saker i en kontrollkø.",
+    "valg": []
+   },
+   {
+    "id": "A06",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvor ligger konfigurasjon og hemmeligheter?",
+    "why": "",
+    "forslag": "Hemmeligheter i et administrert nøkkelhvelv. Aldri i repoet eller i miljøfiler i produksjon.",
+    "valg": []
+   },
+   {
+    "id": "D01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilken database?",
+    "why": "",
+    "forslag": "PostgreSQL, administrert og i Norge.",
+    "valg": [
+     "PostgreSQL",
+     "Annet"
+    ]
+   },
+   {
+    "id": "D02",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket databasebibliotek?",
+    "why": "",
+    "forslag": "sqlx med SQL-migrasjoner i repoet og kompileringssjekk av spørringer.",
+    "valg": [
+     "sqlx",
+     "Diesel",
+     "SeaORM"
+    ]
+   },
+   {
+    "id": "D03",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan skiller vi kundene i databasen?",
+    "why": "Den verste feilen vi kan gjøre er å vise én kundes data til en annen.",
+    "forslag": "Delt database med kunde-id på alle rader, og radnivåsikkerhet (RLS) i Postgres som ekstra sperre.",
+    "valg": [
+     "Delt database med RLS",
+     "Skjema per kunde",
+     "Database per kunde"
+    ]
+   },
+   {
+    "id": "D04",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan modellerer vi byrå og klienter?",
+    "why": "Kjeden er byrå, klient, opplysningspliktig og virksomhet. Byråansatte skal bare se klientene de har tilgang til.",
+    "forslag": "Kunden eier dataene. Byrået får tilgang gjennom en tilgangsavtale per klient.",
+    "valg": []
+   },
+   {
+    "id": "D05",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan lagrer vi pengebeløp?",
+    "why": "",
+    "forslag": "rust_decimal i koden og NUMERIC i databasen. Aldri flyttall.",
+    "valg": [
+     "rust_decimal",
+     "i64 i øre",
+     "Annet"
+    ]
+   },
+   {
+    "id": "D06",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvilke id-er bruker vi?",
+    "why": "",
+    "forslag": "UUIDv7 internt. Organisasjonsnummer, fødselsnummer og arbeidsforhold-ID lagres som egne felt.",
+    "valg": []
+   },
+   {
+    "id": "D07",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Lagrer vi rådataene fra Skatteetaten?",
+    "why": "Revisor og feilsøking trenger det opprinnelige svaret.",
+    "forslag": "Ja. Det rå svaret lagres kryptert og uendret, pluss normaliserte tabeller. En ny henting gir en ny versjon og overskriver aldri den gamle.",
+    "valg": []
+   },
+   {
+    "id": "D08",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvor mye historikk trenger datamodellen nå?",
+    "why": "Lønnskjøring trenger både «gjelder fra» og «registrert når». Avstemming klarer seg med måned og registreringstid.",
+    "forslag": "Registreringstid på alt nå. Tabellene for arbeidsforhold lages slik at «gjelder fra» kan legges på senere.",
+    "valg": []
+   },
+   {
+    "id": "D09",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan krypterer vi fødselsnummer og kontonummer?",
+    "why": "Sjur har avklart at begge krypteres og at all lesing logges.",
+    "forslag": "Feltkryptering med egen nøkkel per kunde, og en søkbar indeks (blind index) for oppslag på fødselsnummer.",
+    "valg": []
+   },
+   {
+    "id": "D10",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan ser revisjonsloggen ut?",
+    "why": "",
+    "forslag": "En tabell som bare tar imot nye rader: hvem, hva, når og hvorfor. Egen logg for hvem som har lest sensitive felt.",
+    "valg": []
+   },
+   {
+    "id": "D11",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvor lenge oppbevarer vi data, og når sletter vi?",
+    "why": "Regnskapsmateriale skal oppbevares i fem år.",
+    "forslag": "Hentede a-ordningsdata behandles som dokumentasjon: oppbevares i fem år og slettes deretter. Avklares med jurist.",
+    "valg": []
+   },
+   {
+    "id": "M01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvem eier oppkoblingen mot Digdir og Skatteetaten?",
+    "why": "Samarbeidsportalen, bruksvilkår, Maskinporten-klient og registrering i Altinns systemregister tar anslagsvis 3–5 måneder. Dette er kritisk sti.",
+    "forslag": "Én navngitt eier som starter denne uka.",
+    "valg": []
+   },
+   {
+    "id": "M02",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvilket selskap er leverandør?",
+    "why": "Maskinporten-klient, bruksvilkår og databehandleravtaler knyttes til ett organisasjonsnummer.",
+    "forslag": "Avklar selskapet nå.",
+    "valg": []
+   },
+   {
+    "id": "M03",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilken nøkkel bruker vi mot Maskinporten?",
+    "why": "",
+    "forslag": "Egen nøkkel registrert hos Digdir. Den lagres og signerer i et administrert nøkkelhvelv, og vi har en rutine for rotasjon.",
+    "valg": [
+     "Virksomhetssertifikat",
+     "Egen nøkkel (JWK)"
+    ]
+   },
+   {
+    "id": "M04",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Lager vi egen Maskinporten-klient i Rust?",
+    "why": "",
+    "forslag": "En liten egen modul som lager signert JWT og bruker reqwest. Token caches per scope og systembruker, og modulen testes godt mot testmiljøet.",
+    "valg": []
+   },
+   {
+    "id": "M05",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilken type systembruker først?",
+    "why": "",
+    "forslag": "Følger svaret på P02.",
+    "valg": [
+     "Systembruker for klientsystem (byrå)",
+     "Standard systembruker (virksomhet)",
+     "Begge"
+    ]
+   },
+   {
+    "id": "M06",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan henter vi avstemmingsrapporten?",
+    "why": "API-et er bestilling og polling. Fra 12.10.2026 utelates felt med null-verdi, og tidsstempler har tidssone.",
+    "forslag": "Nattlig jobb per opplysningspliktig. Bestill på nytt bare ved 429 eller status FEILET, og tål felt som mangler.",
+    "valg": []
+   },
+   {
+    "id": "M07",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket testmiljø og hvilke testdata?",
+    "why": "",
+    "forslag": "Skatteetatens testmiljø med syntetiske personer fra Tenor. Ekte data finnes bare i produksjon.",
+    "valg": []
+   },
+   {
+    "id": "M08",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan logger vi kall mot myndighetene?",
+    "why": "",
+    "forslag": "Hvert kall logges med tid, status og korrelasjons-id, uten persondata. Rå svar lagres kryptert separat.",
+    "valg": []
+   },
+   {
+    "id": "M09",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan kobler byrået klientene til systembrukeren?",
+    "why": "API-et for klientdelegering krever et ID-porten-token som veksles til et Altinn-token. Det er uklart om en privat leverandør får en ID-porten-klient til dette. API-et har heller ikke paginering ennå.",
+    "forslag": "Start med Altinn-portalen som standard, med en ferdig instruks og statussjekk per klient i Brutto. Søk Digdir om ID-porten-klient parallelt.",
+    "valg": [
+     "Altinn-portalen",
+     "Klientdelegerings-API",
+     "Begge"
+    ]
+   },
+   {
+    "id": "M10",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Når og hvor ofte henter vi A07, og hvordan unngår vi å treffe kvoten?",
+    "why": "A07 trengs ikke hver natt. Den hentes når brukeren avstemmer, etter a-meldingsfristen den 5. og etter erstatningsmeldinger. Skatteetaten tillater 5 samtidige kall per API per virksomhet. Det er uklart om grensen gjelder byrået eller hver klient når vi bruker byråets token, og det merkes når et byrå henter for mange klienter samtidig.",
+    "forslag": "Hent når brukeren ber om det, og automatisk etter fristen den 5. Samlehenting for mange klienter går gjennom en jobbkø med kvote per byrå. Mål grensen i TT02 før vi bestemmer oss.",
+    "valg": [
+     "Når brukeren ber om det",
+     "Etter fristen hver måned",
+     "Begge"
+    ]
+   },
+   {
+    "id": "M11",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hva tester vi i TT02 for byråflyten?",
+    "why": "Kildene spriker om byrået får regnskapsforer-lonn bare når det er registrert som regnskapsfører i Brreg, eller også ved delegering fra klienten. NAVs inntektsmeldinger via byrå er heller ikke bekreftet.",
+    "forslag": "En testplan med testbyrå og testklienter fra Tenor: forespørsel om systembruker, klientkobling, A07-henting, skattekort, K27 og tilbaketrekking. Resultatet avgjør hvordan vi bygger.",
+    "valg": []
+   },
+   {
+    "id": "M12",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan logger vi hvem i byrået som gjorde hva?",
+    "why": "Skatteetaten ser bare byråets systembruker, ikke personen. GRFS krever at byrået kan dokumentere hvem som hentet og sendte for hvilken klient.",
+    "forslag": "Hvert kall mot myndighetene logges med person, klient, tjeneste, tid og korrelasjons-id, også i fase 1 der vi bare leser.",
+    "valg": []
+   },
+   {
+    "id": "M13",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Hvordan håndterer vi byråer som også kjører egen lønn, og lokallag?",
+    "why": "Et byrå med egen lønn trenger én systembruker for egen virksomhet og én for klientene. Lokallag og sentralledd kan ikke bruke byråpakken, fordi den bare gis til autoriserte regnskapsførere.",
+    "forslag": "Datamodellen støtter flere systembrukere per kunde fra start. Lokallag får standard systembruker hver, med en veiviser.",
+    "valg": []
+   },
+   {
+    "id": "K01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Skal kontrollene være kode eller konfigurasjon?",
+    "why": "",
+    "forslag": "Reglene skrives i Rust med id, versjon og forklaring. Terskler og toleranser er data per kunde.",
+    "valg": [
+     "Kode",
+     "Konfigurasjon",
+     "Kode med terskler som data"
+    ]
+   },
+   {
+    "id": "K02",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hva inneholder et avvik?",
+    "why": "",
+    "forslag": "Type, periode, opplysningspliktig, virksomhet og eventuelt ansatt. Forventet og faktisk beløp, forklaring, status (åpen, forklart, løst) og hvem som endret status.",
+    "valg": []
+   },
+   {
+    "id": "K03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilke toleranser og hvilken avrunding?",
+    "why": "",
+    "forslag": "Øre som standard. Kunden kan sette en toleranse i kroner per kontroll.",
+    "valg": []
+   },
+   {
+    "id": "K04",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Når kjøres kontrollene?",
+    "why": "",
+    "forslag": "Ved hver henting. Resultatet lagres, og kontrollene kan kjøres på nytt.",
+    "valg": [
+     "Ved hver henting",
+     "Når brukeren ber om det",
+     "Begge"
+    ]
+   },
+   {
+    "id": "K05",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvem kan markere et avvik som forklart?",
+    "why": "",
+    "forslag": "En rolle med skrivetilgang. Det kreves alltid en kommentar, og det logges alltid.",
+    "valg": []
+   },
+   {
+    "id": "R01",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvilke regnskapssystemer først?",
+    "why": "",
+    "forslag": "Tripletex og PowerOffice Go, med SAF-T-fil som reserve.",
+    "valg": [
+     "Tripletex",
+     "PowerOffice Go",
+     "ReAi",
+     "Fiken",
+     "Visma"
+    ]
+   },
+   {
+    "id": "R02",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan setter vi opp kontoer per kunde?",
+    "why": "",
+    "forslag": "Standardkonteringen fra Sjurs A07-mapping, med mulighet for å overstyre per kunde.",
+    "valg": []
+   },
+   {
+    "id": "R03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan lagrer vi kundenes nøkler og token til regnskapssystemene?",
+    "why": "",
+    "forslag": "Kryptert per kunde i nøkkelhvelvet. Aldri i klartekst i databasen.",
+    "valg": []
+   },
+   {
+    "id": "G01",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvor fleksibel skal godkjenningsflyten være?",
+    "why": "Noen vil at avdelingsledere godkjenner, andre vil ha flere ledd, og noen vil bare at regnskapsfører godkjenner før betalingen går.",
+    "forslag": "Kunden konfigurerer flyten selv, med ferdige maler: bare regnskapsfører, leder pluss lønn, eller flere ledd.",
+    "valg": [
+     "Faste maler",
+     "Konfigurerbar per kunde",
+     "Begge"
+    ]
+   },
+   {
+    "id": "G02",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hva kan styre hvem som må godkjenne et ledd?",
+    "why": "",
+    "forslag": "Rolle, avdeling, beløpsgrense, type (lønnskjøring, timer, fravær, utlegg) og om noe avviker fra forrige måned.",
+    "valg": []
+   },
+   {
+    "id": "G03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Skal leddene godkjenne etter hverandre eller samtidig?",
+    "why": "",
+    "forslag": "Begge deler: ledd i rekkefølge, og flere godkjennere i samme ledd der én eller alle må godkjenne.",
+    "valg": [
+     "Etter hverandre",
+     "Samtidig",
+     "Begge"
+    ]
+   },
+   {
+    "id": "G04",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan sikrer vi arbeidsdeling?",
+    "why": "Den som kjørte eller endret noe, skal ikke kunne godkjenne det. Den som verifiserte en ny konto, skal ikke godkjenne den første betalingen til kontoen.",
+    "forslag": "Motoren håndhever reglene for arbeidsdeling uansett hvordan kunden har satt opp flyten.",
+    "valg": []
+   },
+   {
+    "id": "G05",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan fungerer delegering og stedfortreder?",
+    "why": "",
+    "forslag": "Tidsbegrenset delegering med logg. En godkjenning som venter for lenge, går videre etter en regel.",
+    "valg": []
+   },
+   {
+    "id": "G06",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hva skjer hvis noe endres etter at det er godkjent?",
+    "why": "",
+    "forslag": "Det godkjente innholdet får en hash. Endres noe, starter godkjenningen på nytt.",
+    "valg": []
+   },
+   {
+    "id": "G07",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Skal alle områdene bruke én godkjenningsmotor?",
+    "why": "Lønnskjøring, timer, fravær og utlegg trenger alle godkjenning.",
+    "forslag": "Ja. Én generell motor (tilstandsmaskin) som alle områdene bruker.",
+    "valg": []
+   },
+   {
+    "id": "B01",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Hvilke open banking-leverandører vurderer du?",
+    "why": "Valget avgjør bankdekning, pris og avtaleform.",
+    "forslag": "Sammenlign dem på dekning for bedriftskontoer og støtte for mange betalinger i én operasjon.",
+    "valg": [
+     "Neonomics",
+     "Aritma",
+     "Zdata",
+     "Tink",
+     "Enable Banking",
+     "Annet"
+    ]
+   },
+   {
+    "id": "B02",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Støtter leverandøren lønn til mange mottakere i én betaling fra bedriftskonto?",
+    "why": "PSD2-betalinger dekker ikke alltid samlebetaling for bedrifter. Noen banker krever egne bedrifts-API-er.",
+    "forslag": "Sjekk DNB, Nordea, SpareBank 1, Handelsbanken og Danske Bank.",
+    "valg": []
+   },
+   {
+    "id": "B03",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Hvem signerer betalingen, og hvordan?",
+    "why": "Sjurs prinsipp: Brutto flytter aldri penger selv. Kunden godkjenner i banken.",
+    "forslag": "Betalingen startes fra Brutto. Kunden, eller regnskapsfører med fullmakt, signerer med BankID i bankens flyt.",
+    "valg": []
+   },
+   {
+    "id": "B04",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Kan regnskapsfører starte og signere på vegne av kunden?",
+    "why": "Svaret avgjør om byrået kan godkjenne og sende i én flyt.",
+    "forslag": "Avklar fullmaktsmodellen med banken og leverandøren.",
+    "valg": []
+   },
+   {
+    "id": "B05",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Støtter leverandøren KID og egen betaling for trekk?",
+    "why": "Forskuddstrekk og utleggstrekk skal betales med KID første virkedag etter lønnsutbetalingen.",
+    "forslag": "Gjør det til et krav: KID per betalingslinje og egen betaling for trekk.",
+    "valg": []
+   },
+   {
+    "id": "B06",
+    "prio": 2,
+    "hvem": "Peter",
+    "q": "Hvordan får vi status tilbake?",
+    "why": "",
+    "forslag": "Status per betaling (startet, signert, utført, avvist) via webhook eller polling, koblet til lønnskjøringen.",
+    "valg": []
+   },
+   {
+    "id": "B07",
+    "prio": 2,
+    "hvem": "Peter",
+    "q": "Kan lønnsbetalinger skjules i banken?",
+    "why": "Ansatte med tilgang til nettbanken skal ikke se enkeltlønner.",
+    "forslag": "Sjekk om leverandøren støtter merking som lønn, og om bankene skjuler slike betalinger.",
+    "valg": []
+   },
+   {
+    "id": "B08",
+    "prio": 2,
+    "hvem": "Peter",
+    "q": "Skal vi ha bankfil som reserve?",
+    "why": "",
+    "forslag": "Ja. Behold pain.001-fil for de tilfellene leverandøren eller banken ikke støtter flyten.",
+    "valg": []
+   },
+   {
+    "id": "B09",
+    "prio": 1,
+    "hvem": "Peter",
+    "q": "Hvem har konsesjon og ansvar?",
+    "why": "Den som starter betalinger, må ha konsesjon som betalingsfullmektig eller bruke en leverandør som har det.",
+    "forslag": "Bruk leverandørens konsesjon. Avklar avtale, ansvar og pris per betaling.",
+    "valg": []
+   },
+   {
+    "id": "U01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket frontend-rammeverk?",
+    "why": "Rust i backend betyr ikke Rust i frontend. Økosystemet for tabeller og grafer er størst i TypeScript.",
+    "forslag": "TypeScript med React eller Svelte, med typesikker klient generert fra OpenAPI.",
+    "valg": [
+     "TypeScript med React",
+     "TypeScript med Svelte",
+     "Rust/WASM (Leptos eller Dioxus)",
+     "Annet"
+    ]
+   },
+   {
+    "id": "U02",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilke komponenter og hvilket designsystem?",
+    "why": "",
+    "forslag": "Et lite eget designsystem på et etablert grunnlag, for eksempel Radix eller shadcn/ui, med tokens fra start.",
+    "valg": []
+   },
+   {
+    "id": "U03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket grafbibliotek?",
+    "why": "",
+    "forslag": "Velg ett og bruk det overalt.",
+    "valg": [
+     "ECharts",
+     "Recharts",
+     "Observable Plot",
+     "uPlot",
+     "Annet"
+    ]
+   },
+   {
+    "id": "U04",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hva krever vi av universell utforming?",
+    "why": "Offentlige og større kunder krever WCAG 2.1 AA.",
+    "forslag": "Krav fra dag én.",
+    "valg": []
+   },
+   {
+    "id": "I01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan logger brukerne inn i fase 1?",
+    "why": "Vi viser fødselsnummer og lønn.",
+    "forslag": "BankID via megler, for eksempel Criipto/Idura eller Signicat, og i tillegg passkeys.",
+    "valg": [
+     "BankID via megler",
+     "E-post og passkey",
+     "Begge"
+    ]
+   },
+   {
+    "id": "I02",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Hvilke roller trengs i fase 1?",
+    "why": "",
+    "forslag": "Byråadministrator, byråmedarbeider, kundebruker, lesetilgang (revisor) og plattformadministrator.",
+    "valg": []
+   },
+   {
+    "id": "I03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan håndterer vi sesjoner?",
+    "why": "",
+    "forslag": "Sesjon lagret på serveren, med httpOnly-cookie.",
+    "valg": [
+     "Sesjon på server med cookie",
+     "JWT"
+    ]
+   },
+   {
+    "id": "I04",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvor sjekkes tilgang?",
+    "why": "",
+    "forslag": "Én policy-modul i Rust som alle endepunkter går gjennom, og RLS i databasen som ekstra sperre.",
+    "valg": []
+   },
+   {
+    "id": "H01",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvilken skyleverandør og region?",
+    "why": "Lagres regnskapsmateriale utenfor Norge, må hver kunde sende melding til skattekontoret (bokføringsforskriften § 7-5). Med data i Norge slipper kundene det.",
+    "forslag": "Både data og backup i Norge.",
+    "valg": [
+     "Azure Norway East",
+     "Norsk leverandør",
+     "AWS eller Google i Sverige/EU",
+     "Annet"
+    ]
+   },
+   {
+    "id": "H02",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilket kjøremiljø?",
+    "why": "",
+    "forslag": "Administrerte containere. Rust gir små binærer med få avhengigheter.",
+    "valg": [
+     "Kubernetes",
+     "Administrerte containere",
+     "Virtuelle maskiner"
+    ]
+   },
+   {
+    "id": "H03",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Infrastruktur som kode?",
+    "why": "",
+    "forslag": "OpenTofu eller Terraform.",
+    "valg": [
+     "OpenTofu/Terraform",
+     "Pulumi",
+     "Annet"
+    ]
+   },
+   {
+    "id": "H04",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvilke miljøer?",
+    "why": "",
+    "forslag": "Lokalt, test (mot Skatteetatens testmiljø) og produksjon. Ekte data finnes bare i produksjon.",
+    "valg": []
+   },
+   {
+    "id": "H05",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan logger og overvåker vi?",
+    "why": "",
+    "forslag": "tracing og OpenTelemetry. Ingen persondata i loggene.",
+    "valg": []
+   },
+   {
+    "id": "H06",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan tar vi backup og gjenoppretter?",
+    "why": "",
+    "forslag": "Daglig backup og en ekstra kryptert kopi på en annen lokasjon i Norge. Gjenoppretting testes jevnlig.",
+    "valg": []
+   },
+   {
+    "id": "H07",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan sikrer vi avhengighetene?",
+    "why": "",
+    "forslag": "cargo-deny og cargo-audit i CI, låste versjoner og SBOM.",
+    "valg": []
+   },
+   {
+    "id": "H08",
+    "prio": 2,
+    "hvem": "Alle tre",
+    "q": "Pentest og databehandleravtale før første kunde?",
+    "why": "",
+    "forslag": "Ja til begge, og en enkel trusselmodell allerede nå.",
+    "valg": []
+   },
+   {
+    "id": "X01",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Skal assistenten bruke det samme API-et som frontend?",
+    "why": "",
+    "forslag": "Ja. Verktøyene er de samme endepunktene, med samme tilgangskontroll.",
+    "valg": []
+   },
+   {
+    "id": "X02",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvilke data får språkmodellen se?",
+    "why": "Sjur har avklart at lønnsdata ikke skal sendes til en språkmodell i første versjon.",
+    "forslag": "Bare metadata, statuskoder og id-er til å begynne med.",
+    "valg": []
+   },
+   {
+    "id": "X03",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Hvilken leverandør og region for språkmodellen?",
+    "why": "",
+    "forslag": "Claude via AWS Bedrock eller Google Vertex i EU, uten lagring hos leverandøren.",
+    "valg": []
+   },
+   {
+    "id": "X04",
+    "prio": 3,
+    "hvem": "Alle tre",
+    "q": "Hvilke enkle oppgaver skal assistenten gjøre først?",
+    "why": "",
+    "forslag": "Finne en ansatt eller klient, forklare et avvik med kontrollens egen forklaring og lage en rapport.",
+    "valg": []
+   },
+   {
+    "id": "X05",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvor går grensene for assistenten?",
+    "why": "",
+    "forslag": "Assistenten kan aldri sende, bestille, godkjenne eller betale. Det håndheves i tilgangskontrollen, ikke i prompten.",
+    "valg": []
+   },
+   {
+    "id": "L01",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan løser vi forskuddstrekket når lønnskjøring kommer?",
+    "why": "Skatteetaten publiserer trekkrutinen som Java-kode, uten lisensfil.",
+    "forslag": "Port den til Rust, og test mot Skatteetatens kode til alt treffer 100 %. Avklar lisensen.",
+    "valg": [
+     "Port til Rust med Skatteetatens kode som fasit",
+     "Kjør Java-koden som egen tjeneste",
+     "Bruk trekktabellene"
+    ]
+   },
+   {
+    "id": "L02",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Skal lønnsmotoren være en ren funksjon?",
+    "why": "",
+    "forslag": "Ja. Samme input og samme regelversjon gir alltid samme resultat. Sett crate-grensen allerede nå.",
+    "valg": []
+   },
+   {
+    "id": "L03",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Skal ansattmodellen i fase 1 og fase 2 være den samme?",
+    "why": "",
+    "forslag": "Ja. Tabellene for person og arbeidsforhold lages for lønnskjøring fra start.",
+    "valg": []
+   }
+  ],
+  "tittel": "Fase 1: spørsmål til Peter og Sander",
+  "ingress_md": "Fase 1 skal være smal, og målet er å være veldig god på lønn. Brutto bygges i Rust, men arkitekturen er ikke bestemt. Svar direkte her. Hvert spørsmål har et forslag, så du kan velge og legge til en kommentar. Svarene lagres og vises for alle tre.",
+  "kort": [
+   {
+    "tittel": "Oversikt over alle ansatte",
+    "tag": "Fase 1",
+    "tekst": "Alle ansatte og arbeidsforhold per klient eller virksomhet, hentet fra a-ordningen og eventuelt regnskapssystemet."
+   },
+   {
+    "tittel": "Avstemming med A07",
+    "tag": "Fase 1",
+    "tekst": "Avstemmingsrapporten hentes fra Skatteetaten (avstemmingsrapport-amelding 1.0.2) via Maskinporten og systembruker. Byrå bruker tilgangspakken regnskapsforer-lonn, virksomheter bruker a-ordning."
+   },
+   {
+    "tittel": "Kontroller og grafer",
+    "tag": "Fase 1",
+    "tekst": "Enkle kontroller som finner avvik med forklaring, og noen grafer over tid."
+   },
+   {
+    "tittel": "Godkjenningsflyt",
+    "tag": "Fase 1 eller 2",
+    "tekst": "Kunden setter opp sin egen flyt. Det kan være avdelingsledere, flere ledd, eller bare regnskapsfører før utbetaling."
+   },
+   {
+    "tittel": "Utbetaling via open banking",
+    "tag": "Fase 1 eller 2",
+    "tekst": "Utbetalingsfiler sendes via en open banking-leverandør som ikke er valgt ennå. Peter vet mest om dette."
+   },
+   {
+    "tittel": "Innebygd assistent",
+    "tag": "Senere",
+    "tekst": "Gjør enkle oppgaver. Den kommer senere, men API-et og tilgangsgrensene bør designes for den nå."
+   }
+  ],
+  "vurdering_md": "**Ja, med fire presiseringer.** Et lesende verktøy for avstemming er en god start. Brutto sender ingenting til Skatteetaten, så risikoen er lav. Byråene får verdi raskt, fordi avstemming er en av de største tidstyvene deres. Og arbeidet bygger grunnmuren resten trenger: Maskinporten og systembruker, flere kunder i samme løsning, ansattmodellen og personvernet.\n\n1. **Fase 1 er lønnskontroll, ikke lønnskjøring.** Brutto beregner ikke lønn og sender ikke a-melding i fase 1. Det er et godt valg, men det bør være bevisst. «Veldig god på lønn» betyr da veldig god på å finne og forklare feil.\n2. **Avstemmingen trenger noe å avstemme mot.** A07 viser hva Skatteetaten har mottatt. Verdien kommer når det sammenlignes med regnskapet: lønnskostnad, skattetrekk på 2600, AGA på 2770 og feriepenger på 2940. Se spørsmål P01.\n3. **Myndighetsoppkoblingen er kritisk sti.** Bruksvilkår hos Skatteetaten, Maskinporten-klient og registrering i Altinns systemregister tar anslagsvis 3–5 måneder. Det bør startes nå. Se M01.\n4. **Godkjenning og utbetaling er store nok til å være egne leveranser.** De passer i fase 2. Godkjenningsmotoren og datamodellen bør likevel designes i fase 1.",
+  "flyter": [
+   {
+    "navn": "Enkel",
+    "steg": [
+     "Lønn kjører",
+     "Regnskapsfører godkjenner",
+     "Open banking: kunden signerer"
+    ]
+   },
+   {
+    "navn": "Med ledere",
+    "steg": [
+     "Avdelingsleder godkjenner timer og tillegg",
+     "Lønnsansvarlig",
+     "Økonomisjef",
+     "Bank"
+    ]
+   },
+   {
+    "navn": "Byrå",
+    "steg": [
+     "Byrå kjører",
+     "Kunden godkjenner",
+     "Regnskapsfører sender",
+     "Bank (signering etter fullmakt)"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,796 @@
+<meta charset="utf-8">
+<title>Brutto lønnssystem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87,600;87,700;87,800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: fast toppfelt med faner. Lesevisninger er én kolonne med brede tabeller i egne rullefelt.
+   Områder og Datafelt har indeks til venstre (sticky på desktop) og innholdet i hovedfeltet. */
+/*__CSS__*/
+</style>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand"><span class="mark">Brut<span class="net">to</span></span><span class="sub" id="sub"></span></div>
+    <nav class="tabs" id="tabs" aria-label="Visninger"></nav>
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+<footer class="wrap foot" id="foot"></footer>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var VIEWS = [
+    ["oversikt", "Oversikt"], ["fase1", "Fase 1"], ["natt", "Nattens funn"], ["meny", "Menyer"], ["omrader", "Områder og funksjoner"], ["datafelt", "Datafelt"], ["behov", "Behov"],
+    ["marked", "Marked"], ["praksis", "Lønn i praksis"], ["myndigheter", "Myndigheter"], ["moduler", "Moduler og 2026"],
+    ["arkitektur", "Arkitektur"], ["beslutninger", "Beslutninger"], ["videre", "Veien videre"], ["sporsmal", "Åpne spørsmål"]
+  ];
+  var app = document.getElementById("app");
+  var IDX = {};   // id -> {view, parent?}
+  var AREAS = D.omrader || [], ENTS = D.entiteter || [];
+  var AREA = {}, ENT = {}, USES = {};
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+  function h(tag, attrs, html) {
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) { if (attrs[k] != null) e.setAttribute(k, attrs[k]); }
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+  function txt(tag, attrs, text) { var e = h(tag, attrs); e.textContent = text == null ? "" : text; return e; }
+  if (window.marked) marked.setOptions({ gfm: true, breaks: false, headerIds: false, mangle: false });
+  function md(src) {
+    var raw = window.marked ? marked.parse(String(src || "")) : "<p>" + esc(src) + "</p>";
+    var clean = window.DOMPurify ? DOMPurify.sanitize(raw) : esc(src);
+    var box = h("div", { "class": "md" }, clean);
+    box.querySelectorAll("table").forEach(function (t) { var w = h("div", { "class": "tbl" }); t.parentNode.insertBefore(w, t); w.appendChild(t); });
+    box.querySelectorAll("a[href^='http']").forEach(function (a) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); });
+    linkify(box);
+    return box;
+  }
+  var XRE = /\b(B\d{1,2}|Q\d{1,3}|N\d{2}|FL\d{1,2}|F-[A-Z]{2,3}-\d{2,3}|D-[A-Z][A-Za-z]+|P-[A-Z]{2,3}\d{1,2}|[A-Z]{2,3}-[A-Z]{0,2}\d{1,3})\b/g;
+  function linkify(root) {
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        while (p && p !== root) { if (/^(A|CODE|PRE)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT; p = p.parentNode; }
+        XRE.lastIndex = 0;
+        return XRE.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+      }
+    });
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var s = n.nodeValue, frag = document.createDocumentFragment(), last = 0, m;
+      XRE.lastIndex = 0;
+      while ((m = XRE.exec(s))) {
+        if (!IDX[m[1]]) continue;
+        frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        frag.appendChild(xref(m[1])); last = m.index + m[1].length;
+      }
+      if (last === 0) return;
+      frag.appendChild(document.createTextNode(s.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function xref(id, label) { var a = h("a", { "class": "xref", href: "#" + id }); a.textContent = label || id; return a; }
+  function refList(ids) {
+    var w = h("span", { "class": "refs" });
+    (ids || []).forEach(function (id) { w.appendChild(IDX[id] ? xref(id) : txt("span", { "class": "mono" }, id)); });
+    return w;
+  }
+  function chipFor(kind, val) {
+    var v = String(val || ""), cls = "chip";
+    if (kind === "status") cls += /^avklart/i.test(v) ? " st-avklart" : /delvis/i.test(v) ? " st-delvis" : /stopp/i.test(v) ? " st-stopper" : " st-forslag";
+    if (kind === "prio") cls += /^m(å|a)/i.test(v) ? " p-ma" : /^b/i.test(v) ? " p-bor" : /^k/i.test(v) ? " p-kan" : " p-ikke";
+    if (kind === "niva") cls += /kjerne/i.test(v) ? " n-kjerne" : /modul/i.test(v) ? " n-modul" : /integr/i.test(v) ? " n-integrasjon" : "";
+    if (kind === "sens") cls += /særlig|saerlig/i.test(v) ? " s-saerlig" : /lønn|lonn/i.test(v) ? " s-lonn" : /person/i.test(v) ? " s-person" : "";
+    return txt("span", { "class": cls }, v);
+  }
+  function item(id, title, chips, bodyFn, cls) {
+    var d = h("details", { "class": "item" + (cls ? " " + cls : ""), id: id || null });
+    var s = h("summary");
+    var t = h("span", { "class": "s-title" });
+    if (id) t.appendChild(txt("span", { "class": "id" }, id));
+    t.appendChild(document.createTextNode(title || ""));
+    s.appendChild(t);
+    var c = h("span", { "class": "chips" }); (chips || []).forEach(function (x) { if (x) c.appendChild(x); }); s.appendChild(c);
+    d.appendChild(s);
+    var b = h("div", { "class": "body" }); d.appendChild(b);
+    var done = false;
+    function fill() { if (!done) { done = true; bodyFn(b); } }
+    d.addEventListener("toggle", function () { if (d.open) fill(); });
+    d._fill = fill;
+    return d;
+  }
+  function sectionList(secs, opts) {
+    opts = opts || {};
+    var useToc = opts.toc !== false && secs.length > 2;
+    var wrap = h("div", { "class": useToc ? "split" : "stack" });
+    if (useToc) {
+      var toc = h("nav", { "class": "toc", "aria-label": "Innhold" });
+      toc.appendChild(txt("div", { "class": "label" }, "Innhold"));
+      var ol = h("ol");
+      secs.forEach(function (s) { var li = h("li"); var a = h("a", { href: "#" + s.id }); a.textContent = s.tittel; li.appendChild(a); ol.appendChild(li); });
+      toc.appendChild(ol); wrap.appendChild(toc);
+    }
+    var main = h("div", { "class": "prose", style: "max-width:none" });
+    secs.forEach(function (s) {
+      var sec = h("section", { "class": "sec", id: s.id });
+      sec.appendChild(txt("h2", null, s.tittel));
+      var body = md(s.md); body.style.marginTop = "12px"; body.style.maxWidth = "84ch"; sec.appendChild(body);
+      main.appendChild(sec);
+    });
+    wrap.appendChild(main);
+    return wrap;
+  }
+  function viewHead(title, leadMd) {
+    var f = document.createDocumentFragment();
+    f.appendChild(txt("h1", null, title));
+    if (leadMd) { var l = md(leadMd); l.classList.add("lead"); f.appendChild(l); }
+    return f;
+  }
+  function kvRow(dl, label, val) {
+    if (val == null || val === "" || (Array.isArray(val) && !val.length)) return;
+    dl.appendChild(txt("dt", null, label));
+    var dd = h("dd");
+    if (val instanceof Node) dd.appendChild(val); else dd.appendChild(md(val));
+    dl.appendChild(dd);
+  }
+  function sel(id, label, values) {
+    var l = h("label", { "for": id }); l.appendChild(document.createTextNode(label));
+    var s = h("select", { id: id }); s.appendChild(txt("option", { value: "" }, "Alle"));
+    values.forEach(function (k) { s.appendChild(txt("option", { value: k }, k)); });
+    l.appendChild(s); return l;
+  }
+  function uniq(arr) { var o = {}, r = []; arr.forEach(function (x) { if (x && !o[x]) { o[x] = 1; r.push(x); } }); return r.sort(function (a, b) { return a.localeCompare(b, "nb"); }); }
+
+  /* ---------- indekser ---------- */
+  var NF = 0, NG = 0;
+  AREAS.forEach(function (a) {
+    AREA[a.id] = a; IDX["omr-" + a.id] = { view: "omrader" }; a._n = 0;
+    (a.grupper || []).forEach(function (g) {
+      NG++; IDX["grp-" + g.id] = { view: "omrader" };
+      (g.funksjoner || []).forEach(function (f) {
+        NF++; a._n++; IDX[f.id] = { view: "omrader" };
+        (f.data || []).forEach(function (d) { (USES[d] = USES[d] || []).push(f.id); });
+      });
+    });
+  });
+  var NFIELD = 0;
+  ENTS.forEach(function (e) { ENT[e.id] = e; IDX[e.id] = { view: "datafelt" }; NFIELD += (e.felt || []).length; if (AREA[e.omrade]) AREA[e.omrade]._e = (AREA[e.omrade]._e || 0) + 1; });
+  (D.beslutninger || []).forEach(function (b) { IDX[b.id] = { view: "beslutninger" }; });
+  (D.sporsmal || []).forEach(function (q) { IDX["Q" + q.nr] = { view: "sporsmal" }; });
+  (D.natt && D.natt.funn || []).forEach(function (f) { IDX[f.id] = { view: "natt" }; });
+  ["marked", "praksis", "myndigheter", "moduler", "behov", "arkitektur", "videre"].forEach(function (k) { ((D[k] || {}).seksjoner || []).forEach(function (s) { IDX[s.id] = { view: k }; }); });
+  (D.arkitektur && D.arkitektur.flyter || []).forEach(function (f) { IDX[f.id] = { view: "arkitektur" }; });
+  var NBEHOV = 0;
+  (D.behov && D.behov.personas || []).forEach(function (p) {
+    IDX[p.id] = { view: "behov" };
+    (p.behov || []).forEach(function (n) { NBEHOV++; if (!IDX[n.id]) IDX[n.id] = { view: "behov", parent: p.id }; });
+  });
+
+  var builders = {};
+
+  /* ---------- oversikt ---------- */
+  builders.oversikt = function (v) {
+    var o = D.oversikt || {};
+    v.appendChild(viewHead(o.tittel || "Oversikt", o.ingress_md));
+    var st = h("div", { "class": "stack" }); st.style.marginTop = "18px";
+    var facts = h("div", { "class": "facts" });
+    (o.fakta || []).concat([
+      { tall: AREAS.length, tekst: "områder kartlagt" },
+      { tall: NF, tekst: "funksjoner" },
+      { tall: ENTS.length, tekst: "entiteter" },
+      { tall: NFIELD, tekst: "datafelt" },
+      { tall: NBEHOV, tekst: "behov fra personas" }
+    ]).forEach(function (f) { var d = h("div", { "class": "fact" }); d.appendChild(txt("b", null, f.tall)); d.appendChild(txt("span", null, f.tekst)); facts.appendChild(d); });
+    st.appendChild(facts);
+    if (o.kortversjon_md) { var kv = h("section", { "class": "prose" }); kv.appendChild(txt("h2", null, "Kortversjon")); var m = md(o.kortversjon_md); m.style.marginTop = "12px"; kv.appendChild(m); st.appendChild(kv); }
+    st.appendChild(areaMap());
+    var g2 = h("div", { "class": "grid2" });
+    if (o.datoer && o.datoer.length) {
+      var p = h("section", { "class": "panel" }); p.appendChild(txt("h3", null, "Datoer fra myndighetene"));
+      var ul = h("ul", { "class": "dates" }); var today = (D.meta && D.meta.dato) || "";
+      o.datoer.forEach(function (d) { var li = h("li", { "class": d.iso && today && d.iso < today ? "past" : (d.viktig ? "now" : "") }); li.appendChild(txt("span", { "class": "d" }, d.dato)); li.appendChild(md(d.tekst)); ul.appendChild(li); });
+      p.appendChild(ul); g2.appendChild(p);
+    }
+    if (o.prosess_md) { var pp = h("section", { "class": "panel" }); pp.appendChild(txt("h3", null, "Slik ble kartleggingen laget")); var pm = md(o.prosess_md); pm.style.marginTop = "10px"; pp.appendChild(pm); g2.appendChild(pp); }
+    st.appendChild(g2);
+    if (o.kritikk_md) { var kr = h("section", { "class": "prose" }); kr.appendChild(txt("h2", null, "Hva kritikerne fant")); var km = md(o.kritikk_md); km.style.marginTop = "12px"; kr.appendChild(km); st.appendChild(kr); }
+    if (o.start_naa_md) { var sn = h("section", { "class": "prose" }); sn.appendChild(txt("h2", null, "Neste steg")); var sm = md(o.start_naa_md); sm.style.marginTop = "12px"; sn.appendChild(sm); st.appendChild(sn); }
+    v.appendChild(st);
+  };
+  function firstSentence(s) { s = String(s || "").replace(/[*_`#>\[\]]/g, "").replace(/\(https?:[^)]*\)/g, ""); var m = s.match(/^.*?[.!?](\s|$)/); return (m ? m[0] : s).trim(); }
+  function areaMap() {
+    var sec = h("section"); var head = h("div", { "class": "section-head" });
+    head.appendChild(txt("h2", null, "Områdekart"));
+    var a = h("a", { href: "#omrader" }); a.textContent = "Alle områder og funksjoner"; head.appendChild(a);
+    sec.appendChild(head);
+    var wrap = h("div", { "class": "clusters" });
+    var used = {};
+    var kl = (D.klynger || []).slice();
+    var rest = AREAS.filter(function (x) { return !kl.some(function (k) { return k.omrader.indexOf(x.id) >= 0; }); }).map(function (x) { return x.id; });
+    if (rest.length) kl.push({ navn: "Øvrige", omrader: rest });
+    kl.forEach(function (k) {
+      var ids = k.omrader.filter(function (id) { return AREA[id]; });
+      if (!ids.length) return;
+      var c = h("div", { "class": "cluster" });
+      c.appendChild(txt("h3", null, k.navn));
+      if (k.tekst) c.appendChild(txt("p", { "class": "cdesc" }, k.tekst));
+      var grid = h("div", { "class": "areas" });
+      ids.forEach(function (id) {
+        used[id] = 1; var ar = AREA[id];
+        var card = h("a", { "class": "area", href: "#omr-" + id });
+        card.appendChild(txt("span", { "class": "code" }, id));
+        card.appendChild(txt("span", { "class": "aname" }, ar.navn));
+        card.appendChild(txt("span", { "class": "ameta" }, ar._n + " funksjoner · " + (ar._e || 0) + " entiteter"));
+        card.appendChild(txt("span", { "class": "ains" }, firstSentence(ar.ingress_md)));
+        grid.appendChild(card);
+      });
+      c.appendChild(grid); wrap.appendChild(c);
+    });
+    sec.appendChild(wrap);
+    return sec;
+  }
+
+  /* ---------- områder og funksjoner ---------- */
+  builders.omrader = function (v) {
+    v.appendChild(viewHead("Områder og funksjoner", D.omrader_ingress_md || "Alt Brutto kan måtte gjøre, sortert i områder og grupper. Ingenting her er valgt for MVP ennå. **Nivå** sier om funksjonen hører i kjernen, i en egen modul eller kommer via integrasjon. **Behovsvekt** er hentet fra behovskartleggingen og er grunnlag for scope senere."));
+    var rm = h("div", { "class": "rm" }); rm.style.marginTop = "24px";
+    var idx = h("nav", { "class": "rm-index", "aria-label": "Områder" }); idx.appendChild(txt("div", { "class": "label" }, "Områder"));
+    var ol = h("ol");
+    AREAS.forEach(function (a) { var li = h("li"); var l = h("a", { href: "#omr-" + a.id }); l.innerHTML = '<span class="n">' + esc(a.id) + '</span><span>' + esc(a.navn) + '</span><span class="c">' + a._n + '</span>'; li.appendChild(l); ol.appendChild(li); });
+    idx.appendChild(ol); rm.appendChild(idx);
+    var main = h("div", { "class": "rm-main" });
+    var allF = []; AREAS.forEach(function (a) { (a.grupper || []).forEach(function (g) { (g.funksjoner || []).forEach(function (f) { allF.push(f); }); }); });
+    var fl = h("div", { "class": "filters", role: "search" });
+    var sl = h("label", { "for": "o-sok", "class": "grow" }); sl.appendChild(document.createTextNode("Søk i funksjoner")); var si = h("input", { id: "o-sok", type: "search", placeholder: "f.eks. feriepenger, systembruker, honorar" }); si.style.width = "100%"; sl.appendChild(si); fl.appendChild(sl);
+    fl.appendChild(sel("o-niva", "Nivå", uniq(allF.map(function (f) { return f.niva; }))));
+    fl.appendChild(sel("o-vekt", "Behovsvekt", uniq(allF.map(function (f) { return f.behovsvekt; }))));
+    var roles = []; allF.forEach(function (f) { (f.roller || []).forEach(function (r) { roles.push(r); }); });
+    fl.appendChild(sel("o-rolle", "Rolle", uniq(roles)));
+    var fases = uniq(allF.map(function (f) { return f.fase1; }));
+    if (fases.length) fl.appendChild(sel("o-fase", "Fase 1", fases));
+    var ob = h("button", { type: "button", "class": "btn" }); ob.textContent = "Åpne alle"; fl.appendChild(ob);
+    main.appendChild(fl);
+    var cnt = h("div", { "class": "count", "aria-live": "polite" }); cnt.style.marginTop = "8px"; main.appendChild(cnt);
+    var fEls = [], gEls = [], aEls = [];
+    AREAS.forEach(function (a) {
+      var sec = h("section", { "class": "area-sec", id: "omr-" + a.id });
+      var head = h("div", { "class": "area-head" });
+      var tt = h("div", { "class": "t-title" }); tt.appendChild(txt("span", { "class": "t-id" }, a.id)); tt.appendChild(txt("h2", null, a.navn)); head.appendChild(tt);
+      if (a.ingress_md) head.appendChild(md(a.ingress_md));
+      head.appendChild(txt("div", { "class": "count" }, (a.grupper || []).length + " grupper · " + a._n + " funksjoner · " + (a._e || 0) + " entiteter"));
+      sec.appendChild(head);
+      (a.grupper || []).forEach(function (g) {
+        var gs = h("div", { "class": "group", id: "grp-" + g.id });
+        var gh = h("h3"); gh.appendChild(txt("span", { "class": "id mono" }, g.id)); gh.appendChild(document.createTextNode(g.navn)); gs.appendChild(gh);
+        var list = h("div", { "class": "fn-list" });
+        (g.funksjoner || []).forEach(function (f) {
+          var d = item(f.id, f.navn, [f.fase1 ? txt("span", { "class": "chip fase1" }, f.fase1) : null, f.niva ? chipFor("niva", f.niva) : null, f.behovsvekt ? chipFor("prio", f.behovsvekt) : null], function (body) {
+            var b = h("div", { "class": "fn-body" });
+            if (f.beskrivelse_md) b.appendChild(md(f.beskrivelse_md));
+            var dl = h("dl", { "class": "kv" });
+            kvRow(dl, "Regler", f.regler_md);
+            kvRow(dl, "Data", (f.data || []).length ? refList(f.data) : null);
+            kvRow(dl, "Roller", (f.roller || []).join(", "));
+            kvRow(dl, "Integrasjoner", (f.integrasjoner || []).join(", "));
+            kvRow(dl, "Behov", (f.behov || []).length ? refList(f.behov) : null);
+            kvRow(dl, "Kilder", (f.kilder || []).length ? (f.kilder || []).map(function (k) { return /^https?:/.test(k) ? "<" + k + ">" : k; }).join("  \n") : null);
+            kvRow(dl, "Merknad", f.merknad_md);
+            b.appendChild(dl); body.appendChild(b);
+          });
+          d._f = f; d._hay = [f.id, f.navn, f.beskrivelse_md, f.regler_md, (f.data || []).join(" "), (f.integrasjoner || []).join(" "), f.merknad_md].join(" ").toLowerCase();
+          fEls.push(d); list.appendChild(d);
+        });
+        gs.appendChild(list); gs._fns = list; gEls.push(gs); sec.appendChild(gs);
+      });
+      aEls.push(sec); main.appendChild(sec);
+    });
+    rm.appendChild(main); v.appendChild(rm);
+    var allOpen = false;
+    ob.addEventListener("click", function () { allOpen = !allOpen; fEls.forEach(function (d) { if (!d.hidden) { if (allOpen) d._fill(); d.open = allOpen; } }); ob.textContent = allOpen ? "Lukk alle" : "Åpne alle"; });
+    function apply() {
+      var q = si.value.trim().toLowerCase(), fn = document.getElementById("o-niva").value, fv = document.getElementById("o-vekt").value, fr = document.getElementById("o-rolle").value;
+      var fsEl = document.getElementById("o-fase"), fs = fsEl ? fsEl.value : "";
+      var active = !!(q || fn || fv || fr || fs), shown = 0;
+      fEls.forEach(function (d) { var f = d._f; var ok = (!q || d._hay.indexOf(q) >= 0) && (!fn || f.niva === fn) && (!fv || f.behovsvekt === fv) && (!fr || (f.roller || []).indexOf(fr) >= 0) && (!fs || f.fase1 === fs); d.hidden = !ok; if (ok) shown++; });
+      gEls.forEach(function (g) { g.hidden = active && !g.querySelector("details.item:not([hidden])"); });
+      aEls.forEach(function (a) { a.hidden = active && !a.querySelector(".group:not([hidden])"); });
+      cnt.textContent = active ? "Viser " + shown + " av " + NF + " funksjoner" : NF + " funksjoner i " + NG + " grupper og " + AREAS.length + " områder.";
+    }
+    [si, document.getElementById("o-niva"), document.getElementById("o-vekt"), document.getElementById("o-rolle"), document.getElementById("o-fase")].forEach(function (x) { if (x) x.addEventListener("input", apply); });
+    apply();
+  };
+
+  /* ---------- datafelt ---------- */
+  var COLS = [["navn", "Felt", "f"], ["type", "Type", ""], ["pakrevd", "Påkrevd", ""], ["kilde", "Kilde", ""], ["historikk", "Historikk", ""], ["sensitivitet", "Sensitivitet", ""], ["amelding", "A-melding", "x"], ["tripletex", "Tripletex", "x"], ["reai", "ReAi", "x"], ["huma", "Huma", "x"], ["merknad", "Merknad", "m"]];
+  builders.datafelt = function (v) {
+    v.appendChild(viewHead("Datafelt", D.datafelt_ingress_md || "Entitetene Brutto må lagre, med felt, kilde og sensitivitet. Kolonnene for a-melding, Tripletex, ReAi og Huma viser hvor feltet finnes i dag og gir grunnlag for migrering og integrasjon. **Bitemporal** betyr at feltet har både gyldighetstid og registreringstid."));
+    var rm = h("div", { "class": "rm" }); rm.style.marginTop = "24px";
+    var idx = h("nav", { "class": "rm-index", "aria-label": "Entiteter" }); idx.appendChild(txt("div", { "class": "label" }, "Entiteter per område"));
+    var ol = h("ol");
+    AREAS.concat([{ id: "?", navn: "Uten område" }]).forEach(function (a) {
+      var es = ENTS.filter(function (e) { return a.id === "?" ? !AREA[e.omrade] : e.omrade === a.id; });
+      if (!es.length) return;
+      var li = h("li"); var l = h("a", { href: "#ent-" + a.id }); l.innerHTML = '<span class="n">' + esc(a.id) + '</span><span>' + esc(a.navn) + '</span><span class="c">' + es.length + '</span>'; li.appendChild(l); ol.appendChild(li);
+    });
+    idx.appendChild(ol); rm.appendChild(idx);
+    var main = h("div", { "class": "rm-main" });
+    var allFields = []; ENTS.forEach(function (e) { (e.felt || []).forEach(function (f) { allFields.push(f); }); });
+    var fl = h("div", { "class": "filters", role: "search" });
+    var sl = h("label", { "for": "d-sok", "class": "grow" }); sl.appendChild(document.createTextNode("Søk i felt og entiteter")); var si = h("input", { id: "d-sok", type: "search", placeholder: "f.eks. arbeidsforholdId, kontonummer, stillingsprosent" }); si.style.width = "100%"; sl.appendChild(si); fl.appendChild(sl);
+    fl.appendChild(sel("d-sens", "Sensitivitet", uniq(allFields.map(function (f) { return f.sensitivitet; }))));
+    fl.appendChild(sel("d-hist", "Historikk", uniq(allFields.map(function (f) { return f.historikk; }))));
+    fl.appendChild(sel("d-amel", "A-melding", ["Har a-meldingsfelt", "Uten a-meldingsfelt"]));
+    main.appendChild(fl);
+    var cnt = h("div", { "class": "count", "aria-live": "polite" }); cnt.style.marginTop = "8px"; main.appendChild(cnt);
+    var eEls = [];
+    var groups = {}; ENTS.forEach(function (e) { var k = AREA[e.omrade] ? e.omrade : "?"; (groups[k] = groups[k] || []).push(e); });
+    AREAS.map(function (a) { return a.id; }).concat(["?"]).forEach(function (k) {
+      if (!groups[k]) return;
+      var sec = h("section", { "class": "area-sec", id: "ent-" + k });
+      var tt = h("div", { "class": "area-head" }); var t2 = h("div", { "class": "t-title" }); t2.appendChild(txt("span", { "class": "t-id" }, k)); t2.appendChild(txt("h2", null, AREA[k] ? AREA[k].navn : "Uten område")); tt.appendChild(t2); sec.appendChild(tt);
+      var list = h("div", { "class": "fn-list" });
+      groups[k].forEach(function (e) {
+        var rows = [];
+        var d = item(e.id, e.navn, [e.fase1 ? txt("span", { "class": "chip fase1" }, e.fase1) : null, txt("span", { "class": "chip" }, (e.felt || []).length + " felt")], function (body) {
+          var b = h("div", { "class": "ent-body" });
+          if (e.beskrivelse_md) b.appendChild(md(e.beskrivelse_md));
+          if (USES[e.id] && USES[e.id].length) { var u = h("div", { "class": "legend" }); u.appendChild(txt("span", { "class": "label" }, "Brukes av")); u.appendChild(refList(USES[e.id])); b.appendChild(u); }
+          var w = h("div", { "class": "ftbl" }); var tb = h("table"); var thead = h("thead"); var tr = h("tr");
+          COLS.forEach(function (c) { tr.appendChild(txt("th", null, c[1])); }); thead.appendChild(tr); tb.appendChild(thead);
+          var tbody = h("tbody");
+          (e.felt || []).forEach(function (f) {
+            var r = h("tr");
+            COLS.forEach(function (c) {
+              var td = h("td", c[2] ? { "class": c[2] } : null), val = f[c[0]];
+              if (c[0] === "sensitivitet" && val) td.appendChild(chipFor("sens", val)); else td.textContent = val == null || val === "" ? "–" : val;
+              r.appendChild(td);
+            });
+            r._f = f; rows.push(r); tbody.appendChild(r);
+          });
+          tb.appendChild(tbody); w.appendChild(tb); b.appendChild(w); body.appendChild(b);
+          d._rows = rows; applyRows(d);
+        });
+        d._e = e; d._hay = (e.id + " " + e.navn + " " + (e.felt || []).map(function (f) { return f.navn + " " + (f.amelding || "") + " " + (f.tripletex || "") + " " + (f.reai || "") + " " + (f.huma || ""); }).join(" ")).toLowerCase();
+        eEls.push(d); list.appendChild(d);
+      });
+      sec.appendChild(list); main.appendChild(sec);
+    });
+    rm.appendChild(main); v.appendChild(rm);
+    var F = { q: "", s: "", hi: "", a: "" };
+    function rowOk(f) {
+      if (F.q && (f.navn + " " + (f.amelding || "") + " " + (f.tripletex || "") + " " + (f.reai || "") + " " + (f.huma || "") + " " + (f.merknad || "")).toLowerCase().indexOf(F.q) < 0) return false;
+      if (F.s && f.sensitivitet !== F.s) return false;
+      if (F.hi && f.historikk !== F.hi) return false;
+      var hasA = f.amelding && f.amelding !== "–" && f.amelding !== "-";
+      if (F.a === "Har a-meldingsfelt" && !hasA) return false;
+      if (F.a === "Uten a-meldingsfelt" && hasA) return false;
+      return true;
+    }
+    function applyRows(d) { if (!d._rows) return; var nameHit = F.q && (d._e.id + " " + d._e.navn).toLowerCase().indexOf(F.q) >= 0; d._rows.forEach(function (r) { r.hidden = !(rowOk(r._f) || (nameHit && !F.s && !F.hi && !F.a)); }); }
+    function apply() {
+      F.q = si.value.trim().toLowerCase(); F.s = document.getElementById("d-sens").value; F.hi = document.getElementById("d-hist").value; F.a = document.getElementById("d-amel").value;
+      var active = !!(F.q || F.s || F.hi || F.a), ne = 0, nr = 0;
+      eEls.forEach(function (d) {
+        var e = d._e, nameHit = F.q && (e.id + " " + e.navn).toLowerCase().indexOf(F.q) >= 0;
+        var hits = (e.felt || []).filter(rowOk).length;
+        var ok = !active || hits > 0 || (nameHit && !F.s && !F.hi && !F.a);
+        d.hidden = !ok; if (ok) { ne++; nr += nameHit && !F.s && !F.hi && !F.a ? (e.felt || []).length : hits; }
+        if (active && ok) { d._fill(); d.open = true; }
+        applyRows(d);
+      });
+      document.querySelectorAll("#view-datafelt .area-sec").forEach(function (s) { s.hidden = active && !s.querySelector("details.item:not([hidden])"); });
+      cnt.textContent = active ? "Viser " + nr + " felt i " + ne + " entiteter" : NFIELD + " felt i " + ENTS.length + " entiteter.";
+    }
+    [si, document.getElementById("d-sens"), document.getElementById("d-hist"), document.getElementById("d-amel")].forEach(function (x) { x.addEventListener("input", apply); });
+    apply();
+  };
+
+  /* ---------- behov ---------- */
+  builders.behov = function (v) {
+    var b = D.behov || {};
+    v.appendChild(viewHead(b.tittel || "Behov", b.ingress_md));
+    var st = h("div", { "class": "stack" }); st.style.marginTop = "22px";
+    if (b.topp_md) { var t = h("section", { "class": "prose", style: "max-width:none" }); t.appendChild(txt("h2", null, "Det viktigste på tvers")); var tm = md(b.topp_md); tm.style.marginTop = "12px"; t.appendChild(tm); st.appendChild(t); }
+    var personas = b.personas || [];
+    if (personas.length) {
+      var ps = h("section"); ps.appendChild(txt("h2", null, "Personas og behov"));
+      var segs = uniq(personas.map(function (p) { return p.segment; }));
+      var bar = h("div", { "class": "segbar", role: "group", "aria-label": "Filtrer på segment" });
+      var list = h("div", { style: "margin-top:4px" });
+      function render(seg) {
+        list.innerHTML = "";
+        personas.filter(function (p) { return !seg || p.segment === seg; }).forEach(function (p) {
+          list.appendChild(item(p.id, p.navn, [txt("span", { "class": "chip" }, p.segment)], function (body) {
+            var box = h("div", { "class": "persona stack", style: "gap:14px" });
+            if (p.kontekst_md) box.appendChild(md(p.kontekst_md));
+            if (p.smerter_md) { var s1 = h("div"); s1.appendChild(txt("h4", null, "Smerter i dag")); var m1 = md(p.smerter_md); m1.style.marginTop = "6px"; s1.appendChild(m1); box.appendChild(s1); }
+            if (p.behov && p.behov.length) {
+              var s2 = h("div"); s2.appendChild(txt("h4", null, "Behov"));
+              var ul = h("ul", { "class": "needs" });
+              p.behov.forEach(function (n) { var li = h("li", document.getElementById(n.id) ? null : { id: n.id }); li.appendChild(txt("span", { "class": "id" }, n.id)); li.appendChild(chipFor("prio", n.prioritet)); var tt = h("span", { "class": "t" }); tt.appendChild(md(n.tekst)); li.appendChild(tt); ul.appendChild(li); });
+              s2.appendChild(ul); box.appendChild(s2);
+            }
+            if (p.kult_md) { var s3 = h("div"); s3.appendChild(txt("h4", null, "Hva som ville vært kult")); var m3 = md(p.kult_md); m3.style.marginTop = "6px"; s3.appendChild(m3); box.appendChild(s3); }
+            if (p.maal_md) { var s4 = h("div"); s4.appendChild(txt("h4", null, "Slik vet vi at det virker")); var m4 = md(p.maal_md); m4.style.marginTop = "6px"; s4.appendChild(m4); box.appendChild(s4); }
+            body.appendChild(box);
+          }));
+        });
+      }
+      [""].concat(segs).forEach(function (sg) { var bt = h("button", { type: "button", "aria-pressed": sg === "" ? "true" : "false" }); bt.textContent = sg || "Alle"; bt.addEventListener("click", function () { bar.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", "false"); }); bt.setAttribute("aria-pressed", "true"); render(sg); }); bar.appendChild(bt); });
+      ps.appendChild(bar); ps.appendChild(list); render(""); st.appendChild(ps);
+    }
+    if (b.seksjoner && b.seksjoner.length) st.appendChild(sectionList(b.seksjoner, { toc: false }));
+    v.appendChild(st);
+  };
+
+  /* ---------- innholdsfaner ---------- */
+  function contentView(key, fallbackTitle) {
+    return function (v) {
+      var c = D[key] || {};
+      v.appendChild(viewHead(c.tittel || fallbackTitle, c.ingress_md));
+      var st = h("div", { "class": "stack" }); st.style.marginTop = "22px";
+      if (key === "marked" && c.konkurrenter && c.konkurrenter.length) {
+        var rows = "| Aktør | Eier | Segment | Pris | Tilfredshet | Styrker | Svakheter | Trussel |\n|---|---|---|---|---|---|---|---|\n" +
+          c.konkurrenter.map(function (k) { return "| **" + k.navn + "** | " + [k.eier, k.segment, k.pris, k.tilfredshet, k.styrker, k.svakheter, k.trussel].map(function (x) { return String(x || "–").replace(/\|/g, "/").replace(/\n/g, " "); }).join(" | ") + " |"; }).join("\n");
+        var sec = h("section"); sec.appendChild(txt("h2", null, "Konkurrentene")); var tm = md(rows); tm.style.marginTop = "12px"; sec.appendChild(tm); st.appendChild(sec);
+      }
+      if (key === "myndigheter" && c.grensesnitt && c.grensesnitt.length) {
+        var rows2 = "| Grensesnitt | Eier | Krav og autentisering | Status | Frist og endring |\n|---|---|---|---|---|\n" +
+          c.grensesnitt.map(function (g) { return "| **" + g.navn + "** | " + [g.eier, g.krav, g.status, g.frist].map(function (x) { return String(x || "–").replace(/\|/g, "/").replace(/\n/g, " "); }).join(" | ") + " |"; }).join("\n");
+        var sec2 = h("section"); sec2.appendChild(txt("h2", null, "Grensesnittene")); var tm2 = md(rows2); tm2.style.marginTop = "12px"; sec2.appendChild(tm2); st.appendChild(sec2);
+      }
+      if (key === "moduler" && c.trender && c.trender.length) {
+        var sec3 = h("section"); sec3.appendChild(txt("h2", null, "Lønn i 2026: må ha, differensierende eller hype"));
+        uniq(c.trender.map(function (t) { return t.kategori; })).forEach(function (cat) {
+          var hh = txt("h3", { style: "margin:18px 0 10px" }, cat); sec3.appendChild(hh);
+          var grid = h("div", { "class": "trends" });
+          c.trender.filter(function (t) { return t.kategori === cat; }).forEach(function (t) { var card = h("article", { "class": "trend" }); card.appendChild(txt("h4", null, t.tittel)); card.appendChild(md(t.md)); grid.appendChild(card); });
+          sec3.appendChild(grid);
+        });
+        st.appendChild(sec3);
+      }
+      if (c.seksjoner && c.seksjoner.length) st.appendChild(sectionList(c.seksjoner));
+      if (key === "arkitektur" && c.flyter && c.flyter.length) {
+        var fs = h("section"); fs.appendChild(txt("h2", null, "Flyter"));
+        var l = h("div", { style: "margin-top:12px" });
+        c.flyter.forEach(function (f) { l.appendChild(item(f.id, f.tittel, [], function (body) { body.appendChild(md(f.md)); })); });
+        fs.appendChild(l); st.appendChild(fs);
+      }
+      v.appendChild(st);
+    };
+  }
+  builders.marked = contentView("marked", "Marked");
+  builders.praksis = contentView("praksis", "Lønn i praksis");
+  builders.myndigheter = contentView("myndigheter", "Myndigheter");
+  builders.moduler = contentView("moduler", "Moduler og 2026");
+  builders.arkitektur = contentView("arkitektur", "Arkitektur");
+  builders.videre = contentView("videre", "Veien videre");
+
+  builders.beslutninger = function (v) {
+    var b = D.beslutninger || [];
+    v.appendChild(viewHead("Beslutninger", D.beslutninger_ingress_md));
+    var counts = {}; b.forEach(function (x) { counts[x.status] = (counts[x.status] || 0) + 1; });
+    var bar = h("div", { "class": "segbar", style: "margin-top:18px" });
+    var list = h("div");
+    function render(f) { list.innerHTML = ""; b.filter(function (x) { return !f || x.status === f; }).forEach(function (x) { list.appendChild(item(x.id, x.tittel, [chipFor("status", x.status)], function (body) { body.appendChild(md(x.md)); })); }); }
+    [""].concat(Object.keys(counts)).forEach(function (s) { var bt = h("button", { type: "button", "aria-pressed": s === "" ? "true" : "false" }); bt.textContent = (s || "Alle") + " (" + (s ? counts[s] : b.length) + ")"; bt.addEventListener("click", function () { bar.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", "false"); }); bt.setAttribute("aria-pressed", "true"); render(s); }); bar.appendChild(bt); });
+    v.appendChild(bar); v.appendChild(list); render("");
+  };
+
+  builders.sporsmal = function (v) {
+    var q = D.sporsmal || [];
+    v.appendChild(viewHead("Åpne spørsmål", D.sporsmal_ingress_md || "Det som må avklares, samlet fra rapportene, kritikerne og kartleggingen. **Stopper** betyr at spørsmålet må besvares før scope kan settes."));
+    var groups = {}; q.forEach(function (x) { var g = AREA[x.omrade] ? x.omrade + " · " + AREA[x.omrade].navn : (x.omrade || "Annet"); (groups[g] = groups[g] || []).push(x); });
+    var bar = h("div", { "class": "segbar", style: "margin-top:18px" });
+    var st = h("div", { "class": "stack" }); st.style.marginTop = "12px";
+    function render(stat) {
+      st.innerHTML = "";
+      Object.keys(groups).sort(function (a, b) { return a.localeCompare(b, "nb"); }).forEach(function (g) {
+        var items = groups[g].filter(function (x) { return !stat || x.status === stat; });
+        if (!items.length) return;
+        var sec = h("section"); sec.appendChild(txt("h2", null, g));
+        var l = h("div", { style: "margin-top:12px" });
+        items.forEach(function (x) { var chips = [chipFor("status", x.status)]; if (x.eier) chips.push(txt("span", { "class": "chip" }, x.eier)); l.appendChild(item("Q" + x.nr, x.tittel, chips, function (body) { body.appendChild(md(x.md)); })); });
+        sec.appendChild(l); st.appendChild(sec);
+      });
+    }
+    var cs = {}; q.forEach(function (x) { cs[x.status] = (cs[x.status] || 0) + 1; });
+    [""].concat(Object.keys(cs)).forEach(function (s) { var bt = h("button", { type: "button", "aria-pressed": s === "" ? "true" : "false" }); bt.textContent = (s || "Alle") + " (" + (s ? cs[s] : q.length) + ")"; bt.addEventListener("click", function () { bar.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", "false"); }); bt.setAttribute("aria-pressed", "true"); render(s); }); bar.appendChild(bt); });
+    v.appendChild(bar); v.appendChild(st); render("");
+  };
+
+  /* ---------- nattens funn ---------- */
+  builders.natt = function (v) {
+    var N = D.natt || {}, F = N.funn || [];
+    v.appendChild(viewHead("Nattens funn", "Undersøkelser som går mens teamet sover. Hvert funn svarer på ett punkt i backloggen og ender med hva det betyr for Brutto. **Sikkerhet** sier hvor godt funnet er belagt med primærkilder."));
+    var st = h("div", { "class": "stack" }); st.style.marginTop = "22px";
+    if (N.morgen_md) { var mg = h("section", { "class": "panel" }); mg.appendChild(txt("h2", null, "Morgensammendrag")); var mm = md(N.morgen_md); mm.style.marginTop = "10px"; mg.appendChild(mm); st.appendChild(mg); }
+    if (!F.length) st.appendChild(txt("p", { "class": "empty" }, "Ingen funn ennå. Funnene dukker opp her etter hvert som nattarbeidet går."));
+    var list = h("div");
+    F.slice().sort(function (a, b) { return a.id.localeCompare(b.id); }).forEach(function (f) {
+      var chips = [];
+      if (f.fase) chips.push(txt("span", { "class": "chip" + (/F1/.test(f.fase) ? " fase1" : "") }, f.fase));
+      if (f.sikkerhet) chips.push(txt("span", { "class": "chip" }, "Sikkerhet: " + f.sikkerhet));
+      if (f.dato) chips.push(txt("span", { "class": "chip" }, f.dato));
+      var d = item(f.id, f.tittel, chips, function (body) { body.appendChild(md(f.md)); });
+      if (f.kort_md) { var k = md(f.kort_md); k.style.padding = "0 16px 12px 40px"; k.style.color = "var(--muted)"; d.insertBefore(k, d.querySelector(".body")); }
+      list.appendChild(d);
+    });
+    st.appendChild(list);
+    if (N.logg_md) { var lg = h("section", { "class": "prose" }); lg.appendChild(txt("h2", null, "Logg")); var lm = md(N.logg_md); lm.style.marginTop = "10px"; lg.appendChild(lm); st.appendChild(lg); }
+    v.appendChild(st);
+  };
+
+  /* ---------- menyer per arbeidsflate ---------- */
+  builders.meny = function (v) {
+    var M = D.meny || {}, AN = M.omrader || {}, LATER = {}; (M.senere || []).forEach(function (c) { LATER[c] = 1; });
+    var box = h("div", { "class": "mn" });
+    box.appendChild(viewHead("Menyer per arbeidsflate", "Alle områdene satt opp som menyer, slik de kan se ut i produktet. Velg en arbeidsflate og klikk på et menypunkt for å se hva siden skal gjøre, hva den viser og hvilke data den bruker. Kodene viser til **Områder og funksjoner**, og data-id-ene til **Datafelt**. Lønn kommer først. HR er kartlagt lett og hører til senere."));
+    var ws = h("nav", { "class": "ws", "aria-label": "Arbeidsflater" }), desc = h("div", { "class": "ws-desc" });
+    var stage = h("div", { "class": "stage" }), menu = h("div", { "class": "menu" }), detail = h("aside", { "class": "detail", "aria-live": "polite" });
+    stage.appendChild(menu); stage.appendChild(detail);
+    box.appendChild(ws); box.appendChild(desc); box.appendChild(stage);
+    function codeLink(c) { var a = h("a", { "class": "acode" + (LATER[c] ? " later" : ""), href: AREA[c] ? "#omr-" + c : null, title: AN[c] || c }); a.textContent = c; return a; }
+    function showDetail(w, col, p) {
+      detail.innerHTML = "";
+      detail.appendChild(txt("div", { "class": "crumb" }, w.navn + " › " + col.t));
+      detail.appendChild(txt("h2", null, p.navn));
+      detail.appendChild(txt("p", null, p.hva));
+      if (p.innhold && p.innhold.length) { detail.appendChild(txt("div", { "class": "label" }, "Siden viser og gjør")); var ul = h("ul"); p.innhold.forEach(function (x) { ul.appendChild(txt("li", null, x)); }); detail.appendChild(ul); }
+      var r1 = h("div", { "class": "row" }); r1.appendChild(txt("span", { "class": "label" }, "Områder")); col.c.forEach(function (c) { r1.appendChild(codeLink(c)); }); detail.appendChild(r1);
+      if (p.data && p.data.length) { var r2 = h("div", { "class": "row" }); r2.appendChild(txt("span", { "class": "label" }, "Data")); r2.appendChild(refList(p.data)); detail.appendChild(r2); }
+      if (p.merk) detail.appendChild(txt("p", { "class": "note" }, p.merk));
+    }
+    function render(id) {
+      var w = (M.flater || []).filter(function (x) { return x.id === id; })[0] || (M.flater || [])[0]; if (!w) return;
+      ws.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.id === w.id ? "true" : "false"); });
+      desc.innerHTML = ""; desc.appendChild(txt("b", null, w.hvem)); desc.appendChild(txt("span", null, w.tekst));
+      menu.innerHTML = ""; var first = null;
+      w.kol.forEach(function (col) {
+        var c = h("div", { "class": "col" }); var head = h("div", { "class": "col-head" }); head.appendChild(txt("h3", null, col.t));
+        var codes = h("span", { "class": "codes" }); col.c.forEach(function (x) { codes.appendChild(codeLink(x)); }); head.appendChild(codes); c.appendChild(head);
+        var ul = h("ul");
+        col.p.forEach(function (p) {
+          var li = h("li"); var b = txt("button", { type: "button" }, p.navn);
+          b.addEventListener("click", function () { menu.querySelectorAll("button[aria-current]").forEach(function (x) { x.removeAttribute("aria-current"); }); b.setAttribute("aria-current", "true"); showDetail(w, col, p); });
+          if (!first && (p.navn === "Kjøringer" || w.id !== "lonn")) first = { b: b, col: col, p: p };
+          li.appendChild(b); ul.appendChild(li);
+        });
+        c.appendChild(ul); menu.appendChild(c);
+      });
+      if (first) { first.b.setAttribute("aria-current", "true"); showDetail(w, first.col, first.p); }
+      try { localStorage.setItem("brutto-meny-ws", w.id); } catch (e) {}
+    }
+    (M.flater || []).forEach(function (w) { var b = txt("button", { type: "button", "class": w.later ? "later" : null }, w.navn); b.dataset.id = w.id; b.addEventListener("click", function () { render(w.id); }); ws.appendChild(b); });
+    var saved = null; try { saved = localStorage.getItem("brutto-meny-ws"); } catch (e) {}
+    render(saved || "lonn");
+    var ak = h("section", { "class": "block" }); ak.appendChild(txt("h2", null, "Ansattkortet"));
+    ak.appendChild(txt("p", null, "Siden lønn bruker mest. Én person kan ha flere arbeidsforhold, og hver fane viser historikk med «gjelder fra». Endringer bakover i tid gir korreksjon i neste kjøring."));
+    var td = h("div", { "class": "tabsdemo", "aria-hidden": "true" }); (M.ansattkort || []).forEach(function (k) { td.appendChild(txt("span", null, k[0])); }); ak.appendChild(td);
+    var g1 = h("div", { "class": "cardgrid" }); (M.ansattkort || []).forEach(function (k) { var c = h("div", { "class": "card" }); c.appendChild(txt("h4", null, k[0])); c.appendChild(txt("p", null, k[1])); g1.appendChild(c); }); ak.appendChild(g1);
+    box.appendChild(ak);
+    var pm = h("section", { "class": "block" }); pm.appendChild(txt("h2", null, "Felles byggeklosser i grensesnittet")); pm.appendChild(txt("p", null, "Mønstre som går igjen på tvers av områdene. Lag dem én gang i designsystemet."));
+    var g2 = h("div", { "class": "cardgrid" }); (M.monstre || []).forEach(function (k) { var c = h("div", { "class": "card" }); c.appendChild(txt("h4", null, k[0])); c.appendChild(txt("p", null, k[1])); g2.appendChild(c); }); pm.appendChild(g2);
+    box.appendChild(pm);
+    var sd = h("section", { "class": "block" }); sd.appendChild(txt("h2", null, "SD Worx sammenlignet med Brutto")); sd.appendChild(txt("p", null, "Menyen fra SD Worx (rollen HR Specialist) satt opp mot Brutto. Lønnskjøringen ligger ikke i den SD Worx-visningen."));
+    sd.appendChild(md("| SD Worx | Menypunkter | I Brutto |\n|---|---|---|\n" + (M.sdworx || []).map(function (r) { return "| " + r.map(function (x) { return String(x).replace(/\|/g, "/"); }).join(" | ") + " |"; }).join("\n")));
+    box.appendChild(sd);
+    v.appendChild(box);
+  };
+
+  /* ---------- fase 1: spørsmål med lagrede svar ---------- */
+  builders.fase1 = function (v) {
+    var F = D.fase1 || {}, TEMA = F.tema || [], QS = F.sporsmal || [];
+    var PRIO = { 1: "Før vi koder", 2: "Tidlig", 3: "Kan vente" };
+    var box = h("div", { "class": "f1" });
+    box.appendChild(viewHead(F.tittel || "Fase 1", F.ingress_md));
+    var b1 = h("section", { "class": "block" }); b1.appendChild(txt("h2", null, "Fase 1 slik vi forstår den"));
+    var cards = h("div", { "class": "cards" });
+    (F.kort || []).forEach(function (k) { var c = h("div", { "class": "card" }); var hh = txt("h3", null, k.tittel + " "); hh.appendChild(txt("span", { "class": "tag" + (/^Fase 1$/.test(k.tag) ? " now" : /Senere/.test(k.tag) ? " later" : "") }, k.tag)); c.appendChild(hh); c.appendChild(txt("p", null, k.tekst)); cards.appendChild(c); });
+    b1.appendChild(cards); box.appendChild(b1);
+    var b2 = h("section", { "class": "block" }); b2.appendChild(txt("h2", null, "Er dette en god plan?"));
+    var vd = h("div", { "class": "verdict" }); vd.appendChild(md(F.vurdering_md || "")); b2.appendChild(vd);
+    if (F.flyter && F.flyter.length) {
+      var fc = h("div", { "class": "card" }); fc.appendChild(txt("h3", null, "Eksempler på godkjenningsflyter kunden kan velge"));
+      var fl = h("div", { "class": "flows" });
+      F.flyter.forEach(function (x) { var r = h("div", { "class": "flow" }); r.appendChild(txt("b", null, x.navn)); x.steg.forEach(function (s, i) { if (i) r.appendChild(txt("span", { "class": "arrow" }, "→")); r.appendChild(txt("span", { "class": "step" + (i === x.steg.length - 1 ? " bank" : "") }, s)); }); fl.appendChild(r); });
+      fc.appendChild(fl); b2.appendChild(fc);
+    }
+    box.appendChild(b2);
+    var bar = h("div", { "class": "bar" }), ff = h("div", { "class": "ffilters" });
+    function fsel(id, label, opts) { var l = h("label", { "for": id }); l.appendChild(document.createTextNode(label)); var s = h("select", { id: id }); opts.forEach(function (o) { var op = txt("option", null, o[1]); op.value = o[0]; s.appendChild(op); }); l.appendChild(s); return l; }
+    ff.appendChild(fsel("f1-tema", "Tema", [["", "Alle"]].concat(TEMA.map(function (t) { return [t[0], t[1]]; }))));
+    ff.appendChild(fsel("f1-hvem", "Hvem svarer", [["", "Alle"], ["Alle tre", "Alle tre"], ["Peter og Sander", "Peter og Sander"], ["Peter", "Peter"]]));
+    ff.appendChild(fsel("f1-prio", "Prioritet", [["", "Alle"], ["1", "Før vi koder"], ["2", "Tidlig"], ["3", "Kan vente"]]));
+    var ck = h("label", { "class": "chk", "for": "f1-ubesvart" }); var cb = h("input", { type: "checkbox", id: "f1-ubesvart" }); ck.appendChild(cb); ck.appendChild(document.createTextNode(" Bare de jeg ikke har svart på")); ff.appendChild(ck);
+    var copyBtn = txt("button", { type: "button", "class": "btn" }, "Kopier alle svar"); ff.appendChild(copyBtn);
+    bar.appendChild(ff);
+    var progress = h("div", { "class": "progress" }); bar.appendChild(progress);
+    var notice = h("div", { "class": "notice" }); notice.hidden = true; bar.appendChild(notice);
+    box.appendChild(bar);
+    function showNotice(t) { notice.innerHTML = ""; notice.textContent = t; notice.hidden = !t; }
+
+    var st = { db: null, user: null, me: null, byUser: {}, mine: {}, exists: false, canWrite: false };
+    var E = {};
+    var list = h("div");
+    TEMA.forEach(function (t) {
+      var sec = h("section", { "class": "tema", id: "f1-tema-" + t[0] }); sec.dataset.tema = t[0];
+      sec.appendChild(txt("h2", null, t[1])); if (t[2]) sec.appendChild(txt("p", null, t[2]));
+      QS.filter(function (q) { return q.id.charAt(0) === t[0]; }).forEach(function (q) { sec.appendChild(buildQ(q)); });
+      list.appendChild(sec);
+    });
+    box.appendChild(list);
+    v.appendChild(box);
+
+    function buildQ(q) {
+      var c = h("article", { "class": "q", id: "f1-" + q.id });
+      var head = h("div", { "class": "q-head" });
+      head.appendChild(txt("span", { "class": "q-id" }, q.id)); head.appendChild(txt("span", { "class": "tag prio-" + q.prio }, PRIO[q.prio])); head.appendChild(txt("span", { "class": "tag" }, q.hvem));
+      c.appendChild(head); c.appendChild(txt("h3", null, q.q));
+      if (q.why) c.appendChild(txt("p", { "class": "why" }, q.why));
+      if (q.forslag) { var f = h("p", { "class": "forslag" }); f.appendChild(txt("b", null, "Forslag: ")); f.appendChild(document.createTextNode(q.forslag)); c.appendChild(f); }
+      var opts = null;
+      if (q.valg && q.valg.length) {
+        opts = h("div", { "class": "opts", role: "group", "aria-label": "Velg svar" });
+        q.valg.forEach(function (val) {
+          var b = txt("button", { type: "button", "aria-pressed": "false" }, val); b.disabled = true;
+          b.addEventListener("click", function () { var cur = (st.mine[q.id] || {}).valg || ""; setMine(q.id, { valg: cur === val ? "" : val }); paintOwn(q.id); save(q.id, true); });
+          opts.appendChild(b);
+        });
+        c.appendChild(opts);
+      }
+      var ta = h("textarea", { id: "f1-svar-" + q.id, placeholder: "Svar, kommentar eller annet valg", "aria-label": "Ditt svar på " + q.id }); ta.disabled = true;
+      ta.addEventListener("input", function () { setMine(q.id, { tekst: ta.value }); save(q.id, false); });
+      ta.addEventListener("blur", function () { flush(q.id); });
+      c.appendChild(ta);
+      var sv = h("div", { "class": "save" }); c.appendChild(sv);
+      var others = h("div", { "class": "others" }); others.hidden = true; c.appendChild(others);
+      E[q.id] = { card: c, opts: opts, ta: ta, save: sv, others: others };
+      return c;
+    }
+    function setMine(id, p) { var cur = st.mine[id] || {}; st.mine[id] = { valg: p.valg != null ? p.valg : cur.valg || "", tekst: p.tekst != null ? p.tekst : cur.tekst || "" }; }
+    function paintOwn(id) {
+      var e = E[id], m = st.mine[id] || {};
+      if (e.opts) e.opts.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.textContent === m.valg ? "true" : "false"); b.disabled = !st.canWrite; });
+      if (document.activeElement !== e.ta) e.ta.value = m.tekst || "";
+      e.ta.disabled = !st.canWrite;
+    }
+    var timers = {}, chain = Promise.resolve(), dirty = {};
+    function save(id, now) { dirty[id] = true; clearTimeout(timers[id]); E[id].save.className = "save"; E[id].save.textContent = "Ikke lagret ennå"; if (now) flush(id); else timers[id] = setTimeout(function () { flush(id); }, 900); }
+    function flush(id) {
+      clearTimeout(timers[id]);
+      if (!dirty[id] || !st.db || !st.me) return;
+      dirty[id] = false;
+      var entry = { valg: (st.mine[id] || {}).valg || "", tekst: (st.mine[id] || {}).tekst || "", tid: Date.now() };
+      var ref = st.db.doc("svar/" + st.me), e = E[id];
+      e.save.textContent = "Lagrer …";
+      chain = chain.then(function () {
+        var patch = { svar: {}, oppdatert: entry.tid }; patch.svar[id] = entry;
+        if (st.exists) return ref.update(patch);
+        return ref.get().then(function (snap) { st.exists = true; return snap.exists ? ref.update(patch) : ref.set(patch); });
+      }).then(function () { e.save.className = "save"; e.save.textContent = "Lagret"; }, function (err) {
+        dirty[id] = true; e.save.className = "save err";
+        e.save.textContent = err && (err.code === "permission_denied" || err.code === "not_granted") ? "Kunne ikke lagre: du har ikke skrivetilgang. Be Sjur dele siden med deg som bidragsyter." : "Kunne ikke lagre. Prøv igjen om litt.";
+      });
+    }
+    function fmtTime(t) { try { return new Date(t).toLocaleString("nb-NO", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return ""; } }
+    function answered(uid) { var s = st.byUser[uid] || {}; return QS.filter(function (q) { var a = s[q.id]; return a && (a.valg || a.tekst); }).length; }
+    function renderAll() {
+      var ids = Object.keys(st.byUser);
+      var draw = function (ps) {
+        QS.forEach(function (q) {
+          var e = E[q.id]; e.others.innerHTML = ""; var n = 0;
+          ids.forEach(function (uid) {
+            if (uid === st.me) return;
+            var a = (st.byUser[uid] || {})[q.id]; if (!a || (!a.valg && !a.tekst)) return; n++;
+            var row = h("div", { "class": "ans" }); var img = h("img", { alt: "" }); if (ps && ps[uid]) img.src = ps[uid].avatarUrl; row.appendChild(img);
+            var b = h("div"); var top = h("div"); top.appendChild(txt("span", { "class": "who" }, (ps && ps[uid] && ps[uid].name) || "En kollega")); top.appendChild(document.createTextNode(" ")); top.appendChild(txt("span", { "class": "when" }, fmtTime(a.tid))); b.appendChild(top);
+            var t = h("div", { "class": "txt" }); if (a.valg) t.appendChild(txt("span", { "class": "valg" }, a.valg)); if (a.tekst) t.appendChild(document.createTextNode(a.tekst)); b.appendChild(t);
+            row.appendChild(b); e.others.appendChild(row);
+          });
+          e.others.hidden = n === 0;
+        });
+        progress.innerHTML = "";
+        progress.appendChild(txt("span", null, QS.length + " spørsmål, " + QS.filter(function (q) { return q.prio === 1; }).length + " før vi koder"));
+        ids.forEach(function (uid) { var s = h("span"); s.appendChild(document.createTextNode((uid === st.me ? "Du" : ((ps && ps[uid] && ps[uid].name) || "En kollega")) + ": ")); s.appendChild(txt("b", null, answered(uid) + " svar")); progress.appendChild(s); });
+      };
+      if (st.user && ids.length) st.user.profiles(ids).then(draw, function () { draw(null); }); else draw(null);
+    }
+    function applyF() {
+      var t = document.getElementById("f1-tema").value, hv = document.getElementById("f1-hvem").value, pr = document.getElementById("f1-prio").value, ub = cb.checked;
+      QS.forEach(function (q) { var m = st.mine[q.id] || {}; E[q.id].card.hidden = !((!t || q.id.charAt(0) === t) && (!hv || q.hvem === hv) && (!pr || String(q.prio) === pr) && (!ub || !(m.valg || m.tekst))); });
+      list.querySelectorAll(".tema").forEach(function (s) { s.hidden = !s.querySelector(".q:not([hidden])"); });
+    }
+    ["f1-tema", "f1-hvem", "f1-prio", "f1-ubesvart"].forEach(function (id) { document.getElementById(id).addEventListener("input", applyF); });
+    copyBtn.addEventListener("click", function () {
+      var ids = Object.keys(st.byUser);
+      var go2 = function (ps) {
+        var lines = [];
+        QS.forEach(function (q) {
+          var rows = ids.map(function (uid) { var a = (st.byUser[uid] || {})[q.id]; if (!a || (!a.valg && !a.tekst)) return null; var nm = uid === st.me ? "Meg" : ((ps && ps[uid] && ps[uid].name) || "Kollega"); return "  " + nm + ": " + [a.valg, a.tekst].filter(Boolean).join(". "); }).filter(Boolean);
+          if (rows.length) { lines.push(q.id + " " + q.q); lines = lines.concat(rows); lines.push(""); }
+        });
+        var text = lines.join("\n") || "Ingen svar ennå.";
+        var done = function () { copyBtn.textContent = "Kopiert"; setTimeout(function () { copyBtn.textContent = "Kopier alle svar"; }, 1600); };
+        var fallback = function () { showNotice("Kopiering ble blokkert. Merk teksten under og kopier den selv."); var ta = h("textarea"); ta.value = text; ta.style.minHeight = "200px"; notice.appendChild(ta); ta.select(); };
+        try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+      };
+      if (st.user && ids.length) st.user.profiles(ids).then(go2, function () { go2(null); }); else go2(null);
+    });
+    applyF(); renderAll();
+    showNotice("Kobler til lagring av svar …");
+    var ready = window.claude && window.claude.use ? Promise.all([window.claude.use("db"), window.claude.use("user")]) : Promise.resolve([null, null]);
+    ready.then(function (r) {
+      st.db = r[0]; st.user = r[1];
+      if (!st.db || !st.user) { showNotice("Svar kan ikke lagres i denne visningen. Åpne siden innlogget på claude.ai med tilgang som bidragsyter. Spørsmålene og forslagene kan du fortsatt lese."); return; }
+      return st.user.id().then(function (id) {
+        st.me = id; st.canWrite = !!id && st.user.can("data.write") !== false;
+        showNotice(st.canWrite ? "" : "Du kan lese svarene, men har ikke skrivetilgang. Be Sjur dele siden med deg som bidragsyter.");
+        QS.forEach(function (q) { paintOwn(q.id); });
+        st.db.collection("svar").onSnapshot(function (snap) {
+          var by = {}; snap.docs.forEach(function (d) { var x = d.data() || {}; by[d.id] = x.svar || {}; });
+          st.byUser = by;
+          if (by[st.me]) { st.exists = true; Object.keys(by[st.me]).forEach(function (qid) { if (!dirty[qid] && E[qid]) { st.mine[qid] = { valg: by[st.me][qid].valg || "", tekst: by[st.me][qid].tekst || "" }; paintOwn(qid); } }); }
+          renderAll(); applyF();
+        }, function () { showNotice("Mistet kontakten med lagringen. Last siden på nytt for å se nye svar."); });
+      });
+    }).catch(function () { showNotice("Svar kan ikke lagres akkurat nå. Last siden på nytt senere."); });
+  };
+
+  /* ---------- ruting ---------- */
+  var built = {}, sections = {};
+  var tabs = document.getElementById("tabs");
+  VIEWS.forEach(function (p) { var a = h("a", { href: "#" + p[0], "data-view": p[0] }); a.textContent = p[1]; tabs.appendChild(a); var s = h("section", { "class": "view", id: "view-" + p[0], hidden: "" }); app.appendChild(s); sections[p[0]] = s; });
+  function show(view) {
+    if (!sections[view]) view = "oversikt";
+    if (!built[view]) { built[view] = true; try { builders[view](sections[view]); } catch (err) { sections[view].appendChild(txt("p", { "class": "empty" }, "Kunne ikke vise denne delen: " + err.message)); } }
+    Object.keys(sections).forEach(function (k) { sections[k].hidden = k !== view; });
+    tabs.querySelectorAll("a").forEach(function (a) { if (a.getAttribute("data-view") === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    try { localStorage.setItem("brutto-view", view); } catch (e) {}
+  }
+  function unhide(el) {
+    var p = el;
+    while (p && p !== document.body) {
+      if (p.hidden && p.id && p.id.indexOf("view-") !== 0) p.hidden = false;
+      if (p.tagName === "DETAILS") { if (p._fill) p._fill(); p.open = true; }
+      p = p.parentNode;
+    }
+  }
+  function go(hash, smooth) {
+    var id = decodeURIComponent((hash || "").replace(/^#/, ""));
+    if (!id) { var last = null; try { last = localStorage.getItem("brutto-view"); } catch (e) {} show(last || "oversikt"); return; }
+    if (sections[id]) { show(id); window.scrollTo(0, 0); return; }
+    var view = IDX[id] ? IDX[id].view : (/^omr-|^grp-/.test(id) ? "omrader" : /^ent-/.test(id) ? "datafelt" : null);
+    if (!view) { show("oversikt"); return; }
+    show(view);
+    var info = IDX[id] || {};
+    if (info.parent) { var par = document.getElementById(info.parent); if (par) unhide(par); }
+    var el = document.getElementById(id) || (info.parent ? document.getElementById(info.parent) : null);
+    if (!el) return;
+    unhide(el);
+    if (el.tagName === "DETAILS" && el._fill) { el._fill(); el.open = true; }
+    requestAnimationFrame(function () { el.scrollIntoView({ block: "start", behavior: smooth ? "smooth" : "auto" }); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); });
+  }
+  window.addEventListener("hashchange", function () { go(location.hash, true); });
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[href^='#']");
+    if (!a) return;
+    if (a.getAttribute("href") === location.hash) { ev.preventDefault(); go(location.hash, true); }
+  });
+
+  var meta = D.meta || {};
+  document.getElementById("sub").textContent = (meta.undertittel || "") + (meta.versjon ? " · versjon " + meta.versjon : "") + (meta.dato ? " · " + meta.dato : "");
+  if (meta.fot_md) document.getElementById("foot").appendChild(md(meta.fot_md));
+  go(location.hash, false);
+})();
+</script>

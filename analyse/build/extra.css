@@ -1,0 +1,48 @@
+
+/* Områdekart på oversikten */
+.clusters { display: grid; gap: 22px; }
+.cluster h3 { margin-bottom: 10px; }
+.cluster .cdesc { color: var(--muted); font-size: 14.5px; margin: -4px 0 10px; max-width: 80ch; }
+.areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+a.area { display: grid; grid-template-rows: auto auto 1fr; gap: 4px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; min-width: 0; }
+a.area:hover, a.area:focus-visible { border-color: var(--accent); }
+a.area .code { font: 600 12.5px var(--font-mono); color: var(--accent); letter-spacing: 0.04em; }
+a.area .aname { font: 700 16px/1.2 var(--font-display); font-stretch: 87%; }
+a.area .ameta { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+a.area .ains { font-size: 14px; color: var(--muted); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Område- og funksjonsvisning */
+.area-sec { margin-top: 36px; scroll-margin-top: 110px; }
+.area-head { display: grid; gap: 8px; margin-bottom: 14px; }
+.area-head .t-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.area-head .t-id { font: 600 15px var(--font-mono); color: var(--accent); }
+.area-head .md { max-width: 80ch; }
+.group { margin-top: 18px; scroll-margin-top: 110px; }
+.group > h3 { display: flex; gap: 10px; align-items: baseline; margin-bottom: 8px; }
+.group > h3 .id { color: var(--muted); font-weight: 600; }
+.fn-list { display: grid; gap: 6px; }
+.fn-list details.item > summary { padding: 9px 12px; }
+.fn-list details.item > summary .s-title { font-weight: 600; }
+.chip.n-kjerne { background: var(--accent-soft); color: var(--accent); }
+.chip.n-modul { background: var(--agent-soft); color: var(--agent); }
+.chip.n-integrasjon { background: var(--human-soft); color: var(--human); }
+.chip.s-saerlig { background: var(--stop-soft); color: var(--stop); }
+.chip.s-lonn { background: var(--warn-soft); color: var(--warn); }
+.chip.s-person { background: var(--plan-soft); color: var(--plan); }
+.refs { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.fn-body { display: grid; gap: 12px; }
+.fn-body .kv { grid-template-columns: 124px minmax(0, 1fr); }
+.fn-body .kv dd .md p:last-child { margin-bottom: 0; }
+
+/* Datafelt */
+.ftbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); }
+.ftbl table { border-collapse: collapse; width: 100%; font-size: 13.5px; line-height: 1.4; }
+.ftbl th, .ftbl td { text-align: left; vertical-align: top; padding: 6px 9px; border-bottom: 1px solid var(--rule); }
+.ftbl th { position: sticky; top: 0; background: var(--surface-2); font-weight: 700; white-space: nowrap; font-size: 12.5px; }
+.ftbl tr:last-child td { border-bottom: 0; }
+.ftbl td.f { font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; font-weight: 600; }
+.ftbl td.m { min-width: 220px; color: var(--muted); }
+.ftbl td.x { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-width: 120px; }
+.ftbl tr[hidden] { display: none; }
+.ent-body { display: grid; gap: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; color: var(--muted); align-items: center; }

@@ -1,0 +1,1905 @@
+{
+ "marked": {
+  "tittel": "Markedet for lønnssystemer i Norge",
+  "ingress_md": "Markedet er todelt. Små kunder får lett lønn i regnskapssystemet, og store kunder kjøper tunge lønnssystemer. Virksomheter med 30–300 ansatte og tariff faller mellom. Visma eier fire av de fem mest brukte systemene, SD Worx er den faglige referansen, og byråene avgjør ofte hvilket system kunden ender med.",
+  "konkurrenter": [
+   {
+    "navn": "SD Worx",
+    "eier": "SD Worx (Belgia). Kjøpte Aditro i 2021.",
+    "segment": "Mellomstore og store, offentlig sektor og byråer. Sier selv at de passer best over 100 ansatte.",
+    "pris": "Ikke publisert. Oppfattes som dyrest. Omsetning delt på oppgitt volum gir ca. 60 kr per slipp per måned inkludert tjenester [anslag].",
+    "tilfredshet": "5,4 av 6 (Regnskap Norge 2025)",
+    "styrker": "Fleksibel lønnsmotor, mange tariffer, sterk fraværsmodul og rikt rapportunivers. Størst målt i lønnsslipper. 360 MNOK i omsetning i 2025 (+14 %).",
+    "svakheter": "Ustabil etter skyovergangen, Citrix ved import, tung implementering, svak support og dokumentasjon, mangler i historikkretting og kontrollrapporter.",
+    "trussel": "Høy. Eier storkundene i de største byråene (Azets, Aider) og bygger egen lønnstjeneste i SD Worx Services Norway AS (2026)."
+   },
+   {
+    "navn": "Visma Payroll",
+    "eier": "Visma Software AS",
+    "segment": "SMB til store. Pakkene Start, Pluss og Smart.",
+    "pris": "Per aktiv ansatt per måned. Fra 57 kr (Start), 67 kr (Pluss) og 100 kr (Smart) ifølge tredjepart. Expense og implementering kommer i tillegg.",
+    "tilfredshet": "4,6 av 6 (Regnskap Norge 2025)",
+    "styrker": "Mest brukt i undersøkelsen (106 brukere). Ryddig, god automatisering ved korrigering og a-melding, god sykefraværsmodul og support.",
+    "svakheter": "Rigid datostyring. Retro gir avstemmingsproblemer i skattetrekk og AGA. Doble prosesser, begrensede rapporter og svak regnskapsintegrasjon.",
+    "trussel": "Høy. Systemet vi oftest må slå i mellomsegmentet, og Visma kan bunte lønn med regnskap."
+   },
+   {
+    "navn": "Visma Enterprise HRM",
+    "eier": "Visma Enterprise AS",
+    "segment": "Kommuner og store virksomheter. Gat for ressursstyring og turnus.",
+    "pris": "Ukjent",
+    "tilfredshet": "3,4 av 6 (Regnskap Norge 2025)",
+    "styrker": "Dypt forankret i offentlig sektor. Randaberg fikk bare ett tilbud, fra Visma, og Movar fortsetter med Visma.",
+    "svakheter": "Lav tilfredshet. I Kristiansand ga feil mapping mellom Ressursstyring og HRM 2 338 ansatte feil tillegg.",
+    "trussel": "Lav. Offentlig sektor er en senere fase for oss."
+   },
+   {
+    "navn": "Tripletex",
+    "eier": "Visma (siden 2016)",
+    "segment": "Mikro og små. 150 000 kunder (nov. 2025).",
+    "pris": "Lønn og reiseregning 65 kr per bruker per måned. Timer mot lønn 39 kr per ansatt. Regnskapsfører har gratis tilgang, og byrået får provisjon.",
+    "tilfredshet": "4,9 av 6 (Regnskap Norge 2025)",
+    "styrker": "Enkelt for små kunder. Byråenes mest brukte regnskap. Gratis flytting av klienter.",
+    "svakheter": "Lite automasjon, ingen full fraværsmodul, bare én import per lønnskjøring. Oppleves dyrt for funksjonaliteten.",
+    "trussel": "Middels. Låser små kunder via regnskapspakken. Kunder som vokser ut av Tripletex, er en målgruppe for oss."
+   },
+   {
+    "navn": "PowerOffice Go",
+    "eier": "Visma (majoritet siden 2019) [verifiseres]",
+    "segment": "Små. Lønn kan kjøpes frittstående.",
+    "pris": "195 kr per måned + 35 kr per lønnsmottaker. Timer, reise og ferie/fravær koster ekstra.",
+    "tilfredshet": "5,1 av 6 (Regnskap Norge 2025). Best på sluttbrukerfunksjoner (5,2).",
+    "styrker": "Intuitivt. Godt samarbeid mellom byrå og klient i appen. Ca. 500 partnerbyråer.",
+    "svakheter": "Tungvint ved avanserte behov: faste lønnslinjer, timebank, mange ansatte. Feil i forskuddstrekk og feriepenger er rapportert.",
+    "trussel": "Middels. Sterk i byråkanalen, men holder ikke for større virksomheter."
+   },
+   {
+    "navn": "NettLønn",
+    "eier": "Adato AS, del av ECIT (TowerBrook-eid siden 2024)",
+    "segment": "Små kunder og byråer. Oppgir over 3 000 kunder og 30 000 slipper i måneden.",
+    "pris": "39 kr per lønnsslipp. NettLønn People (reise og utlegg) 35 kr per aktiv bruker.",
+    "tilfredshet": "2,9 av 6 (Regnskap Norge 2025). Lavest i markedet.",
+    "styrker": "Enkel stykkpris. Kunden betaler bare for dem som får lønn.",
+    "svakheter": "Lav tilfredshet. 7,3 MNOK i omsetning, 8 ansatte og underskudd hvert år 2023–2025.",
+    "trussel": "Lav. Kundene kan vinnes med god migrering. ECIT kan erstatte NettLønn med Intect [verifiseres]."
+   },
+   {
+    "navn": "Intect",
+    "eier": "Intect ApS (Danmark)",
+    "segment": "SMB til mellomstore og outsourcere. Norsk versjon fra april 2025.",
+    "pris": "39 DKK per lønnsslipp på den skandinaviske siden. Norsk pris ukjent.",
+    "tilfredshet": "Ingen score (10 brukere, Regnskap Norge 2025)",
+    "styrker": "Rent lønnssystem med flere selskaper, ansattapp, åpent API og offentlig pris. Selger via lokale partnere.",
+    "svakheter": "Nytt i Norge. Liten dokumentert norsk kundebase.",
+    "trussel": "Høy. Den mest direkte nye konkurrenten til konseptet vårt."
+   },
+   {
+    "navn": "Finago Payday",
+    "eier": "Finago (sammenslått fra Accountor Software, 24SevenOffice og Heeros) [verifiseres]",
+    "segment": "Små og mellomstore og byråer.",
+    "pris": "49 kr per lønnsslipp, 49 kr per sammenstillingsoppgave, reise og utlegg 29 kr per bruker. Flere klienter inkludert.",
+    "tilfredshet": "4,6 av 6 (Regnskap Norge 2025)",
+    "styrker": "Sterkt byråfokus. Ligger på Pareto-fronten for pris mot tilfredshet.",
+    "svakheter": "Tregt. Mange feil ved oppstarten i 2025, blant annet i skattetrekk og feriepenger 60+. Brukeren må innom både regnskap og bank.",
+    "trussel": "Middels. Samme målgruppe i byråene, men omdømmet er skadet."
+   },
+   {
+    "navn": "Xledger",
+    "eier": "Xledger AS (eierskap ikke verifisert)",
+    "segment": "Mellomstore, konsern og byråer. Mye brukt av stiftelser og organisasjoner.",
+    "pris": "Ukjent",
+    "tilfredshet": "4,5 av 6 (Regnskap Norge 2025)",
+    "styrker": "Lønn tett integrert med økonomi, bank og konsern. Ferde krevde integrasjon mot Xledger i anbudet.",
+    "svakheter": "Lønnsmodulen er tungvint, manuell og «bak» dedikerte lønnssystemer. Mangler automasjon mot Altinn.",
+    "trussel": "Lav som lønnssystem. Xledger er en integrasjon vi må ha ved lansering."
+   },
+   {
+    "navn": "Uni Micro",
+    "eier": "Ikke verifisert",
+    "segment": "Små og mellomstore, byråer og bankeide regnskapshus (DNB, SpareBank 1, Eika).",
+    "pris": "Byrå: 1 104–1 343 kr per byråbruker per måned. Lønn 9–12 kr per aktiv ansatt i innpris. Byrået sitter igjen med halvparten.",
+    "tilfredshet": "4,4 av 6 (Regnskap Norge 2025)",
+    "styrker": "Byråmodell med 50 % lisensmargin og partnernivåer fra Bronze til Platinum. Kanal via bankene.",
+    "svakheter": "Lite synlig i undersøkelsen (14 brukere). Lite kjent hvor dyp lønnsfunksjonaliteten er.",
+    "trussel": "Middels i byråkanalen. Marginmodellen er det byråene sammenligner med."
+   },
+   {
+    "navn": "Duett",
+    "eier": "PE-eid ifølge Preqin [verifiseres]",
+    "segment": "Små og mellomstore og byråer. Lønn ligger i Duett Økonomi.",
+    "pris": "Ukjent (ikke på prissiden)",
+    "tilfredshet": "4,8 av 6 (Regnskap Norge 2025)",
+    "styrker": "God tilfredshet. Strategisk partnerskap med Aider [verifiseres].",
+    "svakheter": "Lite offentlig informasjon om lønnsfunksjonene.",
+    "trussel": "Lav. Lite synlig i lønn, men Aider-partnerskapet kan gi kanalfordel [verifiseres]."
+   },
+   {
+    "navn": "Unit4 (Agresso)",
+    "eier": "Unit4",
+    "segment": "Store og offentlige. ERP med lønn.",
+    "pris": "Ukjent",
+    "tilfredshet": "4,2 av 6 (Regnskap Norge 2025)",
+    "styrker": "Stort volum målt i lønnsslipper. Unit4 AS omsatte for 511 MNOK i 2025.",
+    "svakheter": "Lav score på sluttbrukerfunksjoner (3,9).",
+    "trussel": "Lav. Andre segmenter. Unit4 er et integrasjonsmål (Tensio, NORCE)."
+   },
+   {
+    "navn": "Zalaris",
+    "eier": "Zalaris ASA",
+    "segment": "Store virksomheter. SAP-basert HR- og lønnsoutsourcing.",
+    "pris": "Ukjent",
+    "tilfredshet": "Ingen egen score (SAP 3,9 av 6)",
+    "styrker": "ISAE 3402 type II, ISO 9001 og 27001, eget kontrollsenter for lønn. Churn anslått til «et par prosent».",
+    "svakheter": "Tapte anbudene hos Entur og Avinor i 2024–2025.",
+    "trussel": "Lav. Enterprise og BPO er et annet segment."
+   },
+   {
+    "navn": "Huma (HR, ikke lønn)",
+    "eier": "Huma, norsk HR-plattform",
+    "segment": "HR for virksomheter med ca. 5–100 ansatte ifølge Smartbyrå. Oppgir over 1 000 kunder.",
+    "pris": "Free, Standard og Premium. Ikke publisert. Fra 49 kr per ansatt per måned ifølge Smartbyrå og gründeren [verifiseres].",
+    "tilfredshet": "Ikke målt (HR-system)",
+    "styrker": "Personalregister, fravær, arbeidsavtaler, on- og offboarding, sykmelding fra NAV. Åpent REST-API og webhooks. Integrert med Visma.net Payroll, PowerOffice Go, Xledger og Tripletex.",
+    "svakheter": "Kjører ikke lønn. API-et mangler fravær, dokumenter og lønnshistorikk. Bankkonto endret i Huma går rett inn i Visma.net Payroll.",
+    "trussel": "Lav på lønn. Integrasjonspartner i fase 1 og mål for erstatning på sikt. Huma kan stramme inn API-tilgangen når vi blir konkurrent."
+   }
+  ],
+  "seksjoner": [
+   {
+    "id": "m-markedskart",
+    "tittel": "Markedskartet: to verdener og et hull i midten",
+    "md": "Den beste kilden er Regnskap Norges undersøkelse [«Lønnssystemer 2025»](https://www.regnskapnorge.no/contentassets/b173a1e31cd741af9b610fc80db70ddf/lonnssystemer---resultater-til-publisering.pdf). Den ble publisert 17.3.2026 og har 298 svar fra lønnsspesialister. 45 % jobber i regnskapsforetak og 47 % i virksomheter med over 250 ansatte. Utvalget er altså tungt på byråer og store kunder.\n\n### To verdener\n\n| Lag | Systemer | Typisk kunde | Hva brukerne sier |\n|---|---|---|---|\n| Regnskap med lett lønn | Tripletex, PowerOffice Go, Fiken, Finago, Conta | Små, ofte via byrå | Enkelt. Lite automasjon, svakt på fravær og timebank |\n| Dedikert lønnssystem | SD Worx, Visma Payroll, Visma Enterprise HRM, lønn i SAP, Unit4 og Xledger | Mellomstore, store og offentlige | Sterk motor. Tungt, rigid eller ustabilt |\n| Hullet | Ingen scorer høyt på både motor og brukervennlighet | Ca. 30–300 ansatte med tariff og ytelser | De lette er for enkle, og Visma Payroll er rigid |\n\n### Hvem brukes, og hvor fornøyde er brukerne?\n\n| System | Brukere i utvalget | Samlet (1–6) | Sluttbruker (1–6) |\n|---|---|---|---|\n| SD Worx | 103 | 5,4 | 5,1 |\n| PowerOffice Go | 72 | 5,1 | 5,2 |\n| Tripletex | 76 | 4,9 | 4,6 |\n| Duett | 20 | 4,8 | 4,7 |\n| Visma Payroll | 106 | 4,6 | 4,5 |\n| Finago | 31 | 4,6 | 4,6 |\n| Xledger | 46 | 4,5 | 4,4 |\n| Unimicro | 14 | 4,4 | – |\n| Unit4/Agresso | 18 | 4,2 | 3,9 |\n| SAP | 13 | 3,9 | 3,6 |\n| Visma Enterprise HRM | 14 | 3,4 | 3,3 |\n| NettLønn | 20 | 2,9 | 2,8 |\n\nÉn person kan bruke flere systemer. Der det er få svar, er usikkerheten stor.\n\n### Pris mot tilfredshet\nFinago, PowerOffice Go og SD Worx ligger på Pareto-fronten: ingen andre er både billigere og bedre. SD Worx og SAP oppfattes som dyrest. Målt i lønnsslipper er SD Worx klart størst, fulgt av Unit4, Visma Payroll, Xledger og SAP. Tripletex, PowerOffice, Duett, Unimicro og Finago er små målt i slipper.\n\n### Nye aktører\nIntect fra Danmark lanserte norsk versjon i april 2025. Finago Payday kom i 2025. Systima vokser fra 1,0 til 6,1 MNOK i omsetning, men med økende underskudd. Søket fant ingen norsk KI-først lønnsoppstart med synlig trekkraft per oktober 2026 [verifiseres]. Visma markedsfører KI i support, og Simployer har KI-assistenten «Sia» i HR."
+   },
+   {
+    "id": "m-visma",
+    "tittel": "Visma eier mer enn det ser ut til",
+    "md": "Fire av de fem mest brukte systemene i undersøkelsen eies av Visma. Merkene drives hver for seg, så kunder og byråer opplever dem som konkurrenter.\n\n| Merke | Visma-eid siden | Segment | Omsetning 2025, hele selskapet |\n|---|---|---|---|\n| Visma Payroll (tidligere Visma.net Payroll) | – | SMB til store | Visma Software AS: 1 568 MNOK |\n| Visma Enterprise HRM | – | Kommuner og store | Visma Enterprise AS: 1 112 MNOK |\n| Tripletex | 2016 | Mikro og små | 1 654 MNOK |\n| PowerOffice Go | 2019, majoritet [verifiseres] | Små | 925 MNOK |\n\nLønnsandelen av omsetningen er ukjent for alle fire. Tallene er hentet fra Regnskapsregisteret 28.10.2026.\n\n### Slik har Visma samlet markedet\n- **2011:** Visma kjøpte Mamut, som senere ble faset ut [verifiseres].\n- **2015:** Visma kjøpte Huldt & Lillevik fra Aditro, med lønn og HRM for småbedrifter ([Cinven](https://www.cinven.com/news-insights/visma-strengthens-its-focus-on-hrm-solutions)). SD Worx kjøpte Aditro i 2021.\n- **2024:** «Fra 2024 er det ikke lenger mulig å kjøre lønn fra Visma Lønn.» Kundene ble sendt til Visma Payroll ([Visma](https://www.vismasoftware.no/visma-lonn)).\n- Noregs Mållag (9 ansatte) viser mønsteret. De måtte bytte, valgte Payroll fordi regnskapet allerede lå i Visma, og savner lønnstrinn på slippen og rapportene fra Huldt & Lillevik ([kundehistorie](https://www.vismasoftware.no/kundehistorier/byttet-lonnssystem-fra-huldt-og-lillevik-til-payroll)).\n\n### Hva det betyr for oss\n- **Bunting:** Visma kan pakke lønn med regnskap og gi byråene høyere provisjon. Det er en av de største risikoene i byråkanalen.\n- **Oppgradering innen familien:** En kunde som vokser ut av Tripletex eller PowerOffice, får Visma Payroll som naturlig neste steg. Vi må være til stede når den kunden vurderer bytte.\n- **Låste offentlige kunder:** Randaberg og Kvitsøy ville bort fra Visma Enterprise HRM i 2024, men fikk bare ett tilbud, fra Visma ([Doffin 2024-117782](https://doffin.no/notices/2024-117782)). Movar IKS fortsetter med Visma i overgangen til sky ([Doffin 2026-112251](https://doffin.no/notices/2026-112251)).\n- **Integrasjon er nødvendig likevel:** Mange av kundene våre har regnskapet i Tripletex, PowerOffice eller Visma Business NXT. Vi bruker bare de offentlige API-ene deres, fordi de også er konkurrenter på lønn.\n- **Visma Payroll er systemet vi oftest må slå.** De dokumenterte svakhetene er retro, avstemming av skattetrekk og AGA, doble prosesser og svak regnskapsintegrasjon. Det er disse vi skal vise i en demo."
+   },
+   {
+    "id": "m-storrelse",
+    "tittel": "Markedsstørrelse",
+    "md": "### Antall virksomheter\nEnhetsregisteret per 28.10.2026, juridiske enheter som ikke er konkurs eller under avvikling. Antall ansatte kommer fra Aa-registeret ([Brreg API](https://data.brreg.no/enhetsregisteret/api/enheter)).\n\n| Ansatte | 10–19 | 20–49 | 50–99 | 100–249 | 250–999 |\n|---|---|---|---|---|---|\n| Private og ideelle | 20 225 | 13 468 | 3 588 | 1 875 | 815 |\n| Herav stiftelser | 216 | 303 | 112 | 55 | 17 |\n| Herav foreninger, lag og innretninger | 737 | 586 | 152 | 101 | 18 |\n\n- Hele målgruppen med 10–999 ansatte er ca. **39 970 juridiske enheter**. 703 er stiftelser og 1 594 er foreninger, lag eller innretninger.\n- Kjernen med 100–999 ansatte er ca. **2 690 enheter** (sum av tabellen).\n- Frivillighetsregisteret har 1 638 enheter med minst 10 ansatte.\n- SSB ([tabell 14002](https://www.ssb.no/statbank/table/14002), 2023) har 745 881 lønnstakere i private foretak med 10–249 ansatte.\n\nBrreg teller alle aktive arbeidsforhold, også små stillinger og ekstrahjelp, og løfter enheter opp i størrelse. SSB er det forsiktige tallet, og Brreg er den øvre grensen.\n\n### Verdien av programvaremarkedet [anslag]\n\n| Forutsetning | Verdi |\n|---|---|\n| Ansatte i målgruppen | ca. 1,05–1,10 mill. [anslag] |\n| Pris per ansatt eller slipp per måned | 50–80 kr [anslag] |\n| **Programvaremarked per år** | **ca. 0,63–1,05 mrd. kr** [anslag] |\n\nPrisspennet bygger på PowerOffice og NettLønn (35–39 kr), Finago (49 kr), Visma (57–100 kr, tredjepartskilde) og SD Worx' implisitte ca. 60 kr. Implementering, lønnstjenester og byrålønn kommer i tillegg og er trolig flere ganger større.\n\n### Byråkanalen [anslag]\n- Regnskapsbransjen omsatte for 24,6 mrd. kr i 2024. Lønn er 11 % ifølge Regnskap Norge, altså ca. 2,7 mrd. kr [anslag].\n- Byråene kjører trolig 7–13 mill. lønnsslipper i året [anslag].\n- Med 25–50 kr per slipp gir det 175–650 MNOK i lisensverdi [anslag].\n\n### Hva én kunde er verdt [anslag]\nEn kunde med 300 ansatte gir ca. 300 × 60 kr × 12 ≈ **216 000 kr i årlig programvareinntekt**. 30 MNOK i årlig inntekt krever ca. 140 slike kunder, eller ca. 42 000 lønnsmottakere. Det er under 10 % av volumet SD Worx oppgir: «nesten 500 000 lønnsslipper i Norge, hver måned».\n\n### Hvor mange setter ut lønn?\nDet finnes ikke noe uavhengig tall. SD Worx skriver at 43 % av bedrifter under 250 ansatte setter ut lønn, uten å oppgi kilde [verifiseres]. Andelen faller trolig med størrelsen. Under 20 ansatte bruker de fleste regnskapsfører, og over 100 ansatte har de fleste egen lønnsfunksjon [anslag]."
+   },
+   {
+    "id": "m-byrakanalen",
+    "tittel": "Byråkanalen: kjøpsmodeller, priser og økonomi per slipp",
+    "md": "### Kanalen i tall\n- 2 469 godkjente regnskapsselskap og 352 statsautoriserte med eget enkeltpersonforetak ved utgangen av 2024, og 12 839 statsautoriserte regnskapsførere ([Finanstilsynet](https://www.finanstilsynet.no/publikasjoner-og-analyser/arsrapport/arsrapport-2024/rapporter-fra-tilsynsomradene-for-2024/regnskapsvirksomhet)).\n- De ti største sto for 38,3 % av omsetningen i 2024. Aider, Azets og ECIT er størst. Alle tre er PE-eid og kjøper opp.\n- Nær 4 000 personer jobber med lønn, og 80 % er kvinner.\n\n### Fem kjøpsmodeller\n\n| Modell | Slik virker den | Eksempel |\n|---|---|---|\n| Kunden eier lisensen | Kunden betaler listepris. Byrået får gratis tilgang og provisjon | Tripletex, PowerOffice |\n| Byrålisens eller videresalg | Byrået kjøper og fakturerer kunden med påslag | Uni Micro, Visma Business NXT |\n| Flerklientplattform | Byrået kjører mange klienter i ett system | SD Worx Byrå |\n| White-label | Byråets merkevare, leverandøren er usynlig | Azets Cozone [verifiseres] |\n| Leverandøren leverer lønn selv | Leverandøren konkurrerer med byråene | SD Worx Services Norway AS, Zalaris |\n\nSkatteetaten skriver at den som bytter regnskapsfører, sannsynligvis også må bytte lønnssystem. Byrået styrer altså i praksis om kunden blir.\n\n### Hva byrået betaler leverandøren\n- **Uni Micro:** 1 104–1 343 kr per byråbruker per måned. Lønn koster 12 kr per aktiv ansatt (0–49) og 9 kr (50+) i innpris, med veiledende utpris 20 og 15 kr. Byrået sitter igjen med halvparten ([Uni Micro](https://unimicro.no/byrapriser)).\n- **NettLønn:** 39 kr per lønnsslipp. Byråpris etter avtale.\n- **Tripletex og PowerOffice:** Kunden betaler, og byrået får provisjon. Satsene er ikke offentlige.\n- **Visma Payroll og SD Worx Byrå:** Ikke offentlig.\n\n### Hva byrået tar betalt\n\n| Byrå | Pris eks. mva. |\n|---|---|\n| Regnskapsfirmaet | 150 kr per slipp. A-melding 50 kr |\n| StyreWeb Regnskap | 190 kr per slipp |\n| Millor | 249 kr per kjøring. A-melding 100 kr. Inntektsmelding 500 kr |\n| Arctic Regnskap | 650 kr per kjøring for inntil 10 ansatte |\n| SpareBank 1 Forretningspartner (2023) | 990 kr per time |\n\nTypisk er 150–250 kr per slipp, 50–100 kr per a-melding og 70–200 kr per sammenstillingsoppgave. Timeprisen er 990–1 190 kr.\n\n### Økonomien per slipp [anslag]\n- En lønningsmedarbeider koster byrået ca. 600–650 kr per time [anslag].\n- Tar byrået 200 kr per slipp og betaler 40 kr i lisens, gjenstår 160 kr. Det er ca. **15 minutter arbeid** før byrået går i null. For 40 % margin må tiden ned mot 9 minutter.\n- En lønnskonsulent med 60 klienter bruker i dag ca. 13–14 minutter per slipp [anslag].\n- Byrårapporten anslår at Brutto kan spare ca. 7 minutter per slipp. For et byrå med 9 000 slipper i måneden er det ca. 600 000–640 000 kr i måneden, mot 315 000 kr i lisens ved 35 kr per slipp [anslag].\n\nByrået kjøper minutter per slipp. Lisensprisen er en liten del av regnestykket."
+   },
+   {
+    "id": "m-hullet",
+    "tittel": "Hullet i markedet",
+    "md": "Dataene peker på åtte hull. Vurderingene bygger på Regnskap Norges undersøkelse og leverandørenes egne sider [anslag].\n\n1. **Sterk motor og enkel bruk for 30–500 ansatte.** SD Worx sier selv at de passer best over 100 ansatte. PowerOffice og Tripletex holder ikke for større virksomheter, og Visma Payroll oppleves som rigid. Ingen scorer høyt på både motor og brukervennlighet i mellomsegmentet.\n2. **Retro og korrigering som kjernefunksjon.** Dette er den største enkeltklagen mot Visma Payroll. SD Worx-brukerne savner retting av historikk og kontrollrapporter. Retro med full sporbarhet og automatisk avstemming av skattetrekk og AGA løser et dokumentert problem.\n3. **KI som ekstra øyne i kontrollen.** 62 % av lønnsfolkene bruker Copilot, 52 % ChatGPT og 19 % Sticos Zipp. De vil ha KI til kontroll av lønn og reiseregninger, men stoler lite på KI med tall. KI skal finne avvik før kjøring og forklare differanser mot forrige måned. KI skal aldri beregne lønn.\n4. **Arbeidsflate for byrå.** Byråene vil ha oversikt på tvers av klienter, maler, felles kontroller, import uten begrensninger, kundeportal for innsending og godkjenning, og ingen Citrix.\n5. **Stabilitet, support og dokumentasjon.** Dette er SD Worx' tydeligste svakhet. Det er billig å skille seg ut her og vanskelig for de store å rette raskt.\n6. **Ideell sektor og stiftelser.** 703 stiftelser og ca. 1 600 foreninger har 10–999 ansatte. De trenger tariff (Virke HUK, Spekter), offentlig tjenestepensjon og prosjektlønn. Hvor utbredt KLP og SPK er i målgruppen, er ikke kjent [verifiseres]. NMBUs anbud krevde godkjenning for innrapportering til Statens pensjonskasse.\n7. **Åpen pris og åpent API.** Visma og SD Worx skjuler prisene, og SD Worx nevner ikke API på produktsiden. Intect har begge deler og er nærmest oss på dette punktet.\n8. **Låste kunder i offentlig eid sektor.** Doffin viser anbud med én tilbyder og kunngjøringer om å fortsette med Visma. Det er mulig å komme inn, men det krever en anbudsorganisasjon og er en senere fase.\n\n### Altinn 3 er et inngangskrav i 2028\nAltinn 3 var det store vinduet i 2026. Realistisk første produksjon for Brutto er januar 2028, og da har alle konkurrentene systembruker. Vi kan skille oss ut på tre ting: tilgangen settes opp på minutter, systemet oppdager tapt tilgang før lønnsdagen, og feilmeldingene er i klartekst.\n\n### Hullet sett fra byråene\nByråene opplever SMB-modulene som for lette og enterprise-systemene som for tunge, rigide eller ustabile. Ingen har vunnet på kombinasjonen enkel bruk, automatisering, byråfunksjoner og robust retro. Det beste segmentet for byråene er klienter med 10–300 ansatte. Klienter under 10 ansatte har allerede betalt for lønn i Tripletex- eller PowerOffice-pakken og flyttes ikke i år 1."
+   },
+   {
+    "id": "m-vinne-300",
+    "tittel": "Slik vinner vi en kunde med 300 ansatte",
+    "md": "Lønn skal ikke feile. Lønnssjefen risikerer jobben og har lite å vinne på et bytte. Vi konkurrerer derfor mot status quo i tillegg til Visma. Funksjonsparitet er inngangsbilletten. Grunnen til å bytte må komme i tillegg [anslag].\n\n### Må-krav for å komme med i vurderingen\n- **Norsk lønnsmotor:** a-melding med riktig kontinuitet i arbeidsforhold, forskuddstrekk med tabell og prosent, halvt trekk, feriepenger med 60+, AGA per sone, sykepenger og NAV-refusjon, fagforeningstrekk, OTP og pensjonsrapportering, reise etter statens satser, og ARP og likelønnsrapport.\n- **Integrasjoner fra første dag:** kundens regnskap (Visma Business NXT, Visma.net, Xledger, Unit4, Tripletex, PowerOffice), bank, tid og turnus, HR og SSO.\n- **Sikkerhet og revisjon:** ISO 27001, ISAE 3402, databehandleravtale og data i EØS. Revisor og økonomisjef har i praksis veto fra ca. 250 ansatte.\n- **Referanser fra virksomheter av samme størrelse.** Et nytt selskap uten referanser taper på risiko.\n\n### Det som utløser et bytte\n1. **En smerte vi kan måle hos kunden.** Retro, avstemming og doble prosesser er dokumentert for Visma. Vis det i en demo på kundens egne data.\n2. **Migrering uten risiko:** gratis eller fastpris import av ansatte og saldoer hittil i år, kartlegging av lønnsarter, 1–2 parallelle kjøringer med automatisk avviksrapport, en navngitt implementeringsansvarlig og en garanti: blir lønnen feil på grunn av systemet, retter vi det og betaler.\n3. **Riktig tidsvindu:** kontrakt i tredje kvartal, prøvekjøring i november og desember, første kjøring i januar.\n4. **Pris på eller under Visma per ansatt**, med tid, fravær, reise og app inkludert. Pris vinner sjelden alene, men fjerner en innvending.\n5. **Inngang via byrået.** Mange kunder med 300 ansatte har regnskapet hos et byrå. Anbefaler byrået oss, er halve salget gjort.\n6. **Realistisk salgssyklus:** 3–9 måneder [anslag].\n\n### Rekkefølgen\nVinn først kunder med 30–150 ansatte som vokser ut av Tripletex eller PowerOffice, og NettLønn-kunder med lav tilfredshet. Bygg referanser oppover mot 300 og mer.\n\n### Dette må kunden se i demoen\n- Et lokalt lønnsoppgjør for 258 ansatte kjørt på en formiddag, med følgevirkningene for tillegg, sluttede, inntektsmelding og KLP.\n- En avviksliste der systemet har forklart de fleste avvikene før lønnsansvarlig begynner å lete.\n- En økonomisjef som attesterer på mobilen på minutter og ser at trekkene betales med riktig KID og forfall.\n- En avstemt måned dagen etter lønn: lønn, hovedbok, a-melding og bank stemmer.\n\n### Tidslinjen\nBrutto er realistisk i produksjon i januar 2028, med parallellkjøring hos pilotkunder i oktober–desember 2027. Med kontrakt i tredje kvartal og første kjøring i januar må de første kundene med 300 ansatte signere høsten 2027 [anslag]."
+   },
+   {
+    "id": "m-byttebarrierer",
+    "tittel": "Byttebarrierer og tidspunkt",
+    "md": "Kundene bytter sjelden. Churn hos lønnsleverandører anslås til «et par prosent», og kundene bytter som regel bare når noe tvinger dem (tredjepartskilde om Zalaris).\n\n### Reglene for a-meldingen ved bytte\nKilde: [Skatteetaten om bytte av lønnssystem](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/spesielle-forhold/bytte-lonnssystem/).\n\n- Det er ikke lov å sende a-melding for de samme arbeidsforholdene fra to systemer for samme periode.\n- Antall arbeidsforhold per ansatt og tilknytningen til underenhet må være lik før og etter byttet.\n- Det finnes tre metoder:\n\n| Metode | Hva den betyr | Vurdering |\n|---|---|---|\n| **1. Videreføring** | Samme arbeidsforhold-ID, startdato og type i det nye systemet. Ingen endring i det gamle | Best for kunden. Krever at vi kan importere ID-ene |\n| 2. Ny ID | Ny arbeidsforhold-ID uten å avslutte i det gamle systemet | Gir støy |\n| 3. Avslutt og start | Avslutning med årsak «byttet lønnsystem eller regnskapsfører» og ny ID fra dagen etter | Gir brudd i historikken |\n\nBestill avstemmingsrapport for siste måned for å kontrollere byttet.\n\n**Produktkrav:** Migreringsverktøyet må importere arbeidsforhold-ID, permisjoner og permitteringer etter metode 1, og avstemme automatisk mot avstemmingsrapporten fra a-ordningen. Gründerens egne avklaringer sier det samme: arbeidsforhold-ID og startdato beholdes.\n\n### Dette må flyttes\nAnsatte og arbeidsforhold-ID, faste lønnslinjer, trekk (utleggstrekk, fagforening, OTP), saldoer hittil i år (brutto, forskuddstrekk, feriepengegrunnlag i år og i fjor, AGA-grunnlag), feriesaldoer, permisjoner og permitteringer, kontoplanmapping og dimensjoner, og bankoppsett. Skattekort hentes på nytt.\n\n### Når bytter kundene?\n- **Januar** er vanligst, fordi saldoene hittil i år nullstilles.\n- **Midt i året** går det, men da må feriepengegrunnlag, trekk, saldoer og fravær overføres. Noregs Mållag gikk live i februar 2023 med overførte saldoer.\n- **Parallellkjøring** i 1–2 måneder er vanlig for mellomstore kunder [anslag].\n- **Bølgeplan for byråer:** primærvindu januar, sekundærvindu juli–september. Unngå mai–juni og oktober–desember, bortsett fra parallellkjøring før januar.\n- **Historikk:** Kundene trenger gamle lønnsslipper og trekk i flere år [verifiseres]. Mange lar det gamle systemet stå i lesemodus. Et godt historikkarkiv senker barrieren.\n\n### Hva utløser et bytte?\n1. Leverandøren avvikler produktet. Visma Lønn ble stengt for lønnskjøring fra 2024, og Vinmonopolet bytter ut «utgående programvare».\n2. Kunden vokser ut av lønnen i Tripletex eller PowerOffice.\n3. Kunden bytter regnskapsbyrå.\n4. Fusjon eller oppkjøp. Aider bytter regnskaps-, lønns- og kvalitetssystem i byråer de kjøper.\n5. Dårlig erfaring med stabilitet eller support (SD Worx, Finago, NettLønn).\n\nBeslutningen tas av lønnsleder og økonomisjef, ofte med byrået som rådgiver. I offentlig eid sektor går det via anbud.\n\n### Ny risiko i 2028\nA-melding versjon 2.4 går i produksjon fra januar 2028, samtidig med vår første produksjon. Hvordan perioder i 2027 rettes etter overgangen, må avklares [verifiseres]."
+   },
+   {
+    "id": "m-anbud",
+    "tittel": "Signaler fra anbud",
+    "md": "Mange offentlig eide selskaper kjøper system og lønnskjøring samlet. Ferde, Norske tog, Entur, Tensio, Gassnova og GRID-Arendal gjør det. Da vinner regnskaps- og outsourcingaktører. En plattform som byråer kan by med, gir oss derfor vei inn i anbudsmarkedet uten egen anbudsorganisasjon [anslag].\n\n### Utvalgte kunngjøringer 2024–2026\n\n| Oppdragsgiver | Hva | Verdi | Resultat |\n|---|---|---|---|\n| [Entur](https://doffin.no/notices/2025-102738) | Lønnstjenester, system og tjeneste | Tildelt 9 MNOK | View Ledger vant. SD Worx, Zalaris, Norian og Amesto tapte. Kvalitet 60, pris 40 |\n| [Avinor](https://doffin.no/notices/2025-103548) | Lønnssystem | 20 MNOK | Sariba (SAP-partner) vant. Zalaris og SD Worx tapte |\n| [Norske tog](https://doffin.no/notices/2026-105021) | HR og lønn som SaaS, leverandøren kjører lønn | Anslått 8 MNOK | Tower Newco (tidligere BDO Business Services) vant |\n| [Randaberg og Kvitsøy](https://doffin.no/notices/2024-117782) | Skybasert HR og lønn | 10 MNOK | Ett tilbud, fra Visma Enterprise |\n| [Movar IKS](https://doffin.no/notices/2026-112251) | Intensjonskunngjøring | – | Fortsetter med Visma i sky |\n| [Vinmonopolet](https://doffin.no/notices/2026-111156) | Lønnssystem | Ukjent | Bytter «utgående programvare» |\n| [Eidsiva Energi](https://doffin.no/notices/2026-106493) | Lønn og reiseregning | Ukjent | Kunngjort april 2026 |\n| [NMBU](https://doffin.no/notices/2026-111133) | Lønnssystem | Ukjent | Avlyst. Krav om godkjenning for rapportering til Statens pensjonskasse |\n| [Ferde](https://ted.europa.eu/en/notice/-/detail/169076-2025) | HR og lønn, direkte mot Xledger | – | Pris 35, kvalitet 65. Siste versjon uten ekstra kostnad |\n| [Tensio](https://ted.europa.eu/en/notice/-/detail/291054-2024) | Lønnstjenester for konsern, fil mot Unit4 | – | Kvalitet 70, pris 30. Ba om pris på API-kall og datavolum |\n\n### Mønstre\n1. **Kvalitet veier tyngst:** 60–75 % kvalitet og 25–40 % pris.\n2. **Miljø teller 30 %** i mange offentlige anbud (Randaberg, Narvik, GRID-Arendal). Ha miljødokumentasjon klar: datasenter, energi, reiser ved implementering og papirløs lønnsslipp.\n3. **Lønn som tjeneste:** Mindre offentlige foretak kjøper system og kjøring samlet. Vinnerne er byråer og outsourcere.\n4. **Standardavtaler:** SSA-L, SSA-Sky og SSA-T, med bilag for krav, pris, miljø, etablering og SLA.\n5. **ERP-integrasjon nevnes eksplisitt:** Xledger og Unit4.\n6. **Kommersielle signaler:** siste versjon inkludert, rett til ny funksjonalitet, eksport ved avslutning og lagring i EU/EØS. Tensio-anbudet tyder på at kundene har fått overraskende integrasjonskostnader.\n\n### Konsekvens for Brutto\n- Gjør byråpartnerne i stand til å by: dokumentasjon, sikkerhetspakke og referanser.\n- Prismodellen bør ikke ha pris per API-kall.\n- Offentlig sektor med SPK-krav og kommunale tariffer er en senere fase."
+   },
+   {
+    "id": "m-pris",
+    "tittel": "Forslag til pris og forretningsmodell",
+    "md": "Forslagene samler anbefalingene i markeds-, byrå- og behovsrapportene. Prisnivåene er anslag og må testes i intervjuer [anslag].\n\n### Referansepunkter i markedet\n\n| Leverandør | Pris |\n|---|---|\n| NettLønn | 39 kr per lønnsslipp |\n| Finago Payday | 49 kr per lønnsslipp |\n| PowerOffice Go | 195 kr per måned + 35 kr per lønnsmottaker, moduler i tillegg |\n| Visma Payroll | 57–100 kr per ansatt per måned (tredjepart), Expense i tillegg |\n| SD Worx | Ca. 60 kr per slipp implisitt, inkludert tjenester [anslag] |\n| Uni Micro til byrå | 9–12 kr per ansatt i innpris + 1 104–1 343 kr per byråbruker |\n| Huma (HR) | Fra 49 kr per ansatt [verifiseres] |\n\n### Direkte kunder\n- **Pris per ansatt per måned, på eller under Visma, med alt inkludert:** lønn, fravær, timer, utlegg og app. Konkurrentene tar ekstra for moduler, og det er et salgsargument for oss.\n- **Moduler kan slås av** når kunden bruker et eksternt system, slik at kunden ikke betaler dobbelt.\n- **Små kunder (10–25 ansatte):** forutsigbar pris uten moduler, omtrent på PowerOffice-nivå.\n- **HR og lønn samlet** på sikt: lavere samlet pris enn Huma pluss lønnssystem.\n\n### Byrå\n- **Byrået betaler som standard** og fakturerer kunden. Per klient kan byrået i stedet la sluttkunden betale direkte, med provisjon på 15–25 % til byrået. Valget kan endres uten at data flyttes.\n- **Pris per kjørt lønnsslipp:** veiledende innpris 25–45 kr med volumtrinn på byrånivå, veiledende utpris 45–80 kr. Valgfri årsavtale med tak gir forutsigbarhet.\n- **Gratis:** byråbrukere, kontrollører, stedfortredere, kundeportal, godkjennere, ansattapp, migrering og opplæring. Ingen oppstartspris per klient.\n- **Lav portaladopsjon presser prisen ned.** Hvis kundene ikke sender inn og godkjenner digitalt, faller tidsbesparelsen, og prisen må ligge nederst i spennet.\n- **Lisensmarginen er et signal.** 50 % av 35 kr er lite mot byråets 150–250 kr per slipp. Byråene kjøper på minutter per slipp, kanalbeskyttelse og exit-pakke.\n\n### Kontraktsløfter\n- **Beregningsgaranti med tak:** vi dekker dokumenterte renter, gebyrer og tilleggsskatt som skyldes en påvist systemfeil.\n- **Kanalbeskyttelse:** vi selger ikke lønnstjeneste og driver ikke aktivt salg mot byråets klienter. Går en klient direkte til oss innen 12 måneder, får byrået provisjon.\n- **Exit-pakke:** full eksport per klient med arbeidsforhold-ID, saldoer, a-melding-XML, slipper som PDF/A og revisjonslogg.\n- **Support i lønnsuka** med egen kø for byråer.\n\n### Modellen\n- Teknisk kjerne er en flerklientplattform med byråhierarki og fleksibel fakturamottaker.\n- «Powered by» med byråets logo fra start. Full white-label kommer ikke nå.\n- API-et er gratis. Ingen markedsplass eller inntektsdeling i år 1.\n- Vi selger programvare. Lønn som tjeneste og BPO gir godkjenningsplikt og kanalkonflikt, så det gjør vi ikke.\n\n### Åpne spørsmål\nHvor går smertegrensen per slipp når lisensen viderefaktureres og når byrået tar kostnaden selv? Foretrekker byråene årsavtale med tak? Rabatter og provisjoner hos Visma og SD Worx er ukjente og må kartlegges i 5–10 intervjuer."
+   },
+   {
+    "id": "m-kilder",
+    "tittel": "Kilder for markedsfanen",
+    "md": "Fanen bygger på rapportene om marked og konkurrenter (A), byråkanalen (E) og behovskartleggingen for byrå og virksomhet. Merkingen i rapportene skiller mellom verifisert, leverandørens egen påstand, tredjepart og anslag.\n\n### Hovedkilder\n- Regnskap Norge: [«Lønnssystemer 2025»](https://www.regnskapnorge.no/contentassets/b173a1e31cd741af9b610fc80db70ddf/lonnssystemer---resultater-til-publisering.pdf), publisert 17.3.2026, 298 svar.\n- Brønnøysundregistrene: [Enhetsregisteret](https://data.brreg.no/enhetsregisteret/api/enheter) og Regnskapsregisteret, hentet 28.10.2026.\n- SSB: [tabell 14002](https://www.ssb.no/statbank/table/14002) og [tabell 10308](https://www.ssb.no/statbank/table/10308).\n- Finanstilsynet: [årsrapport 2024, regnskapsvirksomhet](https://www.finanstilsynet.no/publikasjoner-og-analyser/arsrapport/arsrapport-2024/rapporter-fra-tilsynsomradene-for-2024/regnskapsvirksomhet).\n- Skatteetaten: [bytte lønnssystem](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/spesielle-forhold/bytte-lonnssystem/).\n- GRFS, god regnskapsføringsskikk: [Regnskap Norge](https://www.regnskapnorge.no/globalassets/dokumenter/vedtekter/grfs---fom.-2023---masterfil.pdf).\n\n### Leverandører\n- SD Worx: [lønnssystem](https://www.sdworx.no/nb-no/vare-losninger/lonn/lonnssystem), [for byrå](https://www.sdworx.no/nb-no/vare-losninger/lonn/lonnssystem-regnskapsbyra), [mindre virksomheter](https://www.sdworx.no/nb-no/trygg-lonn-mindre-virksomheter), [kjøpet av Aditro](https://www.sdworx.com/en-en/about-sd-worx/press/2021-04-28-sd-worx-continues-international-growth-and-enters-scandinavia-aditro).\n- Visma: [lønn og HR](https://www.vismasoftware.no/lonn-hr), [pakker og priser](https://www.vismasoftware.no/lonn-hr/pakker-priser), [Visma Lønn](https://www.vismasoftware.no/visma-lonn), [tredjepartspriser](https://www.hr.software/reviews/visma-net-payroll), [Visma Enterprise](https://vismaenterprise.no).\n- Tripletex: [priser](https://www.tripletex.no/priser/), [for regnskapsfører](https://www.tripletex.no/for-regnskapsforer/).\n- PowerOffice: [priser](https://poweroffice.no/no/priser), [partner](https://www.poweroffice.no/partner/).\n- NettLønn: [priser](https://nettlonn.com/priser-nettlonn), [om NettLønn](https://nettlonn.com/om-nettlonn-1).\n- Finago: [priser](https://finago.no/priser), [byråpriser](https://finago.no/priser-for-regnskapsbyra).\n- Intect: [skandinavisk lønn](https://intect.io/en/scandinavian-payroll-system/).\n- Uni Micro: [byråpriser](https://unimicro.no/byrapriser), [partnerprogram](https://unimicro.no/partnerprogram).\n- Xledger: [lønn](https://www.xledger.com/no/lonn/).\n- Zalaris: [analyse i Affärsvärlden](https://www.affarsvarlden.se/analys/zalaris-lon-for-modan).\n- Huma: [prisplan](https://humahr.com/no/prisplan), [integrasjoner](https://humahr.com/no/integrasjon), [Smartbyrå](https://smartbyra.no/vurdering/huma-hr).\n\n### Byråer og bransje\n- Byråpriser: [Regnskapsfirmaet](https://regnskapsfirmaet.no/prissetting/), [StyreWeb](https://www.styrewebregnskap.no/priser/), [Millor](https://millor.no/finn-din-pris/), [Arctic Regnskap](https://www.arctic-regnskap.no/vare-priser/).\n- Topp 10 i regnskapsbransjen 2024: [NTB/Regnskap Norge](https://kommunikasjon.ntb.no/pressemelding/18701549/solid-vekst-i-regnskapsbransjen-aider-troner-overst-etter-oppkjopsraid?publisherId=89513&lang=no).\n- Aider om oppkjøp: [Økonomi24](https://www.okonomi24.com/nyheter/aider-kjoper-ikke-livsverk-vi-kjoper-vilje-og-evne-til-vekst/125377).\n- Azets og SD Worx: [pressemelding](https://www.azets.com/no-no/ressurser/pressemeldinger/azets-inngar-samarbeid-med-sd-worx-lonn).\n\n### Anbud\nDoffin: [2025-102738](https://doffin.no/notices/2025-102738), [2025-103548](https://doffin.no/notices/2025-103548), [2026-105021](https://doffin.no/notices/2026-105021), [2024-117782](https://doffin.no/notices/2024-117782), [2026-112251](https://doffin.no/notices/2026-112251), [2026-111156](https://doffin.no/notices/2026-111156), [2026-106493](https://doffin.no/notices/2026-106493), [2026-111133](https://doffin.no/notices/2026-111133). TED: [Ferde](https://ted.europa.eu/en/notice/-/detail/169076-2025), [Tensio](https://ted.europa.eu/en/notice/-/detail/291054-2024).\n\n### Hull i kildene\nPriser og rabatter hos Visma og SD Worx i mellomsegmentet, partnervilkår i byråkanalen, andelen som setter ut lønn, om ECIT faser ut NettLønn, og eierskap til Duett, Xledger, Unimicro og Fiken er ikke verifisert."
+   }
+  ]
+ },
+ "praksis": {
+  "tittel": "Lønn i praksis",
+  "ingress_md": "En lønnskjøring i en virksomhet med 100–1000 ansatte er en flyt med mange aktører. Lønnsavdelingen bruker mest tid på å hente inn, kontrollere og rette, og lite på selve beregningen. Fanen viser prosessen, kalenderen, rollene og kontrollene slik de er i dag, og hva reglene fra 2026 endrer.",
+  "seksjoner": [
+   {
+    "id": "p-prosess",
+    "tittel": "Lønnsprosessen i 13 steg",
+    "md": "I en virksomhet med 100–1000 ansatte gjør lønnsavdelingen bare en del av jobben selv. Ansatte, ledere, HR, tidssystemet, økonomi og myndighetene leverer resten. Systemene skiller seg på hvordan de samler inn, kontrollerer og dokumenterer.\n\n| # | Steg | Hvem | Hva skjer | Typisk feil |\n|---|---|---|---|---|\n| 1 | Lønnskalender | Lønnsansvarlig | Frister for hele året. Egne kjøringer for reise og honorar. UiB har fem kjøringer i måneden | Helligdager, juni og desember |\n| 2 | Masterdata | HR registrerer, lønn kontrollerer | Nyansatte, sluttere, stillingsprosent, lønnstrinn, kostnadssted, bankkonto, skattekort, pensjon | Feil startdato eller stillingsprosent gir feil lønn, a-melding og pensjon |\n| 3 | Variable data | Ansatte, ledere, tid- og utleggssystem | Timer, overtid, tillegg, fravær, reiser, bonus og trekk | Ugodkjente timer, ukjente lønnsarter, dobbel import |\n| 4 | Cut-off | Lønnsansvarlig | Det som ikke er godkjent, går til neste måned eller ekstrakjøring | Press om unntak, ingen sperre |\n| 5 | Forhåndskontroll | Lønnsmedarbeider | Importlogger, feillister, manglende skattekort og nye bankkontoer | Feil oppdages for sent |\n| 6 | Testkjøring | Lønnsmedarbeider | Hele lønnen beregnes uten låsing, ofte 2–3 ganger | Systemet tåler ikke ubegrenset reberegning |\n| 7 | Avviksanalyse | Lønnsmedarbeider og -ansvarlig | Mot forrige måned per ansatt og lønnsart, store beløp, negativ netto | Lange Excel-lister uten terskler |\n| 8 | Attestasjon | Lønnsansvarlig faglig, økonomisjef økonomisk | Kontrollskjema med brutto, netto, trekk, AGA og pensjon | Godkjenning på e-post uten spor |\n| 9 | Låsing | Lønnsmedarbeider | Lønnsjournal, bilag, bankfil og grunnlag for a-melding | Endringer etter låsing |\n| 10 | Bank | Lønn lager, økonomi godkjenner | pain.001 til banken, pain.002 tilbake. Fra 2026 også trekk første virkedag etter | Samme person lager og godkjenner filen |\n| 11 | A-melding | Lønnsmedarbeider | Frist den 5. Sendes ofte samme dag. Tilbakemeldingen sjekkes | Avvik som ikke følges opp |\n| 12 | Bilag | Lønn lager, regnskap kontrollerer | Kontering per konto og dimensjon til ERP | Manglende dimensjoner, fordeling over eller under 100 % |\n| 13 | Etterarbeid | Lønn | Slipp i app eller Digipost, avstemming, pensjon, NAV-refusjon, rapporter | Avstemming skyves til årsslutt |\n\n### Kalenderen før en utbetaling\nU er utbetalingsdagen, tallene er kalenderdager (erfaringsbasert):\n\n| Masterdata (HR) | Ansatte | Ledere | Testkjøring | Attestasjon | Bankfil |\n|---|---|---|---|---|---|\n| U-16 | U-14 | U-10 kl. 12 | U-9 til U-6 | U-5 | U-4 til U-3 |\n\nUiB og NTNU utbetaler den 12. og har ledergodkjenning 8–10 dager før ([UiB](https://www.uib.no/foransatte/175460/utbetaling)). Variable tillegg betales nesten alltid én måned etterskuddsvis: oktobers overtid kommer i novemberlønnen.\n\n### Hvor tiden går [anslag]\n- 30–40 % til å hente inn og purre på variable data\n- 25–35 % til kontroll og avviksanalyse\n- 10–15 % til korrigeringer og ekstrakjøringer\n- 10–15 % til avstemming og etterarbeid\n- 5–10 % til spørsmål fra ansatte\n\n| Størrelse | Timer per hovedkjøring | Lønnsårsverk |\n|---|---|---|\n| 20 ansatte, fastlønn | 3–6 | 0,05–0,1, ofte byrå |\n| 100 ansatte | 15–30 | 0,3–0,6, én sårbar person |\n| 400 ansatte, turnus og prosjekt | 60–120 | 1,5–3,0 |\n| 1000 ansatte, flere selskaper | 150–300 | 3–6 |\n\nAPQC oppgir ca. 350 lønnsmottakere per årsverk som internasjonal median [verifiseres]. Norske virksomheter med turnus, tariff og NAV-refusjon ligger ofte lavere."
+   },
+   {
+    "id": "p-maned-400",
+    "tittel": "En lønnsmåned i en virksomhet med 400 ansatte",
+    "md": "**Stiftelsen Nordlys** er fiktiv, men satt sammen av typiske trekk. Den har 400 ansatte i tre juridiske enheter og sju underenheter, én i en sone med lavere AGA. 230 har fast månedslønn, 110 går i turnus og 60 er timelønnede ekstravakter. Med ca. 15 honorarmottakere og 7 styremedlemmer blir det 412 mottakere. Tariffen er Virke HUK. Pensjonen er KLP for HUK-enhetene og OTP for AS-et. 45 ansatte har lønnen fordelt på prosjekter.\n\nLønnsteamet er Kari (lønnsansvarlig), Ola og Fatima (lønnsmedarbeidere), Ingrid (HR), Per (controller) og Lise (økonomisjef). Det gir ca. 130 mottakere per årsverk. Utbetaling er den 20. I november kommer etterbetaling fra lokale HUK-forhandlinger med virkning fra 1. mai.\n\n| Dato | Hvem | Hva skjer |\n|---|---|---|\n| 23.10 | Kari | Frister for november går til alle 40 ledere. Ledergodkjenning innen 9.11 kl. 12 |\n| 30.10 | Ingrid | Lokale forhandlinger ferdige. 258 får tillegg fra 1.5. Protokollen blir importfil |\n| 2.11 | Ola | 6 nyansatte og 4 sluttere: skattekort, konto med BankID, prosjektfordeling, KLP |\n| 4.11 | Ingrid | Cut-off for masterdata |\n| 5.11 | Kari | Purring til 15 ledere. Hun ringer de tre største enhetene |\n| 9.11 | Ola | Cut-off. To ledere har ikke godkjent, og vaktene går til desember. Import av 4 800 linjer gir 3 ansatte uten treff, 1 ukjent vaktkode og 22 linjer uten prosjekt |\n| 10.11 | Ola, Ingrid | Etterbetaling mai–oktober, ca. 1,9 MNOK. 7 sluttede utelates. Testkjøring 1: 31 avvik, ett er et dobbelt nattillegg |\n| 11.11 | Ola, Per | Testkjøring 2. Prosjektlederne får sin kost. Et EU-prosjekt har fått 20 % for mye |\n| 12.11 | Fatima, Kari | Fire øyne på endringer og stikkprøver. Kari signerer: brutto ca. 23,4 MNOK |\n| 13.11 | Lise | Attestasjon. Endelig kjøring og låsing |\n| 16.11 | Lise, Per | AGA for september–oktober betales. Bankfil for 412 mottakere og trekk med KID og forfall 23.11. To signerer i banken |\n| 17.11 | Ola, Per | A-melding for tre selskaper. Feil underenhet gir erstatningsmelding. Bilag til Xledger |\n| 20.11 | Alle | Utbetaling. 9 henvendelser, 2 om reelle feil |\n| 23.11 | Lise | Trekkene trekkes. Hun kontrollerer mot a-meldingen |\n| 24.11 | Per | Avstemming av lønn, hovedbok, a-melding og bank |\n| 25.11 | Fatima | Oppfølging av ca. 25 NAV-refusjoner. 3 purres |\n| 26.11 | Ola | Ekstrakjøring for 2 ansatte med feil vakttillegg, med egen bankfil, a-melding og trekkbetaling |\n| 27.–30.11 | Per, Ingrid | Prosjektrapporter, KLP-rapport og månedsavslutning |\n\n### Tidsbruk [anslag]\nNovember tar ca. 280 timer, og 58 av dem skyldes etterbetalingen. Ola bruker ca. 90 timer, Fatima 55, Kari 45 og de 40 lederne ca. 40 til sammen. En vanlig måned tar 200–220 timer. Bedre retro, automatisk avstemming, færre importfeil og selvbetjening kan spare 25–40 % [anslag].\n\n### Det fortellingen viser\n1. Systemet må eie kalenderen og fristene, med status per leder og sperrer.\n2. Importen er det kritiske punktet. Nye lønnsarter stoppes til de er godkjent.\n3. Retro må også dekke tillegg som avhenger av timelønn.\n4. Kontroll og attestasjon skjer i systemet, og økonomisjefens godkjenning låser opp bankfilen.\n5. Utbetaling betyr nettolønn og trekk med KID.\n6. Avstemming, NAV-refusjon og prosjektrapporter er der det er mest tid å spare."
+   },
+   {
+    "id": "p-arshjul",
+    "tittel": "Årshjulet",
+    "md": "| Måned | Hva skjer i lønn | Hva systemet må kunne |\n|---|---|---|\n| Desember | Skattekort for nytt år hentes. Satser fra 1.1 legges inn. Halv skatt. Lønnen kjøres tidlig, ofte 15.–18.12 | Masseinnhenting av skattekort, datostyrte satser |\n| Januar | Nye skattekort tas i bruk. Feriepengegrunnlaget for fjoråret låses. AGA for november–desember forfaller 15.1. Årsavstemming mot A07. Revisor starter | Feriepengerapport, årsavstemming, revisorpakke |\n| Februar–mars | Revisjonen avsluttes. Noter om ledende personer, styrehonorar og årsverk. Likestillingsredegjørelse | Noteopplysninger |\n| April | Frontfaget forhandles. Ferieplanlegging | – |\n| Mai | Lønnsoppgjør i privat sektor. HUK-oppgjørene har ofte virkning fra 1.5. G reguleres | Datostyrt G, klargjøring for retro |\n| Juni | Feriepenger utbetales. Juni er trekkfri etter tabelltrekket. Ekstra ferieuke for 60+. Sommervikarer starter | Feriepengemodul, ferietrekk, mange vikarer på en gang |\n| Juli–august | Lav bemanning i lønn. Vikarer slutter. Etterbetalinger starter | Sluttoppgjør med feriepenger |\n| September–oktober | Lokale forhandlinger (HUK 2026: innen 31.10). Interimrevisjon. Budsjett | Masseimport av lønnsendringer, retro, budsjetteksport |\n| November | Etterbetaling fra lokale oppgjør. AGA for september–oktober forfaller 15.11. Noen tar halv skatt her | Valgfri måned for halv skatt |\n| Annethvert år | Lønnskartlegging etter kjønn og ufrivillig deltid for private med over 50 ansatte ([ldl. § 26a](https://lovdata.no/lov/2017-06-16-51/§26a)) | Analyse på grupper av arbeid av lik verdi |\n\n### Lønnsoppgjøret: masseendring og etterbetaling\nVirke HUK 2026 hadde virkning fra 1. mai, sentrale tillegg ble godkjent 9. juli, og lokale forhandlinger skulle være ferdige 31. oktober ([Virke](https://www.virke.no/tariff-og-lonn/tariffoppgjor-2026-dette-ma-du-vite/gjennomforte-forhandlinger/)). Sentrale tillegg betales da typisk i august eller september og lokale i november. Systemet må:\n1. Masseoppdatere stiger, prosenttillegg for grupper og individuelle tillegg med sporbarhet.\n2. Etterberegne alle måneder fra virkningsdatoen, også overtid og tillegg som beregnes av timelønn.\n3. Utelate dem som sluttet før vedtaket, etter tariffens regel.\n4. Rapportere etterbetalingen i utbetalingsmåneden, med opprinnelig dato som «siste lønnsendringsdato».\n5. Oppdatere pensjonsgrunnlaget. For KLP skjer det med fil.\n\n### Feriepenger, halv skatt og skattekort\n- **Feriepenger:** 10,2 % etter loven og 12 % ved fem ukers ferie. Over 60 år gir 2,3 prosentpoeng ekstra. Bare dette tillegget kan begrenses til 6G. Grunnlaget, permisjoner, NAV-perioder og forskuddsferie kontrolleres for hver ansatt.\n- **Halv skatt:** Tabelltrekket regnes over 10,5 måneder. Juni er trekkfri og desember har halvt trekk på vanlig lønn. Overtid, bonus og honorar trekkes fullt.\n- **Skattekort:** hentes for alle i desember og løpende ved endringer. Mangler kortet, er trekket 50 %.\n\n### Årsavslutning\nDet lages ikke egne lønnsoppgaver. Lønn og AGA avstemmes mot A07 fra a-ordningen, feriepengeavsetningen mot konto 2940, og trekk og AGA mot betalinger. Fra 2026 finnes det ingen skattetrekkskonto å avstemme mot. Revisor ser etter sene korrigeringer.\n\n### Pensjon\nOTP rapporteres i a-meldingen, og DNB oppdaterer innskuddspensjon månedlig ut fra den. KLP og andre offentlige ordninger får lønn normalt kvartalsvis med fil, og premien må avstemmes mot lønn."
+   },
+   {
+    "id": "p-roller",
+    "tittel": "Roller og arbeidsdeling",
+    "md": "### Hvem gjør hva (forenklet RACI)\n\n| Aktivitet | Utfører | Ansvarlig |\n|---|---|---|\n| Registrere timer, fravær og utlegg | Ansatt | Leder |\n| Godkjenne timer, fravær og utlegg | Leder | Leder |\n| Nyansettelse og lønnsendring | HR | HR |\n| Registrere masterdata i lønn | Lønnsmedarbeider og HR | Lønnsansvarlig |\n| Endre bankkonto | Ansatt med BankID | Lønnsansvarlig kontrollerer |\n| Lønnskjøring og avviksanalyse | Lønnsmedarbeider | Lønnsansvarlig |\n| Fire øyne | Kollega | Lønnsansvarlig |\n| Attestere totalsummer | Lønnsansvarlig | Økonomisjef |\n| Godkjenne bankfil | Controller | Økonomisjef, to signaturer |\n| A-melding | Lønnsmedarbeider | Lønnsansvarlig |\n| Bilag og avstemming | Lønnsmedarbeider | Controller |\n| Tilgangsgjennomgang | Lønnsansvarlig | Økonomisjef |\n\nI store virksomheter er **systemforvalter for lønn** en egen rolle. Bærum kommune har egne stillinger for faglig systemgruppe og for kontroll av reise og utlegg. Systemet må da ha en egen flate for lønnsarter, regler, maler og testmiljø, adskilt fra den daglige kjøringen.\n\n### Fem kombinasjoner én person ikke skal ha\n1. **Endre bankkonto og kjøre lønn.** Den klassiske svindelveien. Den ansatte bør endre kontoen selv med BankID, eller to personer må være involvert. Alle endringer vises i kontrollrapporten før neste kjøring.\n2. **Opprette ansatt og godkjenne utbetaling.** Det åpner for fiktive ansatte.\n3. **Lage bankfil og godkjenne den i banken.** Banken bør kreve to signaturer.\n4. **Endre egen lønn eller eget ansattkort.** Det samme gjelder nære relasjoner.\n5. **Kjøre lønn og alene bokføre og avstemme lønnskontoene.**\n\nSykehuset Innlandets interimrevisjon fant manglende arbeidsdeling mellom bokføring og endring av stamdata og bankopplysninger. I Trondheim kommune gikk enhetslederne ofte ikke gjennom lønnslistene. Et system som viser «hvem kan både X og Y» og sperrer eller varsler, er et konkurransefortrinn.\n\n### Tilgang til sensitive data\n- **Konfidensielle grupper:** toppledere, styret, lønnsavdelingen selv og ansatte med sperret adresse. Kontrollrapporter, bilag og bankfil må aggregere eller maskere dem.\n- **Ledere** ser lønnskost og årsverk for egen enhet. Individuell lønn ser bare ledere med personalansvar og HR.\n- **Regnskapet** viser lønn samlet per avdeling og lønnsart. Gründerens avklaring: nettolønn per ansatt skal ikke synes i hovedbok eller bank uten lønnstilgang. Nettolønnen posteres samlet per kjøring på konto 2930.\n- **Helse og fagforening:** Sykepengelønnsarter, fagforeningstrekk og NAV-dokumenter regnes som lønnsdata med samme vern. Refusjon av sykepenger (5800-serien) skjermes i regnskapet.\n- **Byrå:** Byråets lønnsmedarbeidere har tilgang til kunden, men kundens ledere ser aldri andre kunder. Kunden godkjenner, byrået kjører.\n- **Revisor** trenger lesetilgang for perioden, helst et eget revisorinnsyn med logg.\n\n### I byrå\nGRFS 8.1 sier at byrået bør ha arbeidsdeling, slik at samme person aldri både registrerer og godkjenner en utbetaling. Finanstilsynets tematilsyn fant at ni av 18 byråer verken hadde rutine for eller praksis med arbeidsdeling ved betalingsoppdrag, og ett byrå delte kodebrikker."
+   },
+   {
+    "id": "p-internkontroll",
+    "tittel": "Internkontroll og revisorpakke",
+    "md": "### Kontrollene revisor forventer å se\n\n| Kontroll | Når | Bevis | Hva systemet bør gjøre |\n|---|---|---|---|\n| Avviksanalyse mot forrige måned og budsjett | Hver kjøring | Signert kontrollrapport | Innebygd rapport med terskler og forklaringsfelt |\n| Fire øyne på endringer i masterdata | Hver kjøring | Endringslogg med «kontrollert av» | Logg per felt med før, etter, hvem og når |\n| Kontroll av endrede bankkontoer | Hver kjøring | Liste med signatur | Egen rapport |\n| Attestasjon av totaler | Hver kjøring | Elektronisk godkjenning | Sperre for bankfil uten godkjenning |\n| To signaturer på bankfil | Hver kjøring | Banklogg | Fil som ikke kan endres underveis |\n| Lønnsjournal mot hovedbok | Månedlig | Avstemming | Automatisk bilag og avstemmingsrapport |\n| A-melding mot lønn og regnskap | Månedlig | A07-avstemming | Hente tilbakemelding og vise avvik |\n| AGA per sone og underenhet | Månedlig | Avstemming | Rapport per underenhet og sone |\n| Trekk betalt første virkedag etter | Hver kjøring | Kvittering | Betalinger med riktig KID og forfall |\n| Feriepengeavsetning | Månedlig eller årlig | Avstemming mot 2940 | Rapport over grunnlag og avsetning |\n| Tilgangsgjennomgang | Halvår eller år | Signert liste | Tilgangsrapport og konflikter i arbeidsdelingen |\n| NAV-refusjon | Månedlig | Fordringsliste | Refusjonskrav matchet mot innbetaling |\n| Sluttere | Hver kjøring | Rapport | Varsel om lønn etter sluttdato |\n\n### Revisorpakken\nRevisor ber typisk om:\n- rutinebeskrivelse, tilgangsoversikt og oversikt over arbeidsdeling\n- lønnsjournal per måned og sammendrag per lønnsart for året\n- avstemming av lønn, AGA og feriepenger mot regnskapet\n- stikkprøver: kontrakt mot lønn, endringsvedtak, timelister med godkjenning og bankkonto\n- endringslogg for masterdata og bankkonto\n- dokumentasjon av attestasjon per kjøring\n- nyansatte og sluttere, med test av at ingen får lønn etter sluttdato\n- ytelser til ledende personer og styret, og lån til ansatte\n- ISAE 3402 type II fra leverandøren når lønnen kjøres i skyen\n\nKommunerevisjoner finner igjen og igjen feil betalt AGA og manglende avstemming mellom lønn og regnskap ([Konsek](https://www.konsek.no/wp-content/uploads/2025/01/0005-32_25-Revisjonsnotat-til-arsregnskapet-2024.pdf)). Differanser mellom lønnssystem og regnskap bør ryddes løpende.\n\n### ISAE 3402\nISAE 3402 er en uavhengig revisorrapport om leverandørens kontroller. Type I vurderer designet, og type II tester at kontrollene har virket over tid. Zalaris har type II, ISO 9001 og ISO 27001. SAP publiserer SOC 1-rapporter, og Visma Nmbrs har type II. For kunder med 250+ ansatte, offentlig eide selskaper og byråer blir type II et reelt salgskrav fra år 2–3. Kostnaden må med i forretningsplanen.\n\n### Et konkret eksempel: Kristiansand kommune\n2 338 ansatte, de fleste helsefagarbeidere, sykepleiere og vernepleiere, fikk feil tillegg for forskjøvet arbeidstid. Årsaken var feil koding i grensesnittet mellom timelisteløsningen og lønnssystemet, begge fra Visma. En avdelingsleder oppdaget feilen i testlønnskjøringen i januar 2020 ([rapport](https://www.kristiansand.kommune.no/contentassets/d6fb88872a7b4f88b84e57f20e50318e/rapport.lonnshendelse.pdf)).\n\n**Lærdommen:** De største feilene skjer i overgangen mellom tid og lønn, i mappingen av lønnsarter. Lønnsmotoren er sjelden problemet. Kontroll av mappingen, testberegning av hver ny lønnsart og lederinnsyn før utbetaling er avgjørende."
+   },
+   {
+    "id": "p-integrasjoner",
+    "tittel": "Integrasjonslandskapet",
+    "md": "En virksomhet med 400 ansatte har typisk lønnssystemet i midten, med disse rundt:\n\n| Kategori | Typiske produkter | Slik går det i dag | Det som er kritisk |\n|---|---|---|---|\n| Myndigheter | Skatteetaten, NAV, Altinn 3 | API med Maskinporten og systembruker | Inntektsmelding som svar på forespørsel fra NAV. Trekkpålegg-API fra 2026 |\n| Tid og vakt | Tamigo, Quinyx, Planday, GAT, MinTid | CSV i lønnssystemets format, noe API | Mapping av lønnsarter, ansattnumre og kostnadssteder. Planday anbefaler en testeksport først |\n| HR | Simployer, Sympa, CatalystOne, HiBob, Huma, Workday | API eller fil | HR er ofte master for person og organisasjon, lønn for beregningen |\n| Reise og utlegg | Visma Expense, Pleo, Folio, innebygd modul | Reiseregninger til lønn, rene utlegg ofte til leverandørreskontro | Avvik mellom godkjent i regnskapet og utbetalt i a-meldingen |\n| Regnskap | Xledger, Unit4, Visma Business, Tripletex, PowerOffice, Business Central | Bilag via API eller fil med dimensjoner | Ferde krevde Xledger direkte. Tensio krevde fil mot Unit4 |\n| Pensjon | Storebrand, DNB, KLP, SPK | Innskudd via a-melding, offentlig ordning via fil | DNB bruker a-meldingen bare for innskudd. Forsikringer oppdateres manuelt |\n| Bank | DNB, Nordea, SpareBank 1, Mastercard Direkte Remittering | pain.001 ut, pain.002 og camt.054 tilbake | To signaturer. Nordea validerer betalingsfiler etter hvitvaskingsloven fra 9.9.2026 |\n| Lønnsslipp | Digipost, e-Boks, app | API | – |\n| Identitet | Entra ID, BankID, ID-porten | OIDC, SAML, SCIM | BankID ved kontoendring og for sluttede |\n| BI | Power BI, Excel | Eksport eller API | Store kunder vil ha rådata |\n\n### Må ha og fint å ha, per segment\n\n| Integrasjon | 10–50 | 50–250 | 250–1000 | Byrå |\n|---|---|---|---|---|\n| A-melding, skattekort, A07 | Må | Må | Må | Må, på tvers av klienter |\n| Trekkpålegg og utleggstrekk | Må | Må | Må | Må |\n| NAV inntektsmelding og refusjon | Må | Må | Må | Må |\n| Regnskap med dimensjoner | Må | Må | Må | Må, mange ERP |\n| Bank | Må, fil holder | Må, direkte | Må, med godkjenningsflyt | Må, klientens bank |\n| Trekk betalt med KID | Må | Må | Må | Må |\n| Tid og vakt | Fint, CSV | Må for turnus og handel | Må, API og flere systemer | Må, CSV-maler |\n| Reise og utlegg | Må, innebygd holder | Må | Må | Må |\n| HR-synkronisering | Ikke nødvendig | Fint | Må | Fint |\n| Offentlig tjenestepensjon | Må for HUK | Må for HUK | Må for HUK | Må |\n| Digital lønnsslipp | Fint | Må | Må | Må |\n| SSO med Entra ID | Fint | Fint eller må | Må | Må for byråets ansatte |\n| BI og dataeksport | Fint | Fint | Må | Fint |\n\n### Det praksis viser\n- **NORCE** (800+ ansatte) kjøpte HRM separat og beholdt lønn, tid og reise i Unit4. Lønn må tåle at HR ligger et annet sted.\n- **Tripletex-brukere** klager over at det bare kan gjøres én import før en ny lønnskjøring opprettes. Import må kunne kjøres mange ganger.\n- **Fra 2026** kommer egne betalinger for forskuddstrekk og utleggstrekk med KID i tillegg til nettolønnen.\n- **Kunder som deler arbeidet med byrået** trenger klare roller for hvem som sender a-meldingen. Det krever to separate systembrukere, og systemet må hindre at begge sender."
+   },
+   {
+    "id": "p-organisasjon",
+    "tittel": "Organisasjon og dimensjoner",
+    "md": "### Juridiske enheter og konsern\nHver juridisk enhet har eget organisasjonsnummer, egen a-melding, egen bankkonto og egne bilag. En ansatt som bytter selskap, får nytt arbeidsforhold. Lønnsavdelingen kjører ofte alle selskapene samme dag, med felles kalender og kontrollrapport. Systemet trenger konsernvisning med felles attestasjon, felles lønnsarter med lokale unntak, viderefakturering av lønnskost og konsoliderte rapporter.\n\n### Underenheter og AGA-soner\nArbeidsforholdet rapporteres på underenheten der personen jobber, og AGA-sonen følger i hovedsak underenhetens kommune. Feil underenhet gir feil AGA.\n\n| Sone | I | Ia | II | III | IV | IVa | V |\n|---|---|---|---|---|---|---|---|\n| AGA 2026 | 14,1 % | 10,6 % til fribeløpet, så 14,1 % | 10,6 % | 6,4 % | 5,1 % | 7,9 % | 0 % |\n\nFribeløpet er 850 000 kr i spart avgift per juridisk enhet eller konsern. Spesialtilfeller er ansatte som jobber i flere soner, ambulerende virksomhet og flytting mellom underenheter midt i måneden. Systemet trenger sone per underenhet, kontroll av fribeløp og AGA-rapport per sone.\n\n### Kostnadsfordeling\nPraksis går fra enkelt til komplisert:\n1. **Fast prosent per ansatt**, for eksempel 60 % prosjekt A og 40 % drift, gyldig fra en dato.\n2. **Timebasert fordeling** fra timeføring per prosjekt.\n3. **Fordeling per lønnsart**, for eksempel vakttillegg på enheten der vakten ble gått.\n4. **Retroaktiv omfordeling.** Blir et prosjekt innvilget i mars med virkning fra januar, må kost for januar og februar flyttes. I dag skjer det ofte med manuelt bilag i regnskapet.\n\nSystemet trenger 2–6 fritt definerbare dimensjoner, fordelingsprofiler med datogyldighet, kontroll av at fordelingen summerer til 100 %, sperre mot avsluttede prosjekter, og at AGA, feriepenger og pensjon følger fordelingen.\n\n### Prosjektlønn og tilskudd\nDette er kritisk for stiftelser og forskningsinstitutter.\n- **Forskningsrådet:** Mottakeren må ha et system for registrering av arbeidstid. Timesatsen er anbefalt til ca. 0,8–1,1 promille av årslønnen, med tak på 1 100 kr per time og maks 1 850 timer per år [verifiseres mot gjeldende utlysning] ([Forskningsrådet](https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/)).\n- **EU Horizon Europe:** Dagssatsen er årlig personalkostnad delt på 215, ganger dager på prosjektet. Tiden må dokumenteres med timelister eller erklæring.\n- **Innovasjon Norge, Helsedirektoratet, Stiftelsen Dam og kommuner** krever prosjektregnskap med lønnskost per prosjekt, ofte revisorbekreftet.\n\nI dag eksporteres lønnskost per person med AGA, feriepenger og pensjon til et regneark, og timeark signeres av ansatt og leder. Få systemer lager en ferdig rapport per finansiør med timer, kost per time og sosiale kostnader. Det er en klar mulighet.\n\n### Budsjett, prognose og bemanning\nHR og controller lager lønnsbudsjett per stilling i Excel med eksport fra lønn. Prognosen er faktisk hittil i år pluss resten av året for kjente ansatte. Antall ansatte, årsverk, turnover og sykefravær går til styret, årsberetningen og tilskuddsrapporter. Systemet trenger en stillingsmodell, simulering av lønnsoppgjør og eksport av lønnsgrunnlag."
+   },
+   {
+    "id": "p-ideelle",
+    "tittel": "Stiftelser, ideelle og frivillige organisasjoner",
+    "md": "| Tema | Hva er spesielt | Hva systemet må kunne |\n|---|---|---|\n| Tariff | Virke HUK har sentrale tillegg per stige og lokale forhandlinger med frist. NHO Geneo har egne overenskomster for helse og omsorg. Mange følger offentlige lønnsstiger og ansiennitet | Lønnsstiger, automatisk opprykk, masseoppdatering og retro |\n| Pensjon | HUK-virksomheter har ofte offentlig tjenestepensjon (KLP eller lignende), sjelden OTP-innskudd | Pensjonsgrunnlag, fil og kvartalsrapportering |\n| Prosjektfinansiering | Lønn fordelt på mange finansiører, ofte med endringer bakover i tid | Fordelingsprofiler og retroaktiv omfordeling |\n| Honorarer | Foredragsholdere, artister og oppdragstakere uten foretak rapporteres i a-meldingen med trekk og AGA | Rask registrering av ikke-ansatte og egne honorarkjøringer |\n| Styrehonorar | Trekkpliktig og AGA-pliktig, men gir ikke feriepenger eller pensjon. Ofte konfidensielt | Egen lønnsart og konfidensiell gruppe |\n| Frivillige | Ulønnede frivillige får bare dekket utlegg mot bilag. Det er ikke lønn | Utlegg for ikke-ansatte uten arbeidsforhold |\n| Skattefri organisasjon | Opplysningsplikt når ytelsene passerer 10 000 kr i året per mottaker. AGA beregnes likevel av all lønn ([Skatteetaten](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/spesielle-grupper/skattefrie-organisasjoner)) | Akkumulator per mottaker, automatisk overgang, merking i a-meldingen |\n| AGA-fritak | Ingen AGA når samlet lønn er opp til 800 000 kr og hver utbetaling opp til 80 000 kr per ansatt ([ftrl. § 23-2](https://lovdata.no/lov/1997-02-28-19/§23-2)) | Gjelder små foreninger og byråkunder. Grenseovervåking |\n| Innkjøp | Mange stiftelser setter ut regnskap og lønn. GRID-Arendal kjøpte regnskap, lønn og ERP samlet til fastpris | Byrået kjører, kunden godkjenner |\n| Styring og åpenhet | Givertillit, Innsamlingskontrollen og åpenhetsloven gjør lønn til et risikoområde | Revisjonsspor og rapporter om lønnspolitikk |\n\n### Hvem får penger?\nI organisasjonslivet betaler man ofte mennesker som ikke er ansatte. Behovskartleggingen deler mottakerne i sju klasser: arbeidstaker, honorar- eller vervmottaker, mottaker av bare utgiftsgodtgjørelse, næringsdrivende, utenlandsk artist, frikjøpt tillitsvalgt og ulønnet frivillig. Klassen styrer a-melding, trekk, AGA, feriepenger og pensjon. Detaljene og regelmatrisen står i fanen Behov.\n\nTre fakta som ofte blandes sammen:\n- **Styrehonorar og vervgodtgjørelse** rapporteres som frilanser, oppdragstaker eller honorarmottaker, og bare i månedene det utbetales. Det skal alltid oppgis som trekkpliktig, og det beregnes AGA.\n- **10 000-kronersregelen** fritar organisasjonen for opplysningsplikt og mottakeren for skatt under grensen. AGA skal likevel beregnes av alt, med mindre fritaket i § 23-2 gjelder.\n- **Lokallag med eget organisasjonsnummer** er selv opplysningspliktige når de betaler honorar. Hver utbetaling må derfor ha en betalende juridisk enhet.\n\n### Hvorfor dette segmentet passer oss\nDet finnes 703 stiftelser og 1 594 foreninger, lag og innretninger med 10–999 ansatte. Dagens systemer dekker tariff, KLP, prosjektlønn og honorarer dårlig. Hvor mange som har KLP eller SPK, og hvor mange som bruker 10 000-kronersregelen, er ikke kartlagt [verifiseres]."
+   },
+   {
+    "id": "p-byra-dag",
+    "tittel": "Byråets lønnsdag: i dag og med Brutto",
+    "md": "Det er tirsdag den 17. i lønnsuka. En lønnskonsulent i byrå har 60 klienter og ca. 660 slipper i måneden. Klientene bruker fem regnskapssystemer. I dag har hun:\n- 22 klienter med lønn den 20. Kunden må godkjenne i dag på grunn av bankens frist.\n- 18 klienter med lønn den 25. Fristen for grunnlag er i dag.\n- 6 klienter som fikk lønn den 16. Forskuddstrekket forfaller i dag.\n- 5 klienter fra en syk kollega, 1 ny klient, 2 åpne a-meldingsavvik og 1 sluttoppgjør.\n\n«I dag» betyr kundens Tripletex eller PowerOffice, Visma Payroll, Excel, e-post, nettbank og praksissystem. «Med Brutto» betyr samme dag i 2028, når 70 % av grunnlaget kommer strukturert. Stegene med Brutto gjøres etter hverandre fra 07:45 [anslag].\n\n| Tid | I dag | Min | Med Brutto | Min |\n|---|---|---|---|---|\n| 07:45 | Sorterer 23 e-poster med Excel og endringer | 35 | Arbeidskøen: 13 kjøringer godkjent av kunden, 6 med avvik, 3 venter. Kollegaens klienter er omfordelt | 10 |\n| 08:20 | Sjekker hvem som har godkjent PDF-lønnslisten. Purrer | 30 | 17 innsendinger via lenke, 4 fra Tikket og Utleggsappen, 2 Excel-filer tolket av KI | 25 |\n| 08:50 | Taster timer for 6 klienter. Tripletex krever ny kjøring | 80 | 31 avvik på ca. 300 slipper, med forklaring. 24 kvitteres, 7 går som spørsmål til kunden | 55 |\n| 10:10 | Kontrollrapporter i tre systemer, sammenligning i Excel | 70 | Kollegaens klienter: klientinstruks og oppsummering | 30 |\n| 11:20 | Leter etter status i kollegaens notater og ringer kunder | 45 | Ny klient: manglende delegering ble fanget for tre dager siden | 5 |\n| 12:05 | Lunsj | – | Fire øyne på kollegaens kjøringer. Den som forberedte, kan ikke godkjenne | 20 |\n| 12:30 | A-melding for ny klient feiler med tilgangsfeil | 30 | 19 av 22 kunder har godkjent. Hun ringer én | 10 |\n| 13:00 | Betalingsfiler og e-post om å godkjenne i nettbanken | 45 | Betalingsforslag med netto og forskuddstrekk med KID er levert | 15 |\n| 13:45 | Sjekker forskuddstrekk for 6 klienter. To har glemt | 30 | 5 av 6 er bekreftet betalt. Den sjette har fått varsel | 5 |\n| 14:15 | Eksporterer og importerer lønnsjournal for 8 klienter | 40 | Bilagene ble bokført i går. 2 mappingfeil rettes i malen | 10 |\n| 14:55 | Slår opp feilkoder for to a-meldingsavvik | 35 | Avvikene er forklart. Ett er allerede løst | 15 |\n| 15:30 | Purrer 11 av 18 klienter med lønn den 25. | 25 | Systemet har purret. 13 av 18 har levert | 10 |\n| 15:55 | Sluttoppgjør i regneark | 40 | Sluttoppgjør med veiviser i egen kjøring | 20 |\n| 16:35 | Fører timer etter hukommelsen | 15 | Timeforslag til praksissystemet | 3 |\n| 16:50 | Overtid til 18:30. 7 kjøringer er ikke godkjent | 100 | Ferdig ca. 12:15 | – |\n| **Sum** | | **ca. 620** | | **ca. 233** |\n\n### Hva tidslinjen viser\n- **Gevinsten** kommer fra innhenting, kontroll og etterarbeid. Beregningen tar like kort tid i begge tilfeller.\n- **Sykdom** hos en kollega koster ca. 50 minutter med Brutto. I dag koster den leting, overtid og arbeid som ikke blir ferdig.\n- **Forskuddstrekket** som forfaller dagen etter hver lønn, er en ny daglig kilde til feil fra 2026. Systemet fjerner nesten hele risikoen.\n- **Forbehold:** Besparelsen krever at ca. 70 % av kundene sender inn og godkjenner digitalt. Uten det faller gevinsten i innhentingen med to tredjedeler.\n\n### Ansvarsdelingen bak\nGRFS sier at kunden har ansvaret for lønnsgrunnlaget, og at byrået skal drøfte poster som virker urimelige. Utbetalinger skal godkjennes av kunden hvis ikke annet er avtalt ([GRFS](https://www.regnskapnorge.no/globalassets/dokumenter/vedtekter/grfs---fom.-2023---masterfil.pdf))."
+   },
+   {
+    "id": "p-beregning",
+    "tittel": "Beregningskjernen kort",
+    "md": "Beregningen tar lite tid, men må være riktig hver gang. Her er det viktigste fra beregningsrapporten og gründerens avklaringer.\n\n### Lønnsarten\n- **Gründerens modell:** En lønnsart er en linje på lønnsslippen. Den har nummer, a-meldingskode, flagg for skatt, AGA, feriepenger og sykepenger, og én debet- og én kreditkonto. Lønnsarten har ingen grupperingskode. Den ligger på kontoen.\n- **Flere flagg i beregningsrapporten:** trekkmetode (tabell, prosent, trekkfri), halvt trekk i desember, pensjonsgrunnlag (alltid, kan, aldri), opplysningspliktig, om linjen skal med i retro, og beregningsregel.\n- **Versjonering:** Flaggene har gyldig fra-dato, og hver lønnslinje lagrer flaggene den ble beregnet med. Gamle kjøringer kan da reproduseres.\n- **Standardutvalg:** 26 lønnsarter i Tripletex-nummerering: 1000–1002, 2000, 2001, 2002, 2015–2017, 2018, 2019, 2020, 2028, 3008, 3009, 3012, 3016, 5500, 5501, 5514, 6000, 6001, 6002, 6003, 6008 og 6011. Sykelønn er 2018 og 2019, og utlegg er 1000.\n\n### Rekkefølgen\n1. Klargjøring: periode, utbetalingsdato og øyeblikksbilde av skattekort, satser og trekkpålegg.\n2. Fast lønn per gyldighetsintervall, så variable ytelser og fravær, så retrodifferanser.\n3. Brutto, fordeler, godtgjørelser og ansattes pensjonsandel før skatt.\n4. Forskuddstrekk per skattekort og utbetalingsdato.\n5. Trekk etter skatt i prioritert rekkefølge, med vernet beløp.\n6. Netto. Negativ netto fremføres eller blir fordring.\n7. AGA per virksomhet og sone, feriepengeavsetning og arbeidsgivers pensjon.\n8. Bilag, kontroller og godkjenning. Så låsing, bankfil, a-melding og trekkbetaling første virkedag etter.\n\nTabelltrekket bør ikke lages på nytt. Skatteetaten publiserer trekkrutinen som Java-kode på GitHub, men repoet har ingen lisensfil, så retten til gjenbruk må avklares [verifiseres].\n\n### Feriepenger\n10,2 % etter loven, 12 % ved fem uker og 2,3 prosentpoeng ekstra over 60 år. Bare 60+-tillegget kan begrenses til 6G (819 294 kr). Grunnlaget er utbetalt arbeidsvederlag i kalenderåret før. Feriepenger i ferieåret er trekkfrie.\n\n### Retro\n- Datamodellen har to tidsakser: når noe gjelder, og når systemet fikk vite det.\n- En godkjent kjøring endres aldri. Retting skjer med nye linjer som peker til originalen.\n- Retro regner perioden på nytt, trekker fra det som er utbetalt, og legger differansen inn i neste kjøring. To kjøringer uten nye fakta gir null nye linjer.\n- Skatt følger utbetalingen, så retro trekkes vanligvis med prosent. Etterbetalingen øker feriepenge- og pensjonsgrunnlaget i utbetalingsåret.\n- To kjøringstyper: etterbetaling, og korreksjon med erstatningsmelding for perioden.\n\n### Standardkontering (gründerens avklaring)\n\n| Post | Konto |\n|---|---|\n| 2000 Fastlønn | 5000 |\n| 2020 Styrehonorar | 5011 |\n| Feriepenger 2015–2017 | 2940 |\n| 3012 Gruppelivsforsikring | 5250 mot 5290 |\n| Kost 5500/5501 | 7150 |\n| 5514 Kilometergodtgjørelse | 7100 |\n| Skattetrekk 6000 | 2600 |\n| Utleggstrekk 6001/6002/6011 | 2610 |\n| Bidragstrekk 6003 | 2620 |\n| Pensjonstrekk 6008 | 2690 |\n| Fagforening | 2650 |\n| Ulykkesforsikring / helseforsikring | 5252 / 5280 |\n| Forskudd på lønn og reiseforskudd | 2910, til 1572 og 1570 ved årsslutt |\n| Nettolønn, samlet per kjøring | 2930 |\n| AGA | 5400/2770 |\n| Avsetning feriepenger / AGA av feriepenger | 5020/2940 / 5405/2785 |\n\nLønnsarter utenfor utvalget får konto etter gruppen sin. Grupperingskodene samler blant annet alle trekkontoer 2600–2690 til 2600 og 2940 til 2949. **OTP-premien** føres fra fakturaen fra pensjonsleverandøren på 5420 og 2690 mot 2400. Lønnskjøringen trenger premien per termin for a-melding og AGA, men fører den ikke [verifiseres]."
+   },
+   {
+    "id": "p-2026",
+    "tittel": "Endringer i 2026 som påvirker prosessen",
+    "md": "| Endring | Fra | Hva det betyr |\n|---|---|---|\n| **Skattetrekkskontoen er avviklet** | 1.1.2026 | Forskuddstrekk og utleggstrekk betales direkte til Skatteetaten senest første virkedag etter hver utbetaling, med KID og som eget betalingsoppdrag. AGA betales fortsatt annenhver måned ([Skatteetaten](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/arbeidsgiveravgift/betaling-av-forskuddstrekk-og-arbeidsgiveravgift/)) |\n| **Samordnet utleggstrekk** | Januar 2026 | Trekkpålegg hentes via API. Nye trekk rapporteres med koden `utleggstrekkSamordnet` og betales med KID per ansatt. Gamle og nye trekk holdes adskilt ([Skatteetaten](https://www.skatteetaten.no/om-skatteetaten/fremtidens-innkreving/systemleverandorer/lonns--og-personalsystem/)) |\n| **Trekk per utbetalingsdato** | 2026 | A-meldingen krever lønnsutbetalingsdato og sum forskuddstrekk per dato. Hver utbetaling får egen trekksum og frist |\n| **Altinn II stengt for a-melding** | 15.6.2026 | A-melding går via Skatteetatens REST-API med Maskinporten og Altinn 3-systembruker. Praksisrapporten oppgir 19.6.2026 [verifiseres] |\n| **Gamle Altinn II-roller** | 17.11 og 31.12.2026 | Rollene gir ikke a-meldingstilgang etter 17.11 og opphører 31.12. Byråer bruker systembruker for klientsystem |\n| **Skattekort bare med polling** | 15.12.2026 | Skattekort-API-et mister varslingen og får to nye svarverdier |\n| **Inntektsmelding via NAV-API** | 2026 | Sendes som svar på forespørsel fra NAV. Avvik fra snittet av tre måneder må begrunnes ([NAV](https://www.nav.no/arbeidsgiver/moderniserte-tjenester)). Om foreldrepenger kan sendes fra lønnssystem, er uklart [verifiseres] |\n| **Nordea validerer betalingsfiler** | 9.9.2026 | Krav etter hvitvaskingsloven. Filformatet må følges nøye |\n| **Nye forretningsregler F532 og F530** | Januar 2027 | Forhåndsvalideringen må oppdateres |\n| **A-melding versjon 2.4** | Januar 2028 | Ny modell samtidig med Bruttos første produksjon |\n\n### Hva det betyr i praksis\n- **To betalinger per kjøring:** netto på lønnsdagen og forskuddstrekk første virkedag etter. Utleggstrekk kommer i tillegg.\n- **Ekstrakjøringer koster mer arbeid.** Hver kjøring gir en ny trekkbetaling. Mange små honorarkjøringer gir mange innbetalinger, så faste honorarkjøringer lønner seg.\n- **Strafferisiko:** Trekk som ikke betales i tide, kan få strafferettslige konsekvenser for kunden. Systemet bør lage betalingene og vise status.\n- **Årsavslutningen endres.** Det finnes ingen skattetrekkskonto å avstemme mot. Kontrollen er at trekkene er betalt i tide.\n- **Byråene får en daglig strøm av trekkforfall** fordi klientene har ulike lønnsdatoer.\n- **Gründerens avklaring:** Forskuddstrekket betales sammen med lønnen, med KID beregnet i systemet. AGA legges til betaling først når lønnen er avstemt og konto 2600 går i null. KID-kravtypen må bekreftes [verifiseres].\n\n### Satser 2026 som påvirker kjøringen\n- G er 136 549 kr fra 1.5.2026. 6G er 819 294 kr.\n- Trygdeavgift på lønn er 7,6 %.\n- Kilometergodtgjørelse etter statens sats er 5,30 kr, og 3,50 kr er trekkfritt [verifiseres].\n- Livsoppholdssatsen ved utleggstrekk er 11 388 kr for enslige fra 1.7.2026.\n\n### Varslet for 2027 [verifiseres]\nForslaget til statsbudsjett for 2027 (7.10.2026) senker trygdeavgiften på lønn fra 7,6 til 7,4 % og innfører en ny firmabilmodell fra 1.1.2027. Forslaget er ikke vedtatt. EUs lønnstransparensdirektiv hadde frist i EU 7.6.2026, men er ennå ikke tatt inn i EØS-avtalen. Datamodellen bør likevel støtte stillingskategorier og «arbeid av lik verdi»."
+   },
+   {
+    "id": "p-smerte",
+    "tittel": "Smertepunkter med dagens systemer",
+    "md": "### Det brukerne sier ([Regnskap Norge 2025](https://www.regnskapnorge.no/contentassets/b173a1e31cd741af9b610fc80db70ddf/lonnssystemer---resultater-til-publisering.pdf))\n\n| System | Ros | Klager |\n|---|---|---|\n| SD Worx (5,4) | Sterk og fleksibel motor, gode importmaler, god fraværsmodul | Ustabil etter skyovergangen, tung implementering, svak support, Citrix, for åpent for brukerfeil, svak historikkretting |\n| Visma Payroll (4,6) | Ryddig, god automatisering ved korrigering og a-melding | Rigid datostyring, retro som gir avstemmingsproblemer, doble prosesser, lite på slippen, svak regnskapsintegrasjon |\n| PowerOffice Go (5,1) | Intuitivt, godt samarbeid byrå og klient | Mange klikk, svak timebank og fravær, feil i trekk og feriepenger |\n| Tripletex (4,9) | Enkelt for små | Lite automasjon, ingen full fraværsmodul, bare én import |\n| Finago (4,6) | Moderne og byråfokusert | Tregt, feil ved oppstart i 2025 |\n| Xledger (4,5) | Tett på økonomi og konsern | Manuelt og tungvint, mangler Altinn-automasjon |\n| Visma Enterprise HRM (3,4) | – | Lavest blant de store |\n| NettLønn (2,9) | – | Lavest i markedet |\n\nBrukerne ser KI som en mulig kontrollfunksjon for lønn og reiseregninger, men vil ha trygge rammer for personvern og tall.\n\n### Andre kilder\n- **Bytte er tungt.** Universitetene i BOTT-samarbeidet gikk over til DFØs SAP-lønn i 2021–2022 og hadde uløste problemer nesten to år etter.\n- **Feil mellom tid og lønn.** Kristiansand kommune ga 2 338 ansatte feil tillegg på grunn av feil koding i grensesnittet.\n- **HR i Word og Excel.** NORCE med over 800 ansatte hadde personalarkiv basert på Word, PDF og Excel.\n- **Godkjenning når ikke fram.** SAFE beskriver at timegodkjenningen er så omfattende at timene ikke blir godkjent før lønnskjøringen.\n- **Tilleggsbetaling og API-kostnader.** Ferde krevde at siste versjon alltid er inkludert. Tensio ba om pris på API-kall og datavolum.\n- **Høye byttekostnader.** Randaberg ville bort fra Visma Enterprise HRM, men Visma vant likevel.\n\n### Smerten, årsaken og muligheten\n\n| Smerte | Årsak | Mulighet |\n|---|---|---|\n| Excel-import av variable data | Tidssystemet eksporterer CSV, mapping skjer manuelt | API først, mapping med validering, import som tåler gjentak, forhåndsvisning |\n| Retro og etterbetaling | Datostyring uten god differanseberegning | Ny beregning av perioden med differanse per måned og lønnsart, forklart linje for linje |\n| Retting etter låsing | Må reversere og kjøre på nytt manuelt | Korrigeringskjøring med erstatningsmelding og reversbilag |\n| Kontrollrapporter i Excel | Laget for utskrift | Kontrollsenter med terskler, forklaring og signering |\n| Avstemming lønn, regnskap og a-melding | Ulike perioder og kilder | Automatisk treveis avstemming med forklaring |\n| Tunge oppgraderinger | On-prem, Citrix, tilpasninger | Ren SaaS, konfigurasjon og testmiljø per kunde |\n| Dyr support | Kompleksitet og få eksperter | Regelforklaring i produktet og kunnskapsbase |\n| Avvik i a-meldingen | Valideres først ved innsending | Forhåndsvalidering mot kodeverket før kjøring |\n| Prosjektfordeling | Lønn og prosjekt i ulike systemer | Fordelingsprofiler, retroaktiv omfordeling og finansiørrapport |\n| Byrå med mange klienter | Ett klientbilde om gangen | Oversikt med status, frister og avvik på tvers |"
+   },
+   {
+    "id": "p-kilder",
+    "tittel": "Kilder for Lønn i praksis",
+    "md": "Fanen bygger på praksisrapporten (D), beregningsrapporten (C), byrårapporten fra runde 2 og gründerens egne fagavklaringer. Tidsbruk, bemanning og typiske funn er anslag fra rådgiver. Ingen av dem er målt.\n\n### Regelverk og myndigheter\n- Skatteetaten: [betaling av forskuddstrekk og AGA](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/arbeidsgiveravgift/betaling-av-forskuddstrekk-og-arbeidsgiveravgift/), [KID](https://www.skatteetaten.no/kid/), [lønns- og personalsystem og utleggstrekk](https://www.skatteetaten.no/om-skatteetaten/fremtidens-innkreving/systemleverandorer/lonns--og-personalsystem/), [siste lønnsendringsdato](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/arbeidsforholdet/opplysninger-om-arbeidsforholdet/siste-lonnsendringsdato), [trekk i lønn for ferie](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/lonn-og-ytelser/oversikt-over-lonn-og-andre-ytelser/trekk-i-lonn-for-ferie), [skattefrie organisasjoner](https://www.skatteetaten.no/bedrift-og-organisasjon/arbeidsgiver/a-meldingen/veiledning/spesielle-grupper/skattefrie-organisasjoner).\n- Revisorforeningen: [skattetrekkskontoen fjernes](https://www.revisorforeningen.no/fag/nyheter/skattetrekkskontoen-fjernes-fra-1.-januar-2026/).\n- NAV: [moderniserte tjenester](https://www.nav.no/arbeidsgiver/moderniserte-tjenester). Digdir: [overgang fra Altinn II](https://samarbeid.digdir.no/sites/samarbeid/files/2025-12/Viktig%20informasjon%20-%20Overgang%20fra%20Altinn%20II%20til%20Altinn%203.pdf).\n- Lovdata: [likestillings- og diskrimineringsloven § 26a](https://lovdata.no/lov/2017-06-16-51/§26a), [folketrygdloven § 23-2](https://lovdata.no/lov/1997-02-28-19/§23-2).\n- GRFS: [Regnskap Norge](https://www.regnskapnorge.no/globalassets/dokumenter/vedtekter/grfs---fom.-2023---masterfil.pdf).\n\n### Praksis og eksempler\n- Regnskap Norge: [«Lønnssystemer 2025»](https://www.regnskapnorge.no/contentassets/b173a1e31cd741af9b610fc80db70ddf/lonnssystemer---resultater-til-publisering.pdf).\n- Lønnskalendere: [UiB](https://www.uib.no/foransatte/175460/utbetaling), [NTNU](https://i.ntnu.no/wiki/-/wiki/English/Payment+schedule+for+salaries+and+refunds).\n- Tariff: [Virke om oppgjøret 2026](https://www.virke.no/tariff-og-lonn/tariffoppgjor-2026-dette-ma-du-vite/gjennomforte-forhandlinger/).\n- Pensjon: [KLP rapportering](https://www.klp.no/virksomhet/pensjon/hr-lonn-og-personal/rapportering-av-ansattopplysninger), [DNB og a-melding](https://www.dnb.no/bedrift/a-aa/pensjon/a-melding).\n- Avstemming: [Sticos om a-melding og regnskap](https://www.sticos.no/fagstoff/skal-a-meldingen-alltid-stemme-med-regnskapet).\n- Bank: [DNB filoverføring](https://www.dnb.no/bedrift/hjelp-og-veiledning/filoverforing), [Nordea om validering](https://support.e-markets.nordea.com/hc/en-us/articles/38984795305501-To-users-of-Norwegian-accounts-Validation-of-payment-files-according-to-the-Norwegian-AML-ACT-requirement-will-start-on-the-9th-of-September-2026).\n- Internkontroll: [Kristiansand kommune](https://www.kristiansand.kommune.no/contentassets/d6fb88872a7b4f88b84e57f20e50318e/rapport.lonnshendelse.pdf), [Sykehuset Innlandet](https://www.sykehuset-innlandet.no/4946ed/siteassets/styret/2018/2018-03/025-2018-vedlegg-03-oppsummering-interimrevisjon.pdf), [Konsek](https://www.konsek.no/wp-content/uploads/2025/01/0005-32_25-Revisjonsnotat-til-arsregnskapet-2024.pdf), [Zalaris](https://zalaris.com/managed-services/hr-&-payroll-outsourcing/managed-payroll-&-hr-services).\n- Prosjektlønn: [Forskningsrådet](https://www.forskningsradet.no/finansiering/hvordan-skrive-soknad/budsjett/kostnader-naringsliv-offentlig-sektor/).\n- Benchmark: [APQC](https://www.apqc.org/what-we-do/benchmarking/open-standards-benchmarking/measures/number-employees-paid-fte-performs).\n- Anbud: [Ferde](https://ted.europa.eu/en/notice/-/detail/169076-2025), [Tensio](https://ted.europa.eu/en/notice/-/detail/291054-2024), [NORCE](https://ted.europa.eu/en/notice/-/detail/373762-2024), [Randaberg](https://ted.europa.eu/en/notice/-/detail/367086-2024).\n- Finanstilsynet: [tematilsyn om betalingsoppdrag](https://www.finanstilsynet.no/contentassets/759a5db7872849ae817375466fb830e1/regnskapsforeres-betalingsoppdrag---tematilsyn-2018.pdf).\n\n### Ikke verifisert\nAPQC-medianen, satsene for Forskningsrådet, kilometersatsene for 2026, datoen da Altinn 2 ble skrudd av (15.6 eller 19.6.2026), NAVs status for foreldrepenger via API og KID-kravtypen for forskuddstrekk må sjekkes før de brukes i produktet."
+   }
+  ]
+ },
+ "behov": {
+  "tittel": "Behov og personas",
+  "ingress_md": "Behovene kommer fra runde 2 av behovskartleggingen: virksomhetskunden, byråkanalen, ansatte og organisasjonslivet, og økosystemet rundt API-et. Hver persona har de viktigste behovene med original-ID, prioritet og mål. Tabellen øverst samler de 20 behovene som betyr mest på tvers.",
+  "topp_md": "Tabellen samler de 20 behovene som betyr mest på tvers av alle personas. Rangeringen er en sammenstilling av topplistene i behovsrapportene for virksomhet, byrå, ansatte og organisasjon. Den vekter hvor mange personas behovet gjelder, hvor mye tid og risiko det fjerner, og om mangelen stopper et kjøp [anslag]. **Må** betyr på plass før første kunde eller byrå går i produksjon, realistisk januar 2028.\n\n| # | Behov | Hvem | Hvorfor det vinner kunden | Kilde-ID-er |\n|---|---|---|---|---|\n| 1 | Myndighetsflyt uten drama: a-melding med forhåndsvalidering og klartekst, skattekort i masse, trekkpålegg, inntektsmelding til NAV og systembruker med tilgangsdiagnose | Alle, særlig byråkonsulent og lønnsmedarbeider | Uten dette er det ikke noe produkt. Feil rammer på lønnsdagen, og feilkodene er kryptiske i dag | VK-22, VK-58, VK-60, BY-07, BY-08, BY-15, FT-45 |\n| 2 | Kontrollsenter med forklarte avvik, terskler, fire øyne og signering | Lønnsansvarlig, byråkonsulent, økonomisjef, revisor | 25–35 % av tiden går til kontroll. Kvitteringen blir dokumentasjon etter GRFS | VK-27, VK-51, VK-63, BY-04, BY-05 |\n| 3 | Strukturert grunnlag inn: innsending via lenke, import med mapping, karantene for nye koder og flere importer per kjøring | Lønnsmedarbeider, byråkonsulent, byråkunde, tredjeparter | 30–40 % av tiden går til innhenting. De største feilene skjer mellom tid og lønn | VK-15, VK-16, VK-17, BY-02, BY-42, TI-44, TI-45, OK-81 |\n| 4 | Retro med følgevirkninger og import av oppgjørsprotokoll | Lønnsansvarlig, HR-sjef, økonomisjef, byråkonsulent | Største enkeltklage mot Visma Payroll. 58 av 280 timer i en oppgjørsmåned | VK-03, VK-04, VK-05, BY-06 |\n| 5 | Komplett betalingsforslag i én godkjenning: netto, forskuddstrekk og utleggstrekk med KID og riktig forfall | Økonomisjef, byråkunde, daglig leder | Ny plikt fra 2026 med strafferisiko for kunden | VK-29, VK-60, BY-44 |\n| 6 | Godkjenning som låser opp bankfilen, håndhevet arbeidsdeling og kontonummer-skjold | Økonomisjef, revisor, kvalitetsansvarlig, ansatt | Endret kontonummer er den vanligste lønnssvindelen. Svak arbeidsdeling er et gjentakende funn | VK-28, VK-30, VK-31, BY-34, AN-09, OB-10 |\n| 7 | Migrering uten risiko: arbeidsforhold-ID videreført, saldoer, parallellkjøring og likt på øret | Lønnsansvarlig, økonomisjef, byråpartner | Den viktigste byttebarrieren | VK-77, BY-31, FT-56, HR-16 |\n| 8 | Godkjenning på mobil for kunde og leder, i én innboks med kontekst og stedfortreder | Byråkunde, linjeleder, økonomisjef | Godkjenning er flaskehalsen før cut-off | BY-43, BY-45, LE-01, LE-02, LE-05, VK-M04 |\n| 9 | Månedlig automatisk avstemming av lønn, hovedbok, a-melding og bank | Økonomisjef, revisor, kvalitetsansvarlig | 4–6 timer i måneden i dag og et typisk revisjonsfunn | VK-34, BY-36, UT-62 |\n| 10 | Bilag med dimensjoner til kundens ERP, fordelingsprofiler og periodisering | Økonomisjef, byråkonsulent, controller | Byrået velger ikke kundens regnskapssystem. Feil dimensjoner rettes for hånd i dag | VK-08, VK-32, BY-09, OK-90, OK-91, TI-70, UT-60 |\n| 11 | Lønnskalender, cut-off-motor og arbeidskø med eksakte frister | Lønnsansvarlig, byråkonsulent | Ingen e-post om frister og ingen telefonrunde | VK-01, VK-02, BY-01, BY-10, OK-08 |\n| 12 | Fravær og NAV i kjernen: arbeidsgiverperiode, sykmelding og inntektsmelding via API, og refusjonsreskontro | Lønnsansvarlig, lønnsmedarbeider, daglig leder | NAV-refusjoner er et «svart hull» der penger går tapt | VK-12, VK-20, VK-61, FT-04, FT-44, FT-45, FT-71 |\n| 13 | Forklart lønnsslipp, generert fra beregningen | Ansatt, ny ansatt, byråkunde | Fjerner det vanligste spørsmålet til lønn | AN-02, VK-79, BY-14, OB-05 |\n| 14 | Mottakerklasse og betalende enhet, med BankID-onboarding av honorarmottakere | Tillitsvalgt, generalsekretær, arrangementsansvarlig, OrgLab og Tikket | Alt blir feil uten dette, og fødselsnummer på e-post forsvinner | TV-01, TV-02, GS-01, OK-40, OK-62, OB-01 |\n| 15 | Egne moduler som kan byttes ut: felles offentlig API, kilderegister, blanding per ansattgruppe og bytte uten tap | Daglig leder, lønnsansvarlig, Utleggsappen, modulteam | Modulene er med i prisen og låser ikke inne kunder med eget tidssystem | VK-M01, VK-M02, VK-M03, OK-160, OK-162, OK-171, TI-41, UT-40 |\n| 16 | Revisorinnsyn, oppdragsdokumentasjon og compliance-pakke med ISAE 3402 | Revisor, kvalitetsansvarlig, kjede | Salgskrav fra 250 ansatte og for byråer, som må oppbevare dokumentasjon i 5 år | VK-49, VK-50, VK-56, BY-35, BY-38, BY-39 |\n| 17 | Driftssikkerhet i lønnsvinduet, beregningsgaranti og lønnsfaglig support | Alle, særlig byråpartner | SD Worx' tydeligste svakhet, og billig å vinne på | VK-78, BY-30 |\n| 18 | Ideell sektor: tariffbibliotek, KLP og prosjekt- og finansiørrapport | Lønnsansvarlig i stiftelse, generalsekretær | Dårlig dekket i dag og avgjørende for stiftelser | VK-06, VK-07, VK-10, GS-04, TI-49 |\n| 19 | Byråmaler med arv, stedfortreder og omfordeling med ett grep | Leder for lønnsavdeling | Skala og standard. Fravær i lønnsuka er en stor driftsrisiko | BY-16, BY-17, BY-19 |\n| 20 | Huma-integrasjon med eierskap per felt og sikret bankkontoendring, og en datamodell som tåler at Brutto overtar HR | HR-sjef, kundens IT | Senker byttekostnaden for Huma-kunder og åpner veien til å samle HR og lønn | VK-H01, VK-H02, VK-H03, VK-H04, OK-170, OK-171, OK-183 |\n\n**Rett under streken:** samle HR og lønn i Brutto (fase 2), honorar og verv fra OrgLab og Tikket, veiledet modus for små virksomheter, lønnsslipp på flere språk, testmiljø for systemforvalter, flerenhetsmodus for lokallag og KI-tolking av Excel og e-post.",
+  "personas": [
+   {
+    "id": "P-VK1",
+    "navn": "Lønnsansvarlig i stiftelse med 400 ansatte",
+    "segment": "Virksomhet",
+    "kontekst_md": "**Kari** leder lønn i Stiftelsen Nordlys: 400 ansatte i tre juridiske enheter, sju underenheter, Virke HUK, KLP og OTP, turnus og 45 ansatte fordelt på prosjekter. Hun har 412 mottakere den 20. og et team på ca. 3 årsverk. Hun er hovedbruker og faglig evaluator og har i praksis veto i kjøpet.",
+    "smerter_md": "- Retro dekker ikke tillegg som beregnes av timelønn. Etterbetalingen regnes i Excel og er «det største tidstyvet».\n- Retro som endrer skattetrekk og AGA bakover, gir differanser ingen forstår ved årsslutt.\n- Ledere godkjenner ikke innen fristen, og Kari ringer rundt.\n- Nye vaktkoder kommer umappet fra vaktplanen.\n- Kontrollrapportene er laget for utskrift, uten terskler eller forklaringsfelt.\n- Prosjektfordeling rettes med manuelle bilag, KLP krever egen fil hvert kvartal, og NAV-refusjoner er et «svart hull».",
+    "behov": [
+     {
+      "id": "VK-01",
+      "prioritet": "Må",
+      "tekst": "Lønnskalender med flere kjøringstyper per juridisk enhet, som flytter utbetaling ved helg og har egne kalendere for juni og desember."
+     },
+     {
+      "id": "VK-02",
+      "prioritet": "Må",
+      "tekst": "Cut-off-motor med status per leder, automatisk purring og utsettelse av ugodkjente linjer med varsel og logg."
+     },
+     {
+      "id": "VK-03",
+      "prioritet": "Må",
+      "tekst": "Import av oppgjørsprotokoll med validering av ansattnummer, virkningsdato og trinn, forhåndsvisning av total kost og fire øyne."
+     },
+     {
+      "id": "VK-04",
+      "prioritet": "Må",
+      "tekst": "Retro fra virkningsdato per måned og lønnsart som tar med tillegg av timelønn, permisjoner og sluttede, og som gir null nye linjer når den kjøres to ganger."
+     },
+     {
+      "id": "VK-05",
+      "prioritet": "Må",
+      "tekst": "Følgevirkninger av retro: flagg for korrigert inntektsmelding innen 3 måneder, nytt KLP-grunnlag og høyere feriepengegrunnlag i utbetalingsåret."
+     },
+     {
+      "id": "VK-06",
+      "prioritet": "Må",
+      "tekst": "Tariffbibliotek for Virke HUK og NHO Geneo med stiger, trinn og automatisk opprykk lagret som data (for HUK-kunder)."
+     },
+     {
+      "id": "VK-07",
+      "prioritet": "Må",
+      "tekst": "KLP: pensjonsgrunnlag per ansatt, lønnsfil i KLPs format og avstemming av premie mot grunnlag (for HUK-kunder)."
+     },
+     {
+      "id": "VK-08",
+      "prioritet": "Må",
+      "tekst": "Prosjektfordeling med datogyldighet, kontroll av 100 %, sperre mot avsluttede prosjekter og kost per prosjekt før låsing."
+     },
+     {
+      "id": "VK-10",
+      "prioritet": "Bør",
+      "tekst": "Finansiørrapport med timer, kost per time og sosiale kostnader i formatene til Forskningsrådet og Horizon Europe."
+     },
+     {
+      "id": "VK-12",
+      "prioritet": "Må",
+      "tekst": "Reskontro for NAV-refusjon som matcher forventet refusjon mot NAVs oppgjørsrapport og lager purreliste."
+     },
+     {
+      "id": "VK-13",
+      "prioritet": "Må",
+      "tekst": "Ekstrakjøring på minutter med samme kontroller, bankfil, trekkbetaling og erstatningsmelding."
+     },
+     {
+      "id": "VK-14",
+      "prioritet": "Må",
+      "tekst": "Konsernvisning med felles kalender, kontroll og attestasjon for flere juridiske enheter, med separate a-meldinger og bilag."
+     }
+    ],
+    "kult_md": "- **Lønnsoppgjøret på en formiddag:** «258 endringer, 3 trenger deg. Etterbetaling mai–oktober 1,92 MNOK brutto, 2,35 MNOK med sosiale kostnader. 7 sluttede er utelatt. 12 sykefravær trenger korrigert inntektsmelding innen 9.1.»\n- **Etterbetalingen forklart på slippen** måned for måned.\n- **Prosjektlederne bekrefter** sin oktoberkost med én knapp før lønnen låses.\n- **NAV-refusjon som avstemmer seg selv.** Kari ser bare sakene som mangler.",
+    "maal_md": "| Mål | I dag [anslag] | Etter 6 måneder |\n|---|---|---|\n| Timer i en vanlig måned | 200–220 | ≤ 140 |\n| Timer på lokalt oppgjør for 258 ansatte | ca. 58 | ≤ 12, og 0 linjer regnet utenfor systemet |\n| Avvik systemet forklarer selv | ukjent | ≥ 85 % |\n| Korrigeringer etter låsing | ukjent | < 0,5 per 100 mottakere per måned |\n| NAV-refusjoner over 60 dager uten status | ukjent | 0 |\n| Henvendelser de tre første dagene etter lønn | 9 per 412 | < 1 per 100 ansatte |"
+   },
+   {
+    "id": "P-VK2",
+    "navn": "Lønnsmedarbeider i AS med 150 ansatte, skift og tre AGA-soner",
+    "segment": "Virksomhet",
+    "kontekst_md": "**Jonas** er eneste lønnsmedarbeider i et produksjons- og serviceselskap med hovedkontor i sone I, fabrikk i sone III og lager i sone IV. Ca. 90 jobber i skift og 20 er timelønnede. Timene kommer fra Quinyx, Planday, Tamigo eller GAT via CSV. Økonomisjefen er reserve, men har aldri kjørt lønn alene. Jonas er daglig bruker med sterk innflytelse på valget.",
+    "smerter_md": "- CSV-import med manuell mapping. I noen systemer kan importen bare kjøres én gang per kjøring.\n- Nye vaktkoder opprettes i tidssystemet uten at lønn får vite det.\n- Ansatte uten treff (feil ansattnummer, nyansatt ikke opprettet) gir manglende lønn.\n- Arbeidsforhold på feil underenhet gir feil AGA-sone og oppdages først i tilbakemeldingen.\n- Avviksmeldingene fra a-meldingen er kryptiske.\n- Arbeidsgiverperioden for skift og timelønnede regnes manuelt. Jonas er alene, og det er sårbart.",
+    "behov": [
+     {
+      "id": "VK-15",
+      "prioritet": "Må",
+      "tekst": "Import fra tidssystem via API eller fil som kan kjøres mange ganger, viser hva som er endret og gir forhåndsvisning."
+     },
+     {
+      "id": "VK-16",
+      "prioritet": "Må",
+      "tekst": "Mappingregister fra tidskode til lønnsart der ukjente koder går i karantene og ny mapping testberegnes og godkjennes av en annen."
+     },
+     {
+      "id": "VK-17",
+      "prioritet": "Må",
+      "tekst": "Matching av ansatte og arbeidsforhold med tydelig feilliste og forslag til riktig treff."
+     },
+     {
+      "id": "VK-18",
+      "prioritet": "Må",
+      "tekst": "Underenhet per arbeidsforhold med datogyldighet, AGA-sone fra Enhetsregisteret og AGA-rapport per sone."
+     },
+     {
+      "id": "VK-19",
+      "prioritet": "Bør",
+      "tekst": "Overvåking av fribeløpet i sone Ia (Må for kunder i sone Ia)."
+     },
+     {
+      "id": "VK-20",
+      "prioritet": "Må",
+      "tekst": "Regler for skift og turnus, med sykelønn i arbeidsgiverperioden per faktisk arbeidsdag og tillegg etter tariff."
+     },
+     {
+      "id": "VK-21",
+      "prioritet": "Bør",
+      "tekst": "Varsel om overtid ut over arbeidsmiljølovens rammer og tillegg uten tilhørende vakt."
+     },
+     {
+      "id": "VK-22",
+      "prioritet": "Må",
+      "tekst": "Forhåndsvalidering av a-meldingen før kjøring, også mot reglene fra 2027, og tilbakemelding i klartekst med forslag til retting."
+     },
+     {
+      "id": "VK-23",
+      "prioritet": "Bør",
+      "tekst": "Veiledet kjøreplan med status per steg, slik at en stedfortreder kan kjøre lønnen uten å ringe leverandøren."
+     },
+     {
+      "id": "VK-24",
+      "prioritet": "Bør",
+      "tekst": "Timebank og avspaseringssaldo synkronisert med tidssystemet, med avklart eier av saldoen."
+     }
+    ],
+    "kult_md": "- **En import som sier fra:** «4 812 linjer lest. 3 trenger deg: 2 ansatte uten treff (forslag: 1043 → 1034), 1 ny kode `NATT-F` som ligner `NATT` + 25 %, testberegnet på 14 vakter.»\n- **Sonevakt før kjøring:** «Per Hansen har 22 vakter på lageret i sone IV, men arbeidsforholdet ligger i sone I. Det gir 3 140 kr for mye i AGA.»\n- **Stedfortredermodus** der hvert steg forklarer hva som skal sjekkes.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Fra import til klar for testkjøring | 1–2 arbeidsdager | < 2 timer |\n| Importlinjer som treffer første gang | ukjent | ≥ 99,5 % |\n| Arbeidsforhold med feil underenhet i tilbakemeldingen | minst 1 per måned | 0 |\n| Tilbakemeldinger uten avvik første gang | ukjent | ≥ 98 % |\n| Lønn kjørt av stedfortreder uten hjelp | sjelden mulig | Ja, testet hos pilotkunden |"
+   },
+   {
+    "id": "P-VK3",
+    "navn": "Økonomisjef (CFO)",
+    "segment": "Virksomhet",
+    "kontekst_md": "**Lise** har det økonomiske ansvaret for lønn, attesterer totalsummer og godkjenner bankfilen sammen med en annen i nettbanken. Hun eier internkontrollen, møter revisor og er budsjettansvarlig. Lønn er ofte 50–80 % av kostnadene i en stiftelse [anslag]. Fra 2026 forfaller trekk første virkedag etter hver utbetaling, med strafferisiko. Hun er beslutter og budsjetteier.",
+    "smerter_md": "- Attestasjon skjer på e-post uten sporbarhet.\n- Avstemmingen skyves til årsslutt, og differansene hoper seg opp.\n- Treveis avstemming tar 4–6 timer i måneden.\n- Retro endrer skattetrekk og AGA bakover og gir avstemmingsproblemer.\n- Samme person kan lage og godkjenne bankfilen, eller endre en bankkonto.\n- Prognose og budsjett lages i Excel fra en eksport, og bilag kommer med feil dimensjoner.",
+    "behov": [
+     {
+      "id": "VK-27",
+      "prioritet": "Må",
+      "tekst": "Attestasjonsbilde med totaler per selskap mot forrige måned, fjoråret og budsjett, der hvert avvik viser hvem som forklarte og kontrollerte det."
+     },
+     {
+      "id": "VK-28",
+      "prioritet": "Må",
+      "tekst": "Hard sperre: bankfil og trekkbetalinger kan ikke lages før godkjenningskjeden er fullført, og endringer etter godkjenning nullstiller den."
+     },
+     {
+      "id": "VK-29",
+      "prioritet": "Må",
+      "tekst": "Betalinger etter 2026-reglene: nettolønn, forskuddstrekk og utleggstrekk med riktig KID og forfall, og status fra banken."
+     },
+     {
+      "id": "VK-30",
+      "prioritet": "Må",
+      "tekst": "Håndhevet arbeidsdeling: ingen kan både endre bankkonto og godkjenne kjøringen, eller endre egne data."
+     },
+     {
+      "id": "VK-31",
+      "prioritet": "Må",
+      "tekst": "Kontonummer-skjold: bare den ansatte med BankID eller to personer kan endre kontonummer, og endringen havner i kontrollpakken."
+     },
+     {
+      "id": "VK-32",
+      "prioritet": "Må",
+      "tekst": "Regnskapsbilag per konto og dimensjon, validert mot kontoplan og dimensjoner i ERP før overføring."
+     },
+     {
+      "id": "VK-33",
+      "prioritet": "Må",
+      "tekst": "Periodisering av etterskuddsvise tillegg og avsetning for feriepenger og AGA (Må fra 250 ansatte)."
+     },
+     {
+      "id": "VK-34",
+      "prioritet": "Må",
+      "tekst": "Månedlig automatisk avstemming av lønn mot hovedbok, a-melding og bank, med forklarte og signerte differanser."
+     },
+     {
+      "id": "VK-35",
+      "prioritet": "Bør",
+      "tekst": "Lønnskostprognose for 12 måneder med simulering av hva lønnsoppgjøret koster."
+     },
+     {
+      "id": "VK-36",
+      "prioritet": "Bør",
+      "tekst": "Likviditetskalender med netto, trekk, AGA-termin og pensjonspremie per dato."
+     },
+     {
+      "id": "VK-37",
+      "prioritet": "Bør",
+      "tekst": "Lederrapport med lønnskost og årsverk per enhet mot budsjett, uten individuell lønn for ledere uten personalansvar."
+     },
+     {
+      "id": "VK-38",
+      "prioritet": "Bør",
+      "tekst": "Co-sourcing: en byråpartner kan kjøre lønnen i samme system ved fravær, med egne roller og full logg."
+     }
+    ],
+    "kult_md": "- **Attestasjon på 8 minutter fra mobilen:** «3 selskaper, 412 mottakere, brutto 23,4 MNOK. 31 avvik, alle forklart og kontrollert av Fatima. Ingen nye bankkontoer uten BankID.»\n- **En grønn hake dagen etter forfall:** forskuddstrekket er betalt med KID og matchet mot banken.\n- **Avstemt dagen etter lønn**, der eneste differanse er forklart.\n- **«Hva koster oppgjøret?»** når budsjettet for neste år lages.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Tid på attestasjon | ca. 4 t per måned | < 15 min per kjøring |\n| Uforklart differanse ved månedsslutt | ryddes ofte ved årsslutt | 0 kr hver måned |\n| Trekk betalt innen forfall | ny risiko fra 2026 | 100 % |\n| Vesentlige revisormerknader på lønn | typiske funn: avstemming og arbeidsdeling | 0 |\n| Tid til avstemming | 4–6 t per måned | < 30 min |"
+   },
+   {
+    "id": "P-VK4",
+    "navn": "HR-sjef som bruker Huma",
+    "segment": "Virksomhet",
+    "kontekst_md": "**Ingrid** eier masterdata og registrerer i HR-systemet, mens lønn kontrollerer. Hun leder lønnsoppgjøret og har ansvar for ARP og lønnskartlegging annethvert år, sykefraværsstatistikk og rapporter til styret. Hun bruker Huma eller et lignende system. Brutto skal integreres med Huma først og erstatte det på sikt. Ingrid blir beslutter hvis HR og lønn skal samles.",
+    "smerter_md": "- Oppgjørsprotokollen i Excel blir en importfil som lages for hånd, med risiko for feil dato og ansattnummer.\n- ARP og lønnskartlegging lages manuelt fra eksport, og stillingskategoriene finnes ikke i dataene.\n- Det er uklart hvem som er master for hva mellom HR og lønn. Det gir dobbel registrering.\n- Endringer etter cut-off forsvinner eller kommer for sent.\n- Bankkonto endret i Huma oppdateres i dag direkte i Visma.net Payroll, som er en kjent svindelvei.",
+    "behov": [
+     {
+      "id": "VK-39",
+      "prioritet": "Må",
+      "tekst": "Grunnlag for lønnsoppgjøret med lønn, trinn, ansiennitet, kjønn og stillingskategori, og import av resultatet tilbake."
+     },
+     {
+      "id": "VK-40",
+      "prioritet": "Bør",
+      "tekst": "Simulering av sentrale og lokale tillegg med sosiale kostnader og retro, fordelt på kjønn og enhet."
+     },
+     {
+      "id": "VK-42",
+      "prioritet": "Må",
+      "tekst": "Lønnskartlegging og ARP per kjønn og stillingskategori med anonymisering og eksport (for virksomheter over 50 ansatte)."
+     },
+     {
+      "id": "VK-43",
+      "prioritet": "Må",
+      "tekst": "Datamodell for stillingskategori og «arbeid av lik verdi», med skille mellom fast og variabel lønn."
+     },
+     {
+      "id": "VK-44",
+      "prioritet": "Må",
+      "tekst": "HR-systemet som master for person, stilling og organisasjon, med register over hvem som eier hvert felt og logg over konflikter."
+     },
+     {
+      "id": "VK-48",
+      "prioritet": "Må",
+      "tekst": "HR ser lønn, men ikke trekkpålegg, fagforeningstrekk eller helsedetaljer uten tjenstlig behov."
+     },
+     {
+      "id": "VK-H01",
+      "prioritet": "Må",
+      "tekst": "Toveis synkronisering mellom Huma og Brutto der Huma eier personalia og organisasjon og Brutto eier lønn, skattekort og a-meldingsfelt."
+     },
+     {
+      "id": "VK-H02",
+      "prioritet": "Må",
+      "tekst": "Fravær fra Huma inn i Brutto som fraværsepisoder, med arbeidsgiverperioden beregnet i Brutto-kjernen."
+     },
+     {
+      "id": "VK-H03",
+      "prioritet": "Må",
+      "tekst": "Bankkonto endret i Huma blir ikke aktiv før den ansatte bekrefter med BankID eller en annen person godkjenner."
+     },
+     {
+      "id": "VK-H04",
+      "prioritet": "Må",
+      "tekst": "Onboarding og offboarding i Huma utløser utkast til arbeidsforhold, skattekort, pensjonsinnmelding og sluttoppgjør i Brutto."
+     },
+     {
+      "id": "VK-H08",
+      "prioritet": "Må",
+      "tekst": "Digitale arbeidsavtaler og endringsbrev laget fra de samme dataene som lønnen beregnes av (fase 2, når HR samles i Brutto)."
+     },
+     {
+      "id": "VK-H16",
+      "prioritet": "Må",
+      "tekst": "Migrering fra Huma uten tap av personalmapper, signerte avtaler, historikk og saldoer (fase 2)."
+     }
+    ],
+    "kult_md": "- **ARP-grunnlaget på ett klikk**, anonymisert og klart for redegjørelsen.\n- **Oppgjør med kost og kjønnsbalanse i sanntid** når et tillegg legges inn.\n- **Ansettelse i én flyt:** tilbud, arbeidsavtale signert med BankID, kontonummer fra den ansatte, skattekort og pensjon, og første lønn er klar. HR og lønn rører ikke dataene.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Tid for grunnlaget til lønnskartleggingen | dager eller uker | < 1 dag |\n| Feil i oppgjørsimport som når testkjøringen | ukjent | 0 |\n| Felt registrert to ganger per nyansatt | 10–20 | < 3 i fase 1, 0 i fase 2 |\n| Avvik mellom lønn i arbeidsavtalen og i lønnssystemet | ukjent | 0 |\n| Bankkontoendringer fra Huma uten bekreftelse | dagens praksis | 0 |"
+   },
+   {
+    "id": "P-VK5",
+    "navn": "Ekstern revisor",
+    "segment": "Virksomhet",
+    "kontekst_md": "Revisor gjør interimrevisjon om høsten og årsrevisjon i januar–mars. Lønn er et eget transaksjonsområde, og typiske funn er manglende avstemming, feil betalt AGA og svak arbeidsdeling. Revisor ber om ISAE 3402 type II når lønnen kjøres i skyen. Mange små AS har ikke revisor, så personaen er viktigst for stiftelser og kunder med 50+ ansatte. Revisor kan stoppe valget gjennom krav om ISAE.",
+    "smerter_md": "- Revisor ber om alt på e-post, og kunden lager PDF-er.\n- Endringslogg for masterdata og bankkonto mangler eller er ufullstendig, så kontrollen kan ikke testes.\n- Arbeidsdelingen er usynlig.\n- Avstemmingen er ikke gjort løpende.",
+    "behov": [
+     {
+      "id": "VK-49",
+      "prioritet": "Må",
+      "tekst": "Revisorrolle invitert av kunden, tidsbegrenset, bare lesetilgang og alle oppslag logget."
+     },
+     {
+      "id": "VK-50",
+      "prioritet": "Må",
+      "tekst": "Revisorpakke per periode med lønnsjournal, avstemming mot a-melding, endringslogg, attestasjonsbevis, tilgangsliste, nyansatte og sluttere."
+     },
+     {
+      "id": "VK-51",
+      "prioritet": "Må",
+      "tekst": "Automatisk kontrollbevis: hvem kontrollerte hva, når, og hvilken versjon av dataene de så."
+     },
+     {
+      "id": "VK-52",
+      "prioritet": "Må",
+      "tekst": "Eksport av rådata med stabile nøkler for revisors analyseverktøy."
+     },
+     {
+      "id": "VK-53",
+      "prioritet": "Bør",
+      "tekst": "Støtte for stikkprøver med lenke per ansatt til kontrakt, vedtak, timelister, godkjenning, bankkonto og beregningsspor."
+     },
+     {
+      "id": "VK-54",
+      "prioritet": "Bør",
+      "tekst": "Reproduserbar beregning som viser hvorfor en ansatt fikk et beløp, med data slik de var på en gitt dato."
+     },
+     {
+      "id": "VK-55",
+      "prioritet": "Må",
+      "tekst": "Innebygd cut-off-test med rapport over lønn etter sluttdato og ugodkjente linjer som er utbetalt."
+     },
+     {
+      "id": "VK-56",
+      "prioritet": "Må",
+      "tekst": "ISAE 3402 type 1 ved første produksjonskunde og type 2 fra år 2 (Må fra 250 ansatte)."
+     },
+     {
+      "id": "VK-57",
+      "prioritet": "Bør",
+      "tekst": "Grunnlag for noter: ytelser til ledende personer, styrehonorar, årsverk og pensjonskostnad."
+     }
+    ],
+    "kult_md": "- **Klikk deg ned gjennom tallene:** fra avstemmingen mot a-meldingen til lønnslinjen, regelen, timelisten, lederens godkjenning og kontrollsignaturen.\n- **Revisorpakken er klar 2. januar** og oppdateres hvis noe rettes senere.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Revisors forespørsler besvart i portalen uten kundens hjelp | ca. 0 % | ≥ 80 % |\n| Kundens tid på revisjon av lønn | ukjent | −50 % |\n| Kontroller uten bevis | vanlig | 0 |"
+   },
+   {
+    "id": "P-VK6",
+    "navn": "Daglig leder som kjører lønn for 15 ansatte",
+    "segment": "Virksomhet",
+    "kontekst_md": "En forening, interesseorganisasjon eller et AS med ca. 15 ansatte, de fleste på fastlønn. Regnskapet ligger i Fiken, Tripletex eller PowerOffice, ofte ført av et byrå. **Daglig leder** kjører lønnen selv én gang i måneden og bruker 3–6 timer. Hun registrerer, godkjenner og betaler, også sin egen lønn. Segmentet er sekundært og skal betjenes av samme produkt i veiledet modus.",
+    "smerter_md": "- 2026-endringene er ukjente for mange: trekk ved hver kjøring, KID, Altinn 3 og systembruker.\n- De lette systemene mangler fravær, timebank og automatikk.\n- Feil i feriepenger og forskuddstrekk i enkelte systemer gir tillitsbrudd.\n- Hun vet ikke hva hun ikke vet: OTP fra første krone, arbeidsgiverperioden, trekkfri juni og sluttoppgjør.\n- Ingen fire øyne, så feil og misbruk oppdages ikke.",
+    "behov": [
+     {
+      "id": "VK-58",
+      "prioritet": "Må",
+      "tekst": "Oppstartsveiviser som henter data fra Enhetsregisteret, setter opp systembruker med statussjekk og kobler bank, regnskap og pensjon."
+     },
+     {
+      "id": "VK-59",
+      "prioritet": "Må",
+      "tekst": "Månedens kjøring som gjøremålsliste i klarspråk med en tydelig «du er ferdig»-tilstand."
+     },
+     {
+      "id": "VK-60",
+      "prioritet": "Må",
+      "tekst": "Skattekort, a-melding, trekkbetaling med KID og påminnelse om AGA-terminer skjer automatisk."
+     },
+     {
+      "id": "VK-61",
+      "prioritet": "Må",
+      "tekst": "Veivisere for ny ansatt, sykmelding, foreldrepermisjon, permittering og sluttoppgjør."
+     },
+     {
+      "id": "VK-62",
+      "prioritet": "Må",
+      "tekst": "Feriepenger og halv skatt beregnes automatisk med forhåndsvarsel og forklaring til de ansatte."
+     },
+     {
+      "id": "VK-63",
+      "prioritet": "Må",
+      "tekst": "Sperrer som stopper åpenbare feil som null eller negativ netto, manglende skattekort og lønn etter sluttdato."
+     },
+     {
+      "id": "VK-64",
+      "prioritet": "Bør",
+      "tekst": "Endringer i daglig leders egen lønn eller bankkonto varsles automatisk til styreleder eller regnskapsfører."
+     },
+     {
+      "id": "VK-65",
+      "prioritet": "Må",
+      "tekst": "Regnskapsintegrasjon mot Fiken, Tripletex og PowerOffice uten oppsett."
+     },
+     {
+      "id": "VK-66",
+      "prioritet": "Må",
+      "tekst": "Ansattapp med lønnsslipp, feriepenger og kontonummer endret med BankID."
+     },
+     {
+      "id": "VK-67",
+      "prioritet": "Bør",
+      "tekst": "«Spør en lønnsekspert» i appen, og mulighet til å gi et byrå tilgang med ett klikk."
+     },
+     {
+      "id": "VK-68",
+      "prioritet": "Bør",
+      "tekst": "Forutsigbar pris med lønn, fravær og app inkludert."
+     },
+     {
+      "id": "VK-69",
+      "prioritet": "Bør",
+      "tekst": "Akkumulator for 10 000-kronersregelen og overvåking av AGA-fritaket (Må for skattefrie organisasjoner)."
+     }
+    ],
+    "kult_md": "- **Lønn på 10 minutter fra mobilen:** «Alt ser normalt ut. 1 ny ansatt fikk skattekort automatisk. Godkjenn?» Så: a-melding sendt, forskuddstrekk betales mandag.\n- **Første sykmelding:** arbeidsgiverperioden er talt og inntektsmeldingen NAV ba om, er klar.\n- **Juni uten spørsmål:** de ansatte får vite at junilønnen er feriepenger og hvorfor netto er høyere.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Tid per ordinær kjøring | 3–6 t | < 20 min |\n| Trekk betalt for sent eller tvangsmulkt | ny risiko fra 2026 | 0 |\n| Supporthenvendelser per kunde per måned | ukjent | < 0,3 |\n| Overlevering til byrå uten systembytte | – | mulig på én dag |"
+   },
+   {
+    "id": "P-BY1",
+    "navn": "Lønnskonsulent i byrå med 60 klienter",
+    "segment": "Byrå",
+    "kontekst_md": "Hun har 60 klienter med 2–400 ansatte og kjører ca. 660 slipper i måneden. Lønnsdatoene er spredt over den 10., 15., 20., 25. og siste virkedag. Klientene bruker fem regnskapssystemer, og byrået har tre lønnssystemer. Hun bruker ca. 140 timer i måneden på lønn, altså 13–14 minutter per slipp, nær byråets nullpunkt [anslag].",
+    "smerter_md": "- Grunnlaget kommer på e-post, i Excel eller som PDF. 30–40 % av tiden går til innhenting og purring.\n- Tripletex tillater bare én import før det oppretter en ny kjøring.\n- Kontrollrapportene er laget for utskrift, og sammenligningen gjøres i Excel.\n- Retro i Visma Payroll gir avstemmingsproblemer. Citrix i SD Worx er tungvint for flere selskaper.\n- A-meldingsavvik oppdages først etter innsending, og feilkodene er kryptiske.\n- **Nytt fra 2026:** Forskuddstrekket forfaller dagen etter hver lønn, og manglende Altinn 3-delegering gir tilgangsfeil på lønnsdagen.",
+    "behov": [
+     {
+      "id": "BY-01",
+      "prioritet": "Må",
+      "tekst": "Arbeidskø på tvers av egne klienter, sortert etter neste handling og eksakte frister for lønn, bank, forskuddstrekk, a-melding og AGA."
+     },
+     {
+      "id": "BY-02",
+      "prioritet": "Må",
+      "tekst": "Strukturert lønnsgrunnlag inn fra kundeskjema, tidssystemer og moduler, og Excel-import med lagret mapping per klient."
+     },
+     {
+      "id": "BY-03",
+      "prioritet": "Bør",
+      "tekst": "E-post, Excel eller PDF tolkes av KI til forslag til lønnslinjer med kilde, og lønnskonsulenten godkjenner."
+     },
+     {
+      "id": "BY-04",
+      "prioritet": "Må",
+      "tekst": "Avviksbasert kontroll med terskler fra byråmalen, der hvert avvik må kvitteres og kvitteringen blir GRFS-dokumentasjon."
+     },
+     {
+      "id": "BY-05",
+      "prioritet": "Må",
+      "tekst": "Klartekstforklaring av differanser mot forrige måned per ansatt, avledet fra beregningen."
+     },
+     {
+      "id": "BY-06",
+      "prioritet": "Må",
+      "tekst": "Ubegrenset testkjøring og retro med automatisk differanse for skattetrekk og AGA per måned."
+     },
+     {
+      "id": "BY-07",
+      "prioritet": "Må",
+      "tekst": "Samlekjøring av skattekort for alle aktive arbeidsforhold på tvers av klienter, også ved årsskiftet."
+     },
+     {
+      "id": "BY-08",
+      "prioritet": "Må",
+      "tekst": "A-melding med forhåndsvalidering, «send alle som er klare» og avviksliste på tvers av klienter i klartekst."
+     },
+     {
+      "id": "BY-09",
+      "prioritet": "Må",
+      "tekst": "Lønnsbilag til klientens regnskap, med Tripletex, PowerOffice Go og én Visma-variant ved lansering."
+     },
+     {
+      "id": "BY-10",
+      "prioritet": "Må",
+      "tekst": "Fristvarsler når kunden ikke har sendt grunnlag eller godkjent, og når a-melding eller forskuddstrekk mangler."
+     },
+     {
+      "id": "BY-11",
+      "prioritet": "Må",
+      "tekst": "Ekstrakjøringer, sluttoppgjør og korrigeringer som ikke forstyrrer hovedkjøringen, med automatisk erstatningsmelding."
+     },
+     {
+      "id": "BY-15",
+      "prioritet": "Må",
+      "tekst": "Tilknytning og tilgangsdiagnose for systembruker per klient, med ferdig instruks når kunden selv må delegere."
+     }
+    ],
+    "kult_md": "- **Ferdig forhåndsberegnet lønn:** kjøringen regnes på nytt når nytt grunnlag kommer, så «beregn» på lønnsdagen er bare en bekreftelse.\n- **En avvikskø** der hvert avvik har én setning forklaring og et forslag til handling.\n- **KI som gjør kundens hjemmesnekrede Excel-ark** om til lønnslinjer på sekunder.",
+    "maal_md": "| Mål | I dag [anslag] | Etter 6 måneder |\n|---|---|---|\n| Minutter per lønnsslipp | 13–14 | ≤ 8 |\n| Klienter per konsulent uten overtid | ca. 60 med overtid | ≥ 85 |\n| Grunnlag mottatt strukturert | < 20 % | ≥ 70 % |\n| Avvik i listen som krever handling | ikke målt | ≥ 50 % |\n| A-meldingsavvik som skyldes systemet | ukjent | 0 |\n| Overtid i lønnsuka | 8–12 t per måned | ≤ 2 t |"
+   },
+   {
+    "id": "P-BY2",
+    "navn": "Leder for lønnsavdeling med 15 medarbeidere",
+    "segment": "Byrå",
+    "kontekst_md": "Hun leder lønnsavdelingen i et regionalt byrå med ca. 90 ansatte: 15 lønnsmedarbeidere, ca. 800 klienter og ca. 9 000 slipper i måneden [anslag]. Hun har ansvar for kapasitet, kvalitet og lønnsomhet per klient og er ofte den som vurderer systembytte. Faget har nær 4 000 personer på landsbasis, så rekruttering er vanskelig.",
+    "smerter_md": "- Tre lønnssystemer gir tre opplæringsløp og ingen felles oversikt.\n- Status ligger i hodet og innboksen til hver medarbeider. Sykdom på T-3 gir kaos.\n- Lønnsomhet per klient krever timeføring, og den føres etter hukommelsen.\n- Lønnsarter og kontoplanmapping er satt opp ulikt hos hver klient, uten arv.\n- Support fra leverandøren er svak i lønnsuka.",
+    "behov": [
+     {
+      "id": "BY-16",
+      "prioritet": "Må",
+      "tekst": "Avdelingsoversikt med alle kjøringer per lønnsdato, flaskehalser og belastning per medarbeider de neste 10 dagene."
+     },
+     {
+      "id": "BY-17",
+      "prioritet": "Må",
+      "tekst": "Primæransvarlig og stedfortreder per klient, og omfordeling med ett grep der notater og historikk følger med."
+     },
+     {
+      "id": "BY-18",
+      "prioritet": "Må",
+      "tekst": "Byråroller med tilgang per oppdrag, uten standardtilgang til persondata hos alle klienter, tidsbegrenset og logget."
+     },
+     {
+      "id": "BY-19",
+      "prioritet": "Må",
+      "tekst": "Byråmaler med lønnsarter, kontoplanmapping, kontrollterskler og kjøreplaner som klientene arver, med forhåndsvisning, versjoner og tilbakerulling."
+     },
+     {
+      "id": "BY-20",
+      "prioritet": "Bør",
+      "tekst": "Målt tidsbruk per klient som timeforslag til praksissystemet, valgfritt og aggregert."
+     },
+     {
+      "id": "BY-21",
+      "prioritet": "Bør",
+      "tekst": "Kvalitetsnøkkeltall som korrigeringer etter godkjenning, a-meldingsavvik og kunder som godkjenner i tide."
+     },
+     {
+      "id": "BY-22",
+      "prioritet": "Bør",
+      "tekst": "Sandkasse med pseudonymiserte data og øvingskjøringer for nyansatte."
+     },
+     {
+      "id": "BY-23",
+      "prioritet": "Må",
+      "tekst": "Generisk API og webhooks mot praksissystemet for klientregister, status, frister og bruksdata."
+     },
+     {
+      "id": "BY-24",
+      "prioritet": "Kan",
+      "tekst": "Kapasitetsprognose per uke neste måned, med juni, desember og januar markert."
+     }
+    ],
+    "kult_md": "- **Overlevering med oppsummering per klient:** «Kunden sender overtid sent, avdeling B har turnus, åpent avvik for september», med kilder.\n- **Byråmal med diff før utrulling:** «Endringen påvirker 143 klienter, og 12 har lokale unntak.»",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Slipper per lønnsårsverk per måned | 600 | ≥ 900 |\n| Kjøringer korrigert etter godkjenning | antatt 5–8 % | < 2 % |\n| Tid til ny konsulent er selvgående | 3–6 måneder | ≤ 4 uker |\n| Tid til å omfordele én klient | 30–60 min | < 5 min |\n| Lønnssystemer i avdelingen | 3 | 1–2 |"
+   },
+   {
+    "id": "P-BY3",
+    "navn": "Partner eller daglig leder i byrå",
+    "segment": "Byrå",
+    "kontekst_md": "Partneren styrer forretningsmodell, pris, margin og risiko. I eksempelbyrået gir lønn ca. 19 MNOK i året [anslag]. De tre store bekymringene er prispress fra automatisering, mangel på lønnsmedarbeidere og at leverandører tar over kunderelasjonen. SD Worx startet for eksempel egen lønnstjeneste i januar 2026.",
+    "smerter_md": "- Tiden per slipp er nær nullpunktet. Ved 200 kr per slipp og 40 kr i lisens gjenstår ca. 15 minutter arbeid.\n- Byrået vet ikke om det tjener penger på hver klient.\n- Byrået frykter å være første byrå på et nytt system.\n- Leverandører bygger egne tjenesteenheter og blir konkurrenter.\n- Bytte midt i året er risikabelt, og Visma kan bunte lønn med regnskap.",
+    "behov": [
+     {
+      "id": "BY-25",
+      "prioritet": "Må",
+      "tekst": "Fleksibel fakturamottaker per klient: byrået betaler som standard, eller sluttkunden betaler og byrået får provisjon, uten at data flyttes."
+     },
+     {
+      "id": "BY-26",
+      "prioritet": "Må",
+      "tekst": "Pris per lønnsslipp uten pris per byråbruker, med volumtrinn på byrånivå, valgfri årsavtale med tak og ingen oppstartspris."
+     },
+     {
+      "id": "BY-27",
+      "prioritet": "Må",
+      "tekst": "Bruksdata per klient og periode som CSV, API eller webhook til fakturagrunnlag. Vi lager ikke fakturaene."
+     },
+     {
+      "id": "BY-28",
+      "prioritet": "Må",
+      "tekst": "Kanalbeskyttelse i partneravtalen: ingen lønnstjeneste, ikke aktivt salg mot byråets klienter og provisjon ved overgang innen 12 måneder."
+     },
+     {
+      "id": "BY-29",
+      "prioritet": "Må",
+      "tekst": "Exit-pakke med full eksport per klient og portefølje, og en kontinuitetsplan byrået kan bruke i beredskapsplanen."
+     },
+     {
+      "id": "BY-30",
+      "prioritet": "Må",
+      "tekst": "Beregningsgaranti med tak, ansvarsforsikring og egen supportkø for byråer der kritiske saker besvares innen 30 minutter."
+     },
+     {
+      "id": "BY-31",
+      "prioritet": "Må",
+      "tekst": "Migreringsfabrikk med porteføljeanalyse, bølgeplan, adaptere, protokoll for likt på øret og samtykkepakke til klientene."
+     },
+     {
+      "id": "BY-32",
+      "prioritet": "Bør",
+      "tekst": "Måling av minutter per slipp, klienter per årsverk og strukturert grunnlag før og etter, som rapport til byråets styre."
+     },
+     {
+      "id": "BY-33",
+      "prioritet": "Kan",
+      "tekst": "Direktekunder med 10–50 ansatte som vil ha byrå, sendes til partnere."
+     }
+    ],
+    "kult_md": "- **Prisrådgivning per klient:** målt tid sammenlignet med byråets pris viser hvilke klienter som må prises om.\n- **Dokumentert risikoreduksjon** som kan brukes overfor forsikringen og i Regnskap Norges kvalitetskontroll.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Dekningsbidrag på lønn | 10–25 % | +10–15 prosentpoeng |\n| Lisens som andel av byråets pris per slipp | 0–25 % | ≤ 20 % |\n| Byråets tid per enkel klient som migreres | 4–8 t | ≤ 1 t |\n| Tid til porteføljen er flyttet | – | ≤ 9 måneder |\n| Klienter tapt på grunn av feil i overgangen | – | 0 |"
+   },
+   {
+    "id": "P-BY4",
+    "navn": "Kvalitetsansvarlig i byrå (statsautorisert regnskapsfører)",
+    "segment": "Byrå",
+    "kontekst_md": "Den kvalitetsansvarlige styrer byråets kvalitet etter regnskapsførerloven og dokumenterer at byrået følger GRFS. Det skal vises fram til Regnskap Norges kvalitetskontroll og Finanstilsynet. Kontrollskjemaet for 2026 ber eksplisitt om rutiner for lønnsoppdrag og oversikt over fullmakter.",
+    "smerter_md": "- Ni av 18 byråer i Finanstilsynets tilsyn hadde verken rutine for eller praksis med arbeidsdeling ved betalingsoppdrag. Ett delte kodebrikker.\n- Gjentakende tilsynsfunn er svak kvalitetssikring, mangelfull avstemming og feil håndtering av trekkmidler.\n- Altinn-delegering er ikke nok. Byrået må ha skriftlig fullmakt og oversikt over hvem som bruker den.\n- Oppdragsdokumentasjonen skal oppbevares i 5 år, men data i et kundeeid system blir borte når kunden går.\n- Myndighetene vet ikke hvilken person som sto bak en innsending.",
+    "behov": [
+     {
+      "id": "BY-34",
+      "prioritet": "Må",
+      "tekst": "Systemet håndhever at den som forbereder en kjøring, ikke kan godkjenne den, med personlig pålogging og kontroll av kontonummerendringer."
+     },
+     {
+      "id": "BY-35",
+      "prioritet": "Må",
+      "tekst": "Oppdragsdokumentasjon per klient og periode som byrået eier og beholder i 5 år, også etter at klienten har gått."
+     },
+     {
+      "id": "BY-36",
+      "prioritet": "Må",
+      "tekst": "Avstemming av lønn mot a-melding per klient og periode, med kvitterte avvik (regnskap og bank er Bør)."
+     },
+     {
+      "id": "BY-37",
+      "prioritet": "Bør",
+      "tekst": "Register over skriftlige fullmakter og bankfullmakter med varsel når en person med fullmakt slutter."
+     },
+     {
+      "id": "BY-38",
+      "prioritet": "Må",
+      "tekst": "Søkbar revisjonslogg per klient og person, der innsyn i sensitive felt og hvem som utløste innsendinger logges."
+     },
+     {
+      "id": "BY-39",
+      "prioritet": "Må",
+      "tekst": "Compliance-pakke med GRFS-matrise, rutinebeskrivelse, databehandleravtaler og ISAE 3402 type 1 (type 2 er Bør)."
+     },
+     {
+      "id": "BY-40",
+      "prioritet": "Bør",
+      "tekst": "Risikobasert kontrollnivå per klient, fra fire øyne på hver kjøring til stikkprøver."
+     },
+     {
+      "id": "BY-41",
+      "prioritet": "Kan",
+      "tekst": "Signaler om mulig hvitvasking til praksissystemet, som lønn uten arbeidsforhold og utenlandske kontoer."
+     }
+    ],
+    "kult_md": "- **Revisjonspakke på ett klikk** per oppdrag og år, som ZIP med indeks.\n- **Sporbarhet til kilden:** hvert tall på slippen kan følges til regel, sats, hendelse og kvittering.\n- **Altinn-tilgangen sjekkes hele tiden**, og systemet varsler før lønnsdagen.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Tid til lønnsdokumentasjon for kvalitetskontroll per oppdrag | 1–3 t | ≤ 10 min |\n| Kjøringer der kontrollør ikke er utfører | ukjent | 100 % der byrået krever det |\n| Delte pålogginger | forekommer | 0, teknisk umulig |\n| Klienter med gyldig Altinn-tilgang tre virkedager før lønn | ukjent | 100 % |"
+   },
+   {
+    "id": "P-BY5",
+    "navn": "Byråets kunde: daglig leder i forening med 15 ansatte",
+    "segment": "Byrå",
+    "kontekst_md": "Foreningen har 11 fastlønte, 4 timelønnede instruktører og noen honorarmottakere ved arrangementer. Den bruker Tikket, OrgLab og Utleggsappen. **Daglig leder** sender timer og endringer til byrået, godkjenner lønnen og betaler i nettbanken. Han er ikke lønnsekspert.",
+    "smerter_md": "- Byrået sender en Excel-mal som går fram og tilbake på e-post.\n- Han godkjenner en PDF-lønnsliste han ikke forstår.\n- **Fra 2026** må forskuddstrekket betales som eget oppdrag med KID dagen etter lønn, og det er lett å glemme.\n- Utlegg og timer fra arrangementer registreres manuelt på nytt.\n- Han glemmer fristen, og byrået må purre.",
+    "behov": [
+     {
+      "id": "BY-42",
+      "prioritet": "Må",
+      "tekst": "Innsending via lenke til et forhåndsutfylt skjema på mobil, der BankID eller passkey bare kreves ved innsending."
+     },
+     {
+      "id": "BY-43",
+      "prioritet": "Må",
+      "tekst": "Godkjenning av lønn på mobil på under ett minutt, med sammendrag i klartekst og logg."
+     },
+     {
+      "id": "BY-44",
+      "prioritet": "Må",
+      "tekst": "Komplett betalingsforslag i én godkjenning med netto, forskuddstrekk og utleggstrekk med riktig KID og forfall."
+     },
+     {
+      "id": "BY-45",
+      "prioritet": "Må",
+      "tekst": "Dokumentert reservevei for godkjenning på e-post eller etter fullmakt, lagret i oppdragsdokumentasjonen."
+     },
+     {
+      "id": "BY-46",
+      "prioritet": "Bør",
+      "tekst": "Grunnlag fra Utleggsappen, Tikket og OrgLab via de samme åpne kontraktene som tredjeparter bruker."
+     },
+     {
+      "id": "BY-47",
+      "prioritet": "Kan",
+      "tekst": "Enkel lønnskostrapport til styret per måned, prosjekt og budsjett."
+     },
+     {
+      "id": "BY-48",
+      "prioritet": "Bør",
+      "tekst": "Godkjenningsregler hos kunden, for eksempel at styreleder godkjenner lønnen til daglig leder."
+     }
+    ],
+    "kult_md": "- **Godkjenning i en SMS- eller Teams-melding** med passkey og svar på «hvorfor er lønnen 4 % høyere enn i oktober?» i én setning.\n- **Utlegg fra Utleggsappen havner automatisk på slippen**, med riktig klassifisering.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Daglig leders tid på lønn per måned | 1–2 t | ≤ 15 min |\n| Godkjenning innen 24 timer | ca. 50 % | ≥ 90 % |\n| Forsinket betaling av forskuddstrekk | forekommer | 0 |\n| Excel-filer på e-post til byrået per måned | 1–3 | 0 |"
+   },
+   {
+    "id": "P-BY6",
+    "navn": "Kjede: IT og innkjøp (Aider, Azets og lignende)",
+    "segment": "Byrå",
+    "kontekst_md": "Kjedene er PE-eide og har kjøpt mange byråer. Aider har gjort nær 100 oppkjøp siden 2019 og bytter regnskaps-, lønns- og kvalitetssystem etter en sjekkliste med 248 punkter. Azets har valgt SD Worx for store kunder. ECIT eier NettLønn og er derfor en lite sannsynlig kunde. Kjedene kjøper sentralt med 12–24 måneders salgssyklus, og er et marked for år 2–3.",
+    "smerter_md": "- Hvert oppkjøpte byrå har sin egen systemmiks, og standardiseringen er manuell og dyr.\n- Kjeden er låst til store leverandører med svak stabilitet og support.\n- Fusjoner endrer klientforholdene i Enhetsregisteret, og da faller klientdelegeringene i Altinn bort automatisk.\n- Innkjøp krever ISAE 3402 type 2, ISO 27001, pentest og data i Norge eller EØS.",
+    "behov": [
+     {
+      "id": "BY-49",
+      "prioritet": "Må",
+      "tekst": "Hierarki fra kjede til byrå, kontor, team og klient i datamodellen, med arv av maler og roller (brukergrensesnittet er Bør)."
+     },
+     {
+      "id": "BY-50",
+      "prioritet": "Bør",
+      "tekst": "SSO med Entra ID, SCIM-provisjonering og automatisk fjerning av tilgang (Må for en kjedeavtale)."
+     },
+     {
+      "id": "BY-51",
+      "prioritet": "Bør",
+      "tekst": "Flere systembrukere for klientsystem i ett grensesnitt og masseretilknytning av klienter ved fusjon."
+     },
+     {
+      "id": "BY-52",
+      "prioritet": "Bør",
+      "tekst": "Kjedemaler som arves fra kjede til byrå til klient, der kjeden kan låse felt."
+     },
+     {
+      "id": "BY-53",
+      "prioritet": "Bør",
+      "tekst": "Rapportering på tvers av byråer om volum, kvalitet og SLA, uten persondata."
+     },
+     {
+      "id": "BY-54",
+      "prioritet": "Bør",
+      "tekst": "«Powered by»-merkevare med kjedens logo i portal, app og lønnsslipp. Full white-label kommer ikke nå."
+     },
+     {
+      "id": "BY-55",
+      "prioritet": "Bør",
+      "tekst": "Sikkerhetspakke for innkjøp med ISAE 3402 type 2, ISO 27001-veikart, pentest og exit-plan."
+     },
+     {
+      "id": "BY-56",
+      "prioritet": "Bør",
+      "tekst": "Én faktura til kjeden, spesifisert per byrå og klient."
+     },
+     {
+      "id": "BY-57",
+      "prioritet": "Kan",
+      "tekst": "Agent-API der kjedens egne KI-verktøy kan forberede og hente status, men aldri godkjenne, sende eller utbetale."
+     }
+    ],
+    "kult_md": "- **En migreringsfabrikk** som gjør «oppkjøpt byrå på standard lønn» til et 90-dagersprosjekt.\n- **SCIM som fjerner tilgangen** samme dag som en medarbeider slutter.\n- **Kvalitetsnøkkeltall for hele kjeden** hver måned uten manuelt arbeid.",
+    "maal_md": "| Mål | I dag [anslag] | Mål |\n|---|---|---|\n| Fra oppkjøp til lønnsklientene er på kjedens standard | 12–24 måneder | ≤ 6 måneder |\n| Brukere som logger inn med SSO | varierer | 100 % |\n| Fra en medarbeider slutter til tilgangen er fjernet | dager | ≤ 1 t |\n| Klienter som må tilknyttes Altinn manuelt etter fusjon | alle | 0 |"
+   },
+   {
+    "id": "P-AN1",
+    "navn": "Ansatt som bruker mobilen",
+    "segment": "Ansatt og leder",
+    "kontekst_md": "**Kari (34)** er ansatt i en interesseorganisasjon med 60 ansatte. Hun har fastlønn, tar kveldsmøter, reiser og har OTP. **Andrii (41)** er timelønnet i renhold og bruker ukrainsk og engelsk. Begge åpner lønnsslippen «når noe ser rart ut», og referansen deres er DFØ-appen og nettbanken.",
+    "smerter_md": "- Juni og desember forvirrer: feriepenger, trekk for ferie og halv skatt. Overtid og honorar trekkes likevel fullt i desember.\n- 50 % trekk fordi skattekortet manglet, uten at noen sa fra.\n- Utlegg forsvinner i et «svart hull» mellom godkjenning og utbetaling.\n- Lønnsslippen er full av koder og bare på norsk.\n- Slippen kommer som e-post med passord på SMS, og tilgangen forsvinner når man slutter.\n- Ferie avtales på e-post, egenmelding sendes på SMS, og timelister leveres på papir eller i tre systemer.",
+    "behov": [
+     {
+      "id": "AN-01",
+      "prioritet": "Må",
+      "tekst": "Lønnsslipp på mobil og i Digipost med arkiv, og varsel uten beløp."
+     },
+     {
+      "id": "AN-02",
+      "prioritet": "Må",
+      "tekst": "Forklart lønnsslipp med endring mot forrige måned, generert fra beregningen."
+     },
+     {
+      "id": "AN-04",
+      "prioritet": "Må",
+      "tekst": "Skattekortstatus med tabell eller prosent, hentedato, forklaring ved 50 % trekk og lenke til Skatteetaten."
+     },
+     {
+      "id": "AN-06",
+      "prioritet": "Må",
+      "tekst": "Feriepenger med grunnlag, sats og utbetalingsdato (prognose for juni er Bør)."
+     },
+     {
+      "id": "AN-09",
+      "prioritet": "Må",
+      "tekst": "Kontonummer-skjold med BankID, karantene, varsel på gammel kanal og kontroll før lønnskjøring."
+     },
+     {
+      "id": "AN-10",
+      "prioritet": "Må",
+      "tekst": "Ingen beløp, fødselsnummer eller kontonummer i push, e-post eller SMS."
+     },
+     {
+      "id": "AN-12",
+      "prioritet": "Må",
+      "tekst": "Bokmål og engelsk, med polsk, litauisk og ukrainsk som Bør."
+     },
+     {
+      "id": "AN-21",
+      "prioritet": "Må",
+      "tekst": "Søke ferie på mobil med saldo etter søknaden, kolleger som er borte og status."
+     },
+     {
+      "id": "AN-23",
+      "prioritet": "Må",
+      "tekst": "Egenmelding på 30 sekunder med gjenstående kvote og uten diagnose."
+     },
+     {
+      "id": "AN-28",
+      "prioritet": "Må",
+      "tekst": "Timeføring på mobil per dag eller uke med prosjekt, kopiering av forrige uke og bruk uten nett (for timelønnede og prosjektførende)."
+     },
+     {
+      "id": "AN-32",
+      "prioritet": "Må",
+      "tekst": "Utlegg med foto av kvittering, forslag fra OCR og kategori og prosjekt."
+     },
+     {
+      "id": "AN-33",
+      "prioritet": "Må",
+      "tekst": "Reiseregning med km, diett og overnatting, beregnet automatisk og delt i trekkfri og trekkpliktig del."
+     }
+    ],
+    "kult_md": "- **«Hvorfor endret lønna seg?»** To til fire linjer i klartekst øverst på slippen, med lenke til hver lønnsart.\n- **Feriepengekort i mai:** «Du får ca. X 18. juni. Junilønna blir lavere fordi …»\n- **Ferie på tre trykk** og **kvittering til penger**: ta bilde, attestasjon, «utbetales i dag».",
+    "maal_md": "- Henvendelser til lønn om lønnsslippen ned ≥ 50 % per 100 ansatte innen 6 måneder.\n- Feriesøknader avgjort på median under 2 virkedager.\n- ≥ 90 % av egenmeldingene registrert digitalt samme dag, og ≥ 95 % av timelistene levert før cut-off.\n- ≥ 85 % åpner slippen digitalt.\n- 0 vellykkede omdirigeringer av lønn.\n- ≥ 4,3 av 5 på «jeg forstår lønnsslippen min»."
+   },
+   {
+    "id": "P-AN2",
+    "navn": "Linjeleder som godkjenner på mobil",
+    "segment": "Ansatt og leder",
+    "kontekst_md": "**Ole** leder 8 ansatte og i arrangementshøsten 25 ekstrahjelpere. En lokallagsleder i samme organisasjon attesterer reiseregninger for frivillige uten å være ansatt. Begge godkjenner på mobilen mellom møter.",
+    "smerter_md": "- Tre apper og tre innbokser, og påminnelsene kommer etter fristen.\n- Godkjenning uten kontekst: «godkjenn 34 linjer».\n- Ser enten for mye (individuell lønn, sykdomsårsak) eller for lite (ingen kostnad).\n- Stedfortreder løses ved å dele passord.",
+    "behov": [
+     {
+      "id": "LE-01",
+      "prioritet": "Må",
+      "tekst": "Én godkjenningsinnboks for ferie, fravær, timer, overtid, utlegg og vervkrav fra både egne moduler og eksterne systemer."
+     },
+     {
+      "id": "LE-02",
+      "prioritet": "Må",
+      "tekst": "Godkjenning på mobil med kontekst: hva, hvorfor, beløp og avvik mot normalen."
+     },
+     {
+      "id": "LE-03",
+      "prioritet": "Må",
+      "tekst": "«Godkjenn alle» bare for linjer uten avvik. Avvik åpnes én og én."
+     },
+     {
+      "id": "LE-04",
+      "prioritet": "Må",
+      "tekst": "Lederen kan ikke godkjenne egne eller nærståendes krav, og slike saker eskaleres."
+     },
+     {
+      "id": "LE-05",
+      "prioritet": "Må",
+      "tekst": "Tidsavgrenset stedfortreder med logg."
+     },
+     {
+      "id": "LE-06",
+      "prioritet": "Må",
+      "tekst": "Innsyn etter rolle der aggregert kostnad er standard og fødselsnummer, kontonummer, trekk og fraværsårsak aldri vises."
+     },
+     {
+      "id": "LE-10",
+      "prioritet": "Bør",
+      "tekst": "Attestant som ikke er ansatt, får en smal rolle med bare krav i egen enhet og uten lønnsinnsyn."
+     },
+     {
+      "id": "LE-14",
+      "prioritet": "Må",
+      "tekst": "Teamkalender ved hver feriesøknad og mulighet til å foreslå en annen periode."
+     },
+     {
+      "id": "LE-15",
+      "prioritet": "Må",
+      "tekst": "Lederen ser at noen er borte og hvor lenge, og sykmeldingsgrad, men aldri diagnose."
+     },
+     {
+      "id": "LE-16",
+      "prioritet": "Må",
+      "tekst": "Godkjenning av timer og overtid per periode med avvik markert og varsel mot grensene i arbeidsmiljøloven."
+     },
+     {
+      "id": "LE-17",
+      "prioritet": "Må",
+      "tekst": "Attestasjon av utlegg med kvitteringsbilde og markerte policyavvik."
+     },
+     {
+      "id": "LE-18",
+      "prioritet": "Må",
+      "tekst": "Påminnelse før cut-off til både leder og ansatt, med hva som mangler per person."
+     }
+    ],
+    "kult_md": "- **Innboks med konsekvens:** «Godkjenner du disse 12 timene med overtid, koster det ca. 7 900 kr inkl. AGA. Per har 9 timer igjen før grensen denne uken.»\n- **Ferie med bemanning:** «Hvis du godkjenner, er 2 av 6 i teamet borte uke 29.»",
+    "maal_md": "- ≥ 95 % av linjene godkjent før cut-off, med median under 24 timer fra innsending.\n- 0 tilfeller i loggen der en leder har sett data utenfor rollen sin.\n- Ledere bruker under 10 minutter i måneden på godkjenninger.\n- Innboksen virker uendret etter at kunden bytter modul."
+   },
+   {
+    "id": "P-AN3",
+    "navn": "Ny og sluttende ansatt",
+    "segment": "Ansatt og leder",
+    "kontekst_md": "**Lina** begynner 1. desember. Hun har fått kontrakt på e-post og spørsmål om kontonummer på SMS. **Per** slutter 31. januar. Han har ferie og avspasering til gode, et utlegg som ikke er behandlet og et lønnsforskudd han skylder.",
+    "smerter_md": "- Første lønn med 50 % trekk eller til feil konto.\n- Delmåned som ingen forstår.\n- Sluttoppgjør med uventede trekk.\n- Tilgangen til slipper forsvinner samme dag man slutter.\n- Kontonummeret endres rett før siste lønn, et kjent svindelmønster.",
+    "behov": [
+     {
+      "id": "OB-01",
+      "prioritet": "Må",
+      "tekst": "Lenke med BankID før oppstart for personalia, kontonummer, Digipost og språk."
+     },
+     {
+      "id": "OB-02",
+      "prioritet": "Må",
+      "tekst": "Skattekort hentes automatisk når arbeidsforholdet opprettes og ved endringer."
+     },
+     {
+      "id": "OB-04",
+      "prioritet": "Må",
+      "tekst": "Sjekkliste «klar for første lønn» med skattekort, konto, stillingsprosent, yrkeskode, arbeidstid, OTP og lønnsart."
+     },
+     {
+      "id": "OB-06",
+      "prioritet": "Må",
+      "tekst": "OTP-innmelding fra første dag."
+     },
+     {
+      "id": "OB-07",
+      "prioritet": "Må",
+      "tekst": "Veiviser for sluttoppgjør der trekk bare skjer med gyldig hjemmel eller avtale, ellers betalingsplan."
+     },
+     {
+      "id": "OB-08",
+      "prioritet": "Må",
+      "tekst": "Sluttdato og sluttårsak i a-meldingen og utmelding fra OTP."
+     },
+     {
+      "id": "OB-09",
+      "prioritet": "Må",
+      "tekst": "Tilgang til slipper og årsoversikt med BankID etter fratreden, og arkiv i Digipost."
+     },
+     {
+      "id": "OB-10",
+      "prioritet": "Må",
+      "tekst": "Kontoendring de siste 30 dagene før siste lønn krever fire øyne og kontakt via kjent kanal."
+     },
+     {
+      "id": "OB-11",
+      "prioritet": "Må",
+      "tekst": "Roller som godkjenner, leder og attestant trekkes automatisk tilbake på sluttdatoen."
+     },
+     {
+      "id": "OB-15",
+      "prioritet": "Må",
+      "tekst": "Saldo for ferie, avspasering og fleks går inn i sluttoppgjøret, og åpne timelister og utlegg vises som «må leveres før»."
+     }
+    ],
+    "kult_md": "- **Grønt lys for første lønn:** Lina ser at alt er klart før hun har møtt opp.\n- **Ta med deg lønnshistorikken:** Når Per slutter, ligger slipper og årsoversikt i Digipost og kan hentes med BankID.",
+    "maal_md": "- 100 % av nyansatte har skattekort og verifisert konto før første kjøring.\n- 0 sluttoppgjør med trekk uten hjemmel.\n- ≥ 95 % av tidligere ansatte henter dokumenter uten å kontakte lønn."
+   },
+   {
+    "id": "P-OR1",
+    "navn": "Tillitsvalgt, styremedlem eller frivillig",
+    "segment": "Organisasjonsliv",
+    "kontekst_md": "Tre personer i samme organisasjon. **Siri (58)** er sykepleier og fylkesleder, med vervgodtgjørelse, møtegodtgjørelse og tapt arbeidsfortjeneste. **Jon (67)** er pensjonist og får styrehonorar to ganger i året. **Amir (22)** er frivillig og får dekket tog og kilometer. Alle er registrert i OrgLab, og ingen er ansatt.",
+    "smerter_md": "- Honorarskjema på e-post med fødselsnummer og kontonummer i klartekst.\n- 50 % trekk fordi organisasjonen ikke har hentet skattekortet.\n- Uklart om godtgjørelsen er skattefri under 10 000 kr.\n- Tapt arbeidsfortjeneste krever bekreftelse fra arbeidsgiver, og satsen varierer fra lokallag til lokallag.\n- Venter i måneder fordi organisasjonen samler honorarene til én kjøring i desember.",
+    "behov": [
+     {
+      "id": "TV-01",
+      "prioritet": "Må",
+      "tekst": "Riktig mottakerklasse fra start: verv med godtgjørelse er honorar, bare utgifter gir ikke arbeidsforhold, og ingen utbetaling er ikke lønn."
+     },
+     {
+      "id": "TV-02",
+      "prioritet": "Må",
+      "tekst": "BankID-onboarding når utbetalingen nærmer seg, der navnet fra BankID må stemme med OrgLab."
+     },
+     {
+      "id": "TV-03",
+      "prioritet": "Må",
+      "tekst": "Skattekort hentes før utbetaling, og mottakeren varsles før 50 % trekk."
+     },
+     {
+      "id": "TV-04",
+      "prioritet": "Må",
+      "tekst": "Godtgjørelse etter vedtatt honorarordning, alltid med vedtaksreferanse."
+     },
+     {
+      "id": "TV-05",
+      "prioritet": "Bør",
+      "tekst": "Møtegodtgjørelse basert på oppmøte attestert av møteleder."
+     },
+     {
+      "id": "TV-06",
+      "prioritet": "Må",
+      "tekst": "Krav om tapt arbeidsfortjeneste med kravtype, dokumentasjon, tak og attestasjon (for organisasjoner som bruker det). Rapporteringskoden er usikker [verifiseres]."
+     },
+     {
+      "id": "TV-07",
+      "prioritet": "Bør",
+      "tekst": "Frikjøp i tre modeller: faktura fra arbeidsgiver, midlertidig ansettelse eller vervgodtgjørelse."
+     },
+     {
+      "id": "TV-08",
+      "prioritet": "Må",
+      "tekst": "Utlegg og reise også for ikke-ansatte, der trekkpliktig overskudd håndteres riktig."
+     },
+     {
+      "id": "TV-09",
+      "prioritet": "Må",
+      "tekst": "10 000-kronersregelen med akkumulator per mottaker og betalende enhet, AGA av alt og ingen spredning av utbetalinger for å holde seg under."
+     },
+     {
+      "id": "TV-10",
+      "prioritet": "Må",
+      "tekst": "Mottakerportal light med honorarslipper, årsoversikt, skattekortstatus, kontonummer-skjold og verv."
+     },
+     {
+      "id": "TV-11",
+      "prioritet": "Må",
+      "tekst": "OrgLab sender bare verv som gir godtgjørelse, aldri medlemsdata eller kontingent."
+     }
+    ],
+    "kult_md": "- **Registrert på to minutter, aldri fødselsnummer på e-post:** invitasjon, BankID, kontonummer, ferdig.\n- **«Jeg var der»:** når møtelederen har attestert, vises godtgjørelsen som «på vei» i appen.\n- **Årsoversikt per organisasjon** som forklarer om 10 000-regelen gjelder.",
+    "maal_md": "- Median tid fra invitasjon til «klar for utbetaling» under 5 minutter, og ≥ 90 % klarer det uten hjelp.\n- Under 1 % av honorarutbetalingene får 50 % trekk fordi skattekort mangler.\n- 0 fødselsnumre eller kontonumre mottatt på e-post.\n- Vervgodtgjørelse utbetalt innen 10 virkedager etter godkjenning."
+   },
+   {
+    "id": "P-OR2",
+    "navn": "Arrangementsansvarlig som bruker Tikket",
+    "segment": "Organisasjonsliv",
+    "kontekst_md": "**Mona** har ansvar for en todagers festival med 4 000 billetter i Tikket. Bemanningen er 120 frivillige, 40 timelønnede ekstrahjelpere (mange under 25), et vaktselskap som fakturerer, 6 norske artister (2 privatpersoner, 3 ENK, 1 via agentur), 1 svensk band og 3 foredragsholdere.",
+    "smerter_md": "- Ekstrahjelpen mangler arbeidsavtale, skattekort og kontonummer på festivaldagen.\n- Timelister på papir.\n- Artister vil ha betalt på kvelden, og ingen vet om honorar til en privatperson skal gå gjennom lønn.\n- Artistskatt for det utenlandske bandet glemmes til det er for sent. RF-1091 skal sendes tre uker før.\n- Lønnskostnaden per arrangement blir kjent først når regnskapet er lukket.",
+    "behov": [
+     {
+      "id": "AR-01",
+      "prioritet": "Må",
+      "tekst": "Vakttype per vakt i Tikket: frivillig, arbeidstaker eller innleid, der frivillige vakter aldri kan ha beløp."
+     },
+     {
+      "id": "AR-02",
+      "prioritet": "Må",
+      "tekst": "Rask ansettelse av ekstrahjelp med e-signert avtale, BankID, skattekort og konto, og status «klar» tilbake til Tikket."
+     },
+     {
+      "id": "AR-03",
+      "prioritet": "Må",
+      "tekst": "Inn- og utsjekk i Tikket blir timer per timetype som godkjennes og prises i lønn."
+     },
+     {
+      "id": "AR-04",
+      "prioritet": "Må",
+      "tekst": "Tilkalling rapporteres med stillingsprosent 0 og timelønn med timer."
+     },
+     {
+      "id": "AR-05",
+      "prioritet": "Må",
+      "tekst": "Veiviser som foreslår lønn, faktura eller artistskatt for hver utøver, og der en person signerer."
+     },
+     {
+      "id": "AR-06",
+      "prioritet": "Bør",
+      "tekst": "Artistskatt med påminnelse om RF-1091, trekk på 15 % og RF-1092 (Må for organisasjoner med utenlandske artister)."
+     },
+     {
+      "id": "AR-07",
+      "prioritet": "Må",
+      "tekst": "Arrangement-ID som dimensjon på alle lønns-, honorar- og trekklinjer helt fram til bilaget."
+     },
+     {
+      "id": "AR-08",
+      "prioritet": "Bør",
+      "tekst": "Kostnad per arrangement mot billettinntekter, som estimat før lønnskjøring og faktisk etter."
+     },
+     {
+      "id": "AR-09",
+      "prioritet": "Bør",
+      "tekst": "Ekstra lønnskjøring innen 3–5 virkedager etter arrangementet."
+     },
+     {
+      "id": "AR-10",
+      "prioritet": "Må",
+      "tekst": "Massebehandling av 40–80 ekstrahjelpere i én helg."
+     }
+    ],
+    "kult_md": "- **Live arrangementsregnskap:** «Festivalen så langt: bemanning 312 000, honorarer 410 000, AGA 101 000, artistskatt 22 500. Billettinntekter 1,94 mill.»\n- **Innsjekken er timelisten.** Bare ekstrahjelpens timer går til lønn.\n- **Artistskatt-veiviser** som oppretter frister og fyller inn grunnlaget.",
+    "maal_md": "- 100 % av ekstrahjelpene har avtale, skattekort og konto før første vakt.\n- Timer klare for lønn innen 48 timer etter arrangementet.\n- Honorar utbetalt innen 5 virkedager etter godkjenning.\n- 100 % av utenlandske artister har RF-1091 innen fristen.\n- Avvik mellom estimert og faktisk lønnskost per arrangement under 5 %."
+   },
+   {
+    "id": "P-OR3",
+    "navn": "Generalsekretær i interesseorganisasjon",
+    "segment": "Organisasjonsliv",
+    "kontekst_md": "Organisasjonen har 60 ansatte i sekretariatet, 3 000 tillitsvalgte og 180 lokallag, der 40 har eget organisasjonsnummer. Ca. 400 tillitsvalgte får godtgjørelse og over 1 500 får reiseutlegg i løpet av året. Den lever av offentlige tilskudd og innsamlede midler, og et byrå fører regnskapet. Landsmøtet annethvert år har 350 delegater.",
+    "smerter_md": "- Honorarer ligger i regneark i hvert lokallag.\n- Det er uklart hvem som er arbeidsgiver, sentralleddet eller lokallaget.\n- Tilskuddsrapporter krever full lønnskost per prosjekt, med omfordelinger bakover i tid.\n- Styrehonorar skal være konfidensielt i det daglige, men stå i noten i årsregnskapet.\n- Landsmøtet gir 350 reiseregninger og 120 krav om tapt arbeidsfortjeneste på én uke.",
+    "behov": [
+     {
+      "id": "GS-01",
+      "prioritet": "Må",
+      "tekst": "Betalende juridisk enhet per utbetaling, enten sentralledd eller lokallag med eget organisasjonsnummer."
+     },
+     {
+      "id": "GS-02",
+      "prioritet": "Bør",
+      "tekst": "Sentralleddet kjører lønn for lokallagene som egne klienter, med systembruker per enhet (Må for organisasjoner med mange egne lokallag)."
+     },
+     {
+      "id": "GS-03",
+      "prioritet": "Må",
+      "tekst": "Kostnadsfordeling på lokallag, prosjekt og tilskudd med fordelingsnøkler og omfordeling bakover med spor."
+     },
+     {
+      "id": "GS-04",
+      "prioritet": "Må",
+      "tekst": "Tilskuddsrapport med full lønnskost per prosjekt og finansiør, timegrunnlag og revisorspor."
+     },
+     {
+      "id": "GS-05",
+      "prioritet": "Må",
+      "tekst": "Honorarpolitikken som regler med satser, tak for tapt arbeidsfortjeneste, gyldighet og vedtaksreferanse."
+     },
+     {
+      "id": "GS-06",
+      "prioritet": "Må",
+      "tekst": "Den som oppretter verv eller honorar, kan ikke godkjenne utbetalingen, og over en terskel kreves fire øyne."
+     },
+     {
+      "id": "GS-07",
+      "prioritet": "Må",
+      "tekst": "Konfidensiell gruppe for styrehonorar og ledelse, med eksport til noteopplysninger."
+     },
+     {
+      "id": "GS-08",
+      "prioritet": "Bør",
+      "tekst": "Overvåking av AGA-fritaket og forenklet a-melding for små lokallag med eget organisasjonsnummer."
+     },
+     {
+      "id": "GS-09",
+      "prioritet": "Må",
+      "tekst": "Årsoversikt per mottaker per enhet for 10 000-kronersregelen."
+     },
+     {
+      "id": "GS-10",
+      "prioritet": "Bør",
+      "tekst": "Landsmøtemodus for massekrav fra 300–500 delegater i en egen kjøring med avviksliste."
+     },
+     {
+      "id": "GS-13",
+      "prioritet": "Må",
+      "tekst": "Byrået kjører, og organisasjonen godkjenner på mobil."
+     },
+     {
+      "id": "GS-14",
+      "prioritet": "Må",
+      "tekst": "Riktig AGA-sone for honorarmottakere og lokallag i ulike soner. Regelen for frilans er ikke verifisert [verifiseres]."
+     }
+    ],
+    "kult_md": "- **Kostnadskart** for lokallag, prosjekt og tilskudd, med drill-down fra totalen til bilag og regel.\n- **Tilskuddsrapport med ett klikk**, med revisorspor for timer, satser og omfordelinger.\n- **Honorar mot vedtak:** hver utbetaling viser vedtaket den bygger på, og styret ser avvik i stedet for regneark.",
+    "maal_md": "- Tilskuddsrapport på under en time, mot dager i dag.\n- 100 % av vervgodtgjørelsene har vedtaksreferanse.\n- 0 revisormerknader om lønn og honorar.\n- Lønnskost per lokallag og prosjekt tilgjengelig innen 3 virkedager etter kjøring.\n- Sekretariatets tid på honorarer ned ≥ 60 %."
+   },
+   {
+    "id": "P-OK1",
+    "navn": "Utvikler eller produkteier i Utleggsappen",
+    "segment": "Økosystem",
+    "kontekst_md": "Utleggsappen er et eget selskap med drift hos Advania. Den har egen godkjenningsflyt, kvitteringer og policymotor, og adaptere mot Tripletex, PowerOffice og Visma. Den vil at Brutto skal være like enkel å koble mot, eller enklere. Bruttos egen utleggsmodul er en direkte konkurrent.",
+    "smerter_md": "- Bruttos utleggsmodul konkurrerer direkte, så likebehandlingen må gjelde begge veier.\n- Kunden har ofte et annet lønnssystem, så appen vedlikeholder allerede flere adaptere.\n- Avvik mellom regnskap (godkjent) og a-melding (utbetalt) må forklares i avstemmingen.\n- Krav som rettes etter utbetaling, kan gi negativ differanse uten avtale med den ansatte.\n- Uten felles satser kan appen vise et annet beløp enn det lønn beregner.",
+    "behov": [
+     {
+      "id": "OK-20",
+      "prioritet": "Må",
+      "tekst": "Godkjente reise- og utleggslinjer leveres som lønnsgrunnlag med fakta og totalbeløp, og Brutto klassifiserer."
+     },
+     {
+      "id": "OK-21",
+      "prioritet": "Må",
+      "tekst": "Brutto deler selv kilometergodtgjørelse og diett i trekkfri og trekkpliktig del."
+     },
+     {
+      "id": "OK-22",
+      "prioritet": "Bør",
+      "tekst": "API for satsoppslag per dato, slik at appen viser samme beløp som Brutto."
+     },
+     {
+      "id": "OK-23",
+      "prioritet": "Må",
+      "tekst": "Obligatorisk felt for privat kostnad dekket av arbeidsgiver, uten standardverdi."
+     },
+     {
+      "id": "OK-24",
+      "prioritet": "Må",
+      "tekst": "Status per linje fra utsatt og låst til utbetalt og innrapportert."
+     },
+     {
+      "id": "OK-25",
+      "prioritet": "Må",
+      "tekst": "Korrigering ved at kilden sender full tilstand og Brutto beregner differansen."
+     },
+     {
+      "id": "OK-26",
+      "prioritet": "Må",
+      "tekst": "Negativ differanse stoppes til det finnes trekkavtale eller tilbakebetaling."
+     },
+     {
+      "id": "OK-28",
+      "prioritet": "Må",
+      "tekst": "Kvitteringsreferanse med krav-ID og hash på linjen og i bilaget."
+     },
+     {
+      "id": "OK-29",
+      "prioritet": "Må",
+      "tekst": "Valuta med originalbeløp, kurs, kursdato og beløp i kroner."
+     },
+     {
+      "id": "OK-31",
+      "prioritet": "Må",
+      "tekst": "Dimensjoner validert mot Bruttos dimensjonsregister."
+     },
+     {
+      "id": "OK-32",
+      "prioritet": "Bør",
+      "tekst": "Klassifisering på prøve før direkte refusjon, så appen vet om linjen skal til lønn."
+     },
+     {
+      "id": "OK-34",
+      "prioritet": "Bør",
+      "tekst": "Duplikatsjekk på tvers av kilder med kvitteringshash."
+     }
+    ],
+    "kult_md": "- **Utlegg på konto i dag:** rene refusjoner betales straks fra Utleggsappen, og det som skal i a-meldingen, går via Brutto.\n- **«Innrapportert til Skatteetaten 07.12»** synlig for den ansatte i appen.\n- **Samme kvittering sendt to ganger** oppdages.",
+    "maal_md": "- En ekstern utvikler kommer til første godtatte linje på under én dag, bare fra dokumentasjonen.\n- Byttetesten gir likt resultat på øret med Bruttos utleggsmodul og med den åpne referanseintegrasjonen.\n- Hver linje har status helt til «innrapportert».\n- Ingen negative differanser trekkes uten avtale."
+   },
+   {
+    "id": "P-OK2",
+    "navn": "Utvikler i OrgLab (medlemssystem)",
+    "segment": "Økosystem",
+    "kontekst_md": "OrgLab er medlemssystem for fagforeninger, interesseorganisasjoner, idrett og frivillige organisasjoner, med medlemmer, verv, vedtak om honorarsatser og møter. Kundene har typisk 10–200 ansatte, men mange honorarmottakere. Mange er skattefrie, bruker byrå og har KLP eller tilsvarende pensjon. OrgLab eier vervet. Brutto eier pengene.",
+    "smerter_md": "- Kassereren lager regneark til byrået for hvert honoraroppgjør.\n- Fødselsnummer og kontonummer samles inn på e-post.\n- Riktig a-meldingsbeskrivelse for tapt arbeidsfortjeneste er ikke avklart [verifiseres].\n- Frikjøp som går via lønn, kan gi dobbel inntekt i a-meldingen.\n- Avsluttede verv blir liggende som arbeidsforhold i a-meldingen.",
+    "behov": [
+     {
+      "id": "OK-40",
+      "prioritet": "Må",
+      "tekst": "Engasjement av typen verv med innebygd onboarding: BankID, kontonummer og spørsmålet «fakturerer du?»."
+     },
+     {
+      "id": "OK-41",
+      "prioritet": "Må",
+      "tekst": "Når et verv avsluttes, avsluttes arbeidsforholdet som et utkast som godkjennes."
+     },
+     {
+      "id": "OK-42",
+      "prioritet": "Må",
+      "tekst": "Linjetyper for styrehonorar og godtgjørelse for verv, og for møtegodtgjørelse."
+     },
+     {
+      "id": "OK-43",
+      "prioritet": "Bør",
+      "tekst": "Linjetype for tapt arbeidsfortjeneste, når a-meldingsbeskrivelsen er avklart faglig."
+     },
+     {
+      "id": "OK-44",
+      "prioritet": "Må",
+      "tekst": "Frikjøp avvises med veiledning om å bokføre det som leverandørfaktura."
+     },
+     {
+      "id": "OK-45",
+      "prioritet": "Må",
+      "tekst": "Brutto holder 10 000-kronersakkumulatoren og merkingen. OrgLab bruker aldri grensen selv."
+     },
+     {
+      "id": "OK-47",
+      "prioritet": "Må",
+      "tekst": "Brutto fungerer for kunder med bare honorarer og ingen ordinære ansatte, med en enkel pris."
+     },
+     {
+      "id": "OK-48",
+      "prioritet": "Bør",
+      "tekst": "Konfidensielt styrehonorar synlig bare for navngitte brukere."
+     },
+     {
+      "id": "OK-49",
+      "prioritet": "Bør",
+      "tekst": "OrgLab kan be om en honorarkjøring, Brutto foreslår, og et menneske starter den."
+     },
+     {
+      "id": "OK-50",
+      "prioritet": "Må",
+      "tekst": "OrgLab kan levere reise for tillitsvalgte bare når den er registrert som kilde for den gruppen."
+     },
+     {
+      "id": "OK-52",
+      "prioritet": "Må",
+      "tekst": "Mottakere som er skattemessig bosatt i utlandet, stoppes og behandles manuelt."
+     },
+     {
+      "id": "OK-54",
+      "prioritet": "Bør",
+      "tekst": "Sum utbetalt per verv og år tilbake til OrgLab, uten trekk."
+     }
+    ],
+    "kult_md": "- **Honorar på 60 sekunder:** den tillitsvalgte får en lenke, logger inn med BankID, bekrefter konto og ser forventet netto. Styret godkjenner listen i OrgLab, og Brutto kjører.\n- **Vervperioden styrer arbeidsforholdet**, så glemte honorarmottakere ikke blir liggende i a-meldingen.",
+    "maal_md": "- OrgLab sender aldri fødselsnummer eller kontonummer.\n- Alle honorarlinjer har vedtaksreferanse, ellers avvises de.\n- Et avsluttet verv avslutter arbeidsforholdet etter godkjenning.\n- 10 000-grensen holdes bare i Brutto."
+   },
+   {
+    "id": "P-OK3",
+    "navn": "Utvikler i Tikket (billett og arrangement)",
+    "segment": "Økosystem",
+    "kontekst_md": "Tikkets kunder er kulturhus, festivaler, idrettslag, konferansearrangører og foreninger. De har faste ansatte, ekstrahjelp og vakter, ulønnede frivillige, artister og foredragsholdere, og innleid mannskap. Tikket leverer vakter for ekstrahjelp og honorarer, med arrangementet som kostnadsdimensjon.",
+    "smerter_md": "- Ekstrahjelp må bli klar for lønn uten papirskjema.\n- Det er uklart om et artisthonorar er lønn eller faktura.\n- Antall timer i stedet for tidsstempler gir feil med enheter.\n- Ett arbeidsforhold per arrangement gir støy og feil i a-meldingen.\n- Vakter endres etter at de er sendt, og det kan gi dobbel betaling.",
+    "behov": [
+     {
+      "id": "OK-60",
+      "prioritet": "Må",
+      "tekst": "Linjetypen vakt med tidsstempler for start, slutt og pause, rolle, arrangement og sted, der Brutto priser vakten."
+     },
+     {
+      "id": "OK-61",
+      "prioritet": "Må",
+      "tekst": "Bare vakter bekreftet av vaktleder, og Brutto betaler aldri ugodkjent tid."
+     },
+     {
+      "id": "OK-62",
+      "prioritet": "Må",
+      "tekst": "Ekstrahjelp får ett løpende arbeidsforhold per person og juridisk enhet, som brukes på tvers av arrangementer."
+     },
+     {
+      "id": "OK-63",
+      "prioritet": "Må",
+      "tekst": "Honorar for oppdrag med sjekk av om det skal være lønn eller faktura."
+     },
+     {
+      "id": "OK-64",
+      "prioritet": "Må",
+      "tekst": "Tikket kan opprette dimensjonsverdier for arrangement som følger med til bilaget."
+     },
+     {
+      "id": "OK-65",
+      "prioritet": "Bør",
+      "tekst": "Lønnskost per arrangement tilbake til Tikket med minste gruppestørrelse."
+     },
+     {
+      "id": "OK-67",
+      "prioritet": "Må",
+      "tekst": "Frivillige er ikke lønn, og honorar til frivillige går via engasjement der Brutto holder grensene."
+     },
+     {
+      "id": "OK-68",
+      "prioritet": "Må",
+      "tekst": "Utenlandske artister og artister via byrå avvises med årsakskode."
+     },
+     {
+      "id": "OK-69",
+      "prioritet": "Må",
+      "tekst": "Tåler toppvolum i helger med batch på 1 000 vakter."
+     },
+     {
+      "id": "OK-70",
+      "prioritet": "Må",
+      "tekst": "Kilderegister for tid per arbeidsforholdsgruppe og sjekk av overlappende vakter på tvers av kilder."
+     },
+     {
+      "id": "OK-71",
+      "prioritet": "Bør",
+      "tekst": "Linjetypen fast sats per vakt, som er vanlig i kulturhus."
+     }
+    ],
+    "kult_md": "- **Fra vakt til lønnsslipp på én dag:** ekstrahjelpen sjekker inn og ut med QR, vaktlederen bekrefter, og Brutto kjører.\n- **Dekningsbidrag per arrangement** med reell lønnskost.\n- **Lønnsslippen viser hvilket arrangement** timene gjelder.",
+    "maal_md": "- Ingen ugodkjent tid blir utbetalt.\n- Hver ekstrahjelp har ett løpende arbeidsforhold per juridisk enhet.\n- En batch med 1 000 vakter går gjennom i helgetoppen.\n- Kostnaden per arrangement havner riktig i bilaget, uten at enkeltlønninger kan utledes."
+   },
+   {
+    "id": "P-OK4",
+    "navn": "Tredjeparter: tid, HR, ERP, pensjon og bank",
+    "segment": "Økosystem",
+    "kontekst_md": "Tid og vakt (Planday, Tamigo, Quinyx, GAT), HR-systemer (Huma, Simployer, Sympa, HiBob, Personio), ERP (Tripletex, PowerOffice Go, Business Central, Xledger), pensjon og bank. De fleste eksporterer i dag CSV i lønnssystemets format. Tripletex og PowerOffice er også konkurrenter innen lønn, så Brutto bruker bare deres offentlige API-er.",
+    "smerter_md": "- Tidssystemene leverer CSV i hvert lønnssystems format, med manuell mapping.\n- Tripletex tillater bare én import per kjøring.\n- Feil mapping mellom tid og lønn ga 2 338 ansatte feil tillegg i Kristiansand.\n- En integrasjon kan opprette arbeidsforhold med feil type eller datoer, og et stillingsbytte i HR-systemet kan gi nytt arbeidsforhold i a-meldingen.\n- ERP-integrasjoner kreves eksplisitt i anbud (Xledger, Unit4).",
+    "behov": [
+     {
+      "id": "OK-80",
+      "prioritet": "Må",
+      "tekst": "Linjetyper for timer og vakter med leverandørens egne koder koblet til lønnsarter i en mappingtabell per installasjon."
+     },
+     {
+      "id": "OK-81",
+      "prioritet": "Må",
+      "tekst": "CSV-import som reserve, med samme validering og idempotens, og flere importer per kjøring."
+     },
+     {
+      "id": "OK-82",
+      "prioritet": "Må",
+      "tekst": "Hendelser for cut-off og lås, slik at timelister kan låses."
+     },
+     {
+      "id": "OK-86",
+      "prioritet": "Må",
+      "tekst": "API for arbeidsforhold med gyldighetsdato, der HR-systemet skriver de feltene det er kilde for."
+     },
+     {
+      "id": "OK-89",
+      "prioritet": "Må",
+      "tekst": "Nyansatt-flyt der Brutto henter skattekort og ber den ansatte om kontonummer med BankID."
+     },
+     {
+      "id": "OK-90",
+      "prioritet": "Må",
+      "tekst": "Brutto bygger og drifter adaptere som sender bilag til Tripletex og PowerOffice Go."
+     },
+     {
+      "id": "OK-91",
+      "prioritet": "Må",
+      "tekst": "Generisk API for bilag som balanserer, med dimensjoner og reversering ved ny revisjon."
+     },
+     {
+      "id": "OK-92",
+      "prioritet": "Må",
+      "tekst": "Synkronisering av kontoplan og dimensjoner."
+     },
+     {
+      "id": "OK-96",
+      "prioritet": "Må",
+      "tekst": "OTP via a-meldingen uten egen integrasjon."
+     },
+     {
+      "id": "OK-97",
+      "prioritet": "Må",
+      "tekst": "Pensjonsgrunnlag til KLP og SPK på fil (Må hvis en pilotkunde har HUK, ellers Bør)."
+     },
+     {
+      "id": "OK-99",
+      "prioritet": "Må",
+      "tekst": "Betalingsfil pain.001 og import av pain.002 og camt.054."
+     },
+     {
+      "id": "OK-101",
+      "prioritet": "Må",
+      "tekst": "Betalingsstatus skilt i sendt, bekreftet og returnert, synlig for kildene."
+     }
+    ],
+    "kult_md": "- **Tid uten CSV:** en Planday-kunde kobler til på fem minutter med en mappingveiviser der KI foreslår lønnsart per kode.\n- **Bilaget lenker tilbake** til forklaringen av hver linje.",
+    "maal_md": "- Flere importer per kjøring gir samme resultat som én, uten dobbeltlinjer.\n- Nye koder fra tidssystemet stoppes til de er mappet og godkjent.\n- Bilag balanserer og reverseres riktig når en kjøring får ny revisjon.\n- Betalingsstatus fra banken er synlig for kilden."
+   },
+   {
+    "id": "P-OK5",
+    "navn": "Kundens IT-ansvarlige eller integrasjonskonsulent",
+    "segment": "Økosystem",
+    "kontekst_md": "Hun godkjenner leverandøren (sikkerhet, databehandleravtale, underleverandører), kobler på SSO og brukerprovisjonering, holder oversikt over hvilke apper som har hvilke data, feilsøker integrasjoner og får data inn ved migrering og ut ved exit.",
+    "smerter_md": "- En ung leverandør må gjennom sikkerhetsgodkjenning uten historikk.\n- Feil fra integrasjoner blir først synlige i a-meldingen.\n- Kundene har erfart overraskende integrasjonskostnader. Tensio ba om pris på API-kall og datavolum.\n- Det er uklart hvilke apper som har tilgang til hvilke data.\n- Data må kunne tas ut ved exit.",
+    "behov": [
+     {
+      "id": "OK-120",
+      "prioritet": "Må",
+      "tekst": "SSO med OIDC mot Entra ID og Google, der SSO kan kreves per kunde og BankID eller passkey brukes ved kritiske handlinger."
+     },
+     {
+      "id": "OK-121",
+      "prioritet": "Bør",
+      "tekst": "SCIM 2.0 for brukere med kobling fra gruppe til rolle."
+     },
+     {
+      "id": "OK-122",
+      "prioritet": "Må",
+      "tekst": "Oversikt over alle installerte apper og Brutto-moduler med pakker, godkjenner, siste aktivitet og tilbaketrekking."
+     },
+     {
+      "id": "OK-123",
+      "prioritet": "Må",
+      "tekst": "Integrasjonsmonitor med mottatt, avvist, holdt og utsatt per kilde og periode, med årsak."
+     },
+     {
+      "id": "OK-124",
+      "prioritet": "Bør",
+      "tekst": "Eksport av revisjonsloggen til kundens SIEM, inkludert handlinger per installasjon."
+     },
+     {
+      "id": "OK-125",
+      "prioritet": "Må",
+      "tekst": "Sikkerhetspakke med databehandleravtale, underleverandørliste, datakart, pentest-sammendrag og plan for ISAE 3402."
+     },
+     {
+      "id": "OK-126",
+      "prioritet": "Bør",
+      "tekst": "Kundens egen integrasjon med begrenset tilgang, for eksempel til Power BI."
+     },
+     {
+      "id": "OK-127",
+      "prioritet": "Må",
+      "tekst": "Full dataeksport og exit."
+     },
+     {
+      "id": "OK-130",
+      "prioritet": "Må",
+      "tekst": "Mappingverktøy for lønnsarter, dimensjoner, ansattnumre og fraværstyper med CSV inn og ut."
+     },
+     {
+      "id": "OK-132",
+      "prioritet": "Må",
+      "tekst": "Kilderegister i brukergrensesnittet som viser hvem som er kilde for hva, planlagte kildebytter og historikk."
+     }
+    ],
+    "kult_md": "- **Integrasjonsrøntgen:** én side med alle dataflyter inn og ut, volumer, feil og hvem som er kilde for hva, der kunden kan slå skyggemodus av og på for en ny integrasjon.",
+    "maal_md": "- Alle apper og moduler er synlige med pakker og siste aktivitet, og kan trekkes tilbake.\n- Feil fra integrasjoner vises i monitoren før a-meldingen sendes.\n- Full eksport er testet før første kunde går live.\n- API-kall koster ikke kunden noe."
+   },
+   {
+    "id": "P-OK6",
+    "navn": "KI-agent som bruker",
+    "segment": "Økosystem",
+    "kontekst_md": "To typer agenter: kundenes egne (Claude, ChatGPT, Copilot via MCP) og byråenes, som jobber på tvers av mange klienter. De skal hente status og avvik før kjøring, forklare avvik og slipper, lage utkast og purre, og svare ansatte på deres egne data.",
+    "smerter_md": "- Lønnsfolk er skeptiske til KI med tall, og ansvaret ligger hos arbeidsgiver og byrå.\n- Fritekst fra integrasjoner kan brukes til å lure agenten.\n- Fødselsnummer, kontonummer og adresse kan lekke i svar.\n- Byråagenter trenger oversikt på tvers av klienter uten persondata.",
+    "behov": [
+     {
+      "id": "OK-140",
+      "prioritet": "Må",
+      "tekst": "Agentidentitet med OAuth på vegne av en bruker, der rettighetene er snittet av brukerens rettigheter og agentpakken."
+     },
+     {
+      "id": "OK-141",
+      "prioritet": "Må",
+      "tekst": "Harde grenser: agenten kan aldri godkjenne, sende a-melding, utbetale, endre kontonummer eller roller, eller installere apper."
+     },
+     {
+      "id": "OK-142",
+      "prioritet": "Bør",
+      "tekst": "MCP-server oppå det offentlige API-et for å lese, forklare, simulere og lage utkast."
+     },
+     {
+      "id": "OK-143",
+      "prioritet": "Bør",
+      "tekst": "Agentutkast som kilde med status utkast, der et menneske godtar endringen og ser forskjellen."
+     },
+     {
+      "id": "OK-144",
+      "prioritet": "Bør",
+      "tekst": "API som forklarer hver beregnet linje."
+     },
+     {
+      "id": "OK-145",
+      "prioritet": "Må",
+      "tekst": "Fødselsnummer, kontonummer og adresse kommer aldri i agentsvar."
+     },
+     {
+      "id": "OK-146",
+      "prioritet": "Må",
+      "tekst": "Fritekst fra integrasjoner merkes som uklarert data i verktøysvar (når MCP-serveren leveres)."
+     },
+     {
+      "id": "OK-147",
+      "prioritet": "Må",
+      "tekst": "Revisjonslogg «agent X på vegne av Y» og kvoter per agent (når MCP-serveren leveres)."
+     },
+     {
+      "id": "OK-148",
+      "prioritet": "Bør",
+      "tekst": "Byråer kan lese status, frister og avvik på tvers av klienter uten persondata."
+     },
+     {
+      "id": "OK-149",
+      "prioritet": "Må",
+      "tekst": "Kunden slår på agenttilgang per kunde (når MCP-serveren leveres)."
+     }
+    ],
+    "kult_md": "- **Lønnsklar-agent:** tre dager før lønn går agenten gjennom alle klienter, purrer på manglende godkjenninger og lager en sjekkliste som mennesket godkjenner.\n- **«Spør lønnsslippen».**",
+    "maal_md": "- Policytester viser at agenten ikke kan godkjenne, sende, utbetale eller endre konto.\n- Ingen agentsvar inneholder fødselsnummer eller kontonummer.\n- Hver agenthandling står i loggen med hvem den handlet på vegne av.\n- Agenttilgang er av til kunden slår den på."
+   },
+   {
+    "id": "P-OK7",
+    "navn": "Bruttos egne modulteam for fravær, timer og utlegg",
+    "segment": "Økosystem",
+    "kontekst_md": "Teamene som bygger Brutto Fravær, Brutto Timer og Brutto Utlegg er de første og viktigste brukerne av det offentlige API-et. Modulene skal kunne byttes ut med Huma, Planday eller Utleggsappen uten at lønnen blir feil. Lønnskjernen eier konsekvensene, og modulene eier fakta.",
+    "smerter_md": "- Det er fristende å ta interne snarveier når API-et mangler noe.\n- Bruttos utleggsmodul konkurrerer med søsterproduktet Utleggsappen.\n- Saldoer for ferie, avspasering og egenmelding må overleve et modulbytte.\n- Regler med rettsvirkning slutter å virke hvis de ligger i en modul som byttes ut.",
+    "behov": [
+     {
+      "id": "OK-160",
+      "prioritet": "Må",
+      "tekst": "Hver Brutto-modul er en egen app med egen OAuth-klient, forhåndsinstallert, synlig og mulig å slå av."
+     },
+     {
+      "id": "OK-161",
+      "prioritet": "Må",
+      "tekst": "Modulene kan bare bruke den genererte klienten for det offentlige API-et, og kall til udokumenterte endepunkter stopper bygget."
+     },
+     {
+      "id": "OK-162",
+      "prioritet": "Må",
+      "tekst": "Byttetest i CI der de samme scenarioene kjøres med egen modul og med referanseintegrasjonen, og resultatet er likt på øret."
+     },
+     {
+      "id": "OK-163",
+      "prioritet": "Må",
+      "tekst": "Eksport og overlevering ved kildebytte med åpne saker, saldoer og historikk som signert importbatch."
+     },
+     {
+      "id": "OK-164",
+      "prioritet": "Må",
+      "tekst": "Åpen referanseintegrasjon for utlegg og timer som modulteamene vedlikeholder."
+     },
+     {
+      "id": "OK-165",
+      "prioritet": "Må",
+      "tekst": "Modulteamene utvikler mot sandkassen med de samme grensene som alle andre."
+     },
+     {
+      "id": "FT-44",
+      "prioritet": "Må",
+      "tekst": "Arbeidsgiverperioden telles i kjernen: 16 dager, sammenslåing ved under 16 dager mellomrom og 4 ukers opptjening."
+     },
+     {
+      "id": "TI-41",
+      "prioritet": "Må",
+      "tekst": "Lønn eier satsene, og timemodulen sender bare mengder."
+     },
+     {
+      "id": "UT-40",
+      "prioritet": "Må",
+      "tekst": "Regelmotoren i kjernen deler i trekkfri og trekkpliktig del og setter a-meldingsbeskrivelse, døgn, km og passasjernavn."
+     },
+     {
+      "id": "FT-56",
+      "prioritet": "Må",
+      "tekst": "Import av inngående saldoer ved oppstart: ferie, avspasering, brukte egenmeldingsdager, pågående arbeidsgiverperiode og omsorgsdager."
+     }
+    ],
+    "kult_md": "- **Endringsloggen viser hvem som drev fram API-et:** «drevet av Brutto Timer» eller «drevet av partner X».\n- **En ekstern utvikler** bygger referanseflyten fra dokumentasjonen hvert halvår, og tiden og antall spørsmål måles.",
+    "maal_md": "- 0 unntak fra det offentlige API-et for egne moduler.\n- Byttetesten gir 100 % likt resultat på øret ved hver release.\n- 0 dager mellom intern bruk av et endepunkt og offentlig dokumentasjon.\n- En ekstern utvikler kommer til første godtatte linje på under én dag."
+   }
+  ],
+  "seksjoner": [
+   {
+    "id": "b-oyeblikk",
+    "tittel": "Øyeblikk der vi vinner kunden",
+    "md": "Ti øyeblikk i en lønnsmåned der Brutto kan vinne kunden. Kalenderen følger Stiftelsen Nordlys i november 2026, med utbetaling fredag 20.11. Øyeblikk 10 gjelder den lille virksomheten.\n\n| # | Når | Hvem | Hva skjer | Hvorfor det vinner |\n|---|---|---|---|---|\n| 1 | Fre 23.10 kl. 07:00 | Kari og 40 ledere | Kalenderen for november går automatisk ut med personlige frister. Statussiden viser «0 av 40 ferdig» | Kari skriver ikke én e-post om frister |\n| 2 | Man 9.11 kl. 12:01 | Kari, ledere, ansatte | Vaktene til de to lederne som ikke har godkjent, utsettes til desember. De ansatte får beskjed med begrunnelse | Ingen telefonrunde og ingen unntak uten logg |\n| 3 | Man 9.11 kl. 13:15 | Ola | Importen sier «4 812 linjer, 3 trenger deg». Den nye koden «forsterket natt» ligger i karantene med et testberegnet forslag og venter på Fatima | Kristiansand-feilen kan ikke skje |\n| 4 | Tir 10.11 kl. 09:00 | Ingrid, Ola | Protokollen for 258 ansatte lastes opp. Systemet melder tre feil, beregner etterbetalingen med tillegg, utelater sju sluttede og lister 12 sykefravær som trenger ny inntektsmelding | Årets tyngste jobb tar en formiddag |\n| 5 | Ons 11.11 kl. 08:15 | Kari, Ola | Testkjøringen gikk i natt. 31 avvik: 28 forklart som etterbetaling, 2 som permisjon og 1 flagget som mistenkt dobbelt nattillegg | Kontrollen tar timer, og bare den ene feilen krever arbeid |\n| 6 | Ons 11.11 kl. 10:00 | Per og 6 prosjektledere | Hver prosjektleder bekrefter oktoberkosten med sosiale kostnader. EU-prosjektet har fått 20 % for mye og rettes før låsing | Prosjektrapporten stemmer uten manuelle bilag |\n| 7 | Fre 13.11 kl. 10:00 | Lise | Attestasjon på mobilen på 8 minutter. Godkjenning med passkey lager bankfil, forskuddstrekk, utleggstrekk og kreditortrekk med riktige forfall | Økonomisjefen ser kontrollen, og ingenting betales uten godkjenning |\n| 8 | Tir 17.11 kl. 10:00 | Ola | A-melding for tre selskaper. Feil underenhet ble fanget i forhåndsvalideringen 11.11. Tilbakemeldingen: «Ingen avvik» | Ingen erstatningsmelding og ingen kryptiske koder |\n| 9 | Fre 20.11 og tir 24.11 | 412 mottakere, lønn, Lise | Slippene forklarer etterbetalingen måned for måned. Avstemmingen er grønn: lønn, hovedbok, a-melding og bank stemmer, og trekkene er matchet mot banken | Rolig lønnsdag og avstemt måned uten å vente til januar |\n| 10 | Søndag kveld før lønn | Daglig leder med 15 ansatte | «Alt ser normalt ut. 1 sykmeldt: arbeidsgiverperioden er talt og inntektsmeldingen er klar. Godkjenn?» Ti minutter senere er a-meldingen sendt, og trekket betales mandag | Trygghet for den som ikke kan lønn |\n\n### Hva øyeblikkene har felles\n- Systemet gjør jobben før mennesket begynner å lete: kalenderen sendes, importen sorteres og testkjøringen går om natten.\n- Mennesket ser bare det som trenger det. Resten er forklart.\n- Kontrollen er synlig og logget, så økonomisjef og revisor kan stole på den.\n- Betaling, trekk og a-melding henger sammen i én flyt etter 2026-reglene.\n\n### Byråets øyeblikk\nFor byråkonsulenten er de store øyeblikkene arbeidskøen klokken 07:45 med kollegaens klienter allerede omfordelt, avvikskøen der hvert avvik har en forklaring, tilgangsdiagnosen som fanget manglende delegering dager før lønn, og oversikten som viser at forskuddstrekket er betalt. Hele dagen står i fanen Lønn i praksis."
+   },
+   {
+    "id": "b-ikke-bygge",
+    "tittel": "Ting vi bevisst ikke bygger",
+    "md": "Valgene er samlet fra behovsrapportene for virksomhet, byrå, ansatte og organisasjon, økosystem og moduler.\n\n| Vi bygger ikke | Hvorfor | Dette gjør vi i stedet |\n|---|---|---|\n| Lønn som tjeneste, BPO eller kapasitetshjelp | Godkjenningsplikt, resultatansvar og kanalkonflikt med byråene | Henviser til partnerbyråer |\n| Betaling fra egen konto, klientmidler eller egen PSD2-lisens | Regulatorisk byrde | Betalingsforslag som kunden godkjenner i egen bank |\n| KI som godkjenner, sender inn eller utbetaler | Ansvaret ligger hos arbeidsgiver og byrå | KI forbereder, forklarer og flagger. Agentrollen sperres |\n| Blind massesending av a-meldinger | En erstatningsmelding erstatter hele den forrige | «Send alle som er klare» med port per klient |\n| Praksissystem: oppgaver, timeføring for byrå, faktura, CRM, KYC | Praksissystemene har det | Status, bruksdata og timeforslag til praksissystemet |\n| Rik kundeportal med arkiv, chat og rapporter | Små kunder bruker den ikke | Portal for innsending, godkjenning og avviksspørsmål |\n| Full white-label | Kostnad uten betalingsvilje | «Powered by» med byråets logo |\n| Pris per byråbruker og oppstartsgebyr | Straffer fire øyne og stedfortreder | Pris per slipp |\n| Kundespesifikk kode, Citrix og on-prem | Grunnen til at kunder forlater SD Worx og Visma Enterprise | Konfigurasjon, testmiljø og ren SaaS |\n| Vaktplan, turnus, stempelklokke og GPS | Quinyx, GAT, Planday og Tamigo eier dette | Import, mapping og kontroll. Timemodulen dekker timelister og overtid |\n| Avansert reise med kort, bestilling og komplekse policyer | Utleggsappen og andre gjør det bedre | Enkel utleggsmodul. Lønn eier klassifiseringen |\n| HR som erstatter Huma i første versjon | To systembytter samtidig er en risiko for kunden | Huma-integrasjon først, HR-kjernen i fase 2 |\n| Rekruttering, HMS, læring, OKR, varsling, håndbøker | Egne markeder | Partnere og integrasjoner |\n| Sykefraværsoppfølging ved lansering | NAV og HR-systemet eier prosessen | Fravær, sykmelding og arbeidsgiverperiode nå. Oppfølging i fase 2 |\n| Budsjettverktøy og egen BI-plattform | Kundene har egne verktøy og vil ha rådata | Prognose, simulering og eksport via API |\n| Lønn på forskudd, Vipps-utbetaling, kontant fra kassa | Uklart regelverk, svindel og hvitvasking | Ekstrakjøring |\n| Statlig og kommunal sektor med SPK-sertifisering | Låste kunder og sertifiseringskrav | Senere fase. Arkitekturen må tåle det |\n| Ytelsespensjon, konkursbehandling og artistskatt-flyt | Leverandøren beregner, eller det er sjeldent | Riktig grunnlag, eksport, stopp og varsel |\n| Automatikk for gaver og fribilletter til frivillige | Regelverket er uklart | Manuell vurdering |\n| Markedsplass, inntektsdeling, SDK-er og iframe-komponenter | For tidlig før 30–50 integrasjoner | Gratis API, sandkasse og referanseintegrasjon |\n| Interne snarveier for egne moduler | Gir søsterprodukter forrang | Samme offentlige API for alle |\n| Overvåking av hver lønnsmedarbeider | Kultur og personvern | Aggregerte kvalitetstall |\n| Tvungen flytting av små byråklienter | Lønn er allerede betalt i Tripletex eller PowerOffice | Fokus på klienter med 10–300 ansatte |\n\n### Grensen som går igjen\nBrutto beregner, kontrollerer, dokumenterer og rapporterer lønn. Systemer kunden allerede har, sender data til oss eller får data fra oss. Det som har rettsvirkning, ligger alltid i lønnskjernen."
+   },
+   {
+    "id": "b-mottakertyper",
+    "tittel": "Mottakertyper i organisasjonslivet",
+    "md": "Organisasjoner betaler ofte mennesker som ikke er ansatte. Mottakerklassen styrer a-melding, trekk, AGA, feriepenger og pensjon. Klassen hører til relasjonen og utbetalingen, så én person kan være ansatt, styremedlem og frivillig samtidig.\n\n### Sju mottakerklasser\n\n| Klasse | Typiske personer | I a-meldingen | Betales via |\n|---|---|---|---|\n| K1 Arbeidstaker | Ansatte, ekstrahjelp, vakter | Ordinært arbeidsforhold | Lønn |\n| K2 Honorar eller verv | Styremedlem, tillitsvalgt, foredragsholder uten foretak | Frilans, bare i utbetalingsmåneder | Lønn |\n| K3 Bare utgiftsgodtgjørelse | Frivillig med dekket reise | Ingen arbeidsforhold | Utleggsapp eller bank |\n| K4 Næringsdrivende | ENK eller AS som fakturerer | Ingen. RF-1301 innen 15.2 for ENK uten fast forretningssted | Reskontro |\n| K5 Utenlandsk artist | Artist bosatt i utlandet | Ingen. Artistskatt 15 %, ikke AGA | Lønn eller reskontro |\n| K6 Frikjøpt tillitsvalgt | Egen arbeidsgiver betaler og fakturerer | Ingen hos organisasjonen | Reskontro |\n| K7 Ulønnet frivillig | Frivillig uten utbetaling | Ingen | – |\n\n### Regelmatrisen\nTrekk: T er tabell og P er prosent. FP er feriepengegrunnlag.\n\n| # | Mottaker og ytelse | Arbeidsforhold | Trekk | AGA | FP | OTP |\n|---|---|---|---|---|---|---|\n| 1 | Ansatt, fast- eller timelønn | Ordinært | T | Ja | Ja | Ja |\n| 2 | Ansatt, honorar for ekstra oppdrag | Ordinært | P | Ja | Ja | Kan |\n| 3 | Ansatt, styrehonorar | Ordinært eller frilans [verifiseres] | P | Ja | Nei | Nei |\n| 4 | Styremedlem, ikke ansatt | Frilans | P, alltid | Ja | Nei | Nei |\n| 5 | Tillitsvalgt, verv- eller møtegodtgjørelse | Frilans | P | Ja | Nei | Nei |\n| 6 | Tillitsvalgt, tapt arbeidsfortjeneste | Trolig frilans [verifiseres] | P [verifiseres] | Ja [verifiseres] | Nei | Nei |\n| 7 | Frikjøp med faktura fra arbeidsgiver | Ingen hos organisasjonen | – | – | – | – |\n| 8 | Frikjøp som midlertidig ansatt | Ordinært | T | Ja | Ja | Ja |\n| 9 | Frivillig, refusjon mot bilag | Rapporteres ikke | – | Nei | Nei | Nei |\n| 10 | Frivillig, trekkfri km og kost | Ingen. Rapporteres over 1 000 kr i året | – | Nei | Nei | Nei |\n| 11 | Frivillig, trekkpliktig overskudd | Ingen [verifiseres] | P | Ja | Nei | Nei |\n| 12 | Skattefri organisasjon, under 10 000 kr | Ingen opplysningsplikt, eller regelen fra første krone | Nei | **Ja** | Hvis K1 | Per plan |\n| 13 | Skattefri organisasjon, over 10 000 kr | Alt rapporteres når grensen passeres | Fra grensen | Ja | Hvis K1 | Per plan |\n| 14 | Veldedig enhet under 800 000 og 80 000 kr | Forenklet a-melding | [verifiseres] | **Fritak** | Hvis K1 | Per plan |\n| 15 | Ekstrahjelp på arrangement | Ordinært, 0 %, timelønn med timer | T eller P | Ja | Ja | Ja [verifiseres] |\n| 16 | Norsk foredragsholder uten foretak | Frilans | P, 50 % uten kort | Ja | Nei | Nei |\n| 17 | Artist med ENK | Ingen. RF-1301 | – | – | – | – |\n| 18 | Utenlandsk artist | Ikke a-melding | Artistskatt 15 % | Nei | – | – |\n| 19 | Utenlandsk foredragsholder | [verifiseres] | [verifiseres] | [verifiseres] | Nei | Nei |\n| 20 | Styremedlem bosatt i utlandet | Frilans med skattebostedsland | Kildeskatt | Ja | Nei | Nei |\n| 21 | Gave eller fribillett til frivillig | Mulig naturalytelse [verifiseres] | [verifiseres] | [verifiseres] | – | – |\n\n### Felles regler\n- Alt rapporteres i utbetalingsmåneden. Halv skatt i desember gjelder ikke honorar.\n- Forskuddstrekk betales første virkedag etter hver utbetaling, så faste honorarkjøringer lønner seg.\n- Lokallag med eget organisasjonsnummer er selv opplysningspliktige, med egen 10 000-akkumulator.\n- Veiviseren foreslår klasse med begrunnelse, og en person signerer.\n\n### Åpne spørsmål [verifiseres]\nTapt arbeidsfortjeneste, styrehonorar til ansatte, AGA-sone for frilans spredt over landet, om trekkfrie godtgjørelser teller mot 10 000-grensen, om grensen gjelder per organisasjon, OTP for ekstrahjelp og gaver til frivillige må avklares med Skatteetaten eller revisor."
+   },
+   {
+    "id": "b-app-skisse",
+    "tittel": "Skisse av ansattportal og app",
+    "md": "### Prinsipper\n- **Én app med roller.** Fanene vises etter relasjon og moduler: Hjem, Lønn, Fravær og ferie, Timer, Utlegg, Honorar og verv, Godkjenn og Meg. Bunnmenyen har maks fem faner.\n- **Fanene for fravær, timer og utlegg er like** uansett om modulen er Bruttos eller ekstern.\n- **Innlogging** med BankID første gang og ved kritiske endringer, passkey til daglig.\n- **Ingen beløp, fødselsnummer eller kontonummer i varsler.** WCAG 2.1 AA.\n- **Hvert tall kan forklares:** trykk på et beløp og se regel, sats og kilde.\n\n```\n┌─ HJEM ─────────────────────────┐ ┌─ LØNNSSLIPP (okt) ─────────────┐\n│ Neste lønn: 20. nov (foreløpig)│ │ Netto 31 412 (+1 240 fra sept) │\n│ ● 3 ting trenger deg           │ │ Hvorfor endret den seg?        │\n│   Timer uke 45: fredag mangler │ │  • Overtid 6 t (+2 180)        │\n│   Godkjenn 3 timelister        │ │  • Ny trekkprosent (−940)      │\n│   Bekreft nytt kontonummer     │ │ Hvert beløp → regel og sats ›  │\n│ Ferie: 9 dager igjen  [Søk]    │ │ [PDF] [EN/PL/UK]               │\n└────────────────────────────────┘ └────────────────────────────────┘\n```\n\n### Skjermene\n\n| Skjerm | Innhold | For |\n|---|---|---|\n| Hjem | Neste lønn, ting som trenger deg, feriesaldo, egenmelding og kvittering | Alle |\n| Lønnsslipp | Netto og endring, «hvorfor endret den seg?», regel og sats per linje, språk | Ansatte |\n| Skatt | Skattekort, hentedato, prosent på honorar, juni og desember forklart, ekstra trekk | Ansatte og honorarmottakere |\n| Fravær og ferie | Saldo, overført ferie, egenmeldingskvote, sykt barn, sykmelding fra NAV | Ansatte |\n| Søk ferie | Kalender, saldo etter søknad, hvem i teamet er borte | Ansatte |\n| Timer | Uke, prosjekt, overtid med hvem som påla den og estimert verdi, frist | Timelønnede og prosjektførende |\n| Utlegg | Kvittering med OCR, reise delt i trekkfritt og trekkpliktig, status | Ansatte og frivillige |\n| Honorar og verv | Verv, utbetalt i år, krav om tapt arbeidsfortjeneste, «rapportert» | Tillitsvalgte |\n| Godkjenn | Frist, linjer uten avvik i masse, avvik én og én med konsekvens, teamkost | Ledere og attestanter |\n| Meg | Maskert konto, Digipost, språk, dokumenter, stedfortreder | Alle |\n\n### Hovedflytene\n\n| Flyt | Det som gjør den trygg |\n|---|---|\n| Første innlogging med invitasjon, BankID, konto og passkey | Engangslenke. Nytt kontonummer havner i kontrollrapporten |\n| Endre kontonummer | BankID, karantene og varsel på gammel kanal. Fire øyne nær lønn og før fratreden |\n| Forstå lønnsslippen | Forklaringen kommer fra regelmotoren og er testet |\n| Onboarding av honorarmottaker | Navnet fra BankID må stemme med OrgLab |\n| Krav om tapt arbeidsfortjeneste | Tak fra honorarordningen. Attestanten kan ikke være søkeren |\n| Godkjenning | Ingen godkjenning av egne krav. Passkey ved store beløp |\n| Ferie og egenmelding | Varsel ved brudd på ferieloven. Egenmelding er en melding til lederen |\n| Timer og overtid | Periodelås ved cut-off. Etter lås bare korrigeringslinjer |\n| Utlegg | Kvitteringshash mot duplikater. Trekkpliktige deler går via lønn |\n| Ekstrahjelp fra Tikket | Vakten låses ikke før personen er «klar» |\n| Sluttet | Lesetilgang med BankID. Rollene trekkes tilbake |\n\nBeløpene i skissen er illustrasjoner."
+   },
+   {
+    "id": "b-kjerne-moduler",
+    "tittel": "Grensen mellom kjerne og moduler",
+    "md": "### Modulene leverer fakta, kjernen beregner\nEn modul for fravær, timer eller utlegg sender hva som skjedde, når, hvem som godkjente og hvilken dokumentasjon som finnes. Det gjelder både Bruttos egne moduler og eksterne. Lønnskjernen eier alt som har rettsvirkning overfor Skatteetaten, NAV eller den ansattes lønn. Da kan kunden bytte Bruttos modul med Planday, Huma eller Utleggsappen uten at lønnen blir feil.\n\n| Domene | Modulen eier | Kjernen eier |\n|---|---|---|\n| Fravær | Søknad, registrering, godkjenning, kalender, vedlegg | Fraværsregister, arbeidsgiverperiode, refusjon, inntektsmelding, feriepenger, ferietrekk, permisjon i a-meldingen |\n| Timer | Registrering, overtid, godkjenning, prosjekt | Prising, tillegg, feriepengegrunnlag, kostnadsfordeling, oversikten etter aml. § 10-7 |\n| Utlegg | Kvittering, reisefakta, godkjenning, forslag til beløp | Trekkfri og trekkpliktig del, AGA, a-meldingsbeskrivelse, utbetaling, bilag |\n\nSaldoer for ferie, avspasering, egenmelding og omsorgsdager føres i en hovedbok i kjernen. Bytter kunden modul, blir saldoene liggende.\n\n### Ett kilderegister per datatype\nFor hver kunde og datatype finnes nøyaktig én aktiv kilde, eventuelt avgrenset til en gruppe arbeidsforhold.\n\n| Datatype | Mulige kilder | Kan flyttes |\n|---|---|---|\n| Person og kontaktinfo | Brutto, HR-system | Ja |\n| Fødselsnummer | Bare Brutto, verifisert. HR kan foreslå | Nei |\n| Arbeidsforhold, organisasjon og avtalt lønn | Brutto, HR-system | Ja |\n| Bankkonto | Bare Brutto, med BankID | Nei |\n| Skattekort | Bare Brutto, fra Skatteetaten | Nei |\n| Fravær | Brutto, HR-system, tidssystem | Ja |\n| Tid | Brutto, vaktsystem, Tikket | Ja, ofte per gruppe |\n| Utlegg og reise | Brutto, Utleggsappen, OrgLab for verv | Ja |\n| Verv og honorar | OrgLab, Brutto | Ja |\n| Lønnsarter, beregning, a-melding | Bare Brutto | Nei |\n\nSkriving fra andre enn kilden avvises. Bruttos eget skjermbilde følger samme regel: når Huma eier arbeidsforholdet, er feltene skrivebeskyttet med lenken «Endre i Huma».\n\n### Regler mot dobbelt arbeid og dobbel utbetaling\n- Idempotens på installasjon, ekstern ID og revisjon.\n- Kilder sender full tilstand, og Brutto beregner differansen mot det som er låst eller utbetalt.\n- Kilder sender aldri a-meldingskoder, utbetalingsmåned eller kontonummer.\n- Timer på en dag med 100 % fravær går til vurdering, og overlappende vakter fra to kilder stoppes.\n- Nye integrasjoner starter i skyggemodus med beløpsgrenser per linjetype.\n\n### Kildebytte\nKunden bytter kilde ved periodeskifte. Ny kilde installeres og mappes, kjører minst én skyggeperiode med diff, og åpningssaldoer importeres før byttet. Linjer under behandling flyttes aldri, og fravær som krysser datoen, deles.\n\n### Bevis på like vilkår\nBruttos moduler er egne apper med egen OAuth-klient, synlige og mulige å slå av. Bygget stopper hvis en modul kaller noe som ikke er offentlig. Ved hver release kjøres en byttetest der de samme lønnsscenarioene kjøres med egen modul og med en åpen referanseintegrasjon. Resultatet skal være likt på øret.\n\n### Huma i tre faser\n1. **Sameksistens:** Huma er HR-master. Brutto kjører lønn og lagrer historikk fra første dag.\n2. **Brutto overtar fravær, timer og utlegg** med kildebytte per kunde.\n3. **Brutto overtar HR-masteren** når dokumentlager, e-signering og HR-kjerne er på plass.\n\nDen største risikoen er omfanget. Lønn, tre moduler og HR er for mye for ett team på 12–18 måneder hvis modulene ikke lanseres smale og lovriktige."
+   }
+  ]
+ }
+}

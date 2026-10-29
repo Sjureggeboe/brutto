@@ -1,0 +1,12 @@
+{
+ "omrade_rekkefolge": ["ORG","PER","LON","KJO","TRK","PEN","FRA","TID","UTL","MYN","BET","REG","POR","LED","BYR","ORL","RAP","PLA","SIK","MIG","HR","UTV","HEL","KOM"],
+ "klynger": [
+  {"navn": "Grunndata", "tekst": "Virksomheten, organisasjonen og menneskene lønnen bygger på.", "omrader": ["ORG","PER"]},
+  {"navn": "Lønnskjernen", "tekst": "Lønnsarter, beregning, skatt, trekk og pensjon. Alt med rettsvirkning bor her.", "omrader": ["LON","KJO","TRK","PEN"]},
+  {"navn": "Fravær, tid og utlegg", "tekst": "Egne moduler for ferie/fravær og timer. Utlegg kommer via integrasjoner. Reglene ligger i kjernen.", "omrader": ["FRA","TID","UTL"]},
+  {"navn": "Myndigheter, bank og regnskap", "tekst": "A-melding, skattekort, trekkpålegg, NAV, betaling og bilag.", "omrader": ["MYN","BET","REG"]},
+  {"navn": "Brukere og kanaler", "tekst": "Ansatte, ledere, byråer og organisasjonslivet.", "omrader": ["POR","LED","BYR","ORL"]},
+  {"navn": "Plattform, sikkerhet og data", "tekst": "API og integrasjoner, tilgang og personvern, rapporter og migrering.", "omrader": ["RAP","PLA","SIK","MIG"]},
+  {"navn": "HR-utvidelse (senere)", "tekst": "Det SD Worx og Huma dekker utover lønn. Lett kartlagt nå. Fokus er lønn først.", "omrader": ["HR","UTV","HEL","KOM"]}
+ ]
+}

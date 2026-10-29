@@ -1,0 +1,806 @@
+{
+ "meta": {
+  "undertittel": "Kartlegging av et norsk lønns- og HR-system",
+  "versjon": "0.2",
+  "dato": "2026-10-28",
+  "fot_md": "Laget 28.10.2026 av Claude med flere agenter i fem runder, på grunnlag av offentlige kilder, API-dokumentasjon og gründerens avklaringer. «Brutto» er et arbeidsnavn. Alt innhold er research og forslag. Tall merket (anslag) og punkter merket (verifiseres) må kontrolleres av lønnsfaglig, jurist eller myndigheten før de brukes som fasit."
+ },
+ "oversikt": {
+  "tittel": "Brutto: lønn først, for virksomheter med 10–1000 ansatte og byråene deres",
+  "ingress_md": "Brutto er arbeidsnavnet på et frittstående norsk lønnssystem for AS, stiftelser, foreninger og organisasjoner med 10–1000 ansatte. Systemet lisensieres også til regnskapsbyråer som kjører lønn for kundene sine. Brutto starter som et rent lønnssystem med egne moduler for ferie, fravær og timer, og HR kommer som en senere utvidelse (B34). Ingenting skal bygges ennå. Denne siden samler grunnlaget for kartleggingen av områder, funksjoner og datafelt, og for scope- og MVP-arbeidet som kommer etterpå (B31).",
+  "fakta": [
+   {
+    "tall": "≈ 40 000",
+    "tekst": "private og ideelle virksomheter med 10–999 ansatte (Brreg, okt. 2026)"
+   },
+   {
+    "tall": "2 297",
+    "tekst": "stiftelser og foreninger med 10–999 ansatte"
+   },
+   {
+    "tall": "2 469",
+    "tekst": "godkjente regnskapsselskaper (des. 2024)"
+   },
+   {
+    "tall": "0,6–1,0 mrd.",
+    "tekst": "kroner i årlig programvaremarked for segmentet (anslag)"
+   },
+   {
+    "tall": "≈ 2 400",
+    "tekst": "timer lønnsfaglig arbeid før første produksjon (anslag)"
+   },
+   {
+    "tall": "60–70 MNOK",
+    "tekst": "kapitalbehov før break-even (anslag)"
+   }
+  ],
+  "datoer": [
+   {
+    "dato": "15.06.2026",
+    "iso": "2026-06-15",
+    "tekst": "K27 ble sendt i Altinn II for siste gang. Nå hentes refusjonsrapporten bare via NAVs API eller manuelt (B33)."
+   },
+   {
+    "dato": "28.10.2026",
+    "iso": "2026-10-28",
+    "tekst": "Gründerens avklaringer. Kartleggingen av områder, funksjoner og datafelt starter (B31).",
+    "viktig": true
+   },
+   {
+    "dato": "17.11.2026",
+    "iso": "2026-11-17",
+    "tekst": "A-melding og skattekort kan ikke lenger sendes med Altinn II-roller. Byråene har travelt fram til februar.",
+    "viktig": true
+   },
+   {
+    "dato": "15.12.2026",
+    "iso": "2026-12-15",
+    "tekst": "Skattekort hentes bare ved polling. To nye resultatverdier, blant annet `registrertSomDoed`."
+   },
+   {
+    "dato": "31.12.2026",
+    "iso": "2026-12-31",
+    "tekst": "Alle Altinn II-roller opphører. Alle systemer må bruke systembruker."
+   },
+   {
+    "dato": "01.01.2027",
+    "iso": "2027-01-01",
+    "tekst": "Regel F532 og F530 i a-meldingen. Bokføringsloven § 13 endres, uten nye oppbevaringsfrister."
+   },
+   {
+    "dato": "01.05.2027",
+    "iso": "2027-05-01",
+    "tekst": "Spesifikasjonen for a-melding 2.4 publiseres senest. Innholdet var ikke endelig per 22.10.2026."
+   },
+   {
+    "dato": "15.09.2027",
+    "iso": "2027-09-15",
+    "tekst": "Testmiljøet for a-melding 2.4 åpner."
+   },
+   {
+    "dato": "02.12.2027",
+    "iso": "2027-12-02",
+    "tekst": "Høyrisikopliktene i KI-forordningen (vedlegg III) gjelder etter politisk enighet om utsettelse (verifiseres)."
+   },
+   {
+    "dato": "01.01.2028",
+    "iso": "2028-01-01",
+    "tekst": "A-melding 2.4 gjelder fra periode 2028-01. Alle systemer må levere 2.4.",
+    "viktig": true
+   }
+  ],
+  "kortversjon_md": "**Fase 1 (avklart 28.10.2026).** Fase 1 er smal, og målet er å være veldig god på lønn. Den består av en oversikt over alle ansatte, en avstemmingsmodul som henter A07 fra Skatteetaten via Maskinporten, og enkle kontroller og grafer. En innebygd assistent kommer senere. Godkjenningsflyt per kunde og utbetaling via open banking designes nå. Teamet er Sjur, Peter og Sander, og Brutto bygges i Rust. Spørsmålene som skal avklare arkitekturen, ligger i fanen **Fase 1**. Funksjoner som hører til fase 1, er merket i **Områder og funksjoner**.\n\n**Hva Brutto er.** Et nøytralt lønnssystem uten egen regnskapsmodul (B1). Kundene er virksomheter med 10–1000 ansatte og regnskapsbyråer. Brutto beregner lønn, rapporterer til Skatteetaten og NAV, lager bilag og betalingsfiler, og gir ansatte lønnsslipp med forklaring.\n\n**Hva gründeren har bestemt (28.10.2026)**\n- Alle integrasjoner bruker samme offentlige API på like vilkår: Utleggsappen, OrgLab, Tikket, Huma og andre (B2).\n- Egne moduler for ferie/fravær og timer (B20). Utlegg løses bare med integrasjoner (B32).\n- Lønn først. HR, kompetanse, medarbeidersamtaler, helseoppfølging og startside er en senere utvidelse (B34). Målet om å erstatte Huma ligger fast på sikt (B21).\n- Brutto flytter aldri penger. Bankintegrasjon kommer etter hvert, med filer først (B12).\n- Integrasjon mot Skatteetaten, NAV og Altinn for skattekort, trekkpålegg, a-melding og K27 (B10, B33).\n- Ansatte fordeles på avdelinger, prosjekter og andre dimensjoner (B35).\n- Stacken står åpen (B8). Sally/Tally er et separat produkt (B36).\n- Først kartlegges områder, funksjoner og datafelt. Scope og MVP kommer senere (B31).\n\n**Hva analysen sier**\n- Det første produktet må være smalt. Skjelettet fra runde 1 var 5–8 ganger større enn det et realistisk team rekker før første pilot (anslag).\n- Lønnsfag er flaskehalsen. Kodeagenter gjør kodingen raskere. De lager ingen fasit, tester ikke i TT02 og svarer ikke i telefonen på lønnsdagen.\n- Lønn blir oftest feil i overgangene: migrerte saldoer, desemberovertid betalt i januar, pågående sykefravær og trekkpålegg registrert for hånd. Juni og desember er de farligste månedene.\n- Den varige fordelen er arkitekturen: forklaringsspor per linje, uforanderlige kjøringer, retro med automatisk differanse og et eget a-melding-aggregat. Det meste annet kan konkurrentene kopiere på 6–12 måneder.\n\n**Neste steg:** Fullfør kartleggingen, avklar spørsmålene som stopper scope, og skaff lønnsfaglig kapasitet. Se listen under og fanen Veien videre.",
+  "prosess_md": "Analysen ble laget i fem runder.\n\n1. **Runde 1, fakta (7 agenter):** marked og konkurrenter, myndighetskrav, beregningsregler, lønn i praksis, byråmarkedet, arkitektur og moduler i 2026. Resultatet ble et første skjelett med beslutningene B1–B21. Det er nå et historisk utkast.\n2. **Runde 2, behov per persona (5 agenter):** virksomhet, byrå, ansatt og organisasjon, økosystem og moduler med integrasjoner. Hver agent kritiserte sin egen første versjon og reviderte den. I tillegg kom feltlister fra Tripletex og ReAi og en teknisk spesifikasjon av API-ene hos Skatteetaten, NAV og Altinn.\n3. **Runde 3, to kritikere:** en strategisk kritiker (omfang, team, segment, økonomi og B22–B30) og en faglig kritiker (lønnsfeil, porter, gylne caser, regelverk og stack).\n4. **Runde 4, kartlegging (7 agenter):** 24 områder med funksjoner, regler og datafelt, fra organisasjon til migrering. Pågår.\n5. **Runde 5, kvalitetskontroll:** samsvar mellom kilder, id-er og gründerens avklaringer.\n\nGründerens avklaringer 28.10.2026 går foran alle rapportene. Fagavklaringene fra Sally-arbeidet gjelder der de er relevante (B36).",
+  "kritikk_md": "**Strategikritikeren**\n- Skjelettet hadde 14 spor og 116 epics. Et team på 5–7 utviklere rekker ca. 50–55 utviklermåneder før første produksjon. Hele skjelettet krever 250–400 (anslag).\n- To lønnsfaglige må på plass tidlig. Med én lønnsfaglig feiler planen, uansett antall utviklere og agenter.\n- «30–300 ansatte med tariff» er feil start. Tariff betyr lønnsstiger, KLP og turnus, og de kundene har mest å tape på å bytte (B3).\n- En egen utleggsmodul ville konkurrert med Utleggsappen. Gründeren har nå bestemt at utlegg bare går via integrasjoner (B32).\n- Et offentlig mål om å erstatte Huma gjør Brutto sårbar for at Huma begrenser API-et (B30).\n- Kapitalbehovet er 60–70 MNOK før break-even i 2030–2031 (anslag, B23).\n\n**Domenekritikeren**\n- Feilene kommer sjelden i tabelltrekket. De kommer i migrerte saldoer, etterskuddsvis lønn over systemskiftet, pågående sykefravær, manuelle trekkpålegg og lønnsartflagg fra gamle systemer.\n- AGA av OTP-premien mangler når premien føres fra faktura (D-01).\n- A-melding 2.4 kan ikke testes med ekte data før første produksjonsmåned (D-19). Regel F532 krever en bevisst meldingsstrategi (D-16).\n- Manuell NAV-refusjon er bare forsvarlig med refusjonsreskontro, fristvarsel og K27-import i kjernen (B33).\n- Portene må måle dekning, migrerte saldoer og månedene juni og desember. Antall caser alene sier lite.\n- Det mangler systembeskrivelse etter bokføringsforskriften, DPIA og egen rolle for helsedata, GRFS-dokumentasjon for byrå og et register over lagringssteder.\n- Stackvalget bør følge tech lead. Testorakelet betyr mer enn språket (B8).",
+  "start_naa_md": "1. Del siden med Peter og Sander som **bidragsytere**, så de kan svare i fanen Fase 1.\n2. Start oppkoblingen mot Digdir og Skatteetaten nå: bruksvilkår, Maskinporten-klient og registrering i Altinns systemregister. Det tar anslagsvis 3–5 måneder.\n3. Avklar hva A07 skal avstemmes mot, og hvem som er første bruker (byrå eller virksomhet).\n\n**Fra analysen:**\n\nDette kan gjøres før scope og MVP, uten å bygge noe.\n\n1. **Fullfør kartleggingen** av de 24 områdene og vekt hver funksjon (Må, Bør, Kan). Merk HR, UTV, HEL og KOM som HR-utvidelse (B34).\n2. **Skaff lønnsfaglig kapasitet.** Avklar hvor mange timer i uka du selv kan være fasit, og hvem som blir lønnsfaglig nr. 1 og 2. Vurder å kjøpe 150–250 timer ekstern fasit fra et byrå eller en lønnsrevisor.\n3. **Bestem lønnsartmodellen** som datafeltene avhenger av: trekkmetode, halvt trekk, pensjonsgrunnlag, krav til antall, og hvordan OTP-premien kommer inn (B5).\n4. **Intervju kunder:** 15 fagledere for lønn i byråer og 10 organisasjoner. Test pris, bruk av kundeportal og hvilke systemer de faktisk har. Tell OrgLab-kunder med minst 10 ansatte.\n5. **Send skriftlige spørsmål til myndighetene** som tar tid å få svar på: lisens for trekkrutinen, F532, honorarpunktene og AGA av OTP-premie (Skatteetaten), og hvilke inntektsmeldinger lønnssystemer kan sende (NAV).\n6. **Start avtaler med lang ledetid:** bruksvilkår hos Digdir og Altinn, testscopes i TT02, Tenor-testdata og kontaktinfo til NAV. Testdata for trekkpålegg lages av Skatteetaten på bestilling.\n7. **Avklar partnerforholdene:** hvem eier Utleggsappen, OrgLab og Tikket, og hva de er lovet. Sjekk API-tilgang og eksport hos Huma.\n8. **Få jurist og revisor** til å vurdere beregningsgaranti, ansvarsgrensen mot regnskapsførerloven, sammenstillingsoppgaven og § 7-5 om lagring utenfor Norge.\n9. **Finn tech lead** før stacken velges (B8)."
+ },
+ "beslutninger_ingress_md": "Beslutningene B1–B21 kommer fra det første skjelettet, som nå er et historisk utkast. B22–B30 kommer fra strategikritikeren. B31–B36 er nye etter gründerens avklaringer 28.10.2026.\n\n- **Avklart:** gründeren har bestemt.\n- **Delvis avklart:** gründeren har bestemt kravet, mens utformingen er forslag.\n- **Forslag:** anbefaling fra analysen eller kritikerne. Ikke vedtatt.\n- **Åpen:** gründeren har sagt at spørsmålet står åpent.\n\nHver beslutning viser hva kritikerne mente. MVP, faser og datoer er forslag til den senere scope-jobben (B31).",
+ "beslutninger": [
+  {
+   "id": "B1",
+   "tittel": "Frittstående lønnssystem for 10–1000 ansatte og byråer",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Brutto er et frittstående lønnssystem uten egen regnskapsmodul. Målgruppen er norske virksomheter med 10–1000 ansatte: AS, stiftelser, foreninger og organisasjoner. Systemet lisensieres også til regnskapsbyråer som kjører lønn for kundene sine.\n\n**Hvorfor:** Visma eier Tripletex, PowerOffice og Visma Payroll. Nøytralitet er en posisjon Visma ikke kan ta. Byrået velger ikke kundens regnskapssystem, så lønn må virke mot flere.\n\n**Alternativer:** Lønnsmodul i et regnskapssystem, eller lønn som tjeneste (BPO). Begge er lagt bort (se B4).\n\n**Kritikerne:** Strategi: behold. Domene: enig.\n\n**Gjenstår:** Hvilke segmenter som kommer først (B3), og hvilke regnskapssystemer som trenger adapter fra start."
+  },
+  {
+   "id": "B2",
+   "tittel": "Åpne integrasjoner på like vilkår",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Utleggsappen, OrgLab, Tikket, Huma, tredjeparter og Bruttos egne moduler bruker det samme offentlige API-et. Alle får samme tilgangspakker, grenser og tidspunkt for nye API-er. Ingen får bakdører. Kilderegisteret avgjør hvem som kan skrive hvilke data for hver kunde.\n\n**Hvorfor:** Kunden skal velge fritt, og partnere skal stole på plattformen. Egne moduler beviser at API-et holder.\n\n**Alternativer:** En felles plattformkjerne for søsterproduktene. Lagt bort i runde 2 fordi den gir søsterproduktene forrang.\n\n**Kritikerne:** Strategi: behold prinsippet og fas inn mekanismene. Først et kontrakt-først lønnsgrunnlag-API der CSV-importen er første klient. Deretter utviklerportal, webhooks og sandkasse. Lik tilgang betyr ikke lik rekkefølge. Domene: enig. Kontrakten må fra dag én bære fakta som avgjør skatt, som dagslinjer for timelønte og om reiseregningen er komplett.\n\n**Gjenstår:** Rekkefølgen på partnerkontraktene, og om kommersielle samlepakker er greit. Prinsippene står i arkitekturseksjonen «Prinsipper»."
+  },
+  {
+   "id": "B3",
+   "tittel": "Segmentrekkefølge",
+   "status": "Forslag",
+   "md": "**Status:** Forslag. Målgruppen er avklart i B1. Rekkefølgen er ikke bestemt.\n\n**Hva v0 foreslo:** 30–300 ansatte med tariff og byråer først, 1000 ansatte senere.\n\n**Kritikerne:** Strategi: endre. 30–300 er riktig gap. «Med tariff» er feil start, fordi tariff betyr lønnsstiger, KLP og turnus. Første kohort bør være 1–2 designpartnerbyråer med egen lønn og enkle klienter (10–100 ansatte), og 3–5 organisasjoner med 20–150 ansatte. Tariff og KLP etterpå, 150–300 ansatte deretter og 300–1000 til slutt. Domene: enig. Hold også utenfor: ambulerende AGA, utsendte, sjøfolk, Svalbard, nettolønnsavtaler, konsern som deler fribeløp, lokallag med eget organisasjonsnummer og tapt arbeidsfortjeneste før Skatteetaten har svart.\n\n**Gjenstår:** Gründeren avgjør rekkefølgen i scope-arbeidet. Kundeintervjuer og en telling av OrgLab-kunder med minst 10 ansatte bør komme først."
+  },
+  {
+   "id": "B4",
+   "tittel": "Brutto selger programvare og driver ingen lønnstjeneste",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Brutto selger programvare. Brutto tar ikke resultatansvar for kundens lønn og driver ikke BPO.\n\n**Hvorfor:** Finanstilsynet regulerer ikke en ren programvareleverandør som ikke tar ansvar for resultatet av regnskapsføringen. Nøytralitet er også et argument mot SD Worx, som har startet egen tjenesteenhet.\n\n**Kritikerne:** Strategi: behold, og legg til en beregningsgaranti med tak (B24). Domene: grensen må holde i support, migrering og garanti. Support skal aldri godkjenne eller sende inn for kunden. Tilgang via break-glass logges. Jurist vurderer før pilotavtaler signeres (D-35).\n\n**Gjenstår:** Juridisk vurdering av implementeringsstøtte, gratis migrering og garanti mot regnskapsførerloven."
+  },
+  {
+   "id": "B5",
+   "tittel": "Lønnsmotor som ren funksjon og Sjurs lønnsartmodell",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Lønnsartmodellen og standardkonteringen er gründerens egne fagvedtak (S-avklaringer §6). Motorprinsippet og et eventuelt uttrykksspråk er forslag.\n\n**Hva:** Beregningen er en ren funksjon av inndata, regelpakke og motorversjon. Lovregler skrives som kode, og satser lagres som versjonerte data. En lønnsart er en linje på slippen med nummer, a-meldingskode, flagg for skatt, AGA, feriepenger og sykepenger, og én debet- og én kreditkonto. Grupperingskoden ligger på kontoen. Standardutvalget er 26 lønnsarter i Tripletex-nummerering.\n\n**Alternativer:** Et generelt regelspråk der kunden definerer lønnsarter. Frarådet.\n\n**Kritikerne:** Strategi: utsett uttrykksspråket til tariff kommer. Domene: modellen er for tynn. Den mangler trekkmetode (tabell eller prosent), halvt trekk, pensjonsgrunnlag, retro, opplysningspliktig og krav til antall (timer, km, døgn). Uten trekkmetode får bonus tabelltrekk og halveres i desember. Nye lønnsarter bør gå i karantene til de er testet (D-02).\n\n**Gjenstår:** Gründeren bestemmer utvidelsen. Den styrer datafeltene i LON og KJO."
+  },
+  {
+   "id": "B6",
+   "tittel": "Historikk og uforanderlige kjøringer",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Data som påvirker beregning har gyldighetstid og registreringstid. Godkjente kjøringer endres aldri, og rettelser blir nye korreksjonskjøringer. A-meldingen er et eget aggregat per opplysningspliktig og måned.\n\n**Hvorfor:** Retro, revisjon og reproduksjon av en slipp etter fem år.\n\n**Kritikerne:** Strategi: avgrens historikken til det som påvirker beregning. Domene: delvis enig. Listen må utvides med fravær og permisjon, kostnadsfordeling, pensjonsmedlemskap, virksomhetsversjon (sone), trekk og trekkpålegg og lønnsartversjon. Bygg det som bare-tilføyende versjoner med registreringstid, pluss et uforanderlig snapshot av inndata per kjøring. Et generelt spørrelag for «som kjent ved» er overbygd (D-38).\n\n**Gjenstår:** Kartleggerne merker hvert felt med historikk: Nei, Gyldighet eller Bitemporal."
+  },
+  {
+   "id": "B7",
+   "tittel": "Kunden eier dataene, delt database med radnivåsikkerhet",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Kunden eier dataene og er behandlingsansvarlig. Byrået får tilgang via en tidsbestemt og logget tilgangsavtale. Dataene ligger i en delt database med radnivåsikkerhet (RLS) og kan fordeles på celler.\n\n**Kritikerne:** Strategi: delt database og RLS fra dag én. Én celle til første kunde over 300 ansatte eller 50 000 slipper. Bygg rutingen og vent med flere celler. Domene: enig.\n\n**Gjenstår:** Hvordan tilgangen flyttes når kunden bytter byrå, og hva byrået beholder av oppdragsdokumentasjon (GRFS)."
+  },
+  {
+   "id": "B8",
+   "tittel": "Rust, modulær monolitt og Postgres",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Teamet har bestemt Rust 28.10.2026. Resten av arkitekturen avklares med Peter og Sander i fanen Fase 1: rammeverk, database, kunde-skille, API-stil og frontend.\n\n\n**Hva v0 foreslo:** Modulær monolitt i Kotlin/JVM eller .NET, med Postgres.\n\n**Alternativer:** Kotlin/JVM, TypeScript i hele stacken, eller C#/.NET. Go frarådes for regeltung domenekode. Sammenligningen står i arkitekturseksjonen om stack.\n\n**Kritikerne:** Strategi: lås Kotlin/JVM innen 1.12.2026. Skatteetatens trekkrutine er Java, og NAVs sykepengelogikk er Kotlin. Hver måned uten valg forsinker ansettelser. Domene: enig i at valget bør låses tidlig, uenig i begrunnelsen. Trekkrutinen har ingen lisensfil, så retten til gjenbruk er uavklart. Valget bør følge tech lead. TypeScript er forsvarlig med fire vilkår: egen Money-type, ingen `Date` i domenet, kontroll ved kjøring på alle grenser, og egenskapsbaserte tester og mutasjonstesting på regelmodulene. .NET er undervurdert, fordi mange norske utviklere med lønnsfag sitter der.\n\n**Gjenstår:** Finn tech lead først. Spør Skatteetaten om lisensen for trekkrutinen."
+  },
+  {
+   "id": "B9",
+   "tittel": "Data og backup i Norge",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva v0 foreslo:** Data i Norge (Azure Norway East) og katastrofegjenoppretting i EU.\n\n**Hvorfor endre:** Lagres regnskapsmateriale i et annet EØS-land, også som backup, må hver bokføringspliktig kunde sende melding til skattekontoret (bokføringsforskriften § 7-5). Ligger alt i Norge, slipper kunden og byrået det. Det er et salgsargument (S-avklaringer §1).\n\n**Kritikerne:** Strategi: både primærdata og backup i Norge. Domene: enig. Bekreft at Azure Norway West kan brukes (regionen har reservert tilgang), eller bruk en norsk backupleverandør. Avklar om riktig paragraf er § 7-5 eller § 7-7. Overvåkingsverktøy i EU må aldri få lønnsdata eller revisjonslogg (D-32).\n\n**Gjenstår:** Teknisk avklaring av backup-lokasjon, og revisors svar om paragrafen."
+  },
+  {
+   "id": "B10",
+   "tittel": "Myndigheter via Maskinporten og systembruker",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Gründeren har bestemt at Brutto integreres med Skatteetaten, NAV og Altinn for skattekort, trekkpålegg, a-melding, K27 m.m. Mekanismen er forslag fra analysen.\n\n**Hva:** Brutto bruker Maskinporten med én systembruker per opplysningspliktig. Byrået bruker systembruker for klientsystem (agent). Skatteetatens trekkrutine er fasit for tabelltrekk.\n\n**Presisering:** Gründerens «ID-porten» betyr i praksis Maskinporten og systembruker. ID-porten er for offentlige virksomheter. Ansatte og lønnsbrukere logger inn med BankID.\n\n**Tilgangspakker:** Direktekunden trenger `a-ordning`, `lonn` og `lonn-personopplysninger-saerlig-kategori`. Byrået trenger `regnskapsforer-lonn`, som ikke gir tilgang til Krav og betalinger.\n\n**Kritikerne:** Strategi: behold, og søk scopes tidlig. Standard systembruker per klient er reservevei for byrå. Domene: byrået får pakken via REGN-rollen i Enhetsregisteret eller ved delegering (kildene spriker). Skatteetaten tillater 5 samtidige kall per API per virksomhet. Klientdelegerings-API-et krever ID-porten-token, og det er uklart om en privat leverandør får det (D-21).\n\n**Gjenstår:** Svar fra Digdir og Skatteetaten. Se FL2 og FL3. [Altinn systembruker](https://docs.altinn.studio/nb/authorization/guides/system-vendor/system-user/)"
+  },
+  {
+   "id": "B11",
+   "tittel": "A-melding som eget aggregat og 2.4 fra 2028",
+   "status": "Forslag",
+   "md": "**Status:** Forslag. Kravet om 2.4 fra periode 2028-01 er satt av Skatteetaten.\n\n**Hva:** Aggregatet lagrer innholdet uavhengig av versjon og serialiserer til 2.3 og 2.4. Spesifikasjonen for 2.4 kommer senest 1.5.2027, og testmiljøet åpner 15.9.2027.\n\n**Kritikerne:** Strategi: behold. 2.4 er på kritisk sti. Domene: enig, med tre tillegg. (1) 2.4 kan ikke testes med ekte data før første produksjonsmåned. Lag 2.3 og 2.4 fra samme aggregat, krev semantisk diff 0, og lag syntetiske tvillinger av kundene i Tenor (D-19). (2) Velg én strategi mot F532: én melding per opplysningspliktig og måned, som erstattes ved hver endring (D-16). (3) Avklar formatet for retting av 2027-perioder etter overgangen (D-20).\n\n**Gjenstår:** Svar fra Skatteetaten om F532 og retting av gamle perioder. Se FL4."
+  },
+  {
+   "id": "B12",
+   "tittel": "Brutto flytter aldri penger, og bank kommer etter hvert",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026 (bankintegrasjon kommer etter hvert) og i S-avklaringer §5 (systemet flytter aldri penger).\n\n**Hva:** Brutto lager betalingsoppdrag. Kunden godkjenner og signerer i nettbanken. Først pain.001-fil, senere direkte bank-API.\n\n**Hvorfor:** Ingen konsesjon, lavere svindelrisiko og ikke ansvar for pengeflyt.\n\n**Kritikerne:** Strategi: behold. Fil først, bank-API når mange kunder ber om det. Domene: enig, med to tillegg. Filen kan endres mellom Brutto og banken, så vis antall, sum og hash for den som godkjenner. Forskuddstrekket må være eget betalingsoppdrag uten lønnsmerking (SALA), ellers kan KID falle bort (D-24, D-46).\n\n**Gjenstår:** Hvilken pain.001-versjon pilotbankene krever. Når bank-API kommer, avgjøres i scope-arbeidet."
+  },
+  {
+   "id": "B13",
+   "tittel": "KI forbereder, forklarer og flagger",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Agentgrensene er gründerens fagavklaringer (S-avklaringer §3). Tidspunkt, leverandør og region er forslag.\n\n**Hva:** KI kan forberede, forklare og flagge. KI godkjenner aldri, sender aldri inn, betaler aldri og endrer aldri kontonummer eller roller. Lønnsdata går ikke til språkmodell i første versjon. Data fra Skatteetaten, Altinn og NAV brukes aldri til læring. Grensene håndheves i tilgangsmodellen og myndighetsgatewayen.\n\n**Kritikerne:** Strategi: ingen KI i produksjon før kjernen er stabil. Forklaringer på slipp og avvik kommer deterministisk fra beregningssporet. Domene: enig. Kodeagenter trenger egne grenser: ingen tilgang til produksjonsdata, og ingen endring av fasit uten lønnsfaglig godkjenning (D-48).\n\n**Gjenstår:** Leverandør og EU-region når KI tas i bruk. Se arkitekturseksjonen om KI-policy."
+  },
+  {
+   "id": "B14",
+   "tittel": "BankID, passkeys, SSO og kontonummer-skjold",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Ansatte logger inn med BankID og passkey. Administratorer bruker step-up med BankID ved godkjenning. SSO og SCIM for større kunder. Kontonummer-skjold med BankID-steg, karantene og varsel.\n\n**Kritikerne:** Strategi: BankID via megler først, SSO og SCIM senere. Domene: ansatte uten BankID (ofte med D-nummer) er vanlige hos byråklienter i renhold og bygg. Det trengs en standard reservevei: slipp som kryptert PDF og kontoendring på signert skjema med fire øyne (D-49).\n\n**Gjenstår:** Valg av BankID-megler og pris. Se FL12."
+  },
+  {
+   "id": "B15",
+   "tittel": "Sertifisering: ISAE 3402 og ISO 27001",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva v0 foreslo:** ISAE 3402 type 1 ved første kunde, deretter type 2 og ISO 27001 innen 24 måneder.\n\n**Kritikerne:** Strategi: de første kundene krever ikke ISAE. Start med ISMS light, pentest og databehandleravtale. Type 1 etter et halvt år i drift, deretter type 2-periode og ISO 27001 senere. Domene: kundenes revisorer ber om type 2 i revisjonssesongen etter første driftsår. Kontrollene må derfor virke med bevis fra første produksjonsdag. Omfang: IT-kontroller, beregningskontroller (release-diff, regelpakker og gylne caser), innsending og betaling. Moduler og KI holdes utenfor.\n\n**Gjenstår:** Tidspunktet følger av når første kunde går i drift."
+  },
+  {
+   "id": "B16",
+   "tittel": "Migrering med myndighetsdata som fasit og parallellkjøring",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Innsendte a-meldinger og Skatteetatens avstemmingsrapport er leverandørnøytral fasit. Kunden parallellkjører til alt er likt på øret. Byttet skjer helst ved årsskiftet.\n\n**Kritikerne:** Strategi: bygg import av saldoer hittil i år fra start, så kunder også kan starte 1.3 eller 1.8. To perioder parallelt for direktekunder, én for enkle byråklienter med byråets signatur. Domene: «a-melding-XML» er upresist, fordi API-et har tatt JSON siden juni 2026. Fasit er innsendt innhold (XML eller JSON) pluss avstemmingsrapporten. Arbeidsforhold-ID og permisjons-ID må beholdes. Én periode for byråklienter holder bare med historisk skyggeberegning av juni (D-17, D-18).\n\n**Gjenstår:** Se FL13 og området MIG."
+  },
+  {
+   "id": "B17",
+   "tittel": "Prismodell",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva v0 foreslo:** Pris per aktiv ansatt for direktekunder, per kjørt slipp for byrå, ingen brukerpris og byråmargin 30–50 %.\n\n**Kritikerne:** Strategi: én enhet, lønnsmottaker med minst én utbetaling i måneden. Direkte ca. 69 kr per mottaker, honorarmottakere 15 kr, minstepris 1 490 kr per juridisk enhet og byrå netto 22–29 kr per slipp med volumtrinn (alt anslag). Ingen lovet byråmargin. Byråpris gjelder bare når byrået kjører lønnen. Domene: ingen faglig merknad. Enheten passer med frilans-arbeidsforhold som bare rapporteres i utbetalingsmåneder.\n\n**Gjenstår:** Prisen testes i kundeintervjuer. Se prisforslaget i Veien videre."
+  },
+  {
+   "id": "B18",
+   "tittel": "Mottakere uten vanlig arbeidsforhold",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Behovet følger av målgruppen (B1) og integrasjonene med OrgLab og Tikket (B2). Modellen er forslag.\n\n**Hva:** Styremedlemmer, tillitsvalgte, honorarmottakere, ekstrahjelp og artister er egne mottakerklasser. En kilde ber om et engasjement. Personen bekrefter fødselsnummer og kontonummer selv med BankID. Brutto eier arbeidsforholdet i a-meldingen.\n\n**Kritikerne:** Strategi: behold og gi det en egen epic. Det er kjernen i organisasjonsnisjen. Domene: klassen hører til relasjonen og utbetalingen og lagres ikke på personen. Hver utbetaling har en betalende juridisk enhet. Frikjøp og næringsdrivende går aldri i lønn. Fire punkter må avklares med Skatteetaten: tapt arbeidsfortjeneste, styrehonorar til en ansatt, AGA-sone for frilans og 10 000-kronersgrensen (D-09, D-40).\n\n**Gjenstår:** Svar fra Skatteetaten. Se FL9, FL10 og området ORL."
+  },
+  {
+   "id": "B19",
+   "tittel": "Første produksjon 1.1.2028",
+   "status": "Forslag",
+   "md": "**Status:** Forslag. Gründeren har ikke satt dato. Scope og MVP bestemmes senere (B31).\n\n**Hva v0 foreslo:** Første produksjon 1.1.2028, samtidig med a-melding 2.4.\n\n**Kritikerne:** Strategi: realistisk bare for en smal kohort på maks 12 kunder. Anslått ca. 40 % sjanse for at alle går live 1.1.2028 og ca. 85 % for at kohorten er i drift innen 1.3.2028. 1–2 lavrisikokunder i skarp drift fra 1.10.2027. Plan B er 1.3.2028 og 1.8.2028. Alt etter 2028 er dyrt for kapitalen. Domene: tidlig drift fra oktober betyr at Brutto må lage sammenstillingsoppgave for 2027. Brutto AS sin egen lønn bør være første kunde. Ingen kohortkunde bør ha lønnsdag før 15.1.2028.\n\n**Gjenstår:** Datoen settes i scope-arbeidet. Harde eksterne datoer står i oversikten."
+  },
+  {
+   "id": "B20",
+   "tittel": "Egne moduler for ferie/fravær og timer",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026 (modulene). Utforming og rekkefølge er forslag.\n\n**Hva:** Brutto har egne moduler for ferie og fravær og for timer. Modulene bruker det samme offentlige API-et som andre kilder og kan byttes ut med eksterne systemer. Kjernen eier reglene med rettsvirkning: arbeidsgiverperiode, feriesaldo, ferietrekk, permisjon og permittering, egenmeldingsteller og omsorgsdager. Utlegg er tatt ut av modulsettet (B32).\n\n**Kritikerne:** Strategi: flytt fraværskjernen inn i lønnskjernen, og la selvbetjeningen komme etterpå. Timer senere. Domene: enig i at kjernen skal eie reglene. Faglig minimum for ferie og fravær: egenmelding 3 kalenderdager som standard, utvidet ordning bare med registrert drøfting, leder ser aldri diagnose, 25 virkedager ferie og 60+, overføring ved sykdom, og byttetest mot Huma eller CSV med identisk resultat. For timer: timeliste per dag for timelønte, overtidstellere, avspasering bare med skriftlig avtale og ingen turnus.\n\n**Gjenstår:** Når modulene kommer i forhold til kjernen avgjøres i scope-arbeidet. Se områdene FRA og TID."
+  },
+  {
+   "id": "B21",
+   "tittel": "Integrer Huma nå, erstatt Huma på sikt",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026 (mål og retning). Vei og tidspunkt er forslag. HR kommer som senere utvidelse (B34).\n\n**Hva:** Brutto integreres med Huma og skal på sikt erstatte Huma. SD Worx sin HR-meny er referanse for hvilke områder som trengs.\n\n**Vei (forslag fra runde 2):** Tre faser per kunde. (1) Sameksistens: Huma er HR-master, og Brutto kjører lønn. (2) Brutto overtar fravær og timer. (3) Brutto overtar HR-masteren med kildebytte. Ingen kunde tvinges videre.\n\n**Krav fra dag én:** kanonisk person- og arbeidsforholdsmodell, kilderegister med flyttbart eierskap, dokumentlager, importrammeverk, og lønnshistorikk i Brutto fra første dag. Humas API gir bare gjeldende lønn.\n\n**Kritikerne:** Strategi: bygg Huma-koblingen når minst to kunder trenger den. Å erstatte Huma er et nytt marked med en ny kjøper, HR-sjefen. Kommuniser ikke målet eksternt (B30). Domene: fravær fra Huma bare med avstemming før cut-off, fordi Humas webhooks ikke har dokumentert retry. Kontonummer og fødselsnummer fra Huma brukes aldri uten bekreftelse (D-41).\n\n**Gjenstår:** Hvorfor Huma spesifikt, og om pilotkundene bruker Huma. Se FL11 og FL16."
+  },
+  {
+   "id": "B22",
+   "tittel": "Omfangsregel",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** Scope-listen fryses på en avtalt dato. Nye krav tas bare inn hvis noe av samme størrelse tas ut. Gründeren eier listen og signerer endringer.\n\n**Hvorfor:** Skjelettet fikk tre nye gründerkrav på én dag.\n\n**Kritikerne:** Domene: enig. Lovendringer som a-melding 2.4, regelpakker og nye forretningsregler regnes ikke som nye krav. Sett av ca. 15 % kapasitet til regelverksendringer (anslag).\n\n**Gjenstår:** Tas i bruk når scope er bestemt."
+  },
+  {
+   "id": "B23",
+   "tittel": "Kapital og runway",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** Finansier minst 24 måneder før første pilot. Neste runde hentes på kunder i drift og en vellykket feriepengemåned.\n\n**Hvorfor:** Kapitalbehovet er 60–70 MNOK før break-even i 2030–2031. Hver måned uten kunder koster 1,7–1,8 MNOK (anslag).\n\n**Kritikerne:** Domene: utenfor fagmandatet.\n\n**Gjenstår:** Hvor mye kapital som er sikret. Se økonomi i Veien videre."
+  },
+  {
+   "id": "B24",
+   "tittel": "Beregningsgaranti med tak",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** Blir lønnen feil på grunn av en programvarefeil, dekker Brutto dokumenterte renter, tilleggsskatt, tvangsmulkt og gebyrer. Garantien har tak, for eksempel 12 måneders lisens, og støttes av ansvarsforsikring.\n\n**Hvorfor:** En ny leverandør må gi tillit. Et byrå mister en klient ved én feil.\n\n**Kritikerne:** Domene: skriv «vi dekker». Unngå «vi retter lønnen». Brutto leverer korreksjonsforslag, og kunden eller byrået kjører og godkjenner. Jurist vurderer mot regnskapsførerloven (D-35).\n\n**Gjenstår:** Hvor høyt tak gründeren vil gi, og pris på forsikring."
+  },
+  {
+   "id": "B25",
+   "tittel": "Kohortgrense",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** Maks 12 kunder og 1 500 lønnsmottakere i første kohort. Ingen nye oppstarter de første to månedene i drift.\n\n**Hvorfor:** Support i lønnsuka er knapp, og én kjent feil kan skade ryktet i byråmiljøet.\n\n**Kritikerne:** Domene: enig.\n\n**Gjenstår:** Tas inn i scope-arbeidet."
+  },
+  {
+   "id": "B26",
+   "tittel": "Porter med dato og go/no-go",
+   "status": "Forslag",
+   "md": "**Status:** Forslag.\n\n**Hva:** Hver fase har en port med dato og målbare terskler. Strategikritikeren foreslo 31.3.2027, 1.6.2027, 1.9.2027, 1.12.2027 og første a-meldingsfrist i 2028.\n\n**Kritikerne:** Domene: enig. Legg til regelåret (22.12.2027), første frist for 2.4 (7.2.2028, fordi 5.2.2028 er en lørdag) og feriepengene (1.5.2028) som formelle porter.\n\n**Gjenstår:** Datoene følger scope og startdato. Tersklene står i Veien videre."
+  },
+  {
+   "id": "B27",
+   "tittel": "Kjøp alt rundt motoren",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** BankID og e-signering via megler, administrert innlogging, PDF, varsling, overvåking, pentest og ISAE kjøpes. Testdata hentes fra Tenor. 150–250 timer ekstern lønnsfaglig fasit kan kjøpes fra et byrå eller en lønnsrevisor.\n\n**Lagt bort:** Å kjøpe eller lisensiere selve lønnsmotoren. Det kunne gitt 6–12 måneders forsprang, men den varige fordelen ligger i beregningssporet, retro og a-melding-aggregatet.\n\n**Kritikerne:** Domene: enig. Trekkrutinen kan ikke kjøpes. Lisensen avklares, ellers implementeres den fra de publiserte tabellene.\n\n**Gjenstår:** Leverandørvalg når stacken er valgt."
+  },
+  {
+   "id": "B28",
+   "tittel": "Lønnsfaglig vetorett",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** En navngitt lønnsfaglig ansvarlig godkjenner hver release som endrer beregning eller rapportering.\n\n**Hvorfor:** Kode kan se riktig ut og være faglig feil. Release-diff og signerte gylne caser fanger det bare når en fagperson eier fasiten.\n\n**Kritikerne:** Domene: enig. Vetoretten gjelder også gylne filer, regelpakker og agentskrevet kode i kjernen. Den krever en stedfortreder, så releaser ikke stopper ved ferie.\n\n**Gjenstår:** Hvem som får rollen."
+  },
+  {
+   "id": "B29",
+   "tittel": "Integrasjon før ny modul",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren, justert for gründerens avklaringer.\n\n**Hva:** En ny egen modul bygges først når minst fem betalende kunder mangler et eksternt alternativ.\n\n**Etter 28.10.2026:** Modulene for ferie/fravær og timer er bestemt (B20), og utlegg går via integrasjoner (B32). Regelen gjelder derfor nye moduler utover disse.\n\n**Kritikerne:** Domene: regelen gjelder modulenes brukerflate. Kjernelogikk med rettsvirkning bygges uansett.\n\n**Gjenstår:** Gründeren avgjør om regelen skal gjelde."
+  },
+  {
+   "id": "B30",
+   "tittel": "Ekstern posisjonering",
+   "status": "Forslag",
+   "md": "**Status:** Forslag fra strategikritikeren.\n\n**Hva:** Brutto posisjoneres som nøytral lønn for byråer og organisasjoner. Brutto posisjonerer seg aldri mot Huma eller Utleggsappen.\n\n**Hvorfor:** Brutto er avhengig av API-ene deres. Huma krever i dag Standard- eller Premium-plan for API-tilgang og kan begrense den.\n\n**Kritikerne:** Domene: utenfor fagmandatet. Huma-koblingen krever databehandleravtale i hele kjeden.\n\n**Gjenstår:** Gründeren avgjør om målet i B21 holdes internt."
+  },
+  {
+   "id": "B31",
+   "tittel": "Kartlegg før vi bygger",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Ingenting bygges ennå. Først kartlegges 24 områder med funksjoner, regler og datafelt. Behovsvekt (Må, Bør, Kan) er informasjon til scope-arbeidet. Scope, MVP, faser og datoer bestemmes senere.\n\n**Hvorfor:** Gründeren vil ha en samlet oversikt for å designe produktet. Kritikerne viste at omfanget er langt større enn kapasiteten. Kartleggingen gjør kuttene synlige før noe er bygget.\n\n**Konsekvens:** MVP-forslag, faser, porter og datoer på denne siden er grunnlag. Ingen av dem er vedtatt.\n\n**Gjenstår:** Kartleggingen av områdene, og en scope-runde etterpå."
+  },
+  {
+   "id": "B32",
+   "tittel": "Utlegg bare via integrasjoner",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Brutto får ingen egen utleggsmodul. Utlegg og reise kommer fra Utleggsappen og andre systemer via lønnsgrunnlag-API-et. Kjernen har likevel godtgjørelsesmotoren: statens satser, deling i trekkfri og trekkpliktig del, a-meldingskoder og kontroll av at reiseregningen er komplett. Rene refusjoner mot bilag kan betales utenom lønn.\n\n**Hvorfor:** En egen modul ville konkurrert med Utleggsappen og svekket like vilkår (B2). Den ville også tatt kapasitet.\n\n**Kritikerne:** Strategi anbefalte dette og foreslo lønn og Utleggsappen som kommersiell samlepakke. Domene: kjernen må vite om reiseregningen oppfyller skattebetalingsforskriften § 5-6-12. Mangler et påkrevd felt, blir hele beløpet trekkpliktig (D-12).\n\n**Gjenstår:** Hvem som eier kvitteringsarkiv og MVA-behandling: Utleggsappen eller regnskapet. Se FL8 og området UTL."
+  },
+  {
+   "id": "B33",
+   "tittel": "K27 og NAV-refusjon i kjernen",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Gründeren har bestemt at K27 er med i myndighetsintegrasjonene. At refusjonsreskontroen ligger i kjernen, er domenekritikerens forslag.\n\n**Hva:** K27 er NAVs «Oppgjørsrapport arbeidsgiver – refusjoner fra Nav», med ny kode `ref-arbg`. Fra 15.6.2026 hentes den bare via NAVs Oppgjørsrapporter-API eller manuelt. Kjernen fører en refusjonsreskontro per ansatt, ytelse og periode med forskuttert, krevd og mottatt beløp. K27 importeres og matches mot forskuttert beløp.\n\n**Hvorfor:** Refusjon kan bare kreves for fravær inntil 3 måneder før søknadsmåneden. Uten reskontro og fristvarsel taper kunden penger. Kunden velger AGA-metode: fradrag i forskutteringsmåneden eller når refusjonen mottas. Systemet må hindre at begge brukes (D-08).\n\n**Kritikerne:** Strategi foreslo NAV-integrasjonen senere, med NAVs portal som reservevei. Domene: det er bare forsvarlig hvis AGP-tilstand, refusjonsreskontro med fristvarsel, K27-import og akkumulator for feriepengerefusjon er med fra start.\n\n**Gjenstår:** Standard AGA-metode (gründer) og NAVs svar om hvilke inntektsmeldinger som kan sendes fra lønnssystem. Se FL7 og [NAV om oppgjørsrapporten](https://www.nav.no/arbeidsgiver/oppgjorsrapport)."
+  },
+  {
+   "id": "B34",
+   "tittel": "Lønn først, HR som senere utvidelse",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Brutto er i hovedsak et rent lønnssystem i starten. HR-områdene som SD Worx dekker med kompetanse, medarbeidersamtaler, helse og oppfølging og startside, er en HR-utvidelse som kommer senere. Det gjelder områdene HR, UTV, HEL og KOM. Målet om å erstatte Huma ligger fast på sikt (B21).\n\n**Hører til lønn fra start:** personer og arbeidsforhold (PER), organisasjon og dimensjoner (ORG), egne moduler for ferie/fravær og timer (B20), dokumentlager for lønnsslipper og trekkavtaler, og ansattportal for lønn.\n\n**Hvorfor:** Kritikerne viste at omfanget sprenger et lite team. HR har en annen kjøper (HR-sjefen) enn lønn (økonomisjef eller lønnssjef).\n\n**Konsekvens for arkitekturen:** Datamodellen må tåle HR-utvidelsen uten å migrere alle kunder. Det betyr kanonisk person- og arbeidsforholdsmodell, kilderegister, dokumentlager, importrammeverk og hendelser for masterdata fra dag én.\n\n**Gjenstår:** Hva som utløser HR-utvidelsen, og hvor dypt HR, UTV, HEL og KOM skal kartlegges nå."
+  },
+  {
+   "id": "B35",
+   "tittel": "Avdelinger, prosjekter og andre dimensjoner",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart. Gründeren har bestemt at ansatte deles inn i avdelinger, prosjekter og andre dimensjoner. Modellen er forslag.\n\n**Hva:** Organisasjonsenheter i hierarki, dimensjonstyper (prosjekt, kostnadssted, aktivitet, arrangement og egendefinerte) og kostnadsfordeling i prosent med gyldighet. Avdelingen ligger på arbeidsforholdet. Dimensjonene følger med til bilaget.\n\n**Kritikerne:** Domene: modellen trenger gyldighetsdatoer, oppdeling av linjen ved endring midt i perioden, fryst kontering per linje, største rest-avrunding, proporsjonal fordeling av AGA, feriepenger og OTP, og validering mot regnskapets dimensjoner før godkjenning. Retroaktiv omfordeling kan vente, men modellen må tåle den (D-39, GC-16).\n\n**Gjenstår:** Hvilke dimensjoner regnskapssystemene til de første kundene godtar. Se områdene ORG og REG."
+  },
+  {
+   "id": "B36",
+   "tittel": "Sally er et separat produkt, og bare fagavklaringene gjenbrukes",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Sally/Tally er et separat produkt uten kobling til Brutto. Bare gründerens fagavklaringer fra Sally-arbeidet gjenbrukes: lønnsartmodell og standardkontering, OTP fra faktura, oppbevaring og lagringssted, personvern og kryptering, agentgrenser og regler for myndigheter og betaling. Sallys arkitektur, stack og id-er gjelder ikke.\n\n**Konsekvens:** Fagavklaringene er grunnlag for B5, B12, B13 og arkitekturen for personvern og oppbevaring.\n\n**Gjenstår:** Punktene Sally lot stå åpne: hvem som sender melding om lagring i utlandet, rådgiver for helse- og fagforeningsdata etter GDPR art. 9, kryptering av personlige kontonumre i kontaktdata, og hvordan OTP-premien kommer inn i lønnen."
+  },
+  {
+   "id": "B37",
+   "tittel": "Fase 1 er lønnskontroll og avstemming",
+   "status": "Avklart",
+   "md": "**Status:** Avklart av gründeren 28.10.2026.\n\n**Hva:** Fase 1 er smal, og målet er å være veldig god på lønn. Den består av:\n- oversikt over alle ansatte\n- avstemmingsmodul som henter A07 (avstemmingsrapport-amelding) via Maskinporten og systembruker\n- enkle kontroller og grafer\n- en innebygd assistent for enkle oppgaver, som kan komme senere\n\n**Hva det betyr:** Brutto beregner ikke lønn og sender ikke a-melding i fase 1. Grunnmuren bygges likevel for lønnskjøring: kunder og byrå, tilgang, BankID, kryptering, revisjonslogg, Maskinporten og rådata.\n\n**Åpent:** Hva A07 skal avstemmes mot, og hvem som er første bruker. Se spørsmålene P01–P09 i fanen Fase 1.\n\n**Kritikernes syn:** Strategikritikeren anbefalte en smal start med byrå og organisasjoner. Fase 1 er enda smalere og har lavere risiko, fordi Brutto ikke rapporterer noe."
+  },
+  {
+   "id": "B38",
+   "tittel": "Teamet er gründeren og to utviklere",
+   "status": "Avklart",
+   "md": "**Status:** Avklart 28.10.2026.\n\nSjur leder fag og produkt. Peter og Sander er utviklere, og Peter eier open banking. Med tre personer er omfang og kjøp av alt rundt kjernen avgjørende (B22, B27). Kodeagenter brukes, men alt som berører penger, tilgang og myndigheter skal leses av et menneske."
+  },
+  {
+   "id": "B39",
+   "tittel": "Godkjenningsflyt settes opp per kunde",
+   "status": "Avklart",
+   "md": "**Status:** Avklart som krav 28.10.2026. Utformingen er et forslag.\n\n**Hva:** Kunden setter opp sin egen flyt. Det kan være avdelingsledere, flere ledd, eller bare regnskapsfører før utbetaling.\n\n**Forslag til utforming:**\n- Én godkjenningsmotor (tilstandsmaskin) som alle områdene bruker\n- Ferdige maler\n- Ledd etter hverandre eller samtidig\n- Regler etter rolle, avdeling, beløpsgrense, type og avvik\n- Arbeidsdeling som håndheves uansett oppsett\n- Delegering\n- Hash på det som er godkjent\n\nSe spørsmålene G01–G07."
+  },
+  {
+   "id": "B40",
+   "tittel": "Utbetaling via open banking-leverandør",
+   "status": "Delvis avklart",
+   "md": "**Status:** Delvis avklart 28.10.2026. Utbetalingsfiler skal sendes via en open banking-leverandør som ikke er valgt ennå. Peter eier dette.\n\n**Prinsipp (B12):** Brutto flytter aldri penger selv. Kunden, eller regnskapsfører med fullmakt, signerer med BankID i bankens flyt.\n\n**Krav til leverandøren:**\n- Bulkbetaling fra bedriftskonto\n- KID per betalingslinje og egen betaling for trekk\n- Status tilbake\n- Skjuling av lønn i banken\n- Bankfil som reserve\n\nSe spørsmålene B01–B09."
+  }
+ ],
+ "arkitektur": {
+  "tittel": "Arkitektur",
+  "ingress_md": "Arkitekturen er forslag. Ingen teknologi er valgt (B8). Seksjonene beskriver prinsipper, ansvarsdeling og kontroller som gjelder uansett stack. Lønn kommer først, og modellen skal tåle HR-utvidelsen senere uten migrering (B34). Flytene viser hvem som gjør hva, og hvilke data som går mellom aktørene.",
+  "seksjoner": [
+   {
+    "id": "a-prinsipper",
+    "tittel": "Prinsipper",
+    "md": "Arkitekturen er forslag. Prinsippene gjelder uansett hvilken stack som velges (B8).\n\n**Ti prinsipper for lønnskjernen** (F-arkitektur §1.1)\n\n| # | Prinsipp | Konsekvens |\n|---|---|---|\n| P1 | Determinisme | Samme inndata, regelpakke og motorversjon gir samme resultat. Motoren bruker ingen flyttall, leser ikke klokka og gjør ingen nettverkskall. |\n| P2 | Reproduserbarhet | Hver kjøring lagrer hash av inndata, regelpakke-id og motorversjon. En slipp kan regnes ut på nytt etter fem år. |\n| P3 | Versjonert regelverk | Satser og tabeller er data med virkningsdato. Logikken er kode. |\n| P4 | Historikk | Data som påvirker beregning har gyldighetstid og registreringstid (B6). |\n| P5 | Uforanderlighet | Godkjente kjøringer, a-meldinger og betalingsfiler endres aldri. Rettelser lages som nye objekter. |\n| P6 | Idempotente sideeffekter | Innsending og betaling går via en outbox med fast nøkkel. Et nytt forsøk gir aldri dobbel innsending eller dobbel utbetaling. |\n| P7 | Forklarbarhet | Hver linje har et forklaringsspor med regel, sats og inndata. Sporet brukes på slippen, i support og i revisjon. |\n| P8 | Revisjonsspor | Hvem, hva, når og hvorfor, med verdi før og etter. Loggen er sikret med hash-kjede. |\n| P9 | Simulering med samme motor | Testkjøring og produksjon bruker samme kode. |\n| P10 | Tenant-isolasjon | Tenant følger hver forespørsel, jobb og databaseforbindelse. |\n\n**Plattformprinsipper for like vilkår (B2)**, utdrag fra R2-okosystem §7:\n- Ett offentlig API uten bakdører, også for Bruttos egne moduler.\n- Én kilde per datatype per kunde. Kilderegisteret avgjør hvem som kan skrive.\n- Brutto eier rapporteringssannheten. Kildene eier fakta og sender aldri a-meldingskoder, utbetalingsmåned eller kontonummer.\n- Kunden eier tilkoblingen: installasjon, tilgangspakker, samtykke og tilbaketrekking.\n- Lønnskjøringen avhenger aldri synkront av en integrasjon. Lønn skal kunne kjøres med alle integrasjoner nede.\n- Lønnsfred: ingen brytende API-endringer i desember, januar og juni.\n- Kommersielle samlepakker påvirker aldri teknisk tilgang."
+   },
+   {
+    "id": "a-kjerne-moduler",
+    "tittel": "Kjerne, moduler og integrasjoner",
+    "md": "Kjernen eier alle regler med rettsvirkning. Moduler og integrasjoner leverer fakta. HR kommer senere (B34).\n\n| Lag | Eier | Innhold |\n|---|---|---|\n| **Kjerne** | Brutto | Lønnsarter og beregning, forskuddstrekk, trekkpålegg, AGA, feriepenger og feriesaldo, arbeidsgiverperiode, permisjon og permittering, refusjonsreskontro (B33), godtgjørelsesmotor for reise (B32), mottakerklasser (B18), a-melding, betaling og bilag |\n| **Egne moduler** (B20) | Brutto, som klient av det offentlige API-et | Ferie og fravær: søknad, godkjenning og visning av saldo. Timer: timeliste per dag, overtid, prosjekttid og godkjenning |\n| **Integrasjoner** (B2) | Partneren eier fakta. Brutto eier klassifisering | Utleggsappen (utlegg og reise), OrgLab (verv og honorar), Tikket (vakter og arrangement), Huma (HR-data), regnskap, bank og pensjon |\n| **HR-utvidelse senere** (B34) | Brutto, på sikt | Onboarding og offboarding, medarbeidersamtaler, kompetanse, helseoppfølging, startside og meldinger (områdene HR, UTV, HEL og KOM) |\n\n**Kilderegisteret.** For hver kunde og datatype finnes nøyaktig én aktiv kilde, eventuelt avgrenset til en gruppe arbeidsforhold (for eksempel «ekstrahjelp» eller «honorar og verv»).\n\n| Datatype | Mulige kilder | Kan flyttes? |\n|---|---|---|\n| Identitet (fødselsnummer, D-nummer) | Bare Brutto. Et HR-system kan foreslå | Nei |\n| Bankkonto | Bare Brutto, via ansattportal med BankID | Nei |\n| Skattekort | Bare Brutto, fra Skatteetaten | Nei |\n| Person, arbeidsforhold (HR-delen), organisasjon, avtalt lønn | Brutto eller HR-system | Ja |\n| Arbeidsforhold (a-meldingsfelt) | Brutto som standard. Brutto validerer alltid | Ja |\n| Fravær | Brutto Fravær, Huma eller tid/vakt-system | Ja |\n| Tid | Brutto Timer, vaktsystem eller Tikket | Ja |\n| Utlegg og reise | Utleggsappen, andre utleggssystemer, OrgLab for verv | Ja |\n| Verv og honorar | OrgLab eller manuelt i Brutto | Ja |\n| Lønnsarter, beregning, a-melding og lønnsresultat | Bare Brutto | Nei |\n\nSkriving fra en annen kilde gir `409 NOT_SOURCE_OF_TRUTH`. Bruttos egne skjermbilder følger samme regel: når Huma eier et felt, er det skrivebeskyttet i Brutto. Kildebytte er beskrevet i FL16.\n\n**Lønnsgrunnlag-API-et** er felles skrivekontrakt for alle kilder. Kilden sender full tilstand med `externalId` og `revision`, og Brutto beregner differansen mot det som allerede er låst eller utbetalt. Fravær har en egen ressurs, fordi fravær er fakta med lønnskonsekvens.\n\n**Byttetest:** Ved hver release erstattes en egen modul med en åpen referanseintegrasjon. Lønn, a-melding og saldo skal bli like på øret."
+   },
+   {
+    "id": "a-komponentkart",
+    "tittel": "Komponentkart",
+    "md": "Forslag fra F-arkitektur §2: en modulær monolitt med tre deploybare enheter.\n1. Web og API.\n2. Arbeidsnoder for beregning, PDF og import.\n3. En isolert myndighets- og betalingsgateway med egne hemmeligheter og eget nettverk.\n\n| Komponent | Ansvar | Kritikalitet |\n|---|---|---|\n| Identitet og tilgang | Innlogging (BankID, passkey, SSO), roller, relasjoner byrå → klient, policy | Svært høy |\n| Organisasjon | Juridisk enhet, underenheter, AGA-sone, avdelinger og dimensjoner, bankkontoer, pensjonsordninger | Høy |\n| Person og arbeidsforhold | Person, arbeidsforhold, stillingsperioder, permisjoner, bankkonto, skattekort, trekkpålegg | Svært høy |\n| Avtaler og lønnsarter | Lønnsartkatalog, satser, kalendere, kobling lønnsart → a-meldingskode → konto | Høy |\n| Fravær og tid | Fraværsregister, arbeidsgiverperiode, saldoer, timer, mottak fra moduler og integrasjoner | Høy |\n| Beregningsmotor | Ren funksjon uten egne data | Svært høy |\n| Lønnskjøring | Kjøringer, tilstandsmaskin, kontroller, avvik, godkjenning og korreksjon | Svært høy |\n| A-melding-aggregat | Melding per opplysningspliktig og måned, versjoner og erstatninger | Svært høy |\n| Myndighetsgateway | Maskinporten, systembruker, innsending, henting, kvitteringer og kontrollkø | Svært høy |\n| Betaling | pain.001 med KID. Senere pain.002 og camt.054 | Svært høy |\n| Regnskap | Bilag med dimensjoner, kontomapping og adaptere | Høy |\n| Lønnsslipp og distribusjon | PDF og HTML, arkiv og digital post | Høy |\n| Ansattportal | Slipp, skattekort, fravær og kontonummer med step-up | Middels til høy |\n| Byråkonsoll | Status per klient, samlehenting og frister | Høy |\n| Rapporter og avstemming | Standardrapporter og avstemming mellom lønn, a-melding, regnskap og bank | Middels |\n| Offentlig API og webhooks | REST, OAuth, idempotens, signerte webhooks og sandkasse | Middels til høy |\n| Revisjonslogg | Uforanderlig logg med hash-kjede | Høy |\n| KI-assistent | Forklaring og utkast, aldri godkjenning (B13) | Middels |\n| Dokumentlager | Lønnsslipper, trekkavtaler og kvitteringer nå, arbeidsavtaler senere (B34) | Høy |\n\n**Regler**\n- Ingen modul leser en annen moduls tabeller. Arkitekturtester håndhever det, så moduler kan skilles ut senere.\n- Kø og outbox ligger i Postgres. Kafka, mikrotjenester og egen hendelsesdatabase tas ikke inn de første årene.\n- Byråkonsollen og rapportene leser fra egne lesemodeller."
+   },
+   {
+    "id": "a-tenant",
+    "tittel": "Tenant- og byråhierarki",
+    "md": "```\nPlattform\n └─ Byrå (partner) ──(tilgangsavtale)──▶ Kunde-tenant\n                                          ├─ Juridisk enhet (opplysningspliktig)\n                                          │   └─ Underenhet (virksomhet, AGA-sone)\n                                          └─ Personer og arbeidsforhold\nDirektekunde = kunde-tenant uten byrå\n```\n\n- **Kunden eier dataene** (B7). Byrået får tidsbestemt og logget tilgang. Bytter kunden byrå, flyttes tilgangen og dataene blir liggende.\n- **Byråets egen lønn** er en vanlig kunde-tenant. Den er ofte den tryggeste første kunden.\n- **Isolasjon:** delt database med `tenant_id` og radnivåsikkerhet (RLS) som ekstra forsvar bak tilgangskontrollen i applikasjonen. Tenant settes per transaksjon. Tenantene kan fordeles på celler, og store kunder kan få egen celle senere.\n- **Byråkonsollen** leser status, frister og avvik på tvers av klienter fra en egen lesemodell uten persondata.\n- **Lokallag** med eget organisasjonsnummer er egne opplysningspliktige og kjøres som egne klienter (D-40).\n- **Kjeder av byråer:** hierarkiet bygges i datamodellen nå og selges senere.\n- **Test:** En automatisk suite prøver å lese og skrive på tvers av tenanter via alle API-endepunkter. Den kjører i CI og i pentest.\n\n**GRFS for byrå.** Byrået må dokumentere kontroll, skattekort, oppfølging av a-meldingsavvik, kundens godkjenning og avstemming, og oppbevare dokumentasjonen i 5 år (regnskapsførerloven § 5-3). Dokumentasjonen gjelder fra første byråklient og lages fra revisjonsloggen per klient og periode. Den lagres i byråets område og blir der også etter at klienten har gått (D-34)."
+   },
+   {
+    "id": "a-tilgang",
+    "tittel": "Tilgang og arbeidsdeling",
+    "md": "Tilgangsmodellen kombinerer roller, relasjoner (byrå → klient → avdeling) og attributter (sensitivitet, step-up). Den ligger i en egen policymodul med tester (F-arkitektur §3.3).\n\n| Rolle | Typiske rettigheter |\n|---|---|\n| Byrå-admin | Administrerer byråbrukere, oppdrag og maler. Ingen automatisk tilgang til persondata hos alle klienter |\n| Byråmedarbeider (lønn) | Forbereder kjøringer for tildelte klienter. Godkjenner aldri egne kjøringer |\n| Oppdragsansvarlig (byrå) | Godkjenner kjøringer for sine klienter |\n| Lønnsansvarlig hos kunden | Full tilgang i egen tenant |\n| Godkjenner | Godkjenner og avviser |\n| Lønn – helse | Ser sykefravær, K27, NAV-saker og fagforeningstrekk (særlig kategori) |\n| Leder | Godkjenner fravær og timer for egne ansatte. Ser ikke lønn som standard. Ser aldri diagnose |\n| Ansatt | Egne data |\n| Revisor | Lesetilgang, tidsbegrenset og logget |\n| Leverandørsupport | Ingen tilgang som standard. Break-glass krever kundens samtykke, varer f.eks. 4 timer og logges |\n| Agent (KI) | Leser og lager utkast. Aldri godkjenne, sende, utbetale eller endre kontonummer (B13) |\n\n**Arbeidsdeling** (D-47 og S-avklaringer §5)\n- Den som forbereder en kjøring, kan ikke godkjenne den.\n- Den som endret en konto, kan ikke godkjenne kjøringen der endringen virker.\n- Den som verifiserte en ny mottakerkonto, kan ikke godkjenne første betaling til den.\n- Den som opprettet en ansatt, kan ikke godkjenne første utbetaling.\n- Ingen kan endre egne data.\n- Endring av roller logges og varsles.\n\n**Små kunder** har ofte bare én lønnsperson. Unntak tillates med logg og kompenserende kontroll: en rapport til daglig leder eller styreleder etter hver kjøring. En rapport viser hvem som kan både X og Y.\n\n**Step-up** med BankID kreves ved godkjenning av kjøring, innsending og betalingsfil, og ved endring av kontonummer."
+   },
+   {
+    "id": "a-personvern",
+    "tittel": "Personvern og kryptering",
+    "md": "Bygger på gründerens fagavklaringer (S-avklaringer §2) og F-arkitektur §3.4.\n\n| Data | Klasse | Vern |\n|---|---|---|\n| Fødselsnummer og D-nummer | Personopplysning | Feltkryptert. Blind indeks for oppslag. Lesing logges |\n| Kontonummer | Personopplysning | Feltkryptert. Lesing logges. Endring krever step-up (FL12) |\n| Lønnsbeløp | Lønnsdata | Egen lønnstilgang og logget lesing. Krypteres ikke, så kontroller i databasen kan lese dem |\n| Sykelønnsarter (2018, 2019), fravær, K27, NAV-dokumenter, konto 5800 | Særlig kategori (helse) | Rollen «Lønn – helse». Maskering i lederrapporter, bilag og lønnsjournal. Diagnose lagres aldri |\n| Fagforeningstrekk | Særlig kategori | Samme vern som helse |\n| Trekkpålegg | Personopplysning | Feltkryptert |\n\n- **Nettolønn per ansatt** synes ikke i hovedbok eller bank uten lønnstilgang. Netto posteres samlet per kjøring på konto 2930.\n- **Kryptering:** konvoluttkryptering med nøkkel per tenant og dataklasse, og nøkkelkrypteringsnøkkel i HSM. Tenant-id brukes som tilleggsdata, så chiffertekst ikke kan flyttes mellom tenanter. Når oppbevaringstiden er ute, slettes tenantens nøkkel, og da blir også backup uleselig.\n- **Visning:** maskert som standard. Full visning krever rettighet og logges.\n- **Logger:** Fødselsnummer, kontonummer og beløp per person skrives aldri i applikasjonslogger. Et filter fanger 11 siffer med gyldig kontrollsiffer.\n- **Test og utvikling** bruker bare syntetiske data. Ekte data leses bare av godkjente jobber som logger antall og feilkoder.\n- **Mangler i v0** (D-33): DPIA-mal for kunden, rollen «Lønn – helse», maskering, kortere slettefrist for sykmeldinger og søknader enn for bilag, og vurdering fra personvernrådgiver før drift.\n- **Systembruker:** Pakken `lonn-personopplysninger-saerlig-kategori` legges bare til når kunden har NAV-saker.\n- **Åpent fra Sally:** om personlige kontonumre i kontaktdata også skal krypteres, og hvem som vurderer helse- og fagforeningsdata etter GDPR art. 9."
+   },
+   {
+    "id": "a-oppbevaring",
+    "tittel": "Oppbevaring og lagringssted (§ 7-5)",
+    "md": "- **Oppbevaringstid:** Lønnsbilag og lønnsdokumentasjon oppbevares i fem år etter regnskapsårets slutt. Bokføringsloven § 13 endres 1.1.2027 uten nye frister (S-avklaringer §1).\n- **Logger:** Revisjonslogg, tilgangslogg og hemmelighetslogg regnes som regnskapsmateriale og oppbevares like lenge.\n- **Lagring utenfor Norge:** Lagres regnskapsmateriale i et annet EØS-land, også som backup, må hver bokføringspliktig sende melding til skattekontoret etter bokføringsforskriften § 7-5. Plikten ligger hos kunden, også når en SaaS-leverandør lagrer dataene. Ny melding kreves når lagringsstedet endres. Søknad har ikke vært nødvendig siden 27.1.2025.\n- **Konsekvens:** Ligger primærdata og backup i Norge, slipper hver kunde og hvert byrå meldingen (B9). Da må overvåkingsverktøy i EU, som feilsporing og metrikk, aldri få lønnsdata eller revisjonslogg.\n- **Usikkert:** R2-moduler viser til § 7-7. Revisor må avklare riktig paragraf, og om forskriften krever backup på et annet sted (verifiseres).\n- **Backup** (bokføringsforskriften § 7-2, slik Sally-arbeidet tolket den): daglig kopi, kryptert nattkopi på annen lokasjon, nattkopier i 35 dager, månedskopier i 13 måneder, manifester i fem år og årlig gjenopprettingstest. Nøkkelkopi lagres separat med navngitt tilgang.\n- **Azure Norway West** har reservert tilgang. Backup på et annet sted i Norge må bekreftes hos Microsoft eller løses med en norsk leverandør (verifiseres).\n- **Lagringsstedsregister:** Hvert lager har formål, eier, oppbevaringstid, land og slettedato. Registeret er grunnlag for databehandleravtale og underleverandørliste.\n\n| Data | Oppbevaring (forslag) |\n|---|---|\n| Lønnsbilag, a-meldinger, kvitteringer, K27 og trekkpålegg | 5 år etter regnskapsårets slutt |\n| Revisjons-, tilgangs- og hemmelighetslogg | 5 år |\n| GRFS-dokumentasjon for byrå | 5 år, i byråets område |\n| Sykmeldinger og søknader (HR-data) | Kortere, med egen slettepolicy (verifiseres med personvernrådgiver) |\n| KI-prompter, hvis KI tas i bruk | Kort, for eksempel 90 dager |\n\n**Ved opphør** får kunden eksport og arkiv. Data slettes ikke før oppbevaringstiden er ute."
+   },
+   {
+    "id": "a-gateway",
+    "tittel": "Myndighetsgateway og kontrollkø",
+    "md": "Alle kall til Skatteetaten, NAV, Altinn og Brreg går gjennom én gateway (R2-myndighetsintegrasjoner §5). Gatewayen håndterer token, nye forsøk, idempotens, logging og feilklassifisering.\n\n**Tilgang**\n- Brutto henter token fra Maskinporten med egen nøkkel i HSM. Nøkkelen roteres hvert halvår. Token lagres aldri og logges aldri.\n- Mot kundedata brukes systembruker-token. For byrå settes byråets organisasjonsnummer i tokenet, og klientens organisasjonsnummer går i sti eller body.\n- NAV-kall får token med bare ett scope.\n\n| Tjeneste | Direktekunde | Byrå |\n|---|---|---|\n| A-melding, tilbakemelding og avstemming | `a-ordning` | `regnskapsforer-lonn` |\n| Skattekort | `lonn` | `regnskapsforer-lonn` |\n| Trekkpålegg | `lonn` | `regnskapsforer-lonn` |\n| K27 og NAV-inntektsmelding | `lonn-personopplysninger-saerlig-kategori` | `regnskapsforer-lonn` |\n| Krav og betalinger | `krav-og-utlegg` | Ikke dekket av `regnskapsforer-lonn` |\n\n**Feil blir saker.** Feil havner i en kontrollkø med eier, frist og vilkår for automatisk lukking. Utdrag av de 23 sakstypene:\n\n| Kode | Utløser | Eier |\n|---|---|---|\n| MYN-01 | Systembruker mangler | Kundens administrator eller byråets klientadministrator |\n| MYN-04 | Klient ikke delegert til byrået | Byrået |\n| MYN-08 | A-melding avvist (frist den 5.) | Lønnsansvarlig |\n| MYN-09 | Øyeblikkelig avvik | Lønnsansvarlig |\n| MYN-12 | Skattekort mangler (50 % trekk) | Lønnsansvarlig, varsel til den ansatte |\n| MYN-15 | Nytt skattekort eller trekkpålegg etter beregning | Lønnsansvarlig |\n| MYN-16 | Nytt trekkpålegg, eller samordnet trekk mens gamle trekk løper | Lønnsansvarlig |\n| MYN-17 | Trekk kan ikke gjennomføres | Lønnsansvarlig |\n| MYN-18 | Forskuddstrekk ikke betalt dagen etter forfall | Kunden og byrået |\n| MYN-19 | Egen KID avviker fra KID i tilbakemeldingen | Brutto drift og lønnsansvarlig |\n| MYN-20 | K27 stemmer ikke med forskuttert beløp | Lønnsansvarlig med helsetilgang |\n| MYN-22 | Myndighet nede | Brutto drift |\n\n**Nye forsøk:** Tekniske feil (5xx, tidsavbrudd) prøves på nytt bare for idempotente operasjoner. A-meldingen sendes med samme `idempotencyKey` i opptil 6 timer. Fagfeil, som avvisning eller manglende skattekort, prøves aldri automatisk.\n\n**Fryseregel:** Skattekortversjon og trekkpåleggsversjon lagres i beregningen. Rett før godkjenning hentes endringer. En nyere versjon blokkerer godkjenningen til kjøringen er beregnet på nytt.\n\n**Innsending:** Nyttelasten låses med hash ved godkjenning. Gatewayen nekter å sende hvis hashen ikke stemmer. Alle innsendinger har navngitt godkjenner, hash og kvittering i en felles innsendingslogg. Rå kvitteringer lagres uendret og kryptert i uforanderlig lagring i Norge.\n\n**Overvåking:** syntetiske kall hvert 5. minutt, og daglig sjekk av statussider, nyheter for sluttbrukersystemer og nye OpenAPI-versjoner. Nedetid hos myndighetene logges som bevis mot tvangsmulkt."
+   },
+   {
+    "id": "a-ki",
+    "tittel": "KI-policy",
+    "md": "Policyen bygger på gründerens agentgrenser (S-avklaringer §3) og F-arkitektur §5 (B13).\n\n**Absolutte grenser**\n- KI godkjenner aldri lønnskjøringer, sender aldri a-melding, utbetaler aldri og endrer aldri kontonummer eller roller.\n- Agenter kan hente og validere hos myndighetene. De kan ikke bestille skattekort, sende inn, betale, opprette fullmakter eller klientdelegere.\n- Lønnsdata går ikke til språkmodell via MCP i første versjon.\n- Data fra Skatteetaten, Altinn og NAV brukes aldri til læring eller aggregater.\n- Selve lønnsberegningen er regelbasert og deterministisk.\n\n**Håndheving:** Grensene ligger i policymodulen og myndighetsgatewayen, som avviser alt utenfor en tillatt liste. Agenter har egen tjenesteidentitet. Agenthandlinger logges som «agent på vegne av bruker».\n\n**Når KI tas i bruk (forslag)**\n- Avviksforklaring, slippforklaring, mapping av lønnsarter ved migrering og forklaring av a-meldingsavvik.\n- Tallene settes inn fra strukturerte data, og svar med tall som ikke finnes i kildedata avvises.\n- Modellsamtaler om lønn vernes som lønnsdata: kryptert, krever lønnstilgang og har kort oppbevaring.\n- Leverandørnøytral KI-gateway med EU-region. Anthropics egen API tilbyr i dag inferens bare i `us` eller `global`. EU-residens krever AWS Bedrock eller Google Cloud i EU-region, eller en EU-leverandør (verifiseres i konsollen, [Claude data residency](https://platform.claude.com/docs/en/manage-claude/data-residency)).\n\n**KI-forordningen:** Vedlegg III punkt 4 gjør KI for beslutninger om arbeidsvilkår og overvåking av ytelse til høyrisiko ([Annex III](https://artificialintelligenceact.eu/annex/3/)). Avviksdeteksjon må derfor utformes som datakvalitetskontroll. Brutto bør unngå lønnsanbefalinger basert på ytelse, prediksjon av at ansatte vil slutte og produktivitetsscore. Høyrisikopliktene er utsatt til 2.12.2027 etter politisk enighet (verifiseres).\n\n**Kodeagenter** (D-48)\n- Får aldri tilgang til produksjonsdata eller produksjonslogger.\n- Kan ikke endre forventede verdier i gylne caser, regelpakker eller a-meldingsmapping uten lønnsfaglig godkjenning (B28).\n- Commits fra agenter merkes, som bevis for endringsstyring i ISAE."
+   },
+   {
+    "id": "a-stack",
+    "tittel": "Stackvalg: åpen sammenligning",
+    "md": "Gründeren har sagt at stacken står åpen (B8). Tabellen sammenstiller F-arkitektur §9.2 og domenekritikeren (R3-kritikk-domene b.4.1).\n\n| Kriterium | Kotlin/JVM | TypeScript i hele stacken | C#/.NET |\n|---|---|---|---|\n| Penger og desimaler | `BigDecimal`, moden | Bibliotek eller heltall i øre. `number` er en felle | `System.Decimal`, best |\n| Dato og tid | `java.time`, moden | `Date` er en felle. Temporal eller bibliotek trengs | Moden |\n| Domenetyper | Sealed classes og null-sikkerhet | Gode typer, men ingen kontroll ved kjøring uten zod e.l. | Records og pattern matching |\n| XML (pain.001, camt.054, reserve-XML for a-melding) | Moden | Svakere. A-meldings-API-et tar JSON, så behovet er mindre | Moden |\n| Skatteetatens trekkrutine (Java) | Kan brukes direkte, hvis lisensen tillater det | Må porteres, eller kjøres i JVM som testorakel | Må porteres |\n| Kodeagenter | Gode. Kompilering gir tregere sløyfer | Svært gode, raske testsløyfer | Gode |\n| Rekruttering med lønnsfag | NAV og fintech | Stor generell pool, lite lønnsfag | Visma, PowerOffice og Uni Micro, der mange med lønnsfag sitter |\n| Antall språk | To (Kotlin bak, TS foran) | Ett | To (C# bak, TS foran) |\n\n**Argumentene**\n- **For Kotlin (strategikritikeren og F):** trekkrutinen er Java, NAVs sykepengelogikk (helse-spleis) er Kotlin, og JVM-økosystemet er modent for penger, dato og XML.\n- **Mot det argumentet (domenekritikeren):** Trekkrutinen har ingen lisensfil. Får Brutto ikke lov, må den implementeres fra de publiserte tabellene og verifiseres 100 %. Da betyr språket mindre.\n- **For .NET:** likeverdig teknisk, og der sitter mange norske utviklere med lønnserfaring.\n- **For TypeScript:** ett språk, raske sløyfer og svært god støtte i kodeagenter.\n\n**De fire vilkårene for TypeScript** (domenekritikeren). Låses fra dag én:\n1. `Money` som egen type (heltall øre eller decimal), og lint-forbud mot `number` for beløp.\n2. Ingen `Date` i domenet. Bare kalenderdatoer, med Temporal eller tilsvarende.\n3. Kontroll ved kjøring (zod e.l.) på alle grenser.\n4. Egenskapsbaserte tester (fast-check) og mutasjonstesting (Stryker) på regelmodulene.\n\n**Felles for alle valg:** PostgreSQL, modulær monolitt, kø og outbox i Postgres, og TypeScript i frontend. Supabase og Vercel passer ikke for lønnskjernen på grunn av kontroll med nøkler, logger og dataflyt. Go frarådes for regeltung kode.\n\n**Det som avgjør kvaliteten** er testorakelet: signerte gylne caser, full sammenligning mot trekktabellene, release-diff og mutasjonstesting. Valget bør følge tech lead og de første seniorene. Unngå å blande språk i backend."
+   },
+   {
+    "id": "a-test",
+    "tittel": "Test og kvalitet",
+    "md": "**Gylne caser**\n- Scenarier med inndata, regelpakke og forventet slipp, a-meldingsbidrag og bilag. De lages og signeres av lønnsfaglig (B28).\n- Casene for et år låses når året er lukket. Feil som oppdages senere, legges inn som nye korreksjonscaser.\n- CI kjører alle år hver gang.\n- Dekningsmatrise: lønnsform × fravær × trekkpålegg × AGA-sone × spesialmåned (juni, desember, G-regulering) × mottakerklasse. Minst 5 caser i hver relevant celle.\n- Domenekritikeren foreslår 22 nye caser (GC-01 til GC-22), oversikt i Veien videre. Mange gjelder overganger ved systembytte.\n- Prioriter caser for året kundene starter i. Caser for tidligere år brukes til historisk skyggeberegning (D-15).\n\n**Andre tester**\n- 100 % treff mot alle publiserte trekktabeller, alle tabellnumre og alle trinn.\n- Egenskapsbaserte invarianter: netto = sum opptjening minus sum trekk, sum posteringer = 0, samme inndata gir byte-lik utdata også med stokket rekkefølge, og original pluss korreksjon gir samme sluttresultat som omregning fra bunnen.\n- Mutasjonstesting på trekk, AGA, feriepenger og trekkø.\n- Arkitekturtest: modulkode kan ikke importere kjernens regelpakker.\n- Isolasjonstest mellom tenanter på alle API-endepunkter.\n\n**Release-diff**\n- Før hver produksjonsrelease beregnes forrige måned for alle tenanter på nytt i skygge med ny kode.\n- Sammenlign slipp, a-meldingsbidrag og bilag. Netto alene er ikke nok.\n- Bruk regelpakken som gjaldt for kjøringen, så avvik bare skyldes koden.\n- Kjør også et årshjulssett (minst juni og desember) og alle gylne caser.\n- Uforklarte avvik stopper utrullingen. Forklarte avvik signeres av lønnsfaglig.\n- Jobben leser ekte data og logger bare antall og id-er (D-51).\n\n**Myndighetenes testmiljøer**\n- TT02 og Skatteetatens testmiljø tar bare syntetiske data fra [Tenor](https://www.skatteetaten.no/skjema/testdata/). NAV tester i Dolly.\n- TT02 er ustabilt. Releaseporten bør bruke kontrakttester mot lagrede svar i CI, og TT02 hver natt som signal (D-52).\n- Testdata for trekkpålegg lages av Skatteetaten på bestilling, med lang ledetid.\n- Frikort med beløpsgrense oppdateres ikke i test.\n- A-melding 2.4 kan ikke testes med ekte data. Lag syntetiske tvillinger av hver kunde og krev semantisk diff 0 mellom 2.3 og 2.4 (D-19).\n\n**Fasitstyring:** Gylne caser, regelpakker og a-meldingsmapping kan bare endres med lønnsfaglig signatur. Kodeagenter kan ikke endre fasit."
+   },
+   {
+    "id": "a-drift",
+    "tittel": "Drift rundt lønnsdager",
+    "md": "**Kritiske vinduer**\n- Ca. den 15. til 25. (forberedelse og utbetaling den 25.).\n- Siste tre virkedager i måneden.\n- Den 1. til 5. (a-meldingsfrist den 5.).\n- Bankenes avskjæringstid 1–2 virkedager før lønnsdag.\n- Juni (feriepenger), desember (halvt trekk og regelår) og januar (nytt år og første frister).\n\n| Mål | Normalt | Kritisk vindu |\n|---|---|---|\n| Tilgjengelighet | 99,9 % per måned | 99,95 % |\n| Endringer | Kontinuerlig utrulling | Endringsfrys, bare nødrettelser med to godkjennere |\n| Support | Kontortid | Utvidet, for eksempel 07–20, med vakt |\n| Responstid ved P1 (lønn kan ikke kjøres eller betales) | – | Høyst 30 minutter |\n\n**Beredskap**\n- **Brutto nede to dager før lønn:** Kunden kan laste ned siste godkjente betalingsfil og slipper, som lagres ved godkjenning. Alternativt brukes bankens kopi av forrige lønnsliste, med korreksjon etterpå (D-54).\n- **Myndighet nede:** Køen holder innsendingen og prøver igjen. Kunden får banner i appen. Nedetiden logges som bevis.\n- **Vakt:** 27.12 til midten av januar, første uke i februar (første frist i nytt år) og hele juni.\n- **Øvelse:** «Brutto nede T-2» og gjenoppretting fra backup i Norge, minst årlig.\n\n**Skalering:** Toppene er forutsigbare. Arbeidsnodene skaleres opp fra ca. den 18. og før månedsslutt. Køen har kvoter per tenant og byrå, og grenser mot myndighetenes kvoter (5 samtidige kall per API hos Skatteetaten). Lasttest hver høst.\n\n**Backup og gjenoppretting:** tap av data høyst 5 minutter ved regionhendelse (RPO), gjenoppretting innen 4 timer (RTO). Uforanderlige snapshots. Månedlig automatisk gjenopprettingstest og årlig full øvelse, som også er bevis for ISAE.\n\n**Support:** L0 hjelpesenter og forklaringer i produktet, L1 kundesenter med lønnsfaglig grunnkompetanse, L2 lønnsfaglige spesialister, L3 utvikling på vakt. Byråer får egen kø. Support har ingen tilgang til kundedata uten break-glass."
+   },
+   {
+    "id": "a-hr-grunnmur",
+    "tittel": "Grunnmur for HR-utvidelsen",
+    "md": "Brutto starter som lønnssystem, og HR kommer senere (B34). Målet om å erstatte Huma ligger fast (B21). Noen deler må derfor være riktige fra dag én, ellers krever HR-utvidelsen migrering av alle kunder.\n\n| Krav (R2-okosystem §6.5) | Brukes til lønn nå | Brukes i HR senere |\n|---|---|---|\n| Kanonisk person- og arbeidsforholdsmodell: person 1–n arbeidsforhold 1–n stillingsperioder, kontraktstype, prøvetid, sluttårsak, barn, nødkontakter | A-melding, beregning | Personalregister |\n| Kilderegister med flyttbart eierskap per datatype og omfang | Like vilkår (B2), egne moduler | Kildebytte fra Huma |\n| Stabile eksterne referanser per installasjon | Integrasjoner | Sporbarhet etter bytte |\n| Dokumentlager med typede, uforanderlige dokumenter, hash og oppbevaringsregler | Lønnsslipper, trekkavtaler, skattekortkvitteringer | Arbeidsavtaler og personalmappe |\n| E-signering bak et grensesnitt der leverandøren kan byttes | Trekkavtaler etter aml. § 14-15 | Arbeidsavtaler etter aml. § 14-6 |\n| Importrammeverk med prøvekjøring, diff og tilbakerulling | Migrering fra konkurrenter | Migrering fra Huma |\n| Organisasjonsmodell med lederrelasjon og gyldighet | Dimensjoner, godkjenningskjeder | Organisasjonskart |\n| Lønnshistorikk i Brutto fra første dag | Retro og revisjon | Humas API gir bare gjeldende lønn |\n| Fraværsmodell med grad, AGP-telling og sykmeldingsreferanse | Lønn og NAV | Sykefraværsoppfølging |\n| Hendelser for alle endringer i masterdata | Integrasjoner | Systemer som lytter på Huma i dag |\n| Ansattportal som kan bli den ansattes «hjem» | Lønnsslipp og kontonummer | HR-selvbetjening |\n\n**Hva som venter (HR-utvidelsen):** onboarding og offboarding, dokumentarkiv og arbeidsavtaler, medarbeidersamtaler og mål, kompetanse og jobbprofiler, sykefraværsoppfølging etter aml. § 4-6 med oppfølgingsplan og dialogmøter, startside, kunngjøringer og arbeidsflyt. Referansen er SD Worx sin HR-meny (R0-sdworx-meny).\n\n**Huma-veien i tre faser per kunde** er beskrevet i B21, FL11 og FL16. Medarbeidersamtaler, undersøkelser, varsling og kompetanse kan overlates til partnere eller bygges senere."
+   }
+  ],
+  "flyter": [
+   {
+    "id": "FL1",
+    "tittel": "Lønnsmåneden fra ende til ende",
+    "md": "1. **Lønnsansvarlig** publiserer lønnskalenderen med cut-off, utbetalingsdato og a-meldingsmåned per juridisk enhet. Kildene leser kalenderen via API.\n2. **Ansatte og ledere** registrerer fravær og timer i Bruttos moduler eller i eksterne systemer. **Integrasjoner** (Utleggsappen, OrgLab, Tikket) sender lønnsgrunnlag med full tilstand og idempotensnøkkel.\n3. **Brutto** henter endringer i skattekort og nye trekkpålegg (FL5, FL6).\n4. **Cut-off:** Grunnlag som ikke er godkjent, går til neste periode eller en ekstrakjøring. Kildene får beskjed.\n5. **Lønnsmedarbeider** starter en testkjøring. Motoren beregner med snapshot av inndata, regelpakke og motorversjon, og lagrer forklaringsspor per linje.\n6. **Brutto** lager avviksliste mot forrige måned med regelbasert årsak: ny konto, negativ netto, manglende skattekort, lønn etter sluttdato, fordeling som ikke summerer til 100 % og ukjent lønnsart.\n7. **Lønnsmedarbeider** kvitterer avvikene og retter grunnlaget. Nye testkjøringer kan gjøres fram til godkjenning.\n8. **Brutto** henter skattekort og trekkpålegg på nytt rett før godkjenning (fryseregelen).\n9. **Godkjenner**, en annen person enn den som forberedte, godkjenner med BankID-step-up. Kjøringen låses og hashes.\n10. **Brutto** lager slipper, bilag, betalingsforslag og bidrag til a-meldingen.\n11. **Kunden** laster pain.001-filen opp i nettbanken og godkjenner. Netto lønn går til de ansatte. Forskuddstrekk og utleggstrekk er egne oppdrag med KID og forfaller første virkedag etter utbetaling.\n12. **Lønnsansvarlig** bekrefter faktisk betalingsdato. **Brutto** sender a-meldingen (FL4).\n13. **Brutto** sender bilaget til regnskapssystemet med dimensjoner og Sjurs standardkontering (netto samlet på 2930).\n14. **Ansatte** ser slippen med forklaring i portalen. Varsler inneholder aldri beløp.\n15. **Brutto** avstemmer lønn mot a-melding, bilag og bank. AGA legges til betaling når 2600 går i null (S-avklaringer §5).\n\nKilde: D-praksis §1.1 (de 13 stegene i praksis) og F-arkitektur §1."
+   },
+   {
+    "id": "FL2",
+    "tittel": "Ny direktekunde med systembruker",
+    "md": "1. **Kundens lønnsansvarlig** logger inn med BankID og oppgir organisasjonsnummer.\n2. **Brutto** henter enhet, underenheter, roller og status fra Brønnøysundregistrene. AGA-sone settes per underenhet fra kommunenummer. Et AS som er slettet i Enhetsregisteret, kan ikke få systembruker.\n3. **Brutto** henter leverandørtoken fra Maskinporten og sender en systembruker-forespørsel til Altinn med tilgangspakkene `a-ordning` og `lonn`. Pakken `lonn-personopplysninger-saerlig-kategori` legges til med en endringsforespørsel når kunden får første NAV-sak.\n4. **Altinn** svarer med en `confirmUrl`. Brutto viser lenken og sender den til daglig leder.\n5. **Daglig leder**, som må være tilgangsstyrer, logger inn i Altinn med ID-porten og godkjenner alt eller ingenting. Forespørselen utløper etter 10 dager.\n6. **Brutto** poller status til `Accepted`, `Rejected` eller `TimedOut`, og slår opp systembrukeren.\n7. **Brutto** henter systembruker-token og kjører en helsesjekk mot skattekort-API-et. Abonnement på hendelser fra Altinn settes opp.\n8. **Brutto** viser «Klar for myndighetsintegrasjon», eller lager sak MYN-01 eller MYN-02.\n9. **Kunden** setter opp lønnsarter, kontomapping, dimensjoner, pensjonsordning og bankkontoer, eller importerer dem (FL13).\n10. **Brutto** henter skattekort for alle ansatte (FL5).\n\nKilde: R2-myndighetsintegrasjoner §2.4 og [Altinn systembruker](https://docs.altinn.studio/nb/authorization/guides/system-vendor/system-user/)."
+   },
+   {
+    "id": "FL3",
+    "tittel": "Ny byråklient",
+    "md": "**Engangsoppsett per byrå:** Brutto ber om en agent-systembruker med pakken `regnskapsforer-lonn`. Byråets tilgangsstyrer godkjenner i Altinn.\n\n1. **Byråets klientadministrator** legger til klienten med organisasjonsnummer.\n2. **Brutto** sjekker i Enhetsregisteret om byrået er registrert som regnskapsfører (rollen REGN) for klienten. Hvis ikke, lages en sak: klienten må registrere byrået først.\n3. **Klientadministratoren** knytter klienten til byråets systembruker. Det skjer i Altinn-portalen, eller via klientdelegerings-API-et hvis Brutto får ID-porten-klient (verifiseres).\n4. **Brutto** kontrollerer delegeringen og henter token med byråets organisasjonsnummer. Klientens organisasjonsnummer går i sti eller body i hvert kall.\n5. **Brutto** henter skattekort for klienten i byråets samlehenting, innenfor kvoten på 5 samtidige kall og et pollebudsjett per byrå.\n6. **Byrået** oppretter oppdraget med tilgangsavtale og oppdragsansvarlig. GRFS-dokumentasjonen starter.\n7. **Kunden** sender grunnlag og godkjenner i kundeportalen, eller godkjenner på e-post som logges i oppdragsdokumentasjonen.\n8. **Byrået** sender a-meldinger med «send alle som er klare». Det sendes aldri for klienter uten godkjent kjøring.\n9. Når klientforholdet opphører, faller delegeringen bort. Byrået beholder oppdragsdokumentasjonen i 5 år.\n\nUavklart: om byrået kan få pakken ved delegering uten REGN, og om kvoten gjelder byrået eller hver klient (D-21). Kilde: R2-myndighetsintegrasjoner §2.5."
+   },
+   {
+    "id": "FL4",
+    "tittel": "A-melding med tilbakemelding og erstatning",
+    "md": "1. **Brutto** samler godkjente kjøringer for måneden i a-melding-aggregatet per opplysningspliktig. Meldingen har `meldingsId`, `kildesystem` og `sumForskuddstrekkPerLoennsutbetalingsdato`.\n2. **Brutto** validerer lokalt mot forretningsreglene, også F532: summen av forskuddstrekk per lønnsutbetalingsdato kan ikke være negativ.\n3. **Godkjenner** godkjenner innsendingen. Nyttelasten låses med hash.\n4. **Gatewayen** sender JSON til a-meldings-API-et med `idempotencyKey`. Meldinger over 10 MB går via filopplasting. Svaret er en leveransebekreftelse med `dialogId`.\n5. **Altinn og Dialogporten** varsler når tilbakemeldingen er klar. **Brutto** henter den.\n6. **Brutto** leser `mottakstatus` og avvik. Avvisning blir sak MYN-08 med frist den 5. Øyeblikkelig avvik blir MYN-09. Retningslinjeavvik samles i en oppsummering.\n7. **Brutto** henter KID og kontonummer for AGA og forskuddstrekk fra tilbakemeldingen, og sammenligner med KID-en Brutto beregnet selv (MYN-19).\n8. **Ved endring** (ekstrakjøring, korreksjon eller sen permisjon) lager Brutto en ny melding med fullt innhold for måneden og `erstatterMeldingsId`. Tilbakemeldingen viser `erstattet` for den gamle.\n9. **Brutto** bestiller avstemmingsrapporten og avstemmer a-ordningen mot lønn og hovedbok.\n10. **Reservevei:** Hvis API-et svikter, eksporteres gyldig XML for manuell opplasting hos Skatteetaten. Om reserveveien finnes for 2.4, må verifiseres.\n\nAnbefalt strategi (D-16): én melding per opplysningspliktig og måned, som erstattes ved hver endring. Gylne caser GC-10 og GC-11. Kilde: [Skatteetatens API-dokumentasjon](https://skatteetaten.github.io/api-dokumentasjon/)."
+   },
+   {
+    "id": "FL5",
+    "tittel": "Skattekort",
+    "md": "1. **Lønnsansvarlig** registrerer en nyansatt og utløser bestilling. En agent kan aldri bestille, fordi den ansatte varsles når en ny arbeidsgiver henter kortet.\n2. **Gatewayen** sender `bestillSkattekort` med `idempotensid`. Én bestilling har høyst 1 000 fødselsnumre.\n3. **Brutto** poller svaret med minst 2 sekunder mellom forsøkene. Svar 204 betyr at det ikke er klart.\n4. **Brutto** leser `resultatForSkattekort` og trekkformen: tabell, prosent eller frikort, med 10,5, 11 eller 12 trekkmåneder.\n5. **Brutto** lagrer `skattekortidentifikator` og `utstedtDato` som versjon.\n6. **Daglig** sender Brutto `HENT_KUN_ENDRING` per arbeidsgiver. Fra 15.12.2026 finnes bare polling.\n7. **Mangler kort** (`ikkeSkattekort`): 50 % trekk, sak MYN-12 og varsel til den ansatte i portalen.\n8. **Registrert som død** (`registrertSomDoed`): henting stoppes, fordi oppslag varsler de etterlatte (MYN-13).\n9. **Fryseregel:** Rett før godkjenning hentes endringer. En ny versjon blokkerer godkjenningen til kjøringen er beregnet på nytt (MYN-15). Etter godkjenning og før utbetaling velger lønnsansvarlig. Etter utbetaling gjelder endringen fra neste kjøring.\n10. **Desember:** Kort for nytt inntektsår hentes per kunde og klient (FL15).\n\nByrå: pollebudsjett per byrå, fordi Skatteetaten kan strupe hyppig polling (D-22). Reservevei: RF-1211-XML i portalen. Kilde: [endret bruksmønster](https://www.skatteetaten.no/samarbeidspartnere/sluttbrukersystemer/sbs-nyheter/endret-bruksmonster-for-henting-av-skattekort/). Gylden case GC-22."
+   },
+   {
+    "id": "FL6",
+    "tittel": "Trekkpålegg",
+    "md": "**Samordnet utleggstrekk via API**\n1. **Brutto** poller Trekkpålegg-API-et per trekkpliktig med høyeste `sekvensnummer` som vannmerke.\n2. **Brutto** lagrer hver versjon (`trekkid`, `trekkversjon`) med periode, beløp eller prosent, KID og konto. Et nytt pålegg gir sak MYN-16.\n3. **Starter et samordnet trekk** for en ansatt med gamle trekk, avsluttes de gamle. Saken lukkes først da.\n4. **Beregning:** Beløpstrekk tas i løpet av måneden, ved minst én utbetaling. Prosenttrekk tas av brutto ved hver utbetaling. Perioden velges etter lønnsutbetalingsdato. Vernet beløp respekteres.\n5. **Betaling:** Trekket betales til konto og KID fra pålegget senest første virkedag etter utbetaling.\n6. **A-melding:** `utleggstrekkSamordnet` holdes adskilt fra `utleggstrekkSkatt` (gammelt regelverk).\n7. **Trekk kan ikke gjennomføres** (lav lønn, sluttet, permittert): sak MYN-17 med påminnelse om å kontakte Innkrevingsmyndigheten. Det finnes ingen API for dette.\n\n**Gamle trekk og bidrag via brev**\n8. **Lønnsansvarlig** registrerer pålegget med kreditor, KID, konto, prioritet og vernet beløp. En annen person kontrollerer.\n9. Bidragstrekk føres på konto 2620, utleggstrekk på 2610.\n\n**Forutsetning:** API-et kan først brukes når leverandøren er i produksjon med a-meldings-API-et og kunden har sendt minst én a-melding fra Brutto. Testoppsummering og signert avtale kreves. Første måned må alle løpende pålegg derfor migreres manuelt (D-23). Kilde: [Trekkpålegg-API](https://skatteetaten.github.io/api-dokumentasjon/api/trekkpaalegg). Gylne caser GC-07 til GC-09."
+   },
+   {
+    "id": "FL7",
+    "tittel": "Sykefravær → NAV → K27 → refusjon",
+    "md": "1. **Ansatt** melder egenmelding eller sykmelding. Fraværet registreres i Brutto Fravær, i Huma eller av lønn. Leder ser periode og grad, aldri diagnose.\n2. **Kjernen** teller arbeidsgiverperioden (16 dager) med egenmeldingsdager og tidligere tilfeller. For timelønte brukes snittinntekt siste 3 måneder (ftrl. § 8-28).\n3. **NAV** sender forespørsel om inntektsmelding når fraværet går ut over arbeidsgiverperioden. Brutto mottar den via Sykepenger-API-et og lager sak MYN-21.\n4. **Lønnsansvarlig** med rollen «Lønn – helse» sender inntektsmeldingen fra Brutto, eller i NAVs portal med Bruttos utskrift som grunnlag.\n5. **Kjernen** forskutterer sykepenger i lønnen etter kundens valg og fører refusjonskravet i refusjonsreskontroen per ansatt, ytelse og periode. Varsel kommer før 3-månedersfristen.\n6. **NAV** utbetaler refusjonen til arbeidsgiverens konto.\n7. **Brutto** henter K27 (`ref-arbg`) som CSV via Oppgjørsrapporter-API-et, med `etterId` som vannmerke. Rapporten kommer 1–2 virkedager etter utbetaling.\n8. **Brutto** matcher hver rad mot forskuttert beløp. Avvik gir sak MYN-20.\n9. **Brutto** bokfører refusjonen. Konto 5800 skjermes som helseopplysning.\n10. **AGA:** Kunden har valgt metode. Ved «ved mottak» reduseres AGA-grunnlaget i måneden K27 viser. Ved «forskuttering» korrigeres forskutteringsmåneden hvis beløpet avviker. Aldri begge (GC-18).\n11. **Juni:** K27 viser feriepenger av refusjonene (ytelseskode E–K og M). Akkumulatoren for feriepengerefusjon (48 dager) avstemmes.\n\nUavklart: hvilke inntektsmeldinger utover sykepenger NAV tar imot fra lønnssystemer. Kilde: [NAV om oppgjørsrapporten](https://www.nav.no/arbeidsgiver/oppgjorsrapport) og R2-myndighetsintegrasjoner §1 og §3.12–3.13. Gylne caser GC-01 og GC-20."
+   },
+   {
+    "id": "FL8",
+    "tittel": "Utlegg fra Utleggsappen",
+    "md": "1. **Kunden** installerer Utleggsappen med pakkene for lønnsgrunnlag. Utleggsappen blir kilde for `UTLEGG_REISE` i kilderegisteret.\n2. **Personer kobles** på e-post fra kundens IdP eller på ansattnummer. Uklare treff går til en koblingskø som et menneske behandler.\n3. **Ansatt** registrerer reise eller utlegg i Utleggsappen. **Leder** godkjenner der.\n4. **Rene refusjoner** mot bilag som ikke er opplysningspliktige, betales av Utleggsappen eller regnskapet. De sendes aldri til Brutto.\n5. **Utleggsappen** sender opplysningspliktige linjer (diett, kilometergodtgjørelse, nattillegg og fordeler) som lønnsgrunnlag: `externalId`, `revision`, linjetype, fakta, beløp, dimensjoner, godkjenning og kvitteringsreferanse.\n6. **Brutto** klassifiserer linjen og deler beløpet i trekkfri og trekkpliktig del etter statens satser. Mangler et påkrevd felt i reiseregningen, blir hele beløpet trekkpliktig.\n7. **Brutto** svarer med status og forhåndsvisning av klassifiseringen. Avvik mot Utleggsappens forslag gir varsel.\n8. **Lønnskjøringen** tar med linjene som er godkjent før cut-off (FL1).\n9. **Brutto** sender hendelser tilbake per linje: «utbetales», «utbetalt» og «innrapportert».\n10. **Endring etter låsing:** Utleggsappen sender kravet på nytt med full tilstand. En fjernet linje sendes med 0 kr. Brutto beregner differansen i neste kjøring.\n\nSamme kontrakt brukes av andre utleggssystemer (B2, B32). Kilde: R2-okosystem §4.1."
+   },
+   {
+    "id": "FL9",
+    "tittel": "Honorar fra OrgLab",
+    "md": "1. **Organisasjonen** installerer OrgLab med pakkene for engasjement og `VERV_HONORAR`. OrgLab trenger ikke lese ansattdata.\n2. **OrgLab** ber Brutto opprette et engasjement av typen `VERV` for et styremedlem eller en tillitsvalgt.\n3. **Brutto** sender personen en lenke. **Personen** logger inn med BankID, bekrefter kontonummer og svarer på om honoraret faktureres via eget foretak.\n   - Faktureres det: `NOT_PAYROLL`, og organisasjonen betaler faktura.\n   - Skattemessig bosatt i utlandet: manuell vurdering.\n   - Ellers: utkast til arbeidsforhold av typen frilanser, oppdragstaker eller honorar.\n4. **Lønnsansvarlig** godkjenner arbeidsforholdet, eller en kunderegel godkjenner automatisk. Brutto henter skattekort.\n5. **OrgLab** sender honorar (`BOARD_FEE` eller `MEETING_FEE`) med vedtaksreferanse. Linjen holdes til personen har fullført onboardingen.\n6. **Brutto** beregner trekk (prosent, eller 50 % uten skattekort) og AGA. Ingen feriepenger og ingen OTP.\n7. **Skattefri organisasjon:** Bare Brutto vurderer grensen på 10 000 kr per mottaker og år, fordi bare Brutto ser summen fra alle kilder.\n8. **A-melding:** Frilans-arbeidsforholdet rapporteres bare i måneder med utbetaling.\n9. **Frikjøp** til en annen arbeidsgiver går som leverandørfaktura i regnskapet. Det finnes ingen linjetype for frikjøp.\n\nUavklart hos Skatteetaten: tapt arbeidsfortjeneste, styrehonorar til en ansatt og AGA-sone for frilans (D-09). Kilde: R2-okosystem §4.2 og [Skatteetaten om styrehonorar](https://www.skatteetaten.no/nn/bedrift-og-organisasjon/arbeidsgiver/a-meldinga/rettleiinga-til-a-meldinga/lonn-og-ytingar/oversikt-over-lonn-og-andre-ytingar/styrehonorar-og-godtgjersler-i-samband-med-verv). Gylne caser GC-13 til GC-15."
+   },
+   {
+    "id": "FL10",
+    "tittel": "Arrangement fra Tikket",
+    "md": "1. **Arrangøren** installerer Tikket med pakker for engasjement, `TID` for gruppen «ekstrahjelp», `VERV_HONORAR` for gruppen «honorar» og dimensjonen «arrangement».\n2. **Tikket** oppretter arrangementet som dimensjonsverdi i Brutto med navn og gyldighet.\n3. **Tikket** ber om engasjement av typen `EKSTRAHJELP` eller `HONORAR`. Personen bekrefter seg med BankID som i FL9.\n4. **Brutto** velger arbeidsforhold. Ekstrahjelp gjenbruker ett løpende, midlertidig timelønnet arbeidsforhold per person og juridisk enhet. Et nytt arbeidsforhold blir utkast.\n5. **Tikket** sender vakter med tidsstempler (`SHIFT`) og honorar (`FEE_ASSIGNMENT`). Tikket regner aldri ut tillegg.\n6. **Brutto** regner timer, natt og helg fra tidsstemplene og kundens regler. Overlappende vakter, også fra andre kilder, holdes (`SHIFT_OVERLAP`). Vakter over 16 timer holdes.\n7. **Brutto** beregner lønn med feriepenger, OTP fra første krone, trekk og AGA.\n8. **Etter godkjent kjøring** sender Brutto kostnad per arrangement til Tikket. Tallene er aggregert og sendes bare når minst 3 personer har jobbet.\n9. **Regnskapsadapteren** mapper arrangementet til prosjekt i regnskapet.\n10. **Utenlandske artister** avvises (`UNSUPPORTED_TAX_REGIME`). Artister via byrå eller eget foretak er `NOT_PAYROLL`.\n\nKilde: R2-okosystem §4.3."
+   },
+   {
+    "id": "FL11",
+    "tittel": "Huma-synk",
+    "md": "Fase 1, sameksistens: Huma er HR-master, og Brutto eier lønn (B21).\n\n1. **Kunden** installerer Huma-koblingen. Den er en app på Bruttos plattform med egen OAuth-klient mot Humas API, og krever Standard- eller Premium-plan hos Huma.\n2. **Mapping per tenant:** kontraktstype, sluttårsak, fraværstyper og lokasjon til underenhet. AGA-sonen følger underenheten.\n3. **Huma** sender webhook ved endring av person, stilling, gruppe eller fravær. **Brutto** svarer 200 innen 1 sekund og behandler etterpå.\n4. **Koblingen** henter gjeldende tilstand fra Humas API («varsle, så hente»). Nøkkelen er Humas `user.id`.\n5. **Ny stilling** i samme juridiske enhet blir ny stillingsperiode i samme arbeidsforhold. Nytt arbeidsforhold opprettes bare ved ny juridisk enhet eller reell slutt. Uklare tilfeller blir utkast.\n6. **Fødselsnummer fra Huma** lagres uverifisert til skattekortet er hentet eller personen har bekreftet med BankID.\n7. **Kontonummer** importeres bare én gang ved oppstart, som signert batch med step-up. Senere endringer i Huma blir forslag som den ansatte bekrefter i Brutto.\n8. **Fravær:** Er Huma kilde, blir bare godkjent fravær lønnsgrunnlag. Lønnsansvarlig bekrefter antall fravær mot Humas rapport før cut-off, fordi Humas webhooks ikke har dokumentert retry.\n9. **Brutto lagrer** lønns-, fraværs- og arbeidsforholdshistorikk fra første dag. Humas API gir bare gjeldende lønn.\n10. **Tilbake til Huma** går lite. Huma har ingen API for lønnsresultat, så ansatte bruker Bruttos portal med SSO.\n\nReservevei: PAXml- eller CSV-eksport. Kilde: R2-okosystem §4.4 og [Huma API](https://openapi.humahr.com/v3/api-docs)."
+   },
+   {
+    "id": "FL12",
+    "tittel": "Endring av kontonummer",
+    "md": "1. **Ansatt** logger inn i portalen og ber om å endre kontonummer.\n2. **Brutto** krever step-up med BankID på høyt nivå.\n3. **Brutto** sjekker format og kontrollsiffer og lagrer kontonummeret kryptert som ny versjon.\n4. **Brutto** varsler den ansatte på den gamle kanalen (e-post eller SMS) uten beløp, og varsler lønnsansvarlig.\n5. **Karantene:** En endring mindre enn 5 virkedager før godkjenning krever fire øyne (forslag).\n6. **Arbeidsdeling:** Den som verifiserte kontoen, kan ikke godkjenne første betaling til den. Den som endret kontoen, kan ikke godkjenne kjøringen der endringen virker.\n7. **Avvikslisten** i neste kjøring viser «ny konto» per ansatt.\n8. **Godkjenneren i banken** ser antall, sum og hash av betalingsfilen og listen over nye kontoer. Da kan endringer i filen oppdages.\n9. **Konto fra integrasjoner** (Huma, OrgLab) brukes aldri direkte. Den blir et forslag som den ansatte bekrefter.\n10. **Ansatte uten BankID:** signert skjema, kontroll av to personer og logg.\n11. **Ny bekreftelse** kreves etter 12 måneder uten bruk (forslag).\n\nKontonummersvindel er en kjent angrepsvei mot lønn. Kilde: F-arkitektur §3.3, S-avklaringer §5 og R3-kritikk-domene D-46."
+   },
+   {
+    "id": "FL13",
+    "tittel": "Migrering og parallellkjøring",
+    "md": "1. **Porteføljeanalyse** hos byrået eller gjennomgang med direktekunden: lønnsarter, ordninger, trekk, fravær og spesialtilfeller. Kunder utenfor scope venter.\n2. **Kunden** gir tilgang til innsendte a-meldinger (XML før juni 2026, JSON etter) og bestiller avstemmingsrapport. Det er fasiten.\n3. **Import** via adapter (Tripletex, PowerOffice) eller Excel-mal: personer, arbeidsforhold med arbeidsforhold-ID, lønnsarter med flagg, faste linjer, dimensjoner, pensjon og bankkonto (bekreftes av den ansatte).\n4. **Saldoer:** hittil i år per a-meldingsbeskrivelse, feriepengegrunnlag per person, pågående arbeidsgiverperiode, egenmeldinger siste 12 måneder, inntekt siste 3 måneder for timelønte, trekkpålegg med KID og saldo, permisjons-ID og permitteringsuker.\n5. **Nye og importerte lønnsarter** går i karantene til lønnsfaglig har godkjent flaggene (GC-21).\n6. **Historisk skyggeberegning:** juni og desember fra forrige år beregnes i Brutto og sammenlignes med det gamle systemet.\n7. **Parallellkjøring:** to perioder for direktekunder, én periode pluss historisk skygge for enkle byråklienter. Alt som rapporteres, utbetales og bokføres skal være likt på øret.\n8. **Avvik** klassifiseres. Forklarte avvik blir nye gylne caser.\n9. **Go eller no-go per kunde.** Kunden signerer en akseptprotokoll.\n10. **Første ordinære a-melding** fra Brutto har alle løpende arbeidsforhold og permisjoner med samme ID-er. Ingen periode rapporteres fra to systemer.\n11. **Gammelt system** beholdes minst 3 måneder for retting av gamle perioder.\n12. **Etterslep:** Variabel lønn fra desember som betales i januar, betales én gang, i Brutto (GC-02).\n\nKilde: F-arkitektur §6 og R3-kritikk-domene (port M, EM.6, EM.8 og EM.9). Gylne caser GC-01 til GC-03."
+   },
+   {
+    "id": "FL14",
+    "tittel": "Feriepenger i juni",
+    "md": "1. **Mai:** Brutto beregner en prognose for junikjøringen. Lønnsfaglig kontrollerer et utvalg mot grunnlaget fra forrige år.\n2. **Grunnlag:** feriepengegrunnlaget fra opptjeningsåret per person, også migrerte grunnlag (diff 0 mot gammelt system).\n3. **Satser:** 10,2 % etter loven, 12 % ved avtalefestet femte ferieuke, og tillegg på 2,3 % for ansatte som fyller 60 år, med grunnlag begrenset til 6G. Hvilken G som gjelder, verifiseres.\n4. **NAV-perioder:** feriepenger for sykepengeperioder etter kundens valg, og NAV-dager (48) for refusjon.\n5. **Ferietrekk:** Trekk i lønn for ferie føres som egen linje og rapporteres aldri som negativ fastlønn.\n6. **Trekkfri juni:** Tabelltrekket bygger på 10,5 måneder, så juni er trekkfri for ansatte med tabellkort som var ansatt hele opptjeningsåret. Kort med 12 trekkmåneder gir fullt trekk. Hva som gjelder for junilønnen til delårsansatte, verifiseres (GC-05).\n7. **Brutto** lager kjøringen med forklaring per person og avviksliste.\n8. **Godkjenning, betaling og a-melding** som i FL1 og FL4.\n9. **Juli:** K27 for juni viser feriepenger av refusjonene (FL7). Avsetningen avstemmes mot hovedboken (2940).\n10. **Sluttede** får feriepenger i sluttoppgjøret.\n\nJuni er en av de to farligste månedene. Første juni med migrerte data bør simuleres i skygge for alle kunder, med 10 % manuell kontroll av lønnsfaglig. Kilde: D-praksis §2.3 og R3-kritikk-domene D-04. Gylne caser GC-04 og GC-05."
+   },
+   {
+    "id": "FL15",
+    "tittel": "Regelåret i desember",
+    "md": "1. **Oktober:** Statsbudsjettet legges fram. Brutto lager en forslagspakke for nytt år og simulerer effekten for kundene.\n2. **November:** Kunder som legger halvt trekk i november, er konfigurert. Halvt tabelltrekk gjelder bare vanlig lønn. Bonus, overtid, honorar, prosentkort og kort med 12 trekkmåneder får fullt trekk (GC-06).\n3. **Desember:** Budsjettet vedtas. Skatteetaten publiserer trekkrutine og trekktabeller. Datoene varierer fra år til år (verifiseres).\n4. **Lønnsfaglig og utvikler** godkjenner regelpakken for nytt år. Den publiseres som ren datarelease innen 5 virkedager.\n5. **Test:** 100 % treff mot alle trekktabeller, grønne gylne caser for nytt år, og release-diff for desember med gammel pakke uten avvik.\n6. **Skattekort for nytt år** hentes per kunde og klient i desember.\n7. **Kodefrys** for alt annet enn regelpakker fra ca. 10. desember.\n8. **Desemberlønnen** kjøres ofte tidlig, med halvt trekk.\n9. **Romjul:** vakt fra 27.12 til midten av januar.\n10. **Januar:** Hittil i år nullstilles, og feriepengegrunnlaget rulles over. AGA for november og desember forfaller 15.1. Sammenstillingsoppgaven lages (frist 31.1, hjemmel verifiseres).\n\nRegelpakker har flere virkningsdatoer enn 1.1: G fra 1.5, livsoppholdssatser fra 1.7 og særavtaler med egen gyldighet (D-43). Kilde: F-arkitektur §7.5 og D-praksis §2.4–2.5."
+   },
+   {
+    "id": "FL16",
+    "tittel": "Kildebytte: fra Huma-fravær til Brutto Fravær",
+    "md": "Eksempel: kunden flytter fravær fra Huma til Bruttos egen modul (fase 2 i B21).\n\n1. **Lønnsansvarlig** planlegger byttet med datatype, omfang og byttedato. Datoen må være første dag i en lønnsperiode.\n2. **Forberedelse:** Brutto Fravær settes opp med fraværstyper, godkjenningskjeder og policyer.\n3. **Skygge** i minst én periode: begge kilder leverer, og Brutto viser diff mellom Huma og Brutto Fravær.\n4. **Åpningsbalanse:** feriedager igjen, avspasering, egenmeldingsdager og arbeidsgiverperioder siste 12 måneder, og åpne fravær som krysser byttedatoen. Importen er en signert batch med prøvekjøring og step-up.\n5. **Bytte:** Brutto Fravær blir aktiv kilde. Huma får `SOURCE_RETIRED` for data fra byttedatoen. Linjer under behandling går ferdig.\n6. **Fravær over byttedatoen** deles. Huma eier delen før.\n7. **Overgangsvindu:** Huma kan rette egne linjer før byttedatoen i 2 lønnsperioder.\n8. **Kontroll:** Integrasjonsmonitoren sammenligner første periode med skyggeperioden.\n9. **Kunden** slår av fravær i Huma.\n10. **Tilbakerulling** er mulig til første kjøring etter byttet er godkjent.\n\nSamme prosedyre brukes for andre datatyper, og senere for HR-masteren (B34). Kilde: R2-okosystem §5.2 og §6."
+   }
+  ]
+ },
+ "videre": {
+  "tittel": "Veien videre",
+  "ingress_md": "Grunnlag for scope og MVP. Ingenting her er bestemt. Forslagene kommer fra de to kritikerne i runde 3 og er justert for gründerens avklaringer 28.10.2026, særlig B31 (kartlegg først), B32 (utlegg via integrasjoner) og B34 (lønn først). Datoer, beløp og anslag er kritikernes og må vurderes på nytt når scope settes.",
+  "seksjoner": [
+   {
+    "id": "v-mvp-forslag",
+    "tittel": "Strategikritikerens MVP-forslag og kohort",
+    "md": "**Status:** Forslag. Gründeren bestemmer scope og MVP senere (B31).\n\n**Kohort 1 (forslag):** maks 12 kunder og 1 500 lønnsmottakere (B25).\n- **1–2 designpartnerbyråer:** byråets egen lønn (20–150 ansatte) og 5–10 enkle klienter med 10–100 ansatte, fastlønn og timelønn, standard lønnsarter, OTP-innskudd, én juridisk enhet og ingen turnus.\n- **3–5 direktekunder:** 30–150 ansatte, organisasjoner ned til 20. Organisasjon, forening, forbund, stiftelse eller AS. Regnskap i Tripletex eller PowerOffice Go. Honorar og styrehonorar er med.\n\n**Holdes utenfor:** offentlig tjenestepensjon (KLP, SPK), lønnsstiger etter tariff, turnus, konsern med flere enheter, utenlandske artister og kunder over 150 ansatte. Domenekritikeren legger til ambulerende AGA, utsendte, sjøfolk, Svalbard, nettolønnsavtaler, lokallag med eget organisasjonsnummer og tapt arbeidsfortjeneste før Skatteetaten har svart.\n\n| Område | I forslaget |\n|---|---|\n| Mottakere | Person, arbeidsforhold (fast, midlertidig, tilkalling, honorar), stillingsperioder, underenhet, avdeling og prosjekt, mottakerklasse (B18) |\n| Lønnsarter | Sjurs standardutvalg på 26 og kundens egne som konfigurasjon. Ingen uttrykksspråk (B5) |\n| Beregning | Månedslønn, timelønn fra import, faste og variable tillegg, forklaringsspor per linje |\n| Forskuddstrekk | Trekkrutinen, frikort, 50 % uten kort, halvt trekk og junireglene |\n| AGA | Sone per underenhet, satser og fribeløp |\n| Feriepenger | 10,2 og 12 %, 60+, ferietrekk og utbetaling ved fratreden. Juniutbetalingen testet i god tid |\n| Fravær i kjernen | Egenmelding og sykmelding, AGP, refusjonsgrunnlag, permisjon og permittering i a-meldingen |\n| Trekk | Fagforening, pensjon, utleggstrekk (manuelt med KID), bidrag og trekk etter avtale |\n| Pensjon | OTP-innskudd og rapport til leverandør. Premien føres fra faktura |\n| Kjøring | Kalender, cut-off, testkjøring, avviksliste, fire øyne, ekstrakjøring, korreksjon og enkel retro, sluttoppgjør |\n| Grunnlag inn | Lønnsgrunnlag-API og CSV/Excel-import med mapping og idempotens |\n| Myndigheter | Maskinporten og systembruker, a-melding 2.3 og 2.4, tilbakemelding, erstatning, skattekort og Brreg |\n| Penger og regnskap | Betalingsforslag og pain.001 med KID. Bilag til Tripletex, PowerOffice Go og generisk fil |\n| Ansatte | Webportal med BankID: slipp med forklaring og kontonummer med skjold |\n| Byrå | Klientliste med status, klient-systembruker, samlehenting av skattekort og «send alle som er klare» |\n| Drift og sikkerhet | Data og backup i Norge, feltkryptering, revisjonslogg, roller, pentest, vakt og databehandleravtale |\n| Migrering | Myndighetsdata som fasit, adaptere, Excel-mal, saldoer hittil i år og parallellkjøring |\n\n**Domenekritikerens tillegg** (der lønn ellers blir feil)\n- AGA av OTP-premien med inndata per måned og underenhet (D-01).\n- Refusjonsreskontro med fristvarsel og K27-import (B33).\n- Naturalytelser: fri bil, elektronisk kommunikasjon og forsikringer (D-10).\n- Dagslinjer for timelønte, krav i bokføringsforskriften § 5-6 (D-11).\n- Systembeskrivelse etter bokføringsforskriften og AGA per sats og sone (D-30).\n- GRFS-pakke light for byrå fra første klient (D-34).\n- Personvern for særlig kategori og lagringsstedsregister (D-32, D-33).\n- Betalingskontroll med hash, forfallskalender med helligdager og bekreftet betalingsdato (D-24).\n- Overgangsregler ved systembytte og historisk skyggeberegning (D-07, D-18).\n- Reservevei for ansatte uten BankID og XML-eksport som reserve for a-meldingen (D-28, D-49).\n\n**Hva gründerens avklaringer endrer**\n- B32: ingen egen utleggsmodul. Godtgjørelsesmotoren og mottaket av utleggslinjer hører likevel til kjernen.\n- B34: HR, UTV, HEL og KOM er ute av første scope.\n- B20: modulene for ferie/fravær og timer er bestemt. Når de kommer, er åpent.\n- B33: K27 er bestemt, og reskontroen bør derfor med fra start.\n- B21: Huma-koblingen kommer tidlig bare hvis pilotkunder bruker Huma.\n\n**Manuelle reserveveier** hvis noe mangler i første versjon: inntektsmelding i NAVs portal (ca. 15 minutter per sak), trekkpålegg lest i Altinn og registrert med fire øyne (ca. 5 minutter), ferie og fravær fra Excel-mal, timer og utlegg som CSV, Huma via PAXml eller CSV, og a-melding som XML i Skatteetatens portal (alt anslag)."
+   },
+   {
+    "id": "v-faser",
+    "tittel": "Faseforslag",
+    "md": "**Status:** Forslag fra strategikritikeren. Gründeren har ikke satt noen fase eller dato (B19, B31). Tabellen viser logikken i rekkefølgen.\n\n| Fase | Periode i forslaget | Innhold | Port |\n|---|---|---|---|\n| 0 Team, tilgang og gående skjelett | Nå til 31.3.2027 | Tech lead, to lønnsfaglige, pilotavtaler, kapital, avtaler med myndighetene. Én ansatt med fastlønn går fra registrering til a-melding i TT02, bilagsfil og pain.001 | Team, piloter og finansiering signert. Gående skjelett virker |\n| 1 MVP til pilot | 1.4.2027 til 30.9.2027 | Lønnskjernen med fravær i kjernen, myndigheter, betaling og regnskap, lett ansattportal, lett byråkonsoll, migreringskit | Delport for motoren 1.6.2027. A-melding 2.3 i TT02 1.9.2027 |\n| 2 Lansering | 1.10.2027 til 31.1.2028 | Parallellkjøring, tidlig skarp drift for 1–2 lavrisikokunder (helst Brutto AS), a-melding 2.4, regelår 2028, funksjonsfrys fra 1.11.2027 | Go/no-go per kunde 1.12.2027. Første 2.4-frist 7.2.2028 |\n| 3 Bevise og bygge bredde | 2028 | Feriepenger i juni, lønnsoppgjør med retro, NAV-inntektsmelding via API, bankavstemming, byråmaler og kundeportal, offentlig API med utviklerportal, Utleggsappen og OrgLab, Huma-kobling, ferie og fravær som selvbetjening, ISAE type 1 | Minst 10 av 12 kunder fornyer. Juni og desember uten systemfeil |\n| 4 Skala og plattform | 2029 og senere | Timer, Tikket, bank-API, ISO 27001, SCIM, kunder med 150–300 ansatte, deretter HR-utvidelsen og erstatning av Huma per kunde | ARR minst 20 MNOK og break-even i 2030–2031 |\n\n**Merknader etter 28.10.2026**\n- HR-utvidelsen (B34) ligger i fase 4 eller senere i dette forslaget.\n- Domenekritikeren vil ha tre ekstra porter: regelår (22.12.2027), første 2.4-frist (7.2.2028) og feriepenger (1.5.2028).\n- Domenekritikeren vil ha trekkpålegg-API aktivert per kunde etter første a-melding, og inntektsmelding for sykepenger via API tidlig i første driftsår.\n- **Hvis noe glipper:** Neste vindu etter 1.1 er 1.3 (med to måneder hittil i år) eller 1.8 (etter feriepengene). Hver måneds forsinkelse koster 1,7–1,8 MNOK (anslag)."
+   },
+   {
+    "id": "v-kapasitet",
+    "tittel": "Omfang mot team og lønnsfag",
+    "md": "**Utviklerkapasitet før første produksjon (anslag fra strategikritikeren)**\n\n| Periode | Utviklere i snitt | Utviklermåneder |\n|---|---|---|\n| Nov 2026–jan 2027 | 1,5 | 4,5 |\n| Feb–mar 2027 | 3,5 | 7 |\n| Apr–sep 2027 | 6 | 36 |\n| Minus 30 % til drift, møter, testing og rekruttering, pluss effekt av kodeagenter | | ≈ 43 |\n| Okt–des 2027 med halv kapasitet til nytt arbeid | | + ≈ 10 |\n| **Sum** | | **≈ 50–55** |\n\n- Hele skjelettet: 250–400 utviklermåneder. MVP-forslaget: ca. 61. Gapet lukkes med innleide seniorer, kjøp av alt rundt motoren (B27) og en kuttliste.\n- Norske seniorutviklere har normalt 3 måneders oppsigelse.\n\n**Lønnsfaglig arbeid før første produksjon (anslag)**\n\n| Arbeid | Timer |\n|---|---|\n| 300 gylne caser med fasit og signatur | 600 |\n| Regelpakker, satser, trekkrutine og a-meldingskoder | 250 |\n| Gjennomgang av beregninger og avvikslister fra test | 400 |\n| Lønnsartkatalog, kontering og maler | 150 |\n| Migrering og mapping for 10–12 pilotkunder | 450 |\n| Parallellkjøring | 180 |\n| Hjelpetekster, supportrutiner og opplæring | 250 |\n| Spesifikasjon og akseptanse av a-melding 2.4 | 120 |\n| **Sum** | **≈ 2 400** |\n\nÉn lønnsfaglig gir ca. 1 400–1 500 produktive timer i året. To lønnsfaglige er minimum.\n\n**Kuttes sist hvis kapasiteten svikter** (forslag, i rekkefølge): PowerOffice-adapteren, klient-systembruker (bruk standard systembruker per klient), byråets arbeidskø, automatikk i sluttoppgjør, og til slutt ansattportalen."
+   },
+   {
+    "id": "v-porter",
+    "tittel": "Porter med terskler",
+    "md": "**Status:** Forslag fra domenekritikeren, bygget på strategikritikerens datoer. Datoene flyttes når scope og startdato er satt. Tersklene er det viktige.\n\n| Port | Terskler |\n|---|---|\n| Start | Team og piloter signert. Kontaktinfo sendt til NAV. Testscope for trekkpålegg bestilt. Svar fra Skatteetaten om lisens for trekkrutinen. Honorarspørsmålene sendt. Backup i Norge avklart |\n| Fundament | Gående skjelett. 0 gyldige fødselsnumre i klartekst i databasedump. Hash-kjeden i revisjonsloggen uten brudd. 0 lekkasjer mellom tenanter. Gjenoppretting med RPO ≤ 5 min og RTO ≤ 4 t |\n| Motor, delport | 100 % treff mot alle publiserte trekktabeller (alle tabeller, perioder og trinn). Minst 150 gylne caser, alle grønne |\n| Motor | Minst 300 caser fordelt etter dekningsmatrisen, minst 5 per relevant celle. Alle signert, 20 % kontrollsignert, minst 50 fra ekstern fasit. 10 invarianter × 10 000 tilfeller uten brudd. 1 000 kjøringer med stokket inndata gir byte-lik utdata. Mutasjonsscore ≥ 80 % på trekk, AGA, feriepenger og trekkø |\n| Regelår | Ny regelpakke innen 5 virkedager etter vedtak. 100 % treff mot nye trekktabeller. Release-diff for desember uten avvik |\n| Kjøring | Full måned for to syntetiske virksomheter på under én arbeidsdag. 50 innlagte feiltyper flagges 100 %. 100 gjentatte importer gir 0 doble linjer. 400 ansatte beregnes på under 10 s (p95). 0 godkjenninger av egen kjøring |\n| A-melding 2.3 | Godkjent i TT02 for minst 5 testvirksomheter uten avvisning. Scenarier med honorar, permisjon, permittering, samordnet trekk, to utbetalingsdatoer, erstatning og F532. Skattekort for 1 000 testpersoner. KID lik Skatteetatens KID-generator i 36 måneder. XML-eksport validerer |\n| A-melding 2.4 | Alle 2.3-scenarier gir semantisk lik 2.4. Syntetisk tvilling av hver kunde godkjent. Første produksjonsfrist uten avvisning som skyldes Brutto |\n| Penger | pain.001 godtatt i minst 2 banker med trekk som eget oppdrag. Ekte trekkbetaling med Bruttos KID gjenfunnet hos Skatteetaten. Lønn mot a-melding mot bilag diff 0. 2600 i null etter hver trekkbetaling |\n| Moduler | Byttetest mot ekstern CSV gir identisk lønn, a-melding og saldo. Modulkode kan ikke importere kjernens regelpakker. Inngående saldo migrert med diff 0 |\n| Ansattportal | 0 utbetalinger til konto endret i karantene uten fire øyne. 0 beløp eller fødselsnumre i varsler. Reservevei uten BankID testet |\n| Byrå | GRFS-pakke for 100 % av klientkjøringene. Samlehenting for 1 000 personer på under 15 min uten 429. 0 meldinger sendt for klienter uten godkjent kjøring |\n| Drift | Pentest uten høye funn. DPIA-mal og helseroller vurdert. Alt regnskapsmateriale i Norge. Systembeskrivelse publisert. Øvelse «Brutto nede T-2» gjennomført |\n| Migrering, per kunde | Hittil i år lik avstemmingsrapporten. 100 % bevarte arbeidsforhold-ID og permisjons-ID. Feriepengegrunnlag diff 0. Trekkpålegg kontrollert av to. To perioder lik på øret, eller én pluss historisk skygge. Gammelt system beholdes 3 måneder |\n| Feriepenger | Junikjøringen simulert i skygge for alle kunder. 10 % kontrollert manuelt uten uforklarte avvik |\n| Første år | 0 a-meldingsavvik som skyldes Brutto i 6 måneder. 0 trekkbetalinger etter forfall. 0 tapte NAV-refusjoner på grunn av fristen |"
+   },
+   {
+    "id": "v-risiko",
+    "tittel": "Topp 10-risiko",
+    "md": "Fra strategikritikeren, med tiltak fra begge kritikerne.\n\n| # | Risiko | Sannsynlighet | Konsekvens | Tidlig signal | Tiltak |\n|---|---|---|---|---|---|\n| 1 | Lønnsfeil hos en tidlig kunde blir kjent i byråmiljøet | Middels | Kritisk | Gylne caser under 100 %, uforklarte avvik i parallellkjøring | Lønnsfaglig vetorett (B28), trekkrutinen som orakel, release-diff, garanti (B24), kohortgrense (B25) |\n| 2 | Omfanget sprenger teamet | Høy | Kritisk | Gående skjelett ikke ferdig, arbeid på senere faser før motorporten | Omfangsregel (B22), kuttliste, ukentlig framdrift |\n| 3 | For lite lønnsfag, eller en nøkkelperson slutter | Middels–høy | Kritisk | To lønnsfaglige ikke signert, utviklere lager fasit | Rekrutter fra byråer, kjøp ekstern fasit, all fagkunnskap ned i caser |\n| 4 | Kapitalen tar slutt før første kohort har bevist produktet | Middels | Kritisk | Under 12 måneders runway ved pilotstart | B23, milepælsfinansiering, lave faste kostnader |\n| 5 | Piloter forplikter seg ikke, eller trekker seg | Middels | Høy | Ingen signert pilotavtale, kunden vil ikke dele a-meldingsdata | Dobbel løype (2 byråer, 5–7 direktekunder), gratis pilot, prisgaranti |\n| 6 | Myndighetene forsinker: 2.4, scopes, ustabilt TT02, sene trekktabeller | Middels | Høy | Scopes ikke innvilget, 2.4 ikke publisert 1.5.2027 | Start avtaler nå, versjonsuavhengig aggregat (B11), XML-reserve, vakt i romjulen |\n| 7 | Migreringsdata er ufullstendige og gir feil i juni | Middels–høy | Høy | Prøvemigrering med over 2 % avvik | Myndighetsdata som fasit, import av saldoer, feriepengetest i skygge |\n| 8 | Fokusdrift: nye krav tar kapasitet fra kjernen | Høy | Høy | Nye krav uten at noe tas ut | B22, B29, B34 og kvartalsvis kuttgjennomgang |\n| 9 | Konkurrentene svarer: Visma bunter, Intect tar «moderne og åpen» | Middels | Middels–høy | Intect får norske byråreferanser | Nisje, nøytralitet, kanalbeskyttelse, forsprang på beregningsspor og retro |\n| 10 | Sikkerhetshendelse eller lønnssvindel via endret kontonummer | Lav–middels | Kritisk | Høye pentestfunn, kunder ber om ISAE type 2 | Kontonummer-skjold (FL12), feltkryptering, step-up, data i Norge |\n\n**Rett under topp 10:** Huma begrenser API-et. Lav bruk av kundeportal svekker byrå-caset. Tolkning av KI-forordningen for avviksdeteksjon.\n\n**Domenekritikerens liste over hvor Brutto vil regne feil første år** (rangert): migrerte saldoer, lønnsartflagg fra gamle systemer, etterskuddsvis variabel lønn over systemskiftet, manuelle trekkpålegg, juni med 60+ og NAV-dager, AGA av OTP-premie og dobbelt fradrag for NAV-refusjon, honorar og mottakerklasse, retro uten følgevirkninger ved første lønnsoppgjør, KID og forfall rundt helligdager, første a-melding i 2.4, dimensjoner som regnskapet avviser, og nyansatte uten skattekort."
+   },
+   {
+    "id": "v-okonomi",
+    "tittel": "Økonomi og kapital (anslag)",
+    "md": "Alle tall er strategikritikerens anslag. De bygger på et team på 14 årsverk i første driftsår og må regnes på nytt når scope er satt.\n\n**Kostnad i første driftsår**\n\n| Post | Årsverk | MNOK per år |\n|---|---|---|\n| Utviklere | 6 | 8,4 |\n| Lønnsfaglige | 2 | 2,4 |\n| Produkt og design | 1,5 | 2,0 |\n| Support og implementering | 2 | 1,9 |\n| Salg og partner | 1 | 1,3 |\n| Sikkerhet og compliance (innleid) | 0,5 | 0,7 |\n| Daglig ledelse | 1 | 1,2 |\n| Drift, eID og verktøy | – | 1,2 |\n| Revisjon, ISAE, pentest, juridisk og forsikring | – | 1,8 |\n| **Sum** | **14** | **≈ 21** |\n\n**Kapitalbehov**\n\n| År | Kostnad | Inntekt | Netto |\n|---|---|---|---|\n| Nov–des 2026 | 1 | 0 | −1 |\n| 2027 | 15 | 0 | −15 |\n| 2028 | 21 | 1–2 | ca. −19,5 |\n| 2029 | 24 | 4–7 | ca. −18,5 |\n| 2030 | 26 | 15–20 | ca. −8,5 |\n| 2031 | 27 | 24–30 | ca. 0 |\n| **Sum til break-even** | | | **≈ −62** |\n\n**Break-even ved ca. 22 MNOK i årlig gjentakende inntekt**\n\n| Scenario | Volum | Tilsvarer |\n|---|---|---|\n| Bare direkte (69 kr) | 26 600 mottakere | ca. 270 kunder med 100 ansatte |\n| Bare byrå (25 kr i snitt) | 73 000 slipper per måned | ca. 8 byråer med 9 000 slipper |\n| Blandet | 13 000 direkte og 37 000 byråslipper | ca. 130 direktekunder og 4 byråer |\n\n- **Kapitalbehov:** 60–70 MNOK med seks måneders buffer.\n- **Forsinkelse:** seks måneder koster ca. 10 MNOK. En halvert kohort 2 skyver break-even ett år.\n- **Finansiering (forslag):** en første runde som dekker minst 24 måneder (25–30 MNOK), og neste runde på kunder i drift og en vellykket feriepengemåned.\n- **Spaken som endrer bildet mest, er byråvolum.** Et byrå med 20 000 slipper per måned er verdt ca. 6 MNOK i årlig inntekt.\n- **Markedet:** Programvaremarkedet for segmentet er 0,6–1,0 mrd. kr per år. Break-even krever ca. 2,5 % av de ansatte i målgruppen hvis alt går direkte."
+   },
+   {
+    "id": "v-pris",
+    "tittel": "Pris (forslag)",
+    "md": "**Status:** Forslag fra strategikritikeren (B17). Prisene skal testes i kundeintervjuer.\n\n| Element | Forslag |\n|---|---|\n| Enhet | Lønnsmottaker med minst én utbetaling i måneden |\n| Direkte: lønn med ansattportal, kontroll, myndigheter, regnskap og bankfil | 69 kr per mottaker per måned |\n| Direkte: minstepris | 1 490 kr per måned per juridisk enhet |\n| Honorar- og vervmottakere uten arbeidsforhold | 15 kr per mottaker med utbetaling |\n| Moduler for ferie/fravær og timer | 15–25 kr per ansatt per modul, eller i pakke |\n| Byrå (byrået kjører lønnen) | Netto 29 kr per slipp for 0–2 000 slipper, 25 kr for 2 000–10 000 og 22 kr over 10 000. Ingen brukerpris og ingen oppstart. Valgfritt årstak |\n| Veiledende utpris i byråkanalen | 45–60 kr, så byrået kan vise påslag |\n| Onboarding direkte | Gratis for første kohort. Deretter fastpris 15 000–40 000 kr for kunder over 50 ansatte |\n| Pilot | Gratis i en periode, deretter 24 måneders prisgaranti |\n\n**Prinsipper**\n- «Per aktiv ansatt» må defineres. En organisasjon med 3 000 tillitsvalgte som får ett honorar i året, skal ikke betale for alle hele året.\n- Byråpris gjelder bare når byrået kjører lønnen. Det hindrer at direktekunder kjøper via byrå for å få lavere pris.\n- Lov ingen fast byråmargin. Byrået kjøper minutter per slipp og tar selv 150–250 kr per slipp.\n- Samlepakken lønn og Utleggsappen er mulig så lenge den aldri endrer teknisk tilgang (B2, B32).\n\n**Sammenligning:** Visma Payroll 57–100 kr per ansatt, NettLønn 39 kr per slipp, Tripletex 65 kr per bruker for lønn og reise, Uni Micro i byrå ca. 10 kr per slipp (anslag)."
+   },
+   {
+    "id": "v-segment",
+    "tittel": "Segment og go-to-market",
+    "md": "**Gapet i markedet:** Mellom de lette systemene (Tripletex, PowerOffice) og de tunge (SD Worx, Visma Payroll) ligger kunder med ca. 30–300 ansatte. De opplever de lette som for enkle og Visma Payroll som rigid.\n\n**Byrå eller direkte først**\n\n| | Byrå først | Direkte først |\n|---|---|---|\n| Kunder per salg | 5–10 klienter per beslutning | 1 |\n| Brukere | Lønnsfolk som tåler reserveveier | Ofte én lønnsansvarlig som trenger mer hjelp |\n| Inntekt per kunde | Lav, per slipp | Høyere |\n| Ekstra funksjoner | Klient-systembruker og arbeidskø | Ansattportal og godkjenning |\n| Risiko | Januar er høysesong. Én feil koster byrået en klient | Salgssyklus på 3–9 måneder |\n\n**Strategikritikerens anbefaling:** første kohort ledes av byrå, med en liten direkte organisasjonsnisje ved siden av.\n- **Skarpeste første segment:** enkle klienter hos ett uavhengig designpartnerbyrå. Kjøperen er byråets fagleder for lønn. Byrået er referansen.\n- **Nummer to:** interesseorganisasjoner og forbund med 20–150 ansatte, gjerne fra OrgLab-nettverket. Visma og SD Worx bryr seg lite om en nisje på noen hundre enheter, og smerten med honorar og verv er reell.\n\n**Organisasjonene må deles i tre**\n\n| Delsegment | Behov | Når (forslag) |\n|---|---|---|\n| Interesseorganisasjoner, forbund, idrett og kultur | Honorar, styrehonorar, verv, lokallag, 10 000-kronersregelen | Tidlig |\n| Stiftelser og forskning med prosjektlønn | Prosjektfordeling, timer som dokumentasjon, retroaktiv omfordeling | Når timer og fordeling er modne |\n| Helse og omsorg | Tariff (HUK), KLP og turnus | Senere |\n\nDet finnes 703 stiftelser og 1 594 foreninger med 10–999 ansatte. Frivillighetsregisteret har 1 638 enheter med minst 10 ansatte.\n\n**Slik vinnes de første kundene uten referanser (forslag)**\n1. Tell OrgLab-kunder med minst 10 ansatte. List uavhengige byråer med 3–15 lønnsfolk som har hatt problemer med Altinn 3 eller mistet et system.\n2. Signer 2 byråer og 5–7 direktekunder for å ende med 1 byrå og 3–5 direktekunder.\n3. Tilbudet: gratis pilot, gratis migrering, navngitt implementeringsansvarlig, parallellkjøring med avviksrapport, beregningsgaranti og designpartnerstatus.\n4. Mål det byrået betaler for: minutter per slipp, andel kjøringer uten manuell korrigering og avvik i a-meldingen.\n\n**Utløsere for bytte** i markedet: tvungen migrering (Visma Lønn stengt for lønnskjøring fra 2024), Altinn 3, oppkjøp der kjeden standardiserer, og systemer som ikke takler større klienter. Altinn 3 er hygiene innen Brutto lanserer."
+   },
+   {
+    "id": "v-gylne-caser",
+    "tittel": "Gylne caser: de 22 nye",
+    "md": "Domenekritikeren foreslår 22 nye caser. Fasiten fylles ut og signeres av lønnsfaglig. Usikre regler må avklares før casen blir fasit.\n\n| Id | Case | Hva den tester |\n|---|---|---|\n| GC-01 | Sykefravær over systemskiftet | AGP-dager fra gammelt system, refusjon fra riktig dag, inntekt siste 3 måneder importert |\n| GC-02 | Etterslep av variabel lønn | Desemberovertid betalt i januar én gang, med regler for nytt år |\n| GC-03 | ID-kontinuitet | Samme arbeidsforhold-ID og permisjons-ID etter bytte, permittering rapportert |\n| GC-04 | Juni med 60+ og NAV-dager | 12 % trekkfritt, 2,3 % av inntil 6G, valg FULL eller BEGRENSET |\n| GC-05 | Trekkfritak i juni | Delårsansatt og kort med 12 trekkmåneder |\n| GC-06 | Halvt trekk flyttet til november | Bare tabelltrekk på vanlig lønn halveres |\n| GC-07 | Samordnet trekk avløser gammelt | Ulike koder, kontoer og KID. Gammelt trekk avsluttes |\n| GC-08 | Samordnet trekk ved to utbetalinger | Beløp i løpet av måneden, prosent ved hver utbetaling |\n| GC-09 | Avtalt trekk uten avtale | Blokkeres. Fordring på 1570 i stedet |\n| GC-10 | F532 ved redusert trekk | Erstatning av januar-meldingen, aldri negativ sum |\n| GC-11 | Ekstrakjøring etter innsendt a-melding | Erstatning med fullt innhold og to forfallsdatoer |\n| GC-12 | Forfall rundt helligdager | Lønn onsdag før påske gir forfall tirsdag etter. Julaften er uavklart |\n| GC-13 | Styrehonorar og frilans | 50 % trekk uten kort, ingen feriepenger, styrehonorar til ansatt |\n| GC-14 | 10 000-regelen | Skattefri organisasjon, terskel nådd i oktober |\n| GC-15 | Honorarmottaker i annen sone | AGA-sone for frilans og tapt arbeidsfortjeneste |\n| GC-16 | Kostnadsfordeling endres midt i måneden | Linjen deles, AGA og feriepenger fordeles, summen stemmer på øret |\n| GC-17 | AGA av OTP-premie fra faktura | Fordeling per sone etter pensjonsgrunnlag |\n| GC-18 | NAV-refusjon og AGA-metode | Fradrag ved mottak eller i forskutteringsmåneden, aldri begge |\n| GC-19 | Omsorgsdager | Kvote, arbeidsgivers 10 dager og refusjon fra dag 11 |\n| GC-20 | Gradert sykmelding for timelønt | AGP-lønn etter snitt (§ 8-28) |\n| GC-21 | Kundens lønnsart med feil flagg | Karantene til lønnsfaglig har godkjent |\n| GC-22 | Skattekort mangler, nytt kort etter godkjenning | 50 % trekk og valg ved nytt kort |\n\n**Også prioritert:** fri bil med lav kontantlønn, for mye utbetalt lønn med avtale om tilbakebetaling, avvisning av timelønn med bare månedssum, og permittering etter permisjon med 26-ukersteller over migrering."
+   },
+   {
+    "id": "v-kopiering",
+    "tittel": "Hva konkurrentene kan kopiere",
+    "md": "Fra strategikritikeren. Konklusjonen: bygg det varige først, og hold det som kan kopieres billig.\n\n| Funksjon | Kopieres innen 6 måneder? | Hvorfor |\n|---|---|---|\n| Spør lønnsslippen med KI | Ja | Språkmodell over eksisterende data. Visma markedsfører allerede KI |\n| KI-tekst over avviksrapporten | Ja | Ser lik ut i en demo |\n| Kontonummer-skjold | Ja | Liten funksjon |\n| Veiviser for systembruker | Ja | Alle må løse Altinn 3 |\n| Godkjenning på mobil | Ja | Visma Manager finnes |\n| Feriepengeprognose og nettoforklarer | Ja | Små funksjoner |\n| Åpen pris | Ja | En beslutning. Intect har det allerede |\n| Avviksbasert godkjenning med årsak fra beregningssporet | Nei | Motoren må lagre forklaringsspor. Gamle motorer må bygges om |\n| Retro med automatisk differanse for trekk og AGA | Nei | Krever historikk og uforanderlige kjøringer. Vismas største svakhet |\n| A-melding-aggregat med enkle korrigeringer | Nei | Arkitektur |\n| Migrering med myndighetsdata som fasit | Delvis | Kan kopieres med folk, men tar tid |\n| GRFS-dokumentasjon byrået eier i 5 år | Delvis | Lite tyder på at konkurrentene løser det |\n| Mottakerklasser og honorarflyt for organisasjoner | Nei | Markedet er for lite for Visma og SD Worx |\n| Nøytralitet: ingen regnskap og ingen BPO | Nei | Visma eier regnskapet. SD Worx har egen tjenesteenhet |\n\n**Sannsynlige svar fra konkurrentene**\n- **Visma:** rabatt og gratis migrering via partnere. Styrker lønn i Tripletex og PowerOffice for 30–100 ansatte.\n- **SD Worx:** ignorerer kunder under 100 ansatte og gir byråpartnere bedre vilkår.\n- **Intect:** den farligste. Norsk versjon siden april 2025, åpent API og offentlig pris. Konkurrer på byråflyt, kontroll med forklaring og organisasjonsnisjen.\n- **ECIT og NettLønn:** kan flytte NettLønn-kunder til Intect (ikke verifisert). Et tvunget bytte er en mulighet.\n- **Huma:** kan begrense API-et hvis Brutto annonserer erstatning (B30)."
+   },
+   {
+    "id": "v-hr-utvidelse",
+    "tittel": "HR-utvidelsen senere",
+    "md": "**Status:** Avklart at HR kommer senere (B34). Målet om å erstatte Huma ligger fast (B21). Når og hvordan er åpent.\n\n**Hva HR-utvidelsen omfatter** (områdene HR, UTV, HEL og KOM, med SD Worx sin HR-meny som referanse)\n\n| Område | Innhold | SD Worx-meny |\n|---|---|---|\n| HR | Onboarding og offboarding, dokumentarkiv, arbeidsavtaler med e-signering, utstyr, organisasjonskart | People, Organization |\n| UTV | Kompetanse, jobbprofiler, GAP-analyse, sertifikater, kurs, medarbeidersamtaler og mål | Competence, Perform, SalaryReview |\n| HEL | Sykefraværsoppfølging etter aml. § 4-6, oppfølgingsplan, dialogmøter, tilrettelegging | Health, Back2Work |\n| KOM | Startside, kunngjøringer, meldinger, varslingssentral, arbeidsflyt og prosessoversikt | Home, Dashboard Management, Messages, Process Overview |\n\n**Hva som ligger i lønn fra start** og gjør utvidelsen mulig: person- og arbeidsforholdsmodell, kilderegister, dokumentlager, e-signering for trekkavtaler, importrammeverk, organisasjonsmodell og ansattportal. Se arkitekturseksjonen «Grunnmur for HR-utvidelsen».\n\n**Veien til å erstatte Huma** (forslag fra R2-okosystem §6), per kunde:\n1. **Sameksistens:** Huma er HR-master. Brutto kjører lønn og lagrer historikk (FL11). Videre når 3 perioder på rad er uten avvik.\n2. **Brutto tar fravær og timer** med kildebytte (FL16). Videre når Brutto Fravær har vært kilde i 3 perioder og HR-kjernen finnes.\n3. **Brutto tar HR-masteren:** skyggeperiode, bytte ved periodeskifte, Huma skrivebeskyttet i 3 måneder, deretter oppsigelse. Dokumenter og signerte arbeidsavtaler må hentes som masseeksport, fordi Humas API ikke har dem.\n\n**Hva kritikerne sa**\n- Strategi: Å erstatte Huma er et nytt marked med en ny kjøper (HR-sjefen). Det hører hjemme når Brutto har minst 100 lønnskunder og minst 20 % av dem har bedt om det (forslag til utløser).\n- Strategi: Medarbeidersamtaler og utstyr kan overlates til partnere.\n- Domene: Sykmeldinger og søknader er HR- og helsedata med kortere slettefrist enn bilag.\n\n**Åpent:** utløseren for å starte HR-utvidelsen, og hvor dypt HR, UTV, HEL og KOM skal kartlegges nå."
+   },
+   {
+    "id": "v-for-scope",
+    "tittel": "Hva må avklares før scope",
+    "md": "Disse punktene bør være besvart før gründeren setter scope og MVP. Detaljer og eier står i fanen med åpne spørsmål.\n\n**Gründeren**\n1. Kapital: hvor mye er sikret, og hvor mange måneder gir det (B23).\n2. Lønnsfag: hvem er lønnsfaglig nr. 1 og 2, og hvor mye kan gründeren selv være fasit (B28).\n3. Rangering av dato, omfang og kvalitet når noe må gi seg. Strategikritikeren anbefaler kvalitet først, så dato, så omfang.\n4. Første segment og kohort: byrå, organisasjoner eller begge (B3, B25).\n5. Når modulene for ferie/fravær og timer kommer i forhold til lønnskjernen (B20).\n6. Lønnsartmodellen: trekkmetode, halvt trekk, pensjonsgrunnlag og hvordan OTP-premien kommer inn (B5).\n7. Standard AGA-metode for NAV-refusjon (B33).\n8. Om målet om å erstatte Huma holdes internt (B30), og hva som utløser HR-utvidelsen (B34).\n9. Hvor høy beregningsgaranti gründeren vil gi (B24).\n\n**Markedet**\n10. Kundeintervjuer: 15 byråer og 10 organisasjoner. Pris, bruk av kundeportal og hvilke systemer de har.\n11. Antall OrgLab-kunder med minst 10 ansatte, og hvilket lønnssystem de bruker.\n12. Hvor mange av de mulige pilotkundene bruker Huma.\n\n**Myndighetene og juridisk**\n13. Lisens for Skatteetatens trekkrutine. Påvirker stack (B8).\n14. Honorarpunktene hos Skatteetaten. Avgjør om organisasjonsnisjen kan være med tidlig (B18).\n15. NAVs svar om inntektsmeldinger fra lønnssystem (B33).\n16. Jurist om beregningsgaranti, implementeringsstøtte og ansvarsgrensen (B4, B24).\n17. Revisor om § 7-5 eller § 7-7 og backup i Norge (B9).\n\n**Partnerne**\n18. Eierskap og løfter til Utleggsappen, OrgLab og Tikket. Rekkefølgen på kontraktene (B2).\n19. Huma: API-tilgang, eksport av dokumenter og om Huma vil samarbeide (B21).\n\n**Teknisk**\n20. Tech lead. Stacken velges etter det (B8)."
+   }
+  ]
+ },
+ "sporsmal": [
+  {
+   "tittel": "Hvor mye kapital er sikret, og hvor lang runway gir det?",
+   "omrade": "Gründer",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvor mye kapital som er sikret, og om gründeren er forberedt på 60–70 MNOK før break-even i 2030–2031 (anslag).\n\n**Hvorfor det betyr noe:** Kapitalen bestemmer teamstørrelsen, og teamstørrelsen bestemmer hvor stort første scope kan være. Hver måned uten kunder koster 1,7–1,8 MNOK (anslag).\n\n**Stopper:** scope og MVP (B23, B31).\n\n**Forslag:** Sett et kapitalmål som dekker minst 24 måneder, og la scope følge det."
+  },
+  {
+   "tittel": "Hvem er lønnsfaglig nr. 1 og 2, og hvor mye kan gründeren selv være fasit?",
+   "omrade": "Gründer",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvem de to lønnsfaglige blir, når de kan starte, og hvor mange timer i uka gründeren selv kan signere fasit.\n\n**Hvorfor det betyr noe:** Det trengs ca. 2 400 lønnsfaglige timer før første produksjon (anslag). Én lønnsfaglig gir 1 400–1 500 timer i året. Med én lønnsfaglig feiler planen, uansett antall utviklere og kodeagenter.\n\n**Stopper:** gylne caser, regelpakker, migrering og vetoretten i B28.\n\n**Forslag:** Rekrutter fra byråer, NettLønn eller SD Worx-partnere. Kjøp 150–250 timer ekstern fasit fra et byrå eller en lønnsrevisor (B27)."
+  },
+  {
+   "tittel": "Hva gir seg først: dato, omfang eller kvalitet?",
+   "omrade": "Gründer",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Gründerens rangering når noe må gi seg.\n\n**Hvorfor det betyr noe:** Alle porter og kuttlister bygger på denne rangeringen. Strategikritikeren anbefaler kvalitet først, så dato, så omfang. Én kjent lønnsfeil kan drepe selskapet.\n\n**Stopper:** scope-reglene (B22) og go/no-go-kriteriene (B26).\n\n**Forslag:** Skriv rangeringen ned som en beslutning før scope-arbeidet starter."
+  },
+  {
+   "tittel": "Hvilke byråer og direktekunder kan bli piloter?",
+   "omrade": "Gründer",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvilke byråer og direktekunder gründeren kan navngi i dag, og om gründeren selv eller en nær partner har en lønnsavdeling som kan være pilotbyrå nr. 1 med egen lønn.\n\n**Hvorfor det betyr noe:** Pilotene bestemmer hvilke lønnsarter, regnskapssystemer, banker og integrasjoner som må med først. Uten piloter er scope gjetning.\n\n**Stopper:** kohort og scope (B3, B25), og valget av regnskapsadaptere.\n\n**Forslag:** Ha to byråer og 5–7 direktekunder i løypa for å ende med 1 byrå og 3–5 direktekunder."
+  },
+  {
+   "tittel": "Når skal modulene for ferie/fravær og timer komme?",
+   "omrade": "Gründer",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Modulene er bestemt (B20). Rekkefølgen i forhold til lønnskjernen er ikke bestemt.\n\n**Hvorfor det betyr noe:** Strategikritikeren vil ha fraværsreglene i kjernen fra start og selvbetjeningen senere, og timer etter det. Domenekritikeren gir et faglig minimum for hver modul. Modulene koster kapasitet i den perioden kjernen er mest utsatt.\n\n**Stopper:** scope for FRA og TID.\n\n**Forslag:** Bestem om første versjon har fraværsregler i kjernen med registrering hos lønn, og la selvbetjeningen komme når kjernen er stabil."
+  },
+  {
+   "tittel": "Hvordan skal lønnsartmodellen utvides, og hvordan kommer OTP-premien inn?",
+   "omrade": "Lønnsfag",
+   "status": "Stopper",
+   "eier": "Gründer (Sjur)",
+   "md": "**Uklart:** Sjurs lønnsartmodell har nummer, a-meldingskode, fire flagg og to kontoer (S-avklaringer §6). Domenekritikeren mener den mangler trekkmetode (tabell eller prosent), halvt trekk, pensjonsgrunnlag, retro, opplysningspliktig og krav til antall (D-02). Det er også uklart om OTP-premien kommer inn manuelt eller fra regnskapet.\n\n**Hvorfor det betyr noe:** Uten trekkmetode får bonus og overtid tabelltrekk og halveres i desember. Uten premie per måned blir AGA for lav hos alle OTP-kunder (D-01).\n\n**Stopper:** datafeltene i LON, KJO og PEN.\n\n**Forslag:** Gründeren bestemmer feltene før kartleggingen av LON avsluttes."
+  },
+  {
+   "tittel": "Hva sier 15 byråer og 10 organisasjoner om pris, portal og behov?",
+   "omrade": "Marked",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Om byråene vil betale per slipp, om kundene deres faktisk bruker en kundeportal, og hvilke systemer organisasjonene har.\n\n**Hvorfor det betyr noe:** Pris og bruk av kundeportal er de største antakelsene i byrå-caset. Lav portalbruk svekker hele argumentet om minutter per slipp.\n\n**Stopper:** segmentvalg (B3), pris (B17) og omfanget av byrå- og portalfunksjoner.\n\n**Forslag:** 15 intervjuer med fagledere for lønn i byrå og 10 med organisasjoner, før scope settes."
+  },
+  {
+   "tittel": "Hvor mange OrgLab-kunder har minst 10 ansatte?",
+   "omrade": "Marked",
+   "status": "Stopper",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvor mange OrgLab-kunder som er store nok, og hvilket lønnssystem de bruker i dag.\n\n**Hvorfor det betyr noe:** Organisasjonsnisjen er strategikritikerens andre segment. Synergien med OrgLab er reell bare hvis det finnes nok kunder med minst 10 ansatte.\n\n**Stopper:** valget mellom byrå og organisasjoner som første segment (B3).\n\n**Forslag:** Tell i OrgLabs kundebase og spør om lønnssystem."
+  },
+  {
+   "tittel": "Får Brutto bruke Skatteetatens trekkrutine?",
+   "omrade": "Myndigheter",
+   "status": "Stopper",
+   "eier": "Skatteetaten og jurist",
+   "md": "**Uklart:** Repoet `Skatteetaten/trekktabell` har ingen lisensfil. Det er uklart om koden kan brukes i produksjon, eller bare som testorakel.\n\n**Hvorfor det betyr noe:** Det er strategikritikerens hovedargument for Kotlin/JVM. Uten lisens må trekkrutinen implementeres fra de publiserte tabellene og verifiseres 100 %.\n\n**Stopper:** stackvalget (B8) og trekkberegningen.\n\n**Forslag:** Send skriftlig spørsmål til Skatteetaten nå. [Trekkrutinen på GitHub](https://github.com/Skatteetaten/trekktabell)"
+  },
+  {
+   "tittel": "Honorar: tapt arbeidsfortjeneste, styrehonorar til ansatt, sone for frilans og 10 000-grensen",
+   "omrade": "Myndigheter",
+   "status": "Stopper",
+   "eier": "Skatteetaten",
+   "md": "**Uklart:**\n- Riktig a-meldingsbeskrivelse for tapt arbeidsfortjeneste.\n- Arbeidsforholdstype når en ansatt også får styrehonorar.\n- Hvilken AGA-sone som gjelder for frilans-arbeidsforhold.\n- Om 10 000-grensen gjelder per organisasjon, og om trekkfrie godtgjørelser teller.\n\n**Hvorfor det betyr noe:** Alle fire treffer organisasjonsnisjen med en gang (D-09). Kunder med uavklarte tilfeller må holdes utenfor.\n\n**Stopper:** scope for ORL og om organisasjoner kan være i første kohort (B3, B18).\n\n**Forslag:** Send skriftlig spørsmål tidlig. Gylne caser GC-13 til GC-15."
+  },
+  {
+   "tittel": "Skal målet om å erstatte Huma holdes internt, og hva utløser HR-utvidelsen?",
+   "omrade": "Gründer",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvorfor Huma spesifikt (kunder, eierinteresser eller avtale), om målet kommuniseres eksternt, og hva som skal utløse HR-utvidelsen (B34).\n\n**Hvorfor det betyr noe:** Huma kan begrense API-tilgangen hvis Brutto annonserer at det skal erstatte Huma (B30). HR har en annen kjøper enn lønn.\n\n**Gjelder:** B21, B30, B34 og kartleggingen av HR, UTV, HEL og KOM.\n\n**Forslag:** Hold målet internt til Brutto har mange lønnskunder. Strategikritikeren foreslår utløseren «minst 100 lønnskunder og minst 20 % ber om HR»."
+  },
+  {
+   "tittel": "Hvem er de første kundene i tidlig skarp drift, og kan Brutto AS være først?",
+   "omrade": "Gründer",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvem som eventuelt går i skarp drift før hovedkohorten.\n\n**Hvorfor det betyr noe:** Tidlig drift gir ekte a-meldinger, ekte KID-betaling og en ekte desember. Den gir også to systemer i samme inntektsår, så Brutto må lage hele årets sammenstillingsoppgave med importert hittil i år (D-27). Brutto AS sin egen lønn er det tryggeste valget (D-55).\n\n**Gjelder:** B19 og FL13.\n\n**Forslag:** Bestem dette når startdato settes."
+  },
+  {
+   "tittel": "Hvilken AGA-metode skal være standard ved NAV-refusjon?",
+   "omrade": "Lønnsfag",
+   "status": "Åpen",
+   "eier": "Gründer (Sjur)",
+   "md": "**Uklart:** Kunden kan trekke refusjonen fra AGA i forskutteringsmåneden, eller når refusjonen mottas og K27 dokumenterer den.\n\n**Hvorfor det betyr noe:** Systemet må hindre at begge metoder brukes. Er refusjonen lavere enn beregnet, må forskutteringsmåneden korrigeres (D-08, GC-18).\n\n**Gjelder:** B33, FL7 og områdene FRA og MYN.\n\n**Forslag:** Gründeren velger standard. Metoden lagres per kunde."
+  },
+  {
+   "tittel": "Hvor mange av de mulige pilotene bruker Huma?",
+   "omrade": "Marked",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "**Uklart:** Om pilotkundene bruker Huma, og hvilken plan de har.\n\n**Hvorfor det betyr noe:** Huma-koblingen er Må bare hvis en pilotkunde bruker Huma (OK-183). Ellers kan den vente.\n\n**Gjelder:** B21, FL11 og scope for PLA.\n\n**Forslag:** Spør i kundeintervjuene."
+  },
+  {
+   "tittel": "Gjelder F532 per melding eller per måned?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Skatteetaten",
+   "md": "**Uklart:** Om summen av forskuddstrekk per lønnsutbetalingsdato gjelder per melding eller per kalendermåned, og hvilken meldingsstrategi Skatteetaten anbefaler ved flere kjøringer i måneden.\n\n**Hvorfor det betyr noe:** En korreksjon som reduserer trekket for en tidligere dato kan ikke sendes som egen melding. Den må erstatte meldingen med den datoen (D-16).\n\n**Gjelder:** B11, FL4, GC-10 og GC-11.\n\n**Forslag:** Inntil svar: én melding per opplysningspliktig og måned, erstattet ved hver endring."
+  },
+  {
+   "tittel": "Hvordan rettes 2027-perioder etter overgangen til 2.4?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Skatteetaten",
+   "md": "**Uklart:** Om rettinger av perioder i 2027 sendes i format 2.3 eller 2.4 etter 1.1.2028, og om manuell XML-opplasting finnes for 2.4.\n\n**Hvorfor det betyr noe:** En erstatningsmelding krever hele månedens innhold. For migrerte kunder ligger 2027 i det gamle systemet (D-20). Reserveveien for a-meldingen krever XML (D-28).\n\n**Gjelder:** B11, B16 og FL13.\n\n**Forslag:** Krev i pilotavtalen at gammelt system beholdes minst 3 måneder."
+  },
+  {
+   "tittel": "KID-algoritme, AGA-termin og virkedager rundt jul",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Skatteetaten",
+   "md": "**Uklart:** Algoritmen for kontrollsifferet i KID (posisjon 18–19), terminkoden for AGA, og om 24.12 og 31.12 er virkedager ved forfall av forskuddstrekk.\n\n**Hvorfor det betyr noe:** Forskuddstrekket forfaller før a-meldingen er levert, så Brutto må lage KID selv. Feil KID eller feil forfall gir trekk betalt for sent (D-24).\n\n**Gjelder:** B12, FL1, FL4 og GC-12.\n\n**Forslag:** Test mot Skatteetatens KID-generator, og sammenlign med KID i tilbakemeldingen (MYN-19). [Skatteetaten om KID](https://www.skatteetaten.no/samarbeidspartnere/sluttbrukersystemer/sbs-nyheter/forskuddstrekk-betalingsoppdrag-og-kid/)"
+  },
+  {
+   "tittel": "Halvt trekk og trekkfri juni i spesialtilfeller",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Skatteetaten",
+   "md": "**Uklart:** Halvt trekk ved 14-dagers- og ukelønn og ved prosentkort, og trekkfritak i juni for dem som ikke var ansatt hele opptjeningsåret.\n\n**Hvorfor det betyr noe:** Juni og desember er de farligste månedene (D-04, D-05).\n\n**Gjelder:** FL14, FL15, GC-05 og GC-06.\n\n**Forslag:** Send spørsmål sammen med honorarpunktene."
+  },
+  {
+   "tittel": "AGA av OTP-premie: tidspunkt, administrasjonskostnad og sone",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Revisor og Skatteetaten",
+   "md": "**Uklart:** Om AGA av OTP-premien følger betalingstidspunktet, om administrasjonskostnader inngår, og hvordan premien fordeles per sone.\n\n**Hvorfor det betyr noe:** Premien føres fra faktura (S-avklaringer §6 pkt. 29), men AGA-grunnlaget skal i a-meldingen. Uten inndata blir AGA for lav hver termin (D-01, GC-17).\n\n**Gjelder:** PEN, KJO og MYN.\n\n**Forslag:** Fordel per sone etter pensjonsgrunnlag inntil svar. Kontroll: «OTP-kunde uten premie i terminen»."
+  },
+  {
+   "tittel": "Kan byrået bruke klientsystem uten REGN, og hvem gjelder kvoten for?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Digdir, Altinn og Skatteetaten",
+   "md": "**Uklart:** Om byrået får `regnskapsforer-lonn` ved delegering fra klienten uten å være registrert som regnskapsfører (REGN). Om kvoten på 5 samtidige kall per API gjelder byrået eller hver klient.\n\n**Hvorfor det betyr noe:** Samlehenting av skattekort og «send alle som er klare» avhenger av svaret (D-21). `regnskapsforer-lonn` gir heller ikke Krav og betalinger, så byrået kan ikke sjekke via API om trekket er betalt.\n\n**Gjelder:** B10, FL3 og BYR."
+  },
+  {
+   "tittel": "Får en privat leverandør ID-porten-klient for klientdelegering?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Digdir",
+   "md": "**Uklart:** Om Brutto kan få ID-porten-klient for Altinns klientdelegerings-API, og når den utvidede systembrukermodellen (én systembruker for egen virksomhet og klienter) kommer.\n\n**Hvorfor det betyr noe:** Uten ID-porten-klient må byrået knytte klienter i Altinn-portalen. Det tar tid ved mange klienter.\n\n**Gjelder:** B10 og FL3.\n\n**Forslag:** Bygg Altinn-portalen som standard reservevei, og la arkitekturen tåle begge modellene."
+  },
+  {
+   "tittel": "Hvilke inntektsmeldinger kan sendes fra lønnssystem?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "NAV",
+   "md": "**Uklart:** nav.no sier at bare sykepenger kan sendes fra lønnssystem. API-oversikten viser API-er for foreldrepenger, svangerskapspenger og sykdom i familien. Omsorgspenger går via Min side fra 21.5.2026.\n\n**Hvorfor det betyr noe:** Manuell innsending krever at noen hos kunden har personlig tilgang til særlig kategori i Altinn eller hos NAV.\n\n**Gjelder:** B33 og FL7.\n\n**Forslag:** Send kontaktinfo til NAV (krav i bruksvilkårene) og spør om status. Bygg de andre bak funksjonsbryter."
+  },
+  {
+   "tittel": "Kommer bidragstrekk i Trekkpålegg-API-et?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Skatteetaten (Innkrevingsmyndigheten)",
+   "md": "**Uklart:** Om bidragstrekk kommer som samordnet trekk i API-et, eller fortsatt som brev. Innkrevingssentralen for bidrag ble slått sammen med Skatteetatens innkreving 1.1.2026.\n\n**Hvorfor det betyr noe:** Brutto trenger uansett manuell registrering av trekk fra brev. Svaret avgjør hvor mye som kan automatiseres.\n\n**Gjelder:** TRK og FL6.\n\n**Forslag:** Spør fremtidensinnkreving@skatteetaten.no."
+  },
+  {
+   "tittel": "Holder fast arbeidsplan med registrerte avvik etter aml. § 10-7?",
+   "omrade": "Myndigheter",
+   "status": "Åpen",
+   "eier": "Arbeidstilsynet",
+   "md": "**Uklart:** Om en fast arbeidsplan der bare avvik registreres, oppfyller kravet til oversikt over arbeidstid for fastlønte.\n\n**Hvorfor det betyr noe:** Svaret avgjør hvor tung timemodulen må være for kunder uten tidssystem (B20). Timelønte trenger uansett timer per dag (bokføringsforskriften § 5-6).\n\n**Gjelder:** TID.\n\n**Forslag:** Spør før timemodulen designes."
+  },
+  {
+   "tittel": "Hvor mye beregningsgaranti vil gründeren gi, og hvem får vetorett?",
+   "omrade": "Juridisk",
+   "status": "Åpen",
+   "eier": "Gründer og jurist",
+   "md": "**Uklart:** Tak og forsikring for garantien (B24), hvem som får lønnsfaglig vetorett på releaser (B28), og om garantien, implementeringsstøtten og gratis migrering holder seg innenfor rollen som programvareleverandør.\n\n**Hvorfor det betyr noe:** Finanstilsynet regulerer ikke en ren programvareleverandør. Tar Brutto ansvar for resultatet av regnskapsføringen, kan det endre seg (D-35). Garantien bør si «vi dekker», og kunden eller byrået kjører og godkjenner.\n\n**Gjelder:** B4, B24, B28 og pilotavtalene.\n\n**Forslag:** Jurist vurderer mot regnskapsførerloven § 2-1 før pilotavtaler signeres."
+  },
+  {
+   "tittel": "Hvilken hjemmel og frist har sammenstillingsoppgaven?",
+   "omrade": "Juridisk",
+   "status": "Åpen",
+   "eier": "Jurist og Skatteetaten",
+   "md": "**Uklart:** Kildene spriker. D-praksis sier at Skatteetaten sender den. B-myndigheter sier at hjemmelen ikke er verifisert. GRFS og ferieloven § 10 krever en sammenstilling. Det er også uklart om gammelt system kan lage den når Brutto har rapportert deler av året.\n\n**Hvorfor det betyr noe:** Tidlig skarp drift og plan B-datoer gir to systemer i samme inntektsår (D-27, D-36).\n\n**Gjelder:** FL13, FL15 og RAP.\n\n**Forslag:** Behandle den som lovkrav med frist 31.1 til jurist har svart."
+  },
+  {
+   "tittel": "§ 7-5 eller § 7-7, og krever forskriften backup et annet sted?",
+   "omrade": "Juridisk",
+   "status": "Åpen",
+   "eier": "Revisor",
+   "md": "**Uklart:** S-avklaringer viser til bokføringsforskriften § 7-5 for lagring utenfor Norge. R2-moduler viser til § 7-7. Det er også uklart om forskriften krever backup på en annen lokasjon, eller om det var Sally-arbeidets tolkning.\n\n**Hvorfor det betyr noe:** Svaret avgjør om backup må ligge i Norge for at kundene skal slippe meldeplikten (B9).\n\n**Gjelder:** arkitekturseksjonen om oppbevaring og SIK."
+  },
+  {
+   "tittel": "Behandlingsgrunnlag og DPIA for helse- og fagforeningsdata",
+   "omrade": "Juridisk",
+   "status": "Åpen",
+   "eier": "Personvernrådgiver",
+   "md": "**Uklart:** Behandlingsgrunnlag etter GDPR art. 9 for helse (sykefravær, sykelønnsarter, K27, NAV-dokumenter) og fagforening (trekk). Slettefrist for sykmeldinger og søknader. Om personlige kontonumre i kontaktdata også skal krypteres.\n\n**Hvorfor det betyr noe:** Dette er med fra første lønnskjøring. Det mangler DPIA-mal, rollen «Lønn – helse» og maskering (D-33).\n\n**Gjelder:** B36, SIK og FRA.\n\n**Forslag:** Rådgiver vurderer løsningen før drift."
+  },
+  {
+   "tittel": "Hvem eier Utleggsappen, OrgLab og Tikket, og hva er de lovet?",
+   "omrade": "Partnere",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "**Uklart:** Eierskap og hva søsterproduktene er lovet om tilgang og rekkefølge. Om en kommersiell samlepakke (lønn og Utleggsappen) er greit.\n\n**Hvorfor det betyr noe:** Like vilkår (B2) må gjelde begge veier. Har produktene samme eier, må katalogen merke dem «samme eier». Lik tilgang betyr ikke lik rekkefølge.\n\n**Gjelder:** B2, B30, B32 og rekkefølgen på kontraktene.\n\n**Forslag:** Skriv en likebehandlingserklæring og publiser listen over designpartnere."
+  },
+  {
+   "tittel": "Hvem eier kvitteringsarkiv og MVA for utlegg?",
+   "omrade": "Partnere",
+   "status": "Åpen",
+   "eier": "Gründer og revisor",
+   "md": "**Uklart:** Om Utleggsappen eller regnskapet eier kvitteringsarkivet og MVA-behandlingen når utlegg bare går via integrasjoner (B32).\n\n**Hvorfor det betyr noe:** Fradragsforbud for representasjon og kost, kvitteringskrav og dublettkontroll må ligge ett sted. Lønnsbilaget skal ikke ha MVA når utlegget bokføres i regnskapet.\n\n**Gjelder:** UTL og REG.\n\n**Forslag:** Avklar med Utleggsappen og revisor. Brutto lagrer bare kvitteringsreferanse og hash."
+  },
+  {
+   "tittel": "Huma: API-tilgang, fravær uten retry og eksport av dokumenter",
+   "omrade": "Partnere",
+   "status": "Åpen",
+   "eier": "Gründer og Huma",
+   "md": "**Uklart:** Om Huma gir stabil API-tilgang til en framtidig konkurrent, om fraværshendelser kan sendes på nytt, og hvordan dokumenter og signerte arbeidsavtaler kan eksporteres.\n\n**Hvorfor det betyr noe:** Humas API krever Standard- eller Premium-plan. Fravær finnes bare som webhook uten dokumentert retry. Dokumenter, arbeidsavtaler og lønnshistorikk finnes ikke i API-et.\n\n**Gjelder:** B21, FL11, FL16 og HR-utvidelsen (B34).\n\n**Forslag:** Ha PAXml- eller CSV-eksport som reservevei. Krev fraværsavstemming før cut-off. Avklar eksportveien med Huma før fase 3."
+  },
+  {
+   "tittel": "Hvilken pain.001-versjon krever pilotbankene?",
+   "omrade": "Partnere",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "**Uklart:** Om bankene krever pain.001.001.03 eller .09, og om de godtar forskuddstrekk som eget oppdrag uten SALA-merking i samme fil.\n\n**Hvorfor det betyr noe:** KID kan falle bort hvis trekket merkes som lønn. Hver lønnsutbetalingsdato gir egen frist.\n\n**Gjelder:** B12 og BET.\n\n**Forslag:** Spør bankene til de første pilotkundene."
+  },
+  {
+   "tittel": "Hvem blir tech lead, og hvordan kvalitetssikres kode fra kodeagenter?",
+   "omrade": "Teknisk",
+   "status": "Åpen",
+   "eier": "Gründer",
+   "md": "**Uklart:** Hvem som blir tech lead, om kodeagenter skal skrive hovedtyngden av koden, og hvordan agentskrevet kode i lønnskjernen kvalitetssikres.\n\n**Hvorfor det betyr noe:** Begge kritikerne mener stacken bør følge tech lead (B8). Den største risikoen med kodeagenter er kode som ser riktig ut og er faglig feil. Den fanges av orakelet: signerte caser, trekktabeller, release-diff og mutasjonstesting.\n\n**Gjelder:** B8, B28 og arkitekturseksjonene om stack og test.\n\n**Forslag:** Finn tech lead før stacken velges. Lås reglene for kodeagenter (D-48) fra dag én."
+  },
+  {
+   "tittel": "Kan backup ligge i Azure Norway West eller hos en norsk leverandør?",
+   "omrade": "Teknisk",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "**Uklart:** Azure Norway West har reservert tilgang. Det er uklart om Brutto får bruke den, eller om backup må ligge hos en norsk lagringsleverandør.\n\n**Hvorfor det betyr noe:** Data og backup i Norge sparer kundene for meldeplikt og er et salgsargument (B9). Valget begrenser også valget av skyleverandør.\n\n**Gjelder:** B9 og drift.\n\n**Forslag:** Avklar med Microsoft og en norsk leverandør før stack og hosting velges."
+  },
+  {
+   "tittel": "Hvilken BankID-megler, og hva koster innlogging?",
+   "omrade": "Teknisk",
+   "status": "Åpen",
+   "eier": "Teknisk",
+   "md": "**Uklart:** Valg av megler (for eksempel Signicat eller Criipto/Idura) og pris per innlogging. Pris for Maskinporten for private er heller ikke funnet.\n\n**Hvorfor det betyr noe:** Innlogging og step-up brukes i ansattportalen, ved godkjenning og ved kontonummerendring (B14, FL12). Prisen påvirker kostnaden per ansatt.\n\n**Gjelder:** B14, B27 og POR.\n\n**Forslag:** Hent tilbud fra to meglere når scope er satt."
+  }
+ ]
+}
