@@ -1098,7 +1098,7 @@
   {
    "id": "PLA",
    "navn": "Plattform og integrasjoner",
-   "ingress_md": "PLA er Bruttos offentlige plattform: REST-API som egne moduler også bruker, appregistrering og installasjon med samtykke, kilderegister og kildebytte, skrivekontraktene for lønnsgrunnlag og fravær, webhooks, sandkasse med tidsmaskin, integrasjonsmonitor, integrasjonskatalogen, agent-API og bruksmåling. Brukerne er utviklere hos partnere og i Brutto, kundens IT-ansvarlige, lønnsansvarlig og byrå. PLA eier tilkoblingen og kontrakten. Fagreglene for dataene som kommer inn, eies av områdene de hører til (FRA, TID, UTL, ORL, REG, BET, PEN, MYN). Myndighetsintegrasjonene eies av MYN (K4) og vises i samme katalog med status per kunde.",
+   "ingress_md": "PLA er Bruttos offentlige plattform: REST-API som egne moduler også bruker, appregistrering og installasjon med samtykke, kilderegister og kildebytte, skrivekontraktene for lønnsgrunnlag og fravær, webhooks, sandkasse med tidsmaskin, integrasjonsmonitor, integrasjonskatalogen, MCP og agenttilgang, og bruksmåling. Brukerne er utviklere hos partnere og i Brutto, kundens IT-ansvarlige, lønnsansvarlig og byrå. PLA eier tilkoblingen og kontrakten. Fagreglene for dataene som kommer inn, eies av områdene de hører til (FRA, TID, UTL, ORL, REG, BET, PEN, MYN). Myndighetsintegrasjonene eies av MYN (K4) og vises i samme katalog med status per kunde. Alt i Brutto skal kunne gjøres via API og MCP (B41).",
    "grupper": [
     {
      "id": "PLA.1",
@@ -1107,9 +1107,10 @@
       {
        "id": "F-PLA-01",
        "navn": "Offentlig REST-API som egne moduler også bruker",
-       "beskrivelse_md": "Ett offentlig REST-API beskrevet i OpenAPI 3.1 dekker alt egne moduler, søsterprodukter og tredjeparter trenger. Bruttos egne moduler for fravær, timer og HR er egne OAuth-klienter og installasjoner og kaller den samme gatewayen.\n\n- Operasjoner merkes offentlig eller internt. Bygget stopper hvis en modul kaller noe som ikke er offentlig.\n- Byttetest i CI: de gylne scenarioene kjøres med egen modul og med en åpen referanseintegrasjon. Lønnsresultat, a-melding og bilag skal være like på øret.",
+       "beskrivelse_md": "Ett offentlig REST-API beskrevet i OpenAPI 3.1 dekker alt egne moduler, søsterprodukter og tredjeparter trenger. Bruttos egne moduler for fravær, timer og HR er egne OAuth-klienter og installasjoner og kaller den samme gatewayen.\n\n- Operasjoner merkes offentlig eller internt. Bygget stopper hvis en modul kaller noe som ikke er offentlig.\n- Byttetest i CI: de gylne scenarioene kjøres med egen modul og med en åpen referanseintegrasjon. Lønnsresultat, a-melding og bilag skal være like på øret.\n- Skjermbildene er også en klient. En paritetstest i CI stopper bygget hvis en handling i skjermbildet mangler i API-et eller ikke kan nås via MCP. Operasjoner merket `kun_menneske` står på en unntaksliste (B41, F-PLA-37).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
+       "fase1": "Fase 1",
        "roller": [
         "Utvikler (partner)",
         "Brutto modulteam",
@@ -1164,6 +1165,7 @@
        "beskrivelse_md": "All skriving er idempotent med `Idempotency-Key` og naturlig nøkkel (installasjon, eksternId, revisjon). Batch på opptil 1 000 linjer gir status per linje. Et dry-run-endepunkt validerer med samme regler som mottaket. Feil har maskinlesbar årsakskode med forklaring på norsk og engelsk.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
+       "fase1": "Fase 1",
        "roller": [
         "Utvikler (partner)",
         "Brutto modulteam"
@@ -1192,6 +1194,7 @@
        "beskrivelse_md": "Grenser for antall kall per installasjon står i dokumentasjonen og i `RateLimit`-headere. Over grensen svarer API-et 429 med `Retry-After`. Volum håndteres med batch. Lønnsdagen prioriteres for kjernen.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
+       "fase1": "Fase 1",
        "roller": [
         "Utvikler (partner)",
         "Brutto drift"
@@ -1240,6 +1243,7 @@
        "beskrivelse_md": "Én sandkasse-tenant per utviklerkonto med syntetiske ansatte og honorarmottakere, ferdig mapping av lønnsarter og test-BankID. Tidsmaskinen flytter klokka og utløser cut-off, godkjenning, betaling, a-meldingskvittering og returnert betaling.\n\n- `POST /sandbox/clock:advance`\n- `POST /sandbox/pay-runs/{id}:approve|pay|report|return-payment`",
        "niva": "Kjerne",
        "behovsvekt": "Må",
+       "fase1": "Fase 1",
        "roller": [
         "Utvikler (partner)",
         "Brutto modulteam"
@@ -1634,6 +1638,7 @@
        "beskrivelse_md": "Brutto sender webhooks med feltnavn etter CloudEvents og signering, `webhook-id` og tidsstempel etter Standard Webhooks. Levering minst én gang med eksponentiell backoff i inntil 72 timer, leveringslogg i 30 dager og manuell replay. `GET /events?after=<sequence>` er fasiten. Webhooks er bare varsling.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
+       "fase1": "Fase 1 design",
        "roller": [
         "Utvikler (partner)",
         "IT-ansvarlig",
@@ -2102,15 +2107,15 @@
     },
     {
      "id": "PLA.6",
-     "navn": "Agent-API og MCP",
+     "navn": "MCP og agenttilgang",
      "funksjoner": [
       {
        "id": "F-PLA-32",
        "navn": "Agentidentitet og agentpakke",
-       "beskrivelse_md": "En agent opptrer «på vegne av» en navngitt bruker med agentflagg. Rettighetene er snittet av brukerens rettigheter og agentpakken `agent.utkast`. Revisjonsloggen viser «agent X på vegne av Y». Kvoter per agent.",
+       "beskrivelse_md": "En agent opptrer «på vegne av» en navngitt bruker med agentflagg. Rettighetene er snittet av brukerens rettigheter og agentpakken kunden har valgt, for eksempel `agent.les` eller `agent.skriv`. Revisjonsloggen viser «agent X på vegne av Y». Kvoter per agent.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
-       "fase1": "Fase 1 design",
+       "fase1": "Fase 1",
        "roller": [
         "Kunde-admin",
         "IT-ansvarlig",
@@ -2134,20 +2139,21 @@
         "R2-okosystem §3.7",
         "F-arkitektur §3.3"
        ],
-       "merknad_md": "Se også F-PLA-33 og F-PLA-36."
+       "merknad_md": "Se også F-PLA-33, F-PLA-36 og F-PLA-37."
       },
       {
        "id": "F-PLA-33",
-       "navn": "MCP-server oppå det offentlige API-et",
-       "beskrivelse_md": "Et tynt MCP-lag med verktøy for å lese status, frister og avvik, forklare beregnede linjer fra beregningssporet, simulere og lage utkast til lønnsgrunnlag som et menneske godtar i UI.",
-       "niva": "Integrasjon",
-       "behovsvekt": "Bør",
+       "navn": "MCP-server med samme dekning som API-et",
+       "beskrivelse_md": "En remote MCP-server gjør alt i Brutto tilgjengelig for kundens og byråets egne agenter (B41). Den bruker de samme domenetjenestene og den samme tilgangskontrollen som REST-API-et.\n\n- Agenten kan lese og skrive: hente A07, oppdatere ansattinfo, opprette lønnsutkast og sende a-melding (B41).\n- 10–15 arbeidsflytverktøy i fase 1: klienter, ansatte, henting av A07, jobbstatus, kontroller, avvik med forklaring og tallene bak grafene. Lønnsutkast og a-melding kommer i fase 2.\n- To generelle verktøy finner og utfører resten av operasjonene i API-et, så agenten når alt uten at alle verktøyene lastes.\n- Alle verktøy er merket som lesing eller skriving. Merkingen er et hint til klienten, og sikkerheten ligger i Brutto.\n- Handlinger med rettsvirkning lager en forespørsel. Et menneske bekrefter med BankID på Bruttos egen side (F-PLA-37).\n- Svarene er strukturerte og korte, med cursor.",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "fase1": "Fase 1",
        "roller": [
         "Lønnsansvarlig",
         "Byrå",
         "Agent"
        ],
-       "regler_md": "Lønnsdata går ikke til språkmodell via MCP i første versjon. Verktøysvar gir bare metadata, statuskoder, antall og id-er [S §3 pkt. 11–12]. Fritekst fra integrasjoner merkes som uklarert data [OK-146]. Byråagenter leser metadata på tvers av klienter uten persondata [OK-148].",
+       "regler_md": "Samme tilgangskontroll og policy som API-et. Skriving følger kilderegisteret (`409 NOT_SOURCE_OF_TRUTH`). Agenten kan aldri bekrefte en handling med rettsvirkning (B13, F-SIK-31). Kundens egen agent kan lese og skrive lønnsdata og persondata når kunden har slått på MCP. Gründeren endret S §3 pkt. 11 for dette 29.10.2026 (B41). Fødselsnummer, kontonummer og adresse er maskert som standard, og helse og fagforening går ikke ut via MCP (J10). Fritekst fra integrasjoner merkes som uklarert data [OK-146]. Byråagenter leser metadata på tvers av klienter uten persondata [OK-148].",
        "data": [
         "D-Lonnsgrunnlag",
         "D-Beregningsspor",
@@ -2167,9 +2173,48 @@
        ],
        "kilder": [
         "R2-okosystem §3.7",
-        "R2-moduler-integrasjoner §6.17"
+        "R2-moduler-integrasjoner §6.17",
+        "B41",
+        "R6-api-mcp §4",
+        "R6-api-mcp §7"
        ],
-       "merknad_md": "Strategikritikken: ingen KI i produksjon før Q4 2028 [R3-kritikk-strategi B13]. Se også F-PLA-32, F-PLA-36 og F-SIK-31."
+       "merknad_md": "Endret 29.10.2026 etter B41: fra et tynt lag med bare lesing og utkast (Bør) til full dekning i fase 1 (Må). Strategikritikken la MCP med bare lesing og utkast i fase 4 [R3-kritikk-strategi E5.9]. B41 går mot det, se J13. Se også F-PLA-32, F-PLA-36, F-PLA-37 og F-SIK-31."
+      },
+      {
+       "id": "F-PLA-37",
+       "navn": "Bekreftelse av handlinger startet via API eller MCP",
+       "beskrivelse_md": "Når en agent eller integrasjon starter en handling med rettsvirkning, lager Brutto en forespørsel med forhåndsvisning, hash av innholdet og frist. Brutto ber klienten åpne Bruttos egen side med URL-elicitation. Klienter uten støtte får status `venter_pa_bekreftelse` og lenken i svaret. Et menneske med riktig rolle bekrefter med BankID. Godkjenningsflyten og arbeidsdelingen gjelder som i skjermbildet (B39).\n\n**Handlinger som krever bekreftelse.** Dette er den eneste listen. De andre stedene viser hit.\n- godkjenning av lønnskjøring\n- innsending som ikke bygger på en godkjent lønnskjøring, for eksempel inntektsmelding og rettelser. A-melding for en godkjent kjøring kan agenten sende selv, fordi godkjenningen låser innholdet med hash (avklart 29.10.2026, J05)\n- bestilling av skattekort\n- betaling og betalingsfil\n- endring av kontonummer\n- roller, tilgang, arbeidsdelingsunntak og agenttilgang\n- systembruker, fullmakter og klientdelegering, som kunden bekrefter i Altinn\n- samtykke og installasjon av apper\n- eksport av persondata og importbatcher (F-SIK-03)\n\n**Regler**\n- Agenten kan hente status. Den kan aldri bekrefte.\n- Endres innholdet etter forhåndsvisningen, faller forespørselen bort.\n- Lenken inneholder ingen personopplysninger, og Brutto sjekker hvem som bekrefter (R6 §1).\n- Rollemodellen skiller retten til å starte fra retten til å bekrefte. Agentroller får aldri rett til å bekrefte (D-Rolledefinisjon).\n- En handling agenten starter på vegne av en bruker, teller som brukerens egen. Krever arbeidsdelingen fire øyne, må en annen person bekrefte (G04).",
+       "niva": "Kjerne",
+       "behovsvekt": "Må",
+       "fase1": "Fase 1",
+       "roller": [
+        "Lønnsansvarlig",
+        "Kunde-admin",
+        "Lønnskonsulent (byrå)",
+        "Agent"
+       ],
+       "regler_md": "B13 og B41. Step-up med BankID forutsetter B14 og I01. Ansatte uten BankID bruker reserveveien i D-49. Forespørsel og bekreftelse logges med hash i revisjonsloggen (P8). I fase 1 gjelder det systembruker, roller og tilgang (J05).",
+       "data": [
+        "D-Godkjenning",
+        "D-Revisjonslogg",
+        "D-Rolledefinisjon"
+       ],
+       "integrasjoner": [
+        "BankID"
+       ],
+       "behov": [
+        "OK-141",
+        "OK-145",
+        "OK-147",
+        "OK-149"
+       ],
+       "kilder": [
+        "B41",
+        "B13",
+        "B39",
+        "R6-api-mcp §1"
+       ],
+       "merknad_md": "Ny 29.10.2026. Se også F-PLA-32, F-PLA-33 og F-SIK-31."
       },
       {
        "id": "F-PLA-36",
@@ -2183,7 +2228,7 @@
         "Lønnsansvarlig",
         "Regnskapsfører"
        ],
-       "regler_md": "- Assistenten kan aldri sende, bestille, godkjenne eller betale. Det håndheves i tilgangskontrollen, ikke i prompten (F-SIK-31).\n- Språkmodellen får bare metadata, statuskoder og id-er i første versjon.\n- Handlinger logges som «assistent på vegne av bruker» (F-PLA-32).",
+       "regler_md": "- Assistenten er en klient under samme policy som andre agenter. Den kan starte handlinger og kan aldri bekrefte dem (F-PLA-37). Tilgangskontrollen håndhever det (F-SIK-31).\n- Språkmodellen får bare metadata, statuskoder og id-er i første versjon.\n- Handlinger logges som «assistent på vegne av bruker» (F-PLA-32).",
        "data": [
         "D-Integrasjon",
         "D-Revisjonslogg",
@@ -3186,10 +3231,10 @@
       {
        "id": "F-SIK-31",
        "navn": "Agentgrenser og KI-policy",
-       "beskrivelse_md": "Harde grenser i policymodulen, ikke i prompten: agenter kan lese, forklare og lage utkast, men aldri godkjenne, sende a-melding eller inntektsmelding, utbetale, bestille skattekort, endre kontonummer eller roller, installere apper, gi samtykke eller fullmakt.\n\n- Lønnsdata går ikke til språkmodell i første versjon.\n- Modellsamtaler om lønn krypteres og krever lønnstilgang. Resultatlogger har bare antall, statuskoder og id-er.\n- Kunden slår KI på per tenant. Ansattvendte funksjoner kan slås av separat.\n- Kodeagenter får aldri tilgang til produksjonsdata, og kan ikke endre forventede verdier i gylne filer, regelpakker eller a-meldingsmapping uten lønnsfaglig godkjenning.",
+       "beskrivelse_md": "Policymodulen håndhever grensene. Agenter kan lese, skrive, forklare, lage utkast og starte handlinger via API og MCP (B41). De kan aldri bekrefte handlingene i F-PLA-37. Det gjør et menneske med BankID.\n\n- Gründeren endret S §3 pkt. 11 den 29.10.2026. Kundens egen agent kan lese og skrive lønnsdata via MCP (B41, J10). Bruttos egen assistent sender ikke lønnsdata til språkmodell før X02 er besvart.\n- Modellsamtaler om lønn krypteres og krever lønnstilgang. Resultatlogger har bare antall, statuskoder og id-er.\n- Kunden slår KI på per tenant. Ansattvendte funksjoner kan slås av separat.\n- Kodeagenter får aldri tilgang til produksjonsdata, og kan ikke endre forventede verdier i gylne filer, regelpakker eller a-meldingsmapping uten lønnsfaglig godkjenning.",
        "niva": "Kjerne",
        "behovsvekt": "Må",
-       "fase1": "Fase 1 design",
+       "fase1": "Fase 1",
        "roller": [
         "Kunde-admin",
         "IT-ansvarlig",
@@ -3219,7 +3264,7 @@
         "F-arkitektur §5.3",
         "R3-kritikk-domene D-48"
        ],
-       "merknad_md": "Se også F-PLA-32, F-PLA-33 og F-PLA-36."
+       "merknad_md": "Se også F-PLA-32, F-PLA-33, F-PLA-36 og F-PLA-37."
       },
       {
        "id": "F-SIK-32",
@@ -13448,11 +13493,11 @@
    "md": "Strategikritikken foreslår én enhet: mottaker med utbetaling i måneden, egen pris for honorarmottakere og byråpris per slipp (B17). R2-byra bruker lønnsslipp som enhet. F-PLA-35 teller begge. Gründeren må velge før D-Abonnement.prisenhet og fakturagrunnlaget låses."
   },
   {
-   "tittel": "Agent-API uten lønnsdata i første versjon",
+   "tittel": "Lønnsdata via MCP etter B41",
    "omrade": "PLA",
    "status": "Åpen",
-   "eier": "Gründer",
-   "md": "S §3 pkt. 11 sier at lønnsdata ikke går til språkmodell via MCP i første versjon. F-PLA-33 gir derfor bare metadata, statuskoder, antall og id-er. Det begrenser verdien av «forklar lønnsslippen» via agent. Bekreft at agentpolicyen (Må) bygges nå og MCP-serveren (Bør) venter, slik strategikritikken anbefaler."
+   "eier": "Juridisk",
+   "md": "Gründeren bestemte 29.10.2026 at kundens egen agent kan lese og skrive lønnsdata via MCP (B41). Det som står igjen, er personvernet. Se «Personvern når kundens agent leser og skriver lønnsdata via MCP» under Åpne spørsmål, og J10 i fanen Fase 1."
   },
   {
    "tittel": "ESG og lønnstransparens: hvor mye nå",

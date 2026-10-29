@@ -17,6 +17,11 @@
     ""
    ],
    [
+    "J",
+    "API og MCP",
+    "Alt i Brutto skal kunne gjøres via API og MCP, nesten uten skjerm (B41). Agenten skal kunne lese og skrive: hente A07, oppdatere ansatte, lage lønnsutkast og sende a-melding. Et menneske godkjenner lønn og betaling med BankID."
+   ],
+   [
     "D",
     "Data og database",
     ""
@@ -288,6 +293,143 @@
     "q": "Hvor ligger konfigurasjon og hemmeligheter?",
     "why": "",
     "forslag": "Hemmeligheter i et administrert nøkkelhvelv. Aldri i repoet eller i miljøfiler i produksjon.",
+    "valg": []
+   },
+   {
+    "id": "J01",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan sikrer vi at API-et og MCP dekker alt skjermbildet kan?",
+    "why": "B41 krever at alt kan gjøres via API og MCP. Uten en automatisk sjekk glipper det etter noen måneder.",
+    "forslag": "Frontend kaller bare offentlige operasjoner i OpenAPI. Hver handling i skjermbildet merkes med operasjons-id. En test i CI feiler hvis operasjonen mangler i API-et eller ikke kan nås via MCP.",
+    "valg": [
+     "Paritetstest i CI",
+     "Sjekkliste ved review",
+     "Begge"
+    ]
+   },
+   {
+    "id": "J02",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Kontrakt først eller kode først?",
+    "why": "A03 foreslår OpenAPI generert fra koden. Strategikritikeren ville ha kontrakt først for lønnsgrunnlag-API-et (B2). Kontrakten er en del av produktet, så noen må lese og vurdere den. Diff i hver PR gir den samme gjennomlesingen, og kontrakt og kode kan ikke gli fra hverandre.",
+    "forslag": "Kode først med utoipa 6 og utoipa-axum, som gir OpenAPI 3.1. Den genererte filen sjekkes inn, og hver PR viser diff i kontrakten. Spectral stopper dårlige navn, og oasdiff stopper brytende endringer (R6 §3).",
+    "valg": [
+     "Kode først med innsjekket kontrakt",
+     "Kontrakt først, skrevet for hånd",
+     "Kode først uten innsjekket kontrakt"
+    ]
+   },
+   {
+    "id": "J03",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan lager vi MCP-serveren?",
+    "why": "Anthropic fraråder ett verktøy per endepunkt. Mange verktøy gir dårligere treff og bruker mye kontekst før samtalen starter (R6 §4). Samtidig skal alt kunne gjøres via MCP (B41).",
+    "forslag": "rmcp montert i axum, med låst versjon. 10–15 arbeidsflytverktøy i fase 1 med prefikset brutto_. To generelle verktøy finner og utfører resten av operasjonene i API-et med samme tilgangskontroll. Alle verktøy bruker de samme domenetjenestene som REST-API-et.",
+    "valg": [
+     "Arbeidsflytverktøy og to generelle verktøy",
+     "Ett verktøy per endepunkt",
+     "Bare arbeidsflytverktøy"
+    ]
+   },
+   {
+    "id": "J04",
+    "prio": 1,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan logger agenter inn?",
+    "why": "Agenten skal alltid handle på vegne av en navngitt person (F-PLA-32), og byråets nattjobber trenger tilgang uten at noen sitter ved skjermen. rmcp har OAuth bare på klientsiden, og Claude og Copilot Studio bruker fortsatt DCR, som spesifikasjonen har faset ut (R6 §1, §2).",
+    "forslag": "OAuth 2.1 etter MCP-spesifikasjonen, med samme brukere og roller som skjermbildet. Egen autorisasjonsserver, eller en IdP som støtter både CIMD og DCR. Scopes etter domene og risiko, kort levetid og agentflagg i revisjonsloggen. Byråets faste jobber bruker REST-API-et med en tjenesteklient knyttet til en ansvarlig person. MCP er for agenter som handler for en person.",
+    "valg": []
+   },
+   {
+    "id": "J05",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvilke handlinger skal et menneske bekrefte?",
+    "why": "Agenten skal kunne lese og skrive, også sende a-melding (B41). Sjur avklarte 29.10.2026 at godkjenning av lønnskjøringen holder: agenten kan sende a-meldingen etterpå. KI godkjenner aldri lønn og betaler aldri (B13). Listen må være lik for API, MCP og skjermbilde. Claudes katalog godtar ikke koblinger som overfører penger (R6 §7, verifiseres).",
+    "forslag": "Rettelser og erstatningsmeldinger krever ny godkjenning. Et menneske bekrefter alltid betaling, kontonummer, roller, systembruker og fullmakter (F-PLA-37). Systembruker og fullmakter bekreftes i Altinn.",
+    "valg": []
+   },
+   {
+    "id": "J06",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan håndterer vi lange jobber via API og MCP?",
+    "why": "A07 hentes med bestilling og polling, og samlehenting for et byrå kan ta minutter (M06, M10). Claude avbryter et kall etter 240 sekunder, og MCPs egen støtte for lange oppgaver (Tasks) er fortsatt beta (R6 §1).",
+    "forslag": "202 med operasjons-id, et statusendepunkt og webhook når jobben er ferdig. I MCP gir startverktøyet et håndtak bundet til bruker og klient, og et eget verktøy henter status. Tasks tas i bruk når klientene støtter det.",
+    "valg": []
+   },
+   {
+    "id": "J07",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hva krever vi av hvert endepunkt?",
+    "why": "Kravet om et komplett API må bli en stilguide som CI kan sjekke.",
+    "forslag": "Cursor-paginering og filter på alle lister. Idempotency-Key, revisjon eller If-Match, og dry-run på all skriving (F-PLA-03). Feil som problem+json (RFC 9457) med stabil kode og hva som må til for å løse feilen. Eksempler i kontrakten for hver operasjon.",
+    "valg": []
+   },
+   {
+    "id": "J08",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Skal API-et bruke norske eller engelske navn?",
+    "why": "Fagbegrepene (forskuddstrekk, a-melding, AGA) har ingen presise engelske ord. Agenter forstår begge språk. Navn kan ikke endres etter lansering uten en brytende endring.",
+    "forslag": "Engelske navn på struktur (id, status, createdAt) og norske fagbegreper der de er presise, med forklaring på begge språk i kontrakten. Én regel, og den lintes.",
+    "valg": [
+     "Engelsk",
+     "Norsk",
+     "Engelsk struktur, norske fagbegreper"
+    ]
+   },
+   {
+    "id": "J09",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan versjonerer vi API-et?",
+    "why": "Partnere og agenter skal kunne stole på at kall som virker i dag, virker neste år.",
+    "forslag": "Hovedversjon i stien (/v1) og bare bakoverkompatible endringer innenfor den. Lønnsfred i desember, januar og juni. Vi varsler avvikling minst 12 måneder før og fører endringslogg i utviklerportalen.",
+    "valg": [
+     "Versjon i stien",
+     "Datoversjon i header",
+     "Annet"
+    ]
+   },
+   {
+    "id": "J10",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hvordan avgrenser vi persondata via MCP?",
+    "why": "Sjur bestemte 29.10.2026 at agenten skal kunne lese og skrive lønnsdata via MCP (B41). Fødselsnummer, kontonummer og særlige kategorier trenger egne regler.",
+    "forslag": "Scopes per datatype, for eksempel ansatte:les, ansatte:skriv og lonn:skriv. Fødselsnummer og kontonummer er maskert i svarene, og fødselsnummer krever eget scope. Kontonummer endres bare av den ansatte med BankID (B14). Helse og fagforening går ikke ut via MCP. Kunden slår på MCP per tenant med BankID.",
+    "valg": []
+   },
+   {
+    "id": "J11",
+    "prio": 3,
+    "hvem": "Peter og Sander",
+    "q": "Lager vi SDK og kommandolinje?",
+    "why": "Drift uten skjerm betyr også skript og nattjobber uten agent.",
+    "forslag": "TypeScript-klient for frontend genereres fra OpenAPI. En kommandolinje (`brutto`) genereres fra den samme kontrakten. Python-klient når en partner trenger det.",
+    "valg": []
+   },
+   {
+    "id": "J12",
+    "prio": 2,
+    "hvem": "Peter og Sander",
+    "q": "Hvordan tester vi at agenter faktisk får det til?",
+    "why": "Et API kan være komplett og likevel vanskelig for en agent å bruke.",
+    "forslag": "Et fast sett med 20–30 oppgaver kjøres med en agent mot sandkassen ved hver release, for eksempel «finn klientene med avvik i forskuddstrekk for september». Vi måler andel løste oppgaver, antall kall og tokens.",
+    "valg": []
+   },
+   {
+    "id": "J13",
+    "prio": 1,
+    "hvem": "Alle tre",
+    "q": "Hva kutter vi i fase 1 for å få plass til API og MCP?",
+    "why": "Strategikritikeren la MCP i fase 4, og R2 strøk MCP med skriveverktøy og SDK-er i tre språk som for mye for et lite team (B41). Teamet er tre personer (B38), og omfangsregelen gjelder (B22).",
+    "forslag": "Behold API-et, MCP med lesing og skriving, jobbene og bekreftelsesflyten. Vent med SDK-er utover TypeScript, kommandolinjen, MCP Apps og webhooks til fase 2. Grafene i skjermbildet kan være enkle, siden tallene uansett ligger i API-et.",
     "valg": []
    },
    {
@@ -1050,6 +1192,11 @@
     "tittel": "Kontroller og grafer",
     "tag": "Fase 1",
     "tekst": "Enkle kontroller som finner avvik med forklaring, og noen grafer over tid."
+   },
+   {
+    "tittel": "API og MCP for alt",
+    "tag": "Fase 1",
+    "tekst": "Alt kan gjøres via API og MCP. Agenten kan lese og skrive: hente A07 og oppdatere ansattinfo nå, og lage lønnsutkast og sende a-melding når lønnskjøringen kommer (B41)."
    },
    {
     "tittel": "Godkjenningsflyt",

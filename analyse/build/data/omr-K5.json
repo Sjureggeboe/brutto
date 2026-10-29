@@ -1854,7 +1854,7 @@
        "roller": [
         "Byrå"
        ],
-       "regler_md": "- Høyst 1 000 fødselsnumre per bestilling. Arbeidsgiver oppgis per bestilling (`FOR_004`). Fra 15.12.2026 bare ved polling, minst 2 sekunder mellom forsøk.\n- Ingen henting for sluttede eller personer `registrertSomDoed`. Den skattepliktige får varsel ved henting.\n- Ny henting rett før godkjenning (fryseregel).\n- Bestilling utløses av et menneske, aldri av en agent (S §3 pkt. 14).\n- Pollebudsjett per byrå (R3 D-22).",
+       "regler_md": "- Høyst 1 000 fødselsnumre per bestilling. Arbeidsgiver oppgis per bestilling (`FOR_004`). Fra 15.12.2026 bare ved polling, minst 2 sekunder mellom forsøk.\n- Ingen henting for sluttede eller personer `registrertSomDoed`. Den skattepliktige får varsel ved henting.\n- Ny henting rett før godkjenning (fryseregel).\n- Bestilling utløses av et menneske (S §3 pkt. 14). Etter B41 kan en agent foreslå bestillingen, og et menneske bekrefter (F-PLA-37).\n- Pollebudsjett per byrå (R3 D-22).",
        "data": [
         "D-Skattekort",
         "D-Klient",

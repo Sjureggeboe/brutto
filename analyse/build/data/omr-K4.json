@@ -347,7 +347,7 @@
         "Lønnskonsulent (byrå)",
         "Oppdragsansvarlig (byrå)"
        ],
-       "regler_md": "- Agenter kan hente og validere, men aldri sende inn eller godkjenne (S #14, #15). Det håndheves i gatewayen og i grensesnittet.\n- Den som forbereder en kjøring, kan ikke godkjenne den (BY-34).\n- I byråkontekst sender den som utfører oppdraget, og oppdragsansvarlig trenger ikke godkjenne (S #19).\n- Små kunder med én lønnsperson kan få unntak med logg og rapport til daglig leder eller styreleder (R3 D-47).\n- En endring etter godkjenning nullstiller godkjenningen og hashen.",
+       "regler_md": "- Agenter kan hente og validere. Etter B41 kan de også sende en a-melding når et menneske har godkjent kjøringen og hashen stemmer (F-PLA-37). De godkjenner aldri selv (S #14 og #15, endret av B41). Gatewayen og grensesnittet håndhever det.\n- Den som forbereder en kjøring, kan ikke godkjenne den (BY-34).\n- I byråkontekst sender den som utfører oppdraget, og oppdragsansvarlig trenger ikke godkjenne (S #19).\n- Små kunder med én lønnsperson kan få unntak med logg og rapport til daglig leder eller styreleder (R3 D-47).\n- En endring etter godkjenning nullstiller godkjenningen og hashen.",
        "data": [
         "D-Innsending",
         "D-AMelding",
@@ -721,7 +721,7 @@
       {
        "id": "F-MYN-23",
        "navn": "Myndighetsgateway og revisjonsspor",
-       "beskrivelse_md": "Alle kall til Skatteetaten, NAV, Altinn og Brreg går gjennom én gateway. Den håndterer token, nye forsøk, idempotens, korrelasjonsid, logging og feilklassifisering. Rå forespørsler og svar lagres kryptert i uforanderlig lagring i Norge med hash-kjede. Agenter har en allowlist som avviser alt som ikke er tillatt, og får bare metadata og statuskoder.",
+       "beskrivelse_md": "Alle kall til Skatteetaten, NAV, Altinn og Brreg går gjennom én gateway. Den håndterer token, nye forsøk, idempotens, korrelasjonsid, logging og feilklassifisering. Rå forespørsler og svar lagres kryptert i uforanderlig lagring i Norge med hash-kjede. Agenter har en allowlist som avviser alt som ikke er tillatt. Etter B41 kan agenten hente A07 og sende a-melding for en godkjent kjøring. Gatewayen sender bare nyttelast med godkjent hash (F-PLA-37).",
        "niva": "Kjerne",
        "behovsvekt": "Må",
        "fase1": "Fase 1",
@@ -850,7 +850,7 @@
         "S-avklaringer #14",
         "https://app.swaggerhub.com/apis/skatteetaten/skattekort-til-arbeidsgiver/3.0.1"
        ],
-       "merknad_md": "S #14 sier at agenter ikke bestiller skattekort. En systemregel som bestiller ved nyansettelse, regnes ikke som agent. Regelen må slås på og eies av en navngitt person, og bestillingen logges med den personen [verifiseres mot S]. Tilleggsopplysningen «kildeskattepensjonist» er nevnt i en nyhet, men finnes ikke i enum [verifiseres]. Se også F-TRK-02, F-TRK-04, F-MYN-26, F-MYN-27 og F-BYR-14."
+       "merknad_md": "S #14 sier at agenter ikke bestiller skattekort. Etter B41 kan en agent foreslå bestillingen, og den sendes først når et menneske bekrefter (F-PLA-37). En systemregel som bestiller ved nyansettelse, regnes ikke som agent. Regelen må slås på og eies av en navngitt person, og bestillingen logges med den personen [verifiseres mot S]. Tilleggsopplysningen «kildeskattepensjonist» er nevnt i en nyhet, men finnes ikke i enum [verifiseres]. Se også F-TRK-02, F-TRK-04, F-MYN-26, F-MYN-27 og F-BYR-14."
       },
       {
        "id": "F-MYN-26",
@@ -1539,7 +1539,7 @@
         "Daglig leder",
         "Oppdragsansvarlig (byrå)"
        ],
-       "regler_md": "- Hard sperre: ingen bankfil eller trekkbetaling før godkjenningskjeden er fullført (VK-28).\n- Den som forbereder kjøringen, kan ikke være den som godkjenner betalingen (BY-34, GRFS 8.1 og 8.6).\n- Godkjenning krever step-up med BankID eller passkey.\n- Betaling, innsending og fullmakt er ikke tilgjengelig for agenter (S #15).\n- Ved dødsfall stoppes betaling til personlig konto. Utbetaling går til boets konto etter verifisering (C §10.2).",
+       "regler_md": "- Hard sperre: ingen bankfil eller trekkbetaling før godkjenningskjeden er fullført (VK-28).\n- Den som forbereder kjøringen, kan ikke være den som godkjenner betalingen (BY-34, GRFS 8.1 og 8.6).\n- Godkjenning krever step-up med BankID eller passkey.\n- Agenter kan starte betaling, innsending og fullmakt. Et menneske bekrefter med BankID (S #15, endret av B41, F-PLA-37).\n- Ved dødsfall stoppes betaling til personlig konto. Utbetaling går til boets konto etter verifisering (C §10.2).",
        "data": [
         "D-Betalingsforslag",
         "D-Godkjenning",
@@ -6185,7 +6185,7 @@
      "tripletex": "–",
      "reai": "–",
      "huma": "–",
-     "merknad": "Agent får bare tillatte lesekall."
+     "merknad": "Agent får tillatte lesekall og kan sende a-melding med godkjent hash (B41)."
     },
     {
      "navn": "utlosende_person",

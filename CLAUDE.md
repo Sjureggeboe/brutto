@@ -13,6 +13,12 @@ Kontekst for Claude Code. Minnet til Claude ligger lokalt per maskin, så alt so
 ## Fase 1 (MVP nivå 1)
 - Målet er en smal fase 1 som er «dritgod på lønn».
 - Innhold: ansattoversikt, A07-avstemming og enkle kontroller og grafer. Assistenten kommer senere.
+- API først (B41, avklart 29.10.2026): alt skal kunne gjøres via API og MCP, nesten uten skjerm. Skjermbildene er en klient av det samme API-et.
+  - Agenten skal kunne lese og skrive via MCP: hente A07, oppdatere ansattinfo, opprette lønnsutkast og sende a-melding. Det endrer S-avklaringer §3 pkt. 11 for kundens egen agent. Bruttos egen assistent følger X02.
+  - Avklart 29.10.2026: et menneske godkjenner lønnskjøringen med BankID, og godkjenningen låser a-meldingen med hash. Agenten kan sende den etterpå. Rettelser krever ny godkjenning.
+  - Forslag: betaling, kontonummer, roller og fullmakter bekreftes alltid av et menneske. Listen står i F-PLA-37.
+  - Åpent: personvernet (DPIA og databehandleravtale) og avgrensning av fødselsnummer, kontonummer og særlige kategorier (J10).
+  - Spørsmålene til Peter og Sander er J01–J13 i `fase1.json`. Faktagrunnlaget er `analyse/research/R6-api-mcp.md`.
 - A07 er avstemmingsrapport-amelding, hentet via Maskinporten og systembruker. Den hentes ved behov og etter fristen den 5., ikke hver natt.
 - Godkjenningsflyt per kunde designes nå og bygges senere. Mulige oppsett: avdelingsledere, flere ledd, eller bare regnskapsfører.
 - Utbetaling via en open banking-leverandør designes også nå og bygges senere. Peter eier open banking.
@@ -33,12 +39,12 @@ Kontekst for Claude Code. Minnet til Claude ligger lokalt per maskin, så alt so
 ## Struktur
 ```
 analyse/
-  research/  rapporter fra runde 1–5 (A–G, R2-*, R3-*, R5-kvalitet, S-*, R0-sdworx-meny)
+  research/  rapporter fra runde 1–5 (A–G, R2-*, R3-*, R5-kvalitet, S-*, R0-sdworx-meny) og R6-api-mcp
   plan/      områdekart, skjelett og skrivemal
   build/     template.html + data/*.json + *.css → brutto.html (artefaktet)
   natt/      nattarbeid: backlog, funn/N01–N40, forslag.md, logg.md, morgen.md, loop-prompt.md
 ```
-- Beslutningene B1–B40 ligger i `analyse/build/data/design.json`.
+- Beslutningene B1–B41 ligger i `analyse/build/data/design.json`.
 - Spørsmålene til Fase 1 (til Peter og Sander) ligger i `analyse/build/data/fase1.json`.
 
 ## Bygg og publiser
